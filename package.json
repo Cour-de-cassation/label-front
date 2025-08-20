@@ -20,7 +20,7 @@
     "start:backend": "lerna run --scope @label/cour-de-cassation start --stream",
     "start:backend:dev": "nodemon",
     "start:backend:docker": "docker compose up -d labelbk",
-    "start:client:dev": "PORT=55432 && yarn compile:client && react-scripts start",
+    "start:client:dev": "yarn compile:client && PORT=55432 react-scripts start",
     "start:client:docker": "docker compose up -d labelct",
     "test": "lerna run test",
     "type": "lerna run type",

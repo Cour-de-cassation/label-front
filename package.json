@@ -5,7 +5,7 @@
   "description": "Cour de cassation annotation tool.",
   "scripts": {
     "compile": "tsc",
-    "start:dev": "yarn compile:client && PORT=55432 react-scripts start",
+    "start:dev": "yarn compile && PORT=55432 react-scripts start",
     "start:docker": "docker compose up -d",
     "test": "tsc && react-scripts test",
     "import:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/autoImportDocumentsFromSder.js -s settings/settings.json'",
@@ -27,22 +27,6 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src/",
-    "setupFiles": [
-      "core-js"
-    ],
-    "setupFilesAfterEnv": [
-      "./tests/setupTests.ts"
-    ],
-    "testEnvironment": "node",
-    "testRegex": ".spec.ts$"
   },
   "resolutions": {
     "**/@typescript-eslint/eslint-plugin": "^4.4.1",

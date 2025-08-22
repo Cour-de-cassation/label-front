@@ -1,5 +1,5 @@
 # Step 1 : build label frontend
-FROM node:16-alpine as builder
+FROM node:22-alpine AS builder
 ARG http_proxy
 ARG https_proxy
 
@@ -34,7 +34,7 @@ RUN cd /home/node/packages/generic/core && yarn compile && \
   cd /home/node/packages/generic/client && yarn build
 
 # Setup nginx server to serve app
-FROM nginx:1.23.0-alpine as label-client
+FROM nginx:1.23.0-alpine AS label-client
 
 # is this usefull ?
 RUN for dir in client proxy fastcgi uwsgi scgi;do\

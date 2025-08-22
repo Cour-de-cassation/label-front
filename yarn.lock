@@ -9908,9 +9908,9 @@
     "safe-buffer" "^5.0.1"
     "sha.js" "^2.4.8"
 
-"pelta-design-system@https://github.com/Cour-de-cassation/pelta-design-system#b237ac7876e09e7ab12e930a730c58e7b75b4dd0":
-  "integrity" "sha512-rbC0xdMICcKeZDgjpO2QFTpbXXSrCZP4zqK7F9jy6Pw6yAXjMKl/iuaGOky9D5eptYddI7BpX+5IGLTSQXQZxA=="
-  "resolved" "git+ssh://git@github.com/Cour-de-cassation/pelta-design-system.git#b237ac7876e09e7ab12e930a730c58e7b75b4dd0"
+"pelta-design-system@https://github.com/Cour-de-cassation/pelta-design-system#509d01c4c925f354127887596b6a30252511334b":
+  "integrity" "sha512-hhB6RSLKRSzBFA6V77K41C7ejzqulLHNysK3/bA080eiDzAI55JAhThTlXLEhKijVPNp3FdcpaaRmoqOvXiWtw=="
+  "resolved" "git+ssh://git@github.com/Cour-de-cassation/pelta-design-system.git#509d01c4c925f354127887596b6a30252511334b"
   "version" "0.0.1"
   dependencies:
     "@material-ui/core" "^4.12.3"
@@ -9918,7 +9918,6 @@
     "lodash" "^4.17.21"
     "react" "^17.0.2"
     "styled-components" "^5.3.3"
-    "tsc" "^2.0.4"
     "typescript" "^4.4.3"
 
 "performance-now@^2.1.0":
@@ -12842,11 +12841,6 @@
   "integrity" "sha512-CrG5GqAAzMT7144Cl+UIFP7mz/iIhiy+xQ6GGcnjTezhALT02uPMRw7tgDSESgB5MsfKt55+GPWw4ir1kVtMIQ=="
   "resolved" "https://registry.npmjs.org/ts-pnp/-/ts-pnp-1.1.6.tgz"
   "version" "1.1.6"
-
-"tsc@^2.0.4":
-  "integrity" "sha512-fzoSieZI5KKJVBYGvwbVZs/J5za84f2lSTLPYf6AGiIf43tZ3GNrI1QzTLcjtyDDP4aLxd46RTZq1nQxe7+k5Q=="
-  "resolved" "https://registry.npmjs.org/tsc/-/tsc-2.0.4.tgz"
-  "version" "2.0.4"
 
 "tslib@^1.10.0", "tslib@^1.8.1", "tslib@^1.9.0":
   "integrity" "sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q=="

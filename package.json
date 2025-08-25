@@ -5,7 +5,7 @@
   "description": "Cour de cassation annotation tool.",
   "scripts": {
     "compile": "tsc",
-    "start:dev": "yarn compile && PORT=55432 react-scripts start",
+    "start:dev": "npm run compile && PORT=55432 react-scripts start",
     "start:docker": "docker compose up -d",
     "test": "tsc && react-scripts test",
     "import:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/autoImportDocumentsFromSder.js -s settings/settings.json'",

@@ -7,26 +7,11 @@
     "compile": "tsc",
     "start:dev": "npm run compile && PORT=55432 react-scripts start",
     "start:docker": "docker compose up -d",
-    "test": "tsc && react-scripts test",
+    "test": "npm run compile && react-scripts test",
     "import:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/autoImportDocumentsFromSder.js -s settings/settings.json'",
     "annotateWithNlp:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/annotateDocumentsWithoutAnnotationsWithNlp.js -s settings/settings.json'",
     "exportTreatedDocuments:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/exportTreatedDocumentsSince.js -s settings/settings.json --days 0'",
     "exportToBePublished:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/exportTreatedPublishableDocuments.js -s settings/settings.json'"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -56,8 +41,8 @@
     "@types/jest": "^24.9.1",
     "@types/lodash": "4.14.65",
     "@types/node": "^12.12.55",
-    "@types/react": "^16.9.49",
-    "@types/react-dom": "^16.9.8",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
     "@types/react-router-dom": "^5.1.5",
     "@types/string-template": "^1.0.2",
     "@types/styled-components": "4.0.3",

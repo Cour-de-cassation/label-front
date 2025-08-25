@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* We don't use ban-types due it wasn't banned: theses types were in dbsder-api-types*/
+
+/* eslint-disable @typescript-eslint/no-namespace */
 export namespace Deprecated {
   export enum LabelStatus {
     TOBETREATED = 'toBeTreated',

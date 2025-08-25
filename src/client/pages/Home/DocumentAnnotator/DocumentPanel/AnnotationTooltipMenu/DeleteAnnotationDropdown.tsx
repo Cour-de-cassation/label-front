@@ -79,7 +79,7 @@ function DeleteAnnotationDropdown(props: {
     });
   }
 
-  function deleteAnnotation(deletionOption: typeof DELETION_OPTIONS[number]) {
+  function deleteAnnotation(deletionOption: (typeof DELETION_OPTIONS)[number]) {
     const newAnnotatorState = { ...annotatorState, annotations: computeNewAnnotations() };
     annotatorStateHandler.set(newAnnotatorState);
 

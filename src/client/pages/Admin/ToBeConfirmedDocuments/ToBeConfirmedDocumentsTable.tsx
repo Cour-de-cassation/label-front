@@ -42,10 +42,12 @@ function ToBeConfirmedDocumentsTable(props: {
   }
 
   function buildToBeConfirmedDocumentsFields() {
-    const toBeConfirmedDocumentsFields: Array<tableRowFieldType<
-      apiRouteOutType<'get', 'toBeConfirmedDocuments'>[number],
-      typeof toBeConfirmedDocumentOrderByProperties[number]
-    >> = [
+    const toBeConfirmedDocumentsFields: Array<
+      tableRowFieldType<
+        apiRouteOutType<'get', 'toBeConfirmedDocuments'>[number],
+        (typeof toBeConfirmedDocumentOrderByProperties)[number]
+      >
+    > = [
       {
         id: 'documentNumber',
         title: wordings.business.filters.columnTitles.documentNumber,

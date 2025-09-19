@@ -24,7 +24,6 @@
     "react-dom": "17.0.2",
     "react-router-dom": "5.3.4",
     "react-scripts": "5.0.1",
-    "sder-core": "https://github.com/Cour-de-cassation/sder-core#9a5662b1f0fd817cd2a30895c4dae6d7617413b0",
     "string-template": "1.0.0",
     "styled-components": "4.0.3",
     "typescript": "4.7.4"

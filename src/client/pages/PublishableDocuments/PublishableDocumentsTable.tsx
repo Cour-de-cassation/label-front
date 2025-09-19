@@ -18,8 +18,9 @@ function PublishableDocumentsTable(props: {
   const history = useHistory();
   const fields = buildPublishableDocumentsFields();
   const styles = buildStyles();
-  const numberConfirmationDecision = props.publishableDocuments.filter((document) => document.route == 'confirmation')
-    .length;
+  const numberConfirmationDecision = props.publishableDocuments.filter(
+    (document) => document.route == 'confirmation',
+  ).length;
   const orderByProperty = localStorage.publishableDocumentsStateHandler.getOrderByProperty();
   const orderDirection = localStorage.publishableDocumentsStateHandler.getOrderDirection();
   return (
@@ -45,7 +46,7 @@ function PublishableDocumentsTable(props: {
     </div>
   );
 
-  function onOrderByPropertyChange(newOrderByProperty: typeof publishableDocumentOrderByProperties[number]) {
+  function onOrderByPropertyChange(newOrderByProperty: (typeof publishableDocumentOrderByProperties)[number]) {
     localStorage.publishableDocumentsStateHandler.setOrderByProperty(newOrderByProperty);
   }
 
@@ -103,10 +104,12 @@ function PublishableDocumentsTable(props: {
 }
 
 function buildPublishableDocumentsFields() {
-  const publishableDocumentsFields: Array<tableRowFieldType<
-    apiRouteOutType<'get', 'publishableDocuments'>[number],
-    typeof publishableDocumentOrderByProperties[number]
-  >> = [
+  const publishableDocumentsFields: Array<
+    tableRowFieldType<
+      apiRouteOutType<'get', 'publishableDocuments'>[number],
+      (typeof publishableDocumentOrderByProperties)[number]
+    >
+  > = [
     {
       id: 'documentNumber',
       title: wordings.business.filters.columnTitles.documentNumber,

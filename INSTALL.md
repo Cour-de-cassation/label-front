@@ -20,7 +20,7 @@ You should take a look at [juridependencies](https://github.com/Cour-de-cassatio
 Install dependencies with:
 
 ```sh
-npm
+npm i
 ```
 
 ### Frontend

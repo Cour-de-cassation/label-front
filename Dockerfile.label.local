@@ -6,6 +6,6 @@ USER node
 WORKDIR /home/node
 
 COPY --chown=node:node . .
-RUN yarn
+RUN npm i
 
-CMD ["yarn", "start:backend:dev"]
+CMD ["npm", "run", "start:dev"]

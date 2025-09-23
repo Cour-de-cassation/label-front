@@ -11,7 +11,6 @@ function buildTimer() {
   };
 
   function start(taskName: string) {
-    console.log(`${taskName} started`);
     lastTaskName = taskName;
     timestamp = new Date().getTime();
   }
@@ -20,8 +19,6 @@ function buildTimer() {
     if (lastTaskName === null || timestamp === null) {
       throw new Error(`Cannot screenshot a new taskName if the timer was not started`);
     }
-    const newTimestamp = new Date().getTime();
-    console.log(`${lastTaskName} took ${newTimestamp - timestamp} ms`);
     start(taskName);
   }
 
@@ -29,8 +26,6 @@ function buildTimer() {
     if (lastTaskName === null || timestamp === null) {
       throw new Error(`Cannot the timer if it was not started before`);
     }
-    const newTimestamp = new Date().getTime();
-    console.log(`${lastTaskName} took ${newTimestamp - timestamp} ms`);
     lastTaskName = null;
     timestamp = null;
   }

@@ -62,7 +62,7 @@ function UntreatedDocumentsTable(props: {
     </div>
   );
 
-  function onOrderByPropertyChange(newOrderByProperty: typeof untreatedDocumentOrderByProperties[number]) {
+  function onOrderByPropertyChange(newOrderByProperty: (typeof untreatedDocumentOrderByProperties)[number]) {
     localStorage.untreatedDocumentsStateHandler.setOrderByProperty(newOrderByProperty);
   }
 
@@ -138,7 +138,7 @@ function UntreatedDocumentsTable(props: {
 
   async function onConfirmUpdateDocumentStatus(documentIdToUpdateStatus: documentType['_id']) {
     setDocumentIdToUpdateStatus(undefined);
-    const userId = (user?._id as unknown) as userType['_id'];
+    const userId = user?._id as unknown as userType['_id'];
     if (!userId) {
       displayAlert({ text: wordings.business.errors.noUserIdFound, variant: 'alert', autoHide: true });
       return;
@@ -177,10 +177,12 @@ function UntreatedDocumentsTable(props: {
   }
 
   function buildUntreatedDocumentsFields() {
-    const untreatedDocumentsFields: Array<tableRowFieldType<
-      apiRouteOutType<'get', 'untreatedDocuments'>[number],
-      typeof untreatedDocumentOrderByProperties[number]
-    >> = [
+    const untreatedDocumentsFields: Array<
+      tableRowFieldType<
+        apiRouteOutType<'get', 'untreatedDocuments'>[number],
+        (typeof untreatedDocumentOrderByProperties)[number]
+      >
+    > = [
       {
         id: 'documentNumber',
         title: wordings.business.filters.columnTitles.documentNumber,

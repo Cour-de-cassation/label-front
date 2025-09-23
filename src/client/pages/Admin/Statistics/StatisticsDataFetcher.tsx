@@ -68,7 +68,7 @@ function buildFetchStatistics() {
 
     return {
       data: { availableStatisticFilters, aggregatedStatistics },
-      statusCode: Math.max(statusCodeAvailableStatisticFilters, statusCodeAggregatedStatistics)
+      statusCode: Math.max(statusCodeAvailableStatisticFilters, statusCodeAggregatedStatistics),
     };
   };
 }

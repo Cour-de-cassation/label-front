@@ -19,4 +19,3 @@ const urlHandler = {
     return `${this.getApiUrl()}/label/api/sso/logout`;
   },
 };
-

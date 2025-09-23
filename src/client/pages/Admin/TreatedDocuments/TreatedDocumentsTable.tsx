@@ -16,7 +16,7 @@ function TreatedDocumentsTable(props: {
   fields: Array<
     tableRowFieldType<
       apiRouteOutType<'get', 'treatedDocuments'>[number],
-      typeof treatedDocumentOrderByProperties[number]
+      (typeof treatedDocumentOrderByProperties)[number]
     >
   >;
   refetch: () => void;
@@ -60,7 +60,7 @@ function TreatedDocumentsTable(props: {
     setAnnotationDiffDocumentInfo(undefined);
   }
 
-  function onOrderByPropertyChange(newOrderByProperty: typeof treatedDocumentOrderByProperties[number]) {
+  function onOrderByPropertyChange(newOrderByProperty: (typeof treatedDocumentOrderByProperties)[number]) {
     localStorage.treatedDocumentsStateHandler.setOrderByProperty(newOrderByProperty);
   }
 

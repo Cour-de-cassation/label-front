@@ -20,17 +20,17 @@ You should take a look at [juridependencies](https://github.com/Cour-de-cassatio
 Install dependencies with:
 
 ```sh
-yarn
+npm i
 ```
 
 ### Frontend
 
 #### With docker:
 
-Start the backend with:
+Start the client with:
 
 ```sh
-yarn start:client:docker
+npm run start:docker
 ```
 
 #### Without docker:
@@ -38,52 +38,9 @@ yarn start:client:docker
 To lauch the frontend run:
 
 ```sh
-yarn start:client:dev
+npm run start:dev
 ```
 
 Then, on your web browser, open http://localhost:55432
 
-### Backend
 
-#### With docker:
-
-Start the backend with:
-
-```sh
-yarn start:backend:docker
-```
-
-#### Without docker:
-
-Start the backend:
-
-```sh
-yarn start:backend:dev
-```
-
-### Database
-
-You can init database with :
-
-```sh
-yarn init:db
-```
-
-This script is lauch with the `.env` configuration.
-
-### Launch scripts
-
-Label contains many scripts, they are listed [here](docs/scripts.md)
-You can launch scripts with theses commands :
-
-#### With docker
-
-```sh
-docker compose exec labelbk sh -c "cd packages/courDeCassation; sh scripts/runLocalScript.sh ./dist/scripts/myScript.js --myArgument"
-```
-
-#### Without docker
-
-```sh
-scripts/runScriptLocally.sh "myScript.js --myArgument"
-```

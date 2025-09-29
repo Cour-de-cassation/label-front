@@ -28,7 +28,7 @@ build_and_push_label_client:
     - docker build
       --build-arg http_proxy=$HTTP_PROXY
       --build-arg https_proxy=$HTTPS_PROXY
-      --target label-client
+      --target label-front
       -t $docker_image .
     - docker push $docker_image
   rules:

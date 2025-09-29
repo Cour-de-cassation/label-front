@@ -18,6 +18,10 @@ RUN npm run build && npm prune --production
 
 FROM nginx:1.23.0-alpine AS label-front
 
+RUN for dir in client proxy fastcgi uwsgi scgi;do\
+  mkdir /var/cache/nginx/${dir}_temp;\
+  done
+
 WORKDIR /home/nginx
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf

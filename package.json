@@ -3,16 +3,13 @@
   "version": "0.1.2",
   "private": true,
   "description": "Cour de cassation annotation tool.",
+  "homepage": "/label",
   "scripts": {
     "build": "react-scripts build",
     "compile": "tsc",
-    "start:dev": "npm run compile && PORT=55432 react-scripts start",
+    "start:dev": "PORT=55432 react-scripts start",
     "start:docker": "docker compose up -d",
-    "test": "npm run compile && react-scripts test",
-    "import:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/autoImportDocumentsFromSder.js -s settings/settings.json'",
-    "annotateWithNlp:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/annotateDocumentsWithoutAnnotationsWithNlp.js -s settings/settings.json'",
-    "exportTreatedDocuments:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/exportTreatedDocumentsSince.js -s settings/settings.json --days 0'",
-    "exportToBePublished:docker": "docker compose run --rm labelbk sh -c 'cd packages/courDeCassation && node dist/scripts/exportTreatedPublishableDocuments.js -s settings/settings.json'"
+    "test": "npm run compile && react-scripts test"
   },
   "dependencies": {
     "axios": "0.24.0",

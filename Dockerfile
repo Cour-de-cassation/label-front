@@ -10,11 +10,11 @@ RUN npm config set proxy $http_proxy
 RUN npm config set https-proxy $https_proxy
 
 COPY package*.json ./
-RUN npm ci
+RUN npm ci  
 
 COPY --chown=node:node . .
 
-RUN npm run build && npm prune --production
+RUN npm run build
 
 FROM nginx:1.23.0-alpine AS label-front
 
@@ -29,7 +29,5 @@ COPY nginx/gzip.conf /etc/nginx/gzip.conf
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=builder /home/node/build /usr/share/nginx/html/label/
-
-EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

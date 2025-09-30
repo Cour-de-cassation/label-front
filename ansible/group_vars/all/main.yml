@@ -3,3 +3,4 @@ ansible_user: iliasaaguida
 ansible_python_interpreter: "/home/{{ ansible_user }}/ansible_venv/bin/python"
 
 label_client_app_id: "label-client"
+label_kube_namespace: "label"

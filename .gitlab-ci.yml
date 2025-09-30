@@ -3,7 +3,7 @@ services:
   - docker:20.10.22-dind
 
 variables:
-  docker_client_image: '$CI_REGISTRY/cour-de-cassation/label/client:$CI_COMMIT_SHORT_SHA'
+  docker_image: '$CI_REGISTRY/cour-de-cassation/label-front:$CI_COMMIT_SHORT_SHA'
 
 stages:
   - build
@@ -20,18 +20,17 @@ build_and_push_label_client:
 
     # To avoid rebuild existing image when adding tag to a commit
     - |
-      if docker pull "$docker_client_image"; then
-        echo "Docker image $docker_client_image already exist, skiping build and push."
+      if docker pull "$docker_image"; then
+        echo "Docker image $docker_image already exist, skiping build and push."
         exit 0
       fi
 
     - docker build
       --build-arg http_proxy=$HTTP_PROXY
       --build-arg https_proxy=$HTTPS_PROXY
-      --target label-client
-      -f Dockerfile.label-client
-      -t $docker_client_image .
-    - docker push $docker_client_image
+      --target label-front
+      -t $docker_image .
+    - docker push $docker_image
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
     - if: '$CI_COMMIT_TAG'
@@ -48,7 +47,7 @@ build_and_push_label_client:
     - cat $KNOWN_HOSTS > /root/.ssh/known_hosts
     - chmod 600 /root/.ssh/id_rsa
     - chmod 600 /root/.ssh/known_hosts
-    - ansible-playbook -e label_client_image=$docker_client_image -i ansible/inventories/$ENV.yml ansible/deploy_label_client.yml --vault-password-file=$ANSIBLE_VAULT_PASS
+    - ansible-playbook -e label_client_image=$docker_image -i ansible/inventories/$ENV.yml ansible/deploy_label_client.yml --vault-password-file=$ANSIBLE_VAULT_PASS
   tags:
     - docker
 

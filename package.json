@@ -9,7 +9,10 @@
     "compile": "tsc",
     "start:dev": "PORT=55432 react-scripts start",
     "start:docker": "docker compose up -d",
-    "test": "npm run compile && react-scripts test"
+    "test": "npm run compile && react-scripts test",
+    "format": "prettier \"src/**/*.ts\" --check",
+    "lint": "eslint \"src/**/*.ts\" --max-warnings 0",
+    "fix": "eslint \"src/**/*.ts\" --fix && prettier \"src/**/*.ts\" --write"
   },
   "dependencies": {
     "axios": "0.24.0",

@@ -16,8 +16,14 @@ const fr = {
     decisionNumberHint: 'Numéro de décision à rechercher',
     documentReviewFilterStatus: {
       none: { filter: 'Décisions non revues' },
-      viewed: { iconTooltip: 'Vue par {viewerNames}', filter: 'Décisions revues' },
-      amended: { iconTooltip: 'Revue et modifiée', filter: 'Décisions revues et modifiées' },
+      viewed: {
+        iconTooltip: 'Vue par {viewerNames}',
+        filter: 'Décisions revues',
+      },
+      amended: {
+        iconTooltip: 'Revue et modifiée',
+        filter: 'Décisions revues et modifiées',
+      },
     },
     documentRoute: {
       automatic: 'Automatique',
@@ -95,23 +101,44 @@ const fr = {
         chamberName: 'Chambre',
         appealNumber: 'N° de pourvoi / RG',
         occultationBlock: { title: 'Bloc', tooltipText: "Bloc d'occultation" },
-        jurisdiction: { title: 'Juridiction', tooltipText: 'Juridiction de la décision' },
-        publicationCategory: { title: 'Dif.', tooltipText: 'Type de diffusion' },
-        session: { title: 'Formation', tooltipText: 'Acronyme de la formation' },
+        jurisdiction: {
+          title: 'Juridiction',
+          tooltipText: 'Juridiction de la décision',
+        },
+        publicationCategory: {
+          title: 'Dif.',
+          tooltipText: 'Type de diffusion',
+        },
+        session: {
+          title: 'Formation',
+          tooltipText: 'Acronyme de la formation',
+        },
         source: { title: 'Source', tooltipText: 'Base de données source' },
         userName: 'Attribué à',
         route: { title: 'Circuit', tooltipText: 'Circuit de traitement' },
         status: 'Statut',
-        decisionDate: { title: 'Date décision', tooltipText: 'Date de rendu de la décision' },
-        creationDate: { title: 'Date import', tooltipText: "Date d'import de la décision" },
+        decisionDate: {
+          title: 'Date décision',
+          tooltipText: 'Date de rendu de la décision',
+        },
+        creationDate: {
+          title: 'Date import',
+          tooltipText: "Date d'import de la décision",
+        },
         treatmentDate: 'Traité le',
         workingUser: { title: 'Agent', tooltipText: 'Agent principal' },
         problemReportType: 'Type',
         problemReportDate: 'Date du signalement',
         problemReportText: 'Message',
         reviewStatus: { title: 'Revue', tooltipText: 'Statut de revue' },
-        loss: { title: 'Loss', tooltipText: 'Complexité de la décision et du traitement' },
-        surAnnotationsCount: { title: 'Sur.', tooltipText: 'Nombre de sur-annotations' },
+        loss: {
+          title: 'Loss',
+          tooltipText: 'Complexité de la décision et du traitement',
+        },
+        surAnnotationsCount: {
+          title: 'Sur.',
+          tooltipText: 'Nombre de sur-annotations',
+        },
         subAnnotationsSensitiveCount: {
           title: 'Sous. (sens.)',
           tooltipText: 'Nombre de sous-annotations sensibles',
@@ -123,7 +150,11 @@ const fr = {
         duration: { title: 'Tps', tooltipText: 'Temps de traitement total' },
       },
     },
-    problemReportType: { bug: 'Bug', annotationProblem: "Problème lié à l'annotation", suggestion: 'Suggestion' },
+    problemReportType: {
+      bug: 'Bug',
+      annotationProblem: "Problème lié à l'annotation",
+      suggestion: 'Suggestion',
+    },
     update: 'Mettre à jour',
     userRoles: {
       admin: 'Administrateur',

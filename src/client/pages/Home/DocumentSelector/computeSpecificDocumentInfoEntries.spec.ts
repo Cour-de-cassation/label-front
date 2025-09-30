@@ -29,14 +29,22 @@ describe('computeSpecificDocumentInfoEntries', () => {
 
     const specificDocumentInfoEntries = computeSpecificDocumentInfoEntries(document);
 
-    expect(specificDocumentInfoEntries).toEqual({ decisionNumber: 1234567, chamberName: 'Civile' });
+    expect(specificDocumentInfoEntries).toEqual({
+      decisionNumber: 1234567,
+      chamberName: 'Civile',
+    });
   });
 
   it('should return blank infos', () => {
-    const document = documentModule.generator.generate({ documentNumber: 1234567 });
+    const document = documentModule.generator.generate({
+      documentNumber: 1234567,
+    });
 
     const specificDocumentInfoEntries = computeSpecificDocumentInfoEntries(document);
 
-    expect(specificDocumentInfoEntries).toEqual({ decisionNumber: 1234567, chamberName: '-' });
+    expect(specificDocumentInfoEntries).toEqual({
+      decisionNumber: 1234567,
+      chamberName: '-',
+    });
   });
 });

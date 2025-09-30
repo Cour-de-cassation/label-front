@@ -7,8 +7,14 @@ export type { annotationsCommitterType };
 type annotationsCommitterType = {
   clean: () => void;
   commit: (previousAnnotations: annotationType[], nextAnnotations: annotationType[]) => annotationsDiffType;
-  revert: (previousAnnotations: annotationType[]) => { annotations: annotationType[]; commit: annotationsDiffType };
-  restore: (previousAnnotations: annotationType[]) => { annotations: annotationType[]; commit: annotationsDiffType };
+  revert: (previousAnnotations: annotationType[]) => {
+    annotations: annotationType[];
+    commit: annotationsDiffType;
+  };
+  restore: (previousAnnotations: annotationType[]) => {
+    annotations: annotationType[];
+    commit: annotationsDiffType;
+  };
   canRevert: () => boolean;
   canRestore: () => boolean;
   squash: () => annotationsDiffType;

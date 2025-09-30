@@ -60,7 +60,10 @@ describe('handleFetchedData', () => {
 
     const fetchedData = handleFetchedData(fetchedInfo, showLoadingOnRefetch);
 
-    expect(fetchedData).toEqual({ kind: 'data', data: { content: 'notEmpty' } });
+    expect(fetchedData).toEqual({
+      kind: 'data',
+      data: { content: 'notEmpty' },
+    });
   });
 
   it('should return the fetched data even when loading', () => {
@@ -72,6 +75,9 @@ describe('handleFetchedData', () => {
 
     const fetchedData = handleFetchedData(fetchedInfo, showLoadingOnRefetch);
 
-    expect(fetchedData).toEqual({ kind: 'data', data: { content: 'notEmpty' } });
+    expect(fetchedData).toEqual({
+      kind: 'data',
+      data: { content: 'notEmpty' },
+    });
   });
 });

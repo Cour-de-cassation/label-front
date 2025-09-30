@@ -5,10 +5,18 @@ import { assertAnnotationsDiffCompatibleWithAvailableCategories } from './assert
 
 describe('assertAnnotationsDiffCompatibleWithAvailableCategories', () => {
   it('should return true', () => {
-    const afterAnnotations = [{ category: 'prenom', start: 0, text: 'Benoit', score: 1, source: 'agent' }].map(
-      annotationModule.lib.buildAnnotation,
-    );
-    const annotationsDiff = annotationsDiffGenerator.generate({ after: afterAnnotations });
+    const afterAnnotations = [
+      {
+        category: 'prenom',
+        start: 0,
+        text: 'Benoit',
+        score: 1,
+        source: 'agent',
+      },
+    ].map(annotationModule.lib.buildAnnotation);
+    const annotationsDiff = annotationsDiffGenerator.generate({
+      after: afterAnnotations,
+    });
     const settings = settingsModule.lib.buildSettings({ prenom: {} });
     const availableCategories = Object.keys(settings);
 
@@ -16,14 +24,29 @@ describe('assertAnnotationsDiffCompatibleWithAvailableCategories', () => {
   });
 
   it('should throw', () => {
-    const beforeAnnotations = [{ category: 'prenom', start: 0, text: 'Benoit', score: 1, source: 'agent' }].map(
-      annotationModule.lib.buildAnnotation,
-    );
+    const beforeAnnotations = [
+      {
+        category: 'prenom',
+        start: 0,
+        text: 'Benoit',
+        score: 1,
+        source: 'agent',
+      },
+    ].map(annotationModule.lib.buildAnnotation);
     const afterAnnotations = [
       { category: 'nom', start: 0, text: 'Benoit', score: 1, source: 'agent' },
-      { category: 'prenom', start: 10, text: 'Benoit', score: 1, source: 'agent' },
+      {
+        category: 'prenom',
+        start: 10,
+        text: 'Benoit',
+        score: 1,
+        source: 'agent',
+      },
     ].map(annotationModule.lib.buildAnnotation);
-    const annotationsDiff = annotationsDiffGenerator.generate({ before: beforeAnnotations, after: afterAnnotations });
+    const annotationsDiff = annotationsDiffGenerator.generate({
+      before: beforeAnnotations,
+      after: afterAnnotations,
+    });
     const settings = settingsModule.lib.buildSettings({ prenom: {} });
     const availableCategories = Object.keys(settings);
 

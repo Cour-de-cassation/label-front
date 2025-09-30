@@ -27,9 +27,6 @@
                 image: "{{ label_client_image }}"
                 ports:
                   - containerPort: 55432
-                envFrom:
-                  - configMapRef:
-                      name: "{{ label_client_app_id }}-config"
                 # livenessProbe:
                 #   exec:
                 #     command:

@@ -9,23 +9,41 @@ describe('getAnnotationTextDisplayStyle', () => {
   });
 
   it('should return none', () => {
-    const annotation = annotationModule.generator.generate({ category: 'prenom' });
-    const documentViewerMode = { kind: 'annotation' as const, isAnonymizedView: true };
-    const displayStyle = getAnnotationTextDisplayStyle({ settings, annotation, documentViewerMode });
+    const annotation = annotationModule.generator.generate({
+      category: 'prenom',
+    });
+    const documentViewerMode = {
+      kind: 'annotation' as const,
+      isAnonymizedView: true,
+    };
+    const displayStyle = getAnnotationTextDisplayStyle({
+      settings,
+      annotation,
+      documentViewerMode,
+    });
 
     expect(displayStyle).toBe('none');
   });
 
   it('should return underlined', () => {
     const annotation = annotationModule.generator.generate({ category: 'nom' });
-    const documentViewerMode = { kind: 'annotation' as const, isAnonymizedView: true };
-    const displayStyle = getAnnotationTextDisplayStyle({ settings, annotation, documentViewerMode });
+    const documentViewerMode = {
+      kind: 'annotation' as const,
+      isAnonymizedView: true,
+    };
+    const displayStyle = getAnnotationTextDisplayStyle({
+      settings,
+      annotation,
+      documentViewerMode,
+    });
 
     expect(displayStyle).toBe('underlined');
   });
 
   it('should return outlined', () => {
-    const annotation = annotationModule.generator.generate({ category: 'adresse' });
+    const annotation = annotationModule.generator.generate({
+      category: 'adresse',
+    });
     const documentViewerMode = {
       kind: 'occurrence' as const,
       category: annotation.category,
@@ -33,13 +51,19 @@ describe('getAnnotationTextDisplayStyle', () => {
       isAnonymizedView: true,
       entityLineNumbers: [],
     };
-    const displayStyle = getAnnotationTextDisplayStyle({ settings, annotation, documentViewerMode });
+    const displayStyle = getAnnotationTextDisplayStyle({
+      settings,
+      annotation,
+      documentViewerMode,
+    });
 
     expect(displayStyle).toBe('outlined');
   });
 
   it('should return filled', () => {
-    const annotation = annotationModule.generator.generate({ category: 'adresse' });
+    const annotation = annotationModule.generator.generate({
+      category: 'adresse',
+    });
     const documentViewerMode = {
       kind: 'occurrence' as const,
       category: annotation.category,
@@ -47,7 +71,11 @@ describe('getAnnotationTextDisplayStyle', () => {
       isAnonymizedView: true,
       entityLineNumbers: [],
     };
-    const displayStyle = getAnnotationTextDisplayStyle({ settings, annotation, documentViewerMode });
+    const displayStyle = getAnnotationTextDisplayStyle({
+      settings,
+      annotation,
+      documentViewerMode,
+    });
 
     expect(displayStyle).toBe('filled');
   });

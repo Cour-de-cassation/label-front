@@ -66,6 +66,9 @@ function buildDocumentViewerModeHandler(
   }
 
   function switchAnonymizedView() {
-    setViewerMode({ ...documentViewerMode, isAnonymizedView: !documentViewerMode.isAnonymizedView });
+    setViewerMode({
+      ...documentViewerMode,
+      isAnonymizedView: !documentViewerMode.isAnonymizedView,
+    });
   }
 }

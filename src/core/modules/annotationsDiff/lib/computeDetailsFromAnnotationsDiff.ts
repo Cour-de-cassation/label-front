@@ -47,7 +47,11 @@ function computeModifiedAnnotations(annotationsDiff: annotationsDiffType): {
   const resizedSmallerAnnotations = computeResizedSmallerAnnotations(annotationsDiff);
   const categoryChangedAnnotations = computeCategoryChangedAnnotations(annotationsDiff);
 
-  return { categoryChangedAnnotations, resizedBiggerAnnotations, resizedSmallerAnnotations };
+  return {
+    categoryChangedAnnotations,
+    resizedBiggerAnnotations,
+    resizedSmallerAnnotations,
+  };
 }
 
 function computeResizedBiggerAnnotations(

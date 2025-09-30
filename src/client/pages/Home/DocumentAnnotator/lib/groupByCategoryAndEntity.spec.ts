@@ -62,5 +62,8 @@ describe('groupByCategoryAndEntity', () => {
 function generateCategoryAnnotations(annotationsGroups: annotationType[][]) {
   return annotationsGroups
     .filter((annotations) => annotations.length)
-    .map((annotations) => ({ entityId: annotations[0].entityId, entityAnnotations: annotations }));
+    .map((annotations) => ({
+      entityId: annotations[0].entityId,
+      entityAnnotations: annotations,
+    }));
 }

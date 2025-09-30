@@ -39,7 +39,10 @@ type modelCaseCustomType = {
   content: string;
 };
 
-type modelCaseOrType = { kind: 'or'; content: Readonly<[modelOrEntryType, modelOrEntryType]> };
+type modelCaseOrType = {
+  kind: 'or';
+  content: Readonly<[modelOrEntryType, modelOrEntryType]>;
+};
 
 type modelCaseObjectType = {
   kind: 'object';

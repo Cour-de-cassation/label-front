@@ -1,6 +1,7 @@
 import React, { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react';
 import { urlHandler } from '../utils';
 import { userType } from 'src/core';
+import { localStorage } from '../services/localStorage';
 
 export interface CurrentUser {
   _id?: string;
@@ -25,6 +26,9 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     async function fetchUser() {
       const userData = await whoami();
       setUser(userData);
+      if (userData && userData.role == 'admin') {
+        localStorage.adminViewHandler.set('admin');
+      }
       setLoading(false);
     }
     fetchUser();

@@ -1,6 +1,5 @@
 import { treatmentType } from '..';
 import { computeAnnotations } from './computeAnnotations';
-import { documentType } from '../../document/documentType';
 import { Deprecated } from '../../../types/decision';
 
 export { concat };

@@ -1,4 +1,4 @@
-import { idModule } from '../../id';
+import { ObjectId } from 'bson';
 import { userType } from '../userType';
 
 export { buildUser };
@@ -13,7 +13,7 @@ async function buildUser({
   role: userType['role'];
 }): Promise<userType> {
   return {
-    _id: idModule.lib.buildId(),
+    _id: new ObjectId(),
     email: email.trim().toLowerCase(),
     name,
     role,

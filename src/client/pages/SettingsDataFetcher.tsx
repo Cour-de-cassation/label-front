@@ -19,6 +19,6 @@ function SettingsDataFetcher(props: { children: (fetched: { settings: settingsTy
 function buildFetchSettings() {
   return async () => {
     const { data, statusCode } = await apiCaller.get<'settings'>('settings');
-    return { data: settingsModule.lib.parseFromJson(data.json) as settingsType, statusCode };
+    return { data: settingsModule.lib.parseFromJson(JSON.stringify(data.json)) as settingsType, statusCode };
   };
 }

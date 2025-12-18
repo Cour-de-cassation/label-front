@@ -1,5 +1,5 @@
+import { ObjectId } from 'bson';
 import { documentModule, documentType } from '../../document';
-import { idModule } from '../../id';
 import { treatmentInfoType, treatmentType } from '../../treatment';
 import { statisticType } from '../statisticType';
 
@@ -25,7 +25,7 @@ function buildStatistic({
   comment?: string;
 }): statisticType {
   return {
-    _id: idModule.lib.buildId(),
+    _id: new ObjectId(),
     annotationsCount,
     appealNumber: document.decisionMetadata.appealNumber || undefined,
     chamberName: document.decisionMetadata.chamberName
@@ -36,7 +36,7 @@ function buildStatistic({
     documentNumber: document.documentNumber,
     jurisdiction: document.decisionMetadata.jurisdiction
       ? document.decisionMetadata.jurisdiction.trim().toLowerCase()
-      : undefined,
+      : '',
     linkedEntitiesCount,
     session: document.decisionMetadata.session || undefined,
     endCaseCode: document.decisionMetadata.endCaseCode || undefined,

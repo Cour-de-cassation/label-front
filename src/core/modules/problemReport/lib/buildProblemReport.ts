@@ -1,4 +1,5 @@
-import { idModule, omitIdType } from '../../id';
+import { ObjectId } from 'bson';
+import { omitIdType } from '../../id';
 import { problemReportType } from '../problemReportType';
 
 export { buildProblemReport };
@@ -6,6 +7,6 @@ export { buildProblemReport };
 function buildProblemReport(assignationFields: omitIdType<problemReportType>): problemReportType {
   return {
     ...assignationFields,
-    _id: idModule.lib.buildId(),
+    _id: new ObjectId(),
   };
 }

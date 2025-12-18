@@ -1,14 +1,15 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, ressourceFilterType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
+import { ressourceFilterType } from 'src/core';
+import { apiSchemaType } from 'src/core/api/apiSchema';
 
 export { StatisticsDataFetcher };
 
 function StatisticsDataFetcher(props: {
   children: (fetched: {
-    availableStatisticFilters: apiRouteOutType<'get', 'availableStatisticFilters'>;
-    aggregatedStatistics: apiRouteOutType<'get', 'aggregatedStatistics'>;
+    availableStatisticFilters: apiSchemaType['get']['availableStatisticFilters']['out'];
+    aggregatedStatistics: apiSchemaType['get']['aggregatedStatistics']['out'];
     refetch: (ressourceFilter: ressourceFilterType) => void;
     isLoading: boolean;
     ressourceFilter: ressourceFilterType;

@@ -1,8 +1,9 @@
 import { settingsType } from '../../settings';
-import { idModule, omitIdType } from '../../id';
+import { omitIdType } from '../../id';
 import { treatmentGenerator } from '../generator';
 import { treatmentType } from '../treatmentType';
 import { computeTreatmentInfo } from './computeTreatmentInfo';
+import { ObjectId } from 'bson';
 
 export { build };
 
@@ -25,7 +26,7 @@ function build(
 
   return {
     ...treatment,
-    _id: idModule.lib.buildId(),
+    _id: new ObjectId(),
     subAnnotationsNonSensitiveCount,
     surAnnotationsCount,
     subAnnotationsSensitiveCount,

@@ -1,5 +1,5 @@
+import { ObjectId } from 'bson';
 import { generatorType } from '../../../types';
-import { idModule } from '../../id';
 import { ressourceFilterType } from '../ressourceFilterType';
 
 export { ressourceFilterGenerator };
@@ -26,6 +26,6 @@ const ressourceFilterGenerator: generatorType<ressourceFilterType> = {
     route: route ?? undefined,
     importer: importer ?? undefined,
     source: source ?? undefined,
-    userId: userId ? idModule.lib.buildId(userId) : undefined,
+    userId: userId ? new ObjectId(userId) : undefined,
   }),
 };

@@ -1,6 +1,6 @@
 import { annotationModule } from '../../annotation';
 import { annotationsDiffModule } from '../../annotationsDiff';
-import { idModule } from '../../id';
+import { ObjectId } from 'bson';
 import { settingsModule } from '../../settings';
 import { build } from './build';
 
@@ -28,7 +28,7 @@ describe('build', () => {
           { start: 90, text: 'Gaston', category: 'personnePhysiquePrenom' },
         ].map(annotationModule.generator.generate),
       ),
-      documentId: idModule.lib.buildId(),
+      documentId: new ObjectId(),
       order: 3,
       source: 'annotator' as const,
     };

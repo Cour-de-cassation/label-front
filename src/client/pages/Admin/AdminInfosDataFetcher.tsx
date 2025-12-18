@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { apiRouteInType, apiRouteOutType } from 'src/core';
+import { apiRouteInType, apiRouteOutType } from 'src/core/api';
 import { WorkingUsersDataFetcher } from './WorkingUsers/WorkingUsersDataFetcher';
 import { ProblemReportsDataFetcher } from './ProblemReports/ProblemReportsDataFetcher';
 import { TreatedDocumentsDataFetcher } from './TreatedDocuments/TreatedDocumentsDataFetcher';

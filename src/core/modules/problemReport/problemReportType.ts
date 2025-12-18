@@ -1,24 +1,16 @@
-import { idType } from '../id';
-import { buildModel, buildType } from '../modelType';
+import { ObjectId } from 'bson';
 
-export { problemReportModel };
+// je met enum à la place de type...
+export type problemReportTypeEnum = 'bug' | 'annotationProblem' | 'suggestion';
 
-export type { problemReportType };
 
-const problemReportModel = buildModel({
-  kind: 'object',
-  content: {
-    _id: { kind: 'custom', content: 'id' },
-    documentId: { kind: 'custom', content: 'id' },
-    userId: { kind: 'custom', content: 'id' },
-    date: { kind: 'primitive', content: 'number' },
-    text: { kind: 'primitive', content: 'string' },
-    hasBeenRead: { kind: 'primitive', content: 'boolean' },
-    type: {
-      kind: 'constant',
-      content: ['bug', 'annotationProblem', 'suggestion'] as const,
-    },
-  },
-} as const);
 
-type problemReportType = buildType<typeof problemReportModel, { id: idType }>;
+export type problemReportType = {
+  _id: ObjectId;
+  documentId: ObjectId;
+  userId: ObjectId;
+  date: number;
+  text: string;
+  hasBeenRead: boolean;
+  type: problemReportTypeEnum;
+};

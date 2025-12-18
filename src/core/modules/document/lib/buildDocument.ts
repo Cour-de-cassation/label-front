@@ -1,4 +1,5 @@
-import { idModule, omitIdType } from '../../id';
+import { ObjectId } from 'bson';
+import { omitIdType } from '../../id';
 import { documentType } from '../documentType';
 
 export { buildDocument };
@@ -8,7 +9,7 @@ function buildDocument(
 ): documentType {
   return {
     ...documentFields,
-    _id: idModule.lib.buildId(),
+    _id: new ObjectId(),
     reviewStatus: { hasBeenAmended: false, viewerNames: [] },
     status: 'free',
     updateDate: new Date().getTime(),

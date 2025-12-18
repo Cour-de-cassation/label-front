@@ -6,12 +6,13 @@ import { wordings } from '../../../../wordings';
 import { SettingsDataFetcher } from '../../../SettingsDataFetcher';
 import { AnnotationsDiffDetails } from './AnnotationsDiffDetails';
 import { AnnotationsDiffDetailsDataFetcher } from './AnnotationsDiffDetailsDataFetcher';
+import { ObjectId } from 'bson';
 
 export { AnnotationsDiffDrawer };
 export type { annotationDiffDocumentInfoType };
 
 type annotationDiffDocumentInfoType = {
-  _id: documentType['_id'];
+  _id: string | ObjectId;
   documentNumber: documentType['documentNumber'];
   userName: string;
 };
@@ -22,9 +23,9 @@ function AnnotationsDiffDrawer(props: { close: () => void; documentInfo: annotat
 
   const subtitle = props.documentInfo
     ? format(wordings.treatedDocumentsPage.table.annotationDiffDrawer.subtitle, {
-        documentNumber: props.documentInfo.documentNumber,
-        userName: props.documentInfo.userName,
-      })
+      documentNumber: props.documentInfo.documentNumber,
+      userName: props.documentInfo.userName,
+    })
     : undefined;
 
   return (

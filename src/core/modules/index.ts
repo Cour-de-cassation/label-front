@@ -20,6 +20,7 @@ import {
 import { statisticModule, statisticType } from './statistic';
 import { treatmentType, treatmentModule, treatmentInfoType } from './treatment';
 import { userModule, userType } from './user';
+import { documentModelCommonFieldsType } from './document/documentType';
 export {
   annotationModule,
   annotationsDiffModule,
@@ -37,7 +38,7 @@ export {
   userModule,
 };
 
-export * from './modelType';
+// export * from './modelType';
 
 export type {
   annotationType,
@@ -61,4 +62,5 @@ export type {
   replacementTermType,
   treatmentType,
   treatmentInfoType,
+  documentModelCommonFieldsType,
 };

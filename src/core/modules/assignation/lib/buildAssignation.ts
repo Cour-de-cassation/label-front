@@ -1,4 +1,5 @@
-import { idModule, omitIdType } from '../../id';
+import { ObjectId } from 'bson';
+import { omitIdType } from '../../id';
 import { assignationType } from '../assignationType';
 
 export { buildAssignation };
@@ -6,6 +7,6 @@ export { buildAssignation };
 function buildAssignation(assignationFields: omitIdType<assignationType>): assignationType {
   return {
     ...assignationFields,
-    _id: idModule.lib.buildId(),
+    _id: new ObjectId(),
   };
 }

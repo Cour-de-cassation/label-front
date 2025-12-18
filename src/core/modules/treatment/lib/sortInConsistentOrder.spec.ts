@@ -1,6 +1,6 @@
 import { annotationModule } from '../../annotation';
 import { annotationsDiffModule } from '../../annotationsDiff';
-import { idModule } from '../../id';
+import { ObjectId } from 'bson';
 import { treatmentGenerator } from '../generator';
 import { sortInConsistentOrder } from './sortInConsistentOrder';
 
@@ -8,7 +8,7 @@ describe('sortInConsistentOrder', () => {
   const annotations = [{ text: '0' }, { text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }].map(
     annotationModule.generator.generate,
   );
-  const documentId = idModule.lib.buildId();
+  const documentId = new ObjectId();
 
   it('should sort the treatments in a consistent order', () => {
     const treatments = [

@@ -5,7 +5,6 @@ import {
   annotationType,
   problemReportType,
   userType,
-  settingsType,
   replacementTermType,
   preAssignationType,
   annotationsDiffType,
@@ -104,8 +103,8 @@ export type ApiSchema = {
         publicationCategories: string[];
         maxDate?: number;
         minDate?: number;
-        routes: any; // todo after
-        importers: any;
+        routes: string[]; // todo after
+        importers: string[];
         sources: string[];
         jurisdictions: string[];
       };
@@ -160,7 +159,9 @@ export type ApiSchema = {
     };
 
     settings: {
-      out: settingsType;
+      out: {
+        json: string;
+      };
     };
 
     summary: {

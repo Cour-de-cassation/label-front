@@ -22,13 +22,12 @@ function DocumentAnnotator(props: { onStopAnnotatingDocument?: () => Promise<voi
   const viewerRef = useRef(null);
 
   const annotatorState = annotatorStateHandler.get();
-  console.log('annotatorState', annotatorState);
+
   const styles = buildStyles();
   const categories = settingsModule.lib.getCategories(annotatorState.settings, {
     status: ['annotable', 'visible'],
     canBeAnnotatedBy: 'human',
   });
-  console.log('categories', categories);
   const nonAnnotableCategories = settingsModule.lib.getCategories(annotatorState.settings, {
     status: ['hidden', 'alwaysVisible'],
     canBeAnnotatedBy: 'NLP',
@@ -36,7 +35,6 @@ function DocumentAnnotator(props: { onStopAnnotatingDocument?: () => Promise<voi
   const annotationPerCategoryAndEntity = groupByCategoryAndEntity(annotatorState.annotations, categories).sort(
     sortAdditionalAnnotationsFirst,
   );
-  console.log('annotationPerCategoryAndEntity', annotationPerCategoryAndEntity);
   const splittedTextByLine = getSplittedTextByLine(annotatorState.document.text, annotatorState.annotations);
 
   return (

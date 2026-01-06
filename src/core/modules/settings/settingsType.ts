@@ -2,11 +2,21 @@ import { stringComparisonSensitivityType } from '../../lib';
 
 export { categoryIconNames, constantColors, shadeColors };
 
-export type settingsType = {
+export type {
+  categoryIconNameType,
+  categorySettingType,
+  colorType,
+  constantColorType,
+  displayModeType,
+  settingsType,
+  shadeColorType,
+};
+
+type settingsType = {
   [category: string]: categorySettingType;
 };
 
-export type categorySettingType = {
+type categorySettingType = {
   anonymization: string;
   color: { [displayMode in displayModeType]: colorType };
   iconName: categoryIconNameType;
@@ -19,7 +29,7 @@ export type categorySettingType = {
   canBeAnnotatedBy: 'both' | 'NLP' | 'human';
 };
 
-export type displayModeType = 'lightMode' | 'darkMode';
+type displayModeType = 'lightMode' | 'darkMode';
 
 const categoryIconNames = [
   'bank',
@@ -44,7 +54,7 @@ const categoryIconNames = [
   'eyeoff',
 ] as const;
 
-export type categoryIconNameType = (typeof categoryIconNames)[number];
+type categoryIconNameType = (typeof categoryIconNames)[number];
 
 const constantColors = ['black', 'white'] as const;
 
@@ -69,8 +79,8 @@ const shadeColors = [
   'yellow',
 ] as const;
 
-export type constantColorType = (typeof constantColors)[number];
+type constantColorType = (typeof constantColors)[number];
 
-export type shadeColorType = [(typeof shadeColors)[number], string];
+type shadeColorType = [(typeof shadeColors)[number], string];
 
-export type colorType = constantColorType | shadeColorType;
+type colorType = constantColorType | shadeColorType;

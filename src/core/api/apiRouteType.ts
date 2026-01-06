@@ -8,7 +8,7 @@ type apiRouteInType<
   methodNameT extends apiSchemaMethodNameType,
   routeNameT extends keyof ApiSchema[methodNameT],
 > = Pick<ApiSchema[methodNameT], routeNameT>[routeNameT] extends {
-  in: { [argName: string]: any };
+  in: { [argName: string]: unknown };
 }
   ? {
       [argName in keyof Pick<ApiSchema[methodNameT], routeNameT>[routeNameT]['in']]: Pick<
@@ -22,7 +22,7 @@ type apiRouteOutType<
   methodNameT extends apiSchemaMethodNameType,
   routeNameT extends keyof ApiSchema[methodNameT],
 > = Pick<ApiSchema[methodNameT], routeNameT>[routeNameT] extends {
-  out: any;
+  out: unknown;
 }
   ? Pick<ApiSchema[methodNameT], routeNameT>[routeNameT]['out']
   : never;

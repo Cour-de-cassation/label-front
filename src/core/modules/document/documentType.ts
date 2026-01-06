@@ -2,14 +2,7 @@ import { ObjectId } from 'bson';
 
 export type documentRouteType = 'automatic' | 'exhaustive' | 'simple' | 'confirmation' | 'request' | 'default';
 export type documentImporterType = 'recent' | 'manual' | 'default';
-export type documentStatusType =
-  | 'done'
-  | 'free'
-  | 'pending'
-  | 'locked'
-  | 'saved'
-  | 'toBePublished'
-  | 'toBeConfirmed';
+export type documentStatusType = 'done' | 'free' | 'pending' | 'locked' | 'saved' | 'toBePublished' | 'toBeConfirmed';
 
 export type checklistEntityType = {
   text: string;
@@ -19,7 +12,7 @@ export type checklistEntityType = {
   score: number;
   entityId: string;
   end: number;
-}
+};
 
 export type checklistItemType = {
   check_type: string;
@@ -108,7 +101,7 @@ export type Zoning = {
   is_public?: number;
   is_public_text?: string[];
   arret_id: number;
-}
+};
 
 export type ZoningZones = {
   introduction?: { start: number; end: number };
@@ -117,7 +110,7 @@ export type ZoningZones = {
   motivations?: { start: number; end: number } | Array<{ start: number; end: number }>;
   dispositif?: { start: number; end: number };
   'moyens annexes'?: { start: number; end: number };
-}
+};
 
 export type ZoningIntroductionSubzonage = {
   n_arret?: string;
@@ -127,24 +120,23 @@ export type ZoningIntroductionSubzonage = {
   chambre: string;
   pourvoi?: string[];
   composition?: { start: number; end: number };
-}
-
+};
 
 export type documentModelCommonFieldsType = {
   creationDate?: number;
-  decisionMetadata: fetchedDocumentType['decisionMetadata'],
-  documentNumber: number,
-  _id: ObjectId,
-  importer: 'recent' | 'manual' | 'default',
+  decisionMetadata: fetchedDocumentType['decisionMetadata'];
+  documentNumber: number;
+  _id: ObjectId;
+  importer: 'recent' | 'manual' | 'default';
   loss?: number;
-  nlpVersions: nlpVersionsType,
-  publicationCategory: documentType['publicationCategory'],
-  reviewStatus: documentType['reviewStatus'],
+  nlpVersions: nlpVersionsType;
+  publicationCategory: documentType['publicationCategory'];
+  reviewStatus: documentType['reviewStatus'];
   route: 'automatic' | 'exhaustive' | 'simple' | 'confirmation' | 'request' | 'default';
   source: string;
   status: 'done' | 'free' | 'pending' | 'locked' | 'saved' | 'toBePublished' | 'toBeConfirmed';
   title: string;
   text: string;
-  zoning: Zoning,
+  zoning: Zoning;
   checklist: documentType['checklist'];
 };

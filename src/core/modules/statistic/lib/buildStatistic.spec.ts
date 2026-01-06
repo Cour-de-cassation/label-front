@@ -59,7 +59,7 @@ describe('buildStatistic', () => {
       lastUpdateDate,
       treatmentInfo,
       checklist: checklistMock,
-      humanTreatmentsSummary: [{ userId, treatmentDuration: 10 }],
+      humanTreatmentsSummary: [{ userId: userId.toHexString(), treatmentDuration: 10 }],
       comment: 'comment',
     });
 

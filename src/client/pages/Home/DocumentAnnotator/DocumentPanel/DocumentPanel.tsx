@@ -1,5 +1,4 @@
 import React, { ReactElement, useEffect } from 'react';
-import { assignationType } from 'src/core';
 import { customThemeType, useCustomTheme } from 'pelta-design-system';
 import { apiCaller } from '../../../../api';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
@@ -31,11 +30,11 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
     if (!!updateTreatementDurationsInterval) {
       clearInterval(updateTreatementDurationsInterval);
       apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', {
-        assignationId,
+        assignationId: assignationId.toHexString(),
       });
     }
     updateTreatementDurationsInterval = setInterval(
-      buildUpdateTreatmentUpdateDate(assignationId),
+      buildUpdateTreatmentUpdateDate(assignationId.toHexString()),
       TIME_THRESHOLD_FOR_UPDATE,
     );
 
@@ -44,7 +43,7 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
     };
   }, [
     documentViewerModeHandler.documentViewerMode.kind === 'occurrence' &&
-      documentViewerModeHandler.documentViewerMode.entityId,
+    documentViewerModeHandler.documentViewerMode.entityId,
     annotatorStateChecksum,
   ]);
 
@@ -55,7 +54,7 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
     </div>
   );
 
-  function buildUpdateTreatmentUpdateDate(assignationId: assignationType['_id']) {
+  function buildUpdateTreatmentUpdateDate(assignationId: string) {
     let lastVerticalPosition = 0;
     return async () => {
       const currentVerticalPosition = viewerScrollerHandler.getCurrentVerticalPosition();

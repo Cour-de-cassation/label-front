@@ -72,7 +72,7 @@ function TreatedDocumentsTable(props: {
     setDocumentIdToReset(undefined);
     try {
       await apiCaller.post<'deleteHumanTreatmentsForDocument'>('deleteHumanTreatmentsForDocument', {
-        documentId: documentIdToReset,
+        documentId: documentIdToReset.toHexString(),
       });
       props.refetch();
     } catch (error) {
@@ -131,7 +131,7 @@ function TreatedDocumentsTable(props: {
       onClick: async () => {
         try {
           await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-            documentId: treatmentWithDetails.document._id,
+            documentId: treatmentWithDetails.document._id.toHexString(),
             status: documentModule.lib.getNextStatus({
               status: 'pending',
               publicationCategory: treatmentWithDetails.document?.publicationCategory ?? [],
@@ -147,7 +147,7 @@ function TreatedDocumentsTable(props: {
         if (treatmentWithDetails.document?.route == 'simple') {
           try {
             await apiCaller.post<'updateDocumentRoute'>('updateDocumentRoute', {
-              documentId: treatmentWithDetails.document._id,
+              documentId: treatmentWithDetails.document._id.toHexString(),
               route: 'exhaustive',
             });
           } catch (error) {

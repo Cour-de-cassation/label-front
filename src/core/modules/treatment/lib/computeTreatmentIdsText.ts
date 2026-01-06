@@ -1,4 +1,3 @@
-import { idModule } from '../../id';
 import { treatmentType } from '../treatmentType';
 
 export { computeTreatmentIdsText };

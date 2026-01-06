@@ -1,6 +1,5 @@
 import { checklistGenerator } from '../../document/generator';
 import { generatorType } from '../../../types';
-import { idModule } from '../../id';
 import { statisticType } from '../statisticType';
 import { ObjectId } from 'bson';
 

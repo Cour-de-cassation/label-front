@@ -1,5 +1,5 @@
-import { ObjectId } from "bson";
-import { annotationsDiffType } from "../annotationsDiff/annotationsDiffType";
+import { ObjectId } from 'bson';
+import { annotationsDiffType } from '../annotationsDiff/annotationsDiffType';
 
 type treatmentSourceType =
   | 'annotator'
@@ -8,7 +8,6 @@ type treatmentSourceType =
   | 'postProcess'
   | 'supplementaryAnnotations'
   | 'reimportedTreatment';
-
 
 export type treatmentType = {
   _id: ObjectId;

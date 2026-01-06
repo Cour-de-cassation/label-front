@@ -18,13 +18,13 @@ export { DocumentSwitcher };
 
 type documentStateType =
   | {
-      kind: 'annotating';
-      choice: {
-        document: fetchedDocumentType;
-        annotations: annotationType[];
-        assignationId: assignationType['_id'];
-      };
-    }
+    kind: 'annotating';
+    choice: {
+      document: fetchedDocumentType;
+      annotations: annotationType[];
+      assignationId: assignationType['_id'];
+    };
+  }
   | { kind: 'selecting' };
 
 function DocumentSwitcher(props: {
@@ -85,7 +85,6 @@ function DocumentSwitcher(props: {
 
   function computeInitialDocumentState(): documentStateType {
     const savedDocumentForUser = props.choices.find(({ document }) => document.status === 'saved');
-
     if (savedDocumentForUser) {
       return { kind: 'annotating', choice: savedDocumentForUser };
     } else {
@@ -111,7 +110,7 @@ function DocumentSwitcher(props: {
 
       try {
         await apiCaller.post<'resetTreatmentLastUpdateDate'>('resetTreatmentLastUpdateDate', {
-          assignationId: choice.assignationId,
+          assignationId: choice.assignationId.toHexString(),
         });
 
         const nextStatus = documentModule.lib.getNextStatus({
@@ -120,7 +119,7 @@ function DocumentSwitcher(props: {
           route: choice.document.route,
         });
         const { data: updatedDocument } = await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-          documentId: choice.document._id,
+          documentId: choice.document._id.toHexString(),
           status: nextStatus,
         });
         setDocumentState({

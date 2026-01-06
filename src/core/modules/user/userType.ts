@@ -1,4 +1,4 @@
-import { ObjectId } from "bson";
+import { ObjectId } from 'bson';
 
 export type userRoleType = 'admin' | 'annotator' | 'publicator' | 'scrutator';
 export type userType = {

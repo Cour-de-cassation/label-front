@@ -1,7 +1,6 @@
 import { ObjectId } from 'bson';
 import { generatorType } from '../../../types';
 import { annotationsDiffModule } from '../../annotationsDiff';
-import { idModule } from '../../id';
 import { treatmentType } from '../treatmentType';
 
 export { treatmentGenerator };

@@ -18,7 +18,6 @@ function AnnotationsPanel(props: {
   nonAnnotableCategories: string[];
 }) {
   const ICON_SIZE = 18;
-
   const theme = useCustomTheme();
   const { displayMode } = useDisplayMode();
   const styles = buildStyles(theme);
@@ -112,15 +111,15 @@ function AnnotationsPanel(props: {
           <div style={styles.additionalAnnotationTermsRightContainer}>
             {(additionalTermsParsingFailed ||
               (additionalTermsParsingFailed == undefined && additionalTermsToAnnotate !== '')) && (
-              <>
-                <Text>{wordings.homePage.additionalTermsParsingFailed}</Text>
-              </>
-            )}
+                <>
+                  <Text>{wordings.homePage.additionalTermsParsingFailed}</Text>
+                </>
+              )}
 
             {(computedAdditionalTerms?.additionalTermsToAnnotate != undefined &&
               computedAdditionalTerms.additionalTermsToAnnotate.length > 0) ||
-            (computedAdditionalTerms?.additionalTermsToUnAnnotate != undefined &&
-              computedAdditionalTerms.additionalTermsToUnAnnotate.length > 0) ? (
+              (computedAdditionalTerms?.additionalTermsToUnAnnotate != undefined &&
+                computedAdditionalTerms.additionalTermsToUnAnnotate.length > 0) ? (
               <>
                 <Text>{wordings.homePage.askedAdditionalOccultations}</Text>
                 {computedAdditionalTerms?.additionalTermsToAnnotate != undefined &&

@@ -98,7 +98,8 @@ describe('computeAnnotations', () => {
     ].map(treatmentGenerator.generate);
 
     expect(() => computeAnnotations(treatments)).toThrow(
-      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id.toHexString()}, ${treatments[1]._id.toHexString()}]`,);
+      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id.toHexString()}, ${treatments[1]._id.toHexString()}]`,
+    );
   });
 
   it('should throw if there are missing treatments', () => {
@@ -124,7 +125,8 @@ describe('computeAnnotations', () => {
     ].map(treatmentGenerator.generate);
 
     expect(() => computeAnnotations(treatments)).toThrow(
-      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id.toHexString()}, ${treatments[1]._id.toHexString()}]`,);
+      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id.toHexString()}, ${treatments[1]._id.toHexString()}]`,
+    );
   });
 });
 

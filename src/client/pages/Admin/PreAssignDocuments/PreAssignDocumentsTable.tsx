@@ -67,7 +67,7 @@ function PreAssignDocumentsTable(props: {
         onClick: async () => {
           try {
             await apiCaller.post<'deletePreAssignation'>('deletePreAssignation', {
-              preAssignationId: preAssignations.preAssignation._id,
+              preAssignationId: preAssignations.preAssignation._id.toHexString(),
             });
           } catch (error) {
             displayAlert({

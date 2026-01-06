@@ -1,5 +1,5 @@
-import { ObjectId } from "bson";
-import { documentImporterType, documentRouteType, checklistItemType } from "../document/documentType";
+import { ObjectId } from 'bson';
+import { documentImporterType, documentRouteType, checklistItemType } from '../document/documentType';
 
 export type statisticType = {
   _id: ObjectId;
@@ -22,10 +22,10 @@ export type statisticType = {
   subAnnotationsSensitiveCount: number;
   subAnnotationsNonSensitiveCount: number;
   treatmentDate: number;
-  treatmentsSummary: Array<{
-    userId: ObjectId;
+  treatmentsSummary: {
+    userId: string;
     treatmentDuration: number;
-  }>;
+  }[];
   wordsCount: number;
   checklist: checklistItemType[];
   comment?: string;

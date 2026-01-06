@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import { assignationType } from '../../assignation';
 import { idModule } from '../../id';
 import { treatmentType } from '../treatmentType';
@@ -6,7 +7,9 @@ export { extractHumanTreatments };
 
 function extractHumanTreatments(treatments: treatmentType[], assignations: assignationType[]) {
   const humanTreatments = assignations.map((assignation) => {
-    const treatment = treatments.find((treatment) => idModule.lib.equalId(assignation.treatmentId, treatment._id));
+    const treatment = treatments.find((treatment) =>
+      idModule.lib.equalId(new ObjectId(assignation.treatmentId), treatment._id),
+    );
 
     if (!treatment) {
       throw new Error('Incompatible assignations/treatments');

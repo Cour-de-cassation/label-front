@@ -11,10 +11,11 @@ type apiRouteInType<
   in: { [argName: string]: any };
 }
   ? {
-    [argName in keyof Pick<ApiSchema[methodNameT], routeNameT>[routeNameT]['in']]:
-    Pick<ApiSchema[methodNameT], routeNameT>[routeNameT]['in'][argName]
-    ;
-  }
+      [argName in keyof Pick<ApiSchema[methodNameT], routeNameT>[routeNameT]['in']]: Pick<
+        ApiSchema[methodNameT],
+        routeNameT
+      >[routeNameT]['in'][argName];
+    }
   : undefined;
 
 type apiRouteOutType<

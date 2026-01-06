@@ -1,6 +1,5 @@
 import { ObjectId } from 'bson';
 import { documentModule } from '../../document';
-import { idModule } from '../../id';
 import { treatmentModule } from '../../treatment';
 import { ressourceFilterGenerator } from '../generator';
 import { filterTreatedDocuments } from './filterTreatedDocuments';
@@ -103,7 +102,7 @@ describe('filterTreatedDocuments', () => {
     const userId1 = new ObjectId();
     const userId2 = new ObjectId();
     const ressourceFilter = ressourceFilterGenerator.generate({
-      userId: userId1,
+      userId: userId1.toHexString(),
     });
     const documents = ([{ status: 'done' }, { status: 'done' }] as const).map(documentModule.generator.generate);
     const treatments = [{ documentId: documents[0]._id }, { documentId: documents[1]._id }].map(

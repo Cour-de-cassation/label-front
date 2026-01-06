@@ -69,7 +69,7 @@ function PublishableDocumentsTable(props: {
       text: wordings.publishableDocumentsPage.table.optionItems.markAsPublished,
       onClick: async () => {
         await apiCaller.post<'updatePublishableDocumentStatus'>('updatePublishableDocumentStatus', {
-          documentId: publishableDocument._id,
+          documentId: publishableDocument._id.toHexString(),
           status: documentModule.lib.getNextStatus({
             status: publishableDocument.status,
             publicationCategory: publishableDocument.publicationCategory,
@@ -85,7 +85,7 @@ function PublishableDocumentsTable(props: {
       text: wordings.publishableDocumentsPage.table.optionItems.markAsUnPublished,
       onClick: async () => {
         await apiCaller.post<'updatePublishableDocumentStatus'>('updatePublishableDocumentStatus', {
-          documentId: publishableDocument._id,
+          documentId: publishableDocument._id.toHexString(),
           status: 'toBePublished',
         });
         props.refetch();

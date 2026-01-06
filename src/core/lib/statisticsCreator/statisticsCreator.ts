@@ -33,7 +33,7 @@ function buildFromDocument({
   const lastUpdateDate = treatmentModule.lib.extractLastUpdateDate(treatments);
 
   const humanTreatmentsSummary = (humanTreatments ?? []).map(({ treatment, userId }) => ({
-    userId,
+    userId: userId.toHexString(),
     treatmentDuration: treatment.duration,
   }));
 

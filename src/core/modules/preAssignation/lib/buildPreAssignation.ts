@@ -1,5 +1,5 @@
 import { ObjectId } from 'bson';
-import { idModule, omitIdType } from '../../id';
+import { omitIdType } from '../../id';
 import { preAssignationType } from '../preAssignationType';
 
 export { buildPreAssignation };

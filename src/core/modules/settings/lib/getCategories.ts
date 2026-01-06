@@ -9,6 +9,8 @@ function getCategories(
     canBeAnnotatedBy: 'human' | 'NLP';
   },
 ) {
+  console.log('settings in getCategories', settings);
+  console.log('filter in getCategories', filter);
   return Object.keys(settings)
     .filter((category) => {
       const categorySetting = settings[category];

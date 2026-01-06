@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import { documentType } from '../../document';
 import { idModule } from '../../id';
 import { treatmentType } from '../../treatment';
@@ -69,7 +70,8 @@ function filterTreatedDocuments({
       const userIdToFilter = ressourceFilter.userId;
 
       isInTheFilter =
-        isInTheFilter && humanTreatments.some(({ userId }) => idModule.lib.equalId(userId, userIdToFilter));
+        isInTheFilter &&
+        humanTreatments.some(({ userId }) => idModule.lib.equalId(userId, new ObjectId(userIdToFilter)));
     }
 
     return isInTheFilter;

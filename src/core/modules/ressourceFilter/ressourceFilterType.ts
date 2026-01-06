@@ -1,5 +1,4 @@
 import { documentRouteType, documentImporterType } from './../document/documentType';
-import { ObjectId } from 'bson';
 
 export type ressourceFilterType = {
   mustHaveSurAnnotations: boolean;
@@ -11,5 +10,5 @@ export type ressourceFilterType = {
   importer?: documentImporterType;
   source?: string;
   jurisdiction?: string;
-  userId?: ObjectId;
+  userId?: string;
 };

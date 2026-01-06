@@ -1,4 +1,3 @@
-
 export type annotationType = {
   category: string;
   entityId: string;
@@ -7,4 +6,3 @@ export type annotationType = {
   score: number;
   source: string;
 };
-

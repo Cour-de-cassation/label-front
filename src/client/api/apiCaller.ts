@@ -27,10 +27,7 @@ const apiCaller = {
       },
     );
 
-    const data =
-      (await computeDataFromResponse(response)) as networkType<
-        apiRouteOutType<'get', RouteName>
-      >;
+    const data = (await computeDataFromResponse(response)) as networkType<apiRouteOutType<'get', RouteName>>;
 
     return {
       data,
@@ -45,22 +42,16 @@ const apiCaller = {
     data: networkType<apiRouteOutType<'post', RouteName>>;
     statusCode: number;
   }> {
-    const response = await fetch(
-      `${urlHandler.getApiUrl()}/label/api/${routeName}`,
-      {
-        body: args ? JSON.stringify(args) : undefined,
-        cache: 'default',
-        headers: DEFAULT_HEADER,
-        method: 'post',
-        mode: 'cors',
-        credentials: 'include',
-      },
-    );
+    const response = await fetch(`${urlHandler.getApiUrl()}/label/api/${routeName}`, {
+      body: args ? JSON.stringify(args) : undefined,
+      cache: 'default',
+      headers: DEFAULT_HEADER,
+      method: 'post',
+      mode: 'cors',
+      credentials: 'include',
+    });
 
-    const data =
-      (await computeDataFromResponse(response)) as networkType<
-        apiRouteOutType<'post', RouteName>
-      >;
+    const data = (await computeDataFromResponse(response)) as networkType<apiRouteOutType<'post', RouteName>>;
 
     return {
       data,
@@ -68,7 +59,6 @@ const apiCaller = {
     };
   },
 };
-
 
 function buildUrlWithParams(url: string, params?: { [key: string]: unknown }) {
   const urlParameters = new URLSearchParams();

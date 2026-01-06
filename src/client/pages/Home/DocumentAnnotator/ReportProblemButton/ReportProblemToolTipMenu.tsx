@@ -97,7 +97,7 @@ function ReportProblemToolTipMenu(props: {
   async function setDocumentStatus(documentId: documentType['_id'], status: documentType['status']) {
     try {
       await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-        documentId,
+        documentId: documentId.toHexString(),
         status,
       });
     } catch (error) {
@@ -129,7 +129,7 @@ function ReportProblemToolTipMenu(props: {
       setIsLoading(true);
       try {
         await apiCaller.post<'problemReport'>('problemReport', {
-          documentId: annotatorState.document._id,
+          documentId: annotatorState.document._id.toHexString(),
           problemType: problemCategory,
           problemText: problemDescription,
         });

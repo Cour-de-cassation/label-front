@@ -1,5 +1,5 @@
+import { ObjectId } from 'bson';
 import {
-  treatmentType,
   statisticType,
   documentType,
   annotationType,
@@ -8,17 +8,12 @@ import {
   settingsType,
   replacementTermType,
   preAssignationType,
-  assignationType,
   annotationsDiffType,
   fetchedDocumentType,
-  documentModelCommonFieldsType,
 } from '../modules';
 import { problemReportTypeEnum } from '../modules/problemReport/problemReportType';
 import { ressourceFilterType } from './../modules/ressourceFilter';
-// import { modelType } from '../modules/modelType';
-import { ObjectId } from 'bson';
-import { annotationDiffDocumentInfoType } from 'src/client/pages/Admin/TreatedDocuments/AnnotationsDiffDrawer';
-
+import { documentRouteType, documentStatusType } from '../modules/document/documentType';
 
 export type ApiSchema = {
   get: {
@@ -38,48 +33,22 @@ export type ApiSchema = {
         total: number;
       };
     };
-    mandatoryReplacementTerms: {
-      in: {
-        documentId: string;
-      };
-      out: replacementTermType[];
-    };
+
     documentStatistics: {
       in: {
         documentNumber: number;
       };
       out: {
-        statistics: statisticType[];
+        statistics: statisticType;
         treatmentsSummary: {
-          id?: ObjectId;
-          statId: ObjectId;
+          id?: string;
+          statId: string;
           treatmentDuration: number;
           name?: string;
         }[];
-      };
+      }[];
     };
 
-    publishableDocuments: {
-      out: {
-        _id: documentType["_id"],
-        appealNumber: documentType["decisionMetadata"]["appealNumber"],
-        chamberName: documentType["decisionMetadata"]["chamberName"],
-        creationDate: documentType["creationDate"],
-        documentNumber: documentType["documentNumber"],
-        jurisdiction: documentType["decisionMetadata"]["jurisdiction"],
-        publicationCategory: documentType["publicationCategory"],
-        route: documentType["route"],
-        status: documentType["status"],
-      }[]
-    };
-
-    personalStatistics: {
-      out: {
-        day: number;
-        simple: number;
-        exhaustive: number;
-      }[]
-    };
     annotations: {
       in: {
         documentId: string;
@@ -89,29 +58,24 @@ export type ApiSchema = {
 
     annotationsDiffDetails: {
       in: {
-        documentId: ObjectId;
+        documentId: string;
       };
       out: {
         addedAnnotations: {
           text: string;
           textStart: number;
           addedAnnotation: annotationType;
-          annotationBefore?: annotationType;
-          annotationAfter?: annotationType;
         }[];
         deletedAnnotations: {
           text: string;
           textStart: number;
           deletedAnnotation: annotationType;
-          annotationBefore?: annotationType;
-          annotationAfter?: annotationType;
         }[];
         resizedBiggerAnnotations: {
           text: string;
           textStart: number;
-          addedAnnotation: annotationType;
-          annotationBefore?: annotationType;
-          annotationAfter?: annotationType;
+          annotationBefore: annotationType;
+          annotationAfter: annotationType;
         }[];
         resizedSmallerAnnotations: {
           text: string;
@@ -130,7 +94,7 @@ export type ApiSchema = {
 
     anonymizedDocumentText: {
       in: {
-        documentId: ObjectId;
+        documentId: string;
       };
       out: string;
     };
@@ -140,102 +104,18 @@ export type ApiSchema = {
         publicationCategories: string[];
         maxDate?: number;
         minDate?: number;
-        routes: string[];
-        importers: string[];
+        routes: any; // todo after
+        importers: any;
         sources: string[];
         jurisdictions: string[];
       };
     };
 
     document: {
-      in: string;
+      in: {
+        documentId: string;
+      };
       out: documentType;
-    };
-
-    problemReportsWithDetails: {
-      out: {
-        problemReport: problemReportType;
-        user: {
-          email: userType['email'],
-          name: userType['name']
-        }
-        document: {
-          _id: documentType['_id'],
-          documentNumber: documentType['documentNumber']
-          source: documentType['source'],
-          jurisdiction: documentType['decisionMetadata']['jurisdiction'],
-          appealNumber: documentType['decisionMetadata']['appealNumber'],
-          publicationCategory: documentType['publicationCategory'],
-          route: documentType['route'],
-          status: documentType['status']
-        } | undefined
-      }[]
-    };
-
-    toBeConfirmedDocuments: {
-      out: {
-        document: {
-          _id: documentType['_id'],
-          documentNumber: documentType['documentNumber'],
-          jurisdiction: documentType['decisionMetadata']['jurisdiction'],
-          occultationBlock: documentType['decisionMetadata']['occultationBlock'],
-          reviewStatus: documentType['reviewStatus'],
-          publicationCategory: documentType['publicationCategory'],
-          route: documentType['route'],
-        },
-        totalTreatmentDuration: number | undefined,
-        lastTreatmentDate: number | undefined,
-        userNames: string[],
-      }[]
-    };
-
-    treatedDocuments: {
-      out: {
-        document: {
-          _id: documentType['_id'],
-          creationDate: documentType['creationDate'],
-          documentNumber: documentType['documentNumber'],
-          jurisdiction: documentType['decisionMetadata']['jurisdiction'],
-          loss: documentType['loss'],
-          occultationBlock: documentType['decisionMetadata']['occultationBlock'],
-          reviewStatus: documentType['reviewStatus'],
-          publicationCategory: documentType['publicationCategory'],
-          route: documentType['route'],
-          source: documentType['source']
-        },
-        totalTreatmentDuration: number | undefined,
-        lastTreatmentDate: number | undefined,
-        statistic: {
-          surAnnotationsCount: number | undefined,
-          subAnnotationsSensitiveCount: number | undefined,
-          subAnnotationsNonSensitiveCount: number | undefined,
-        },
-        userNames: string[],
-      }[]
-    };
-    untreatedDocuments: {
-      out: {
-        document: {
-          _id: documentType['_id'],
-          creationDate: documentType['creationDate'],
-          decisionDate: documentType['decisionMetadata']['date'],
-          documentNumber: documentType['documentNumber'],
-          jurisdiction: documentType['decisionMetadata']['jurisdiction'],
-          occultationBlock: documentType['decisionMetadata']['occultationBlock'],
-          reviewStatus: documentType['reviewStatus'],
-          publicationCategory: documentType['publicationCategory'],
-          route: documentType['route'],
-          source: documentType['source'],
-          status: documentType['status']
-        },
-        userNames: string[],
-      }[]
-    };
-    preAssignations: {
-      out: {
-        preAssignation: preAssignationType;
-        userName: userType['name']
-      }[]
     };
 
     documentsForUser: {
@@ -252,11 +132,31 @@ export type ApiSchema = {
       out: boolean;
     };
 
+    problemReportsWithDetails: {
+      out: {
+        problemReport: problemReportType;
+        user: {
+          email: userType['email'];
+          name: userType['name'];
+        };
+        document?: {
+          _id: documentType['_id'];
+          documentNumber: documentType['documentNumber'];
+          source: documentType['source'];
+          jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+          appealNumber: documentType['decisionMetadata']['appealNumber'];
+          publicationCategory: documentType['publicationCategory'];
+          route: documentRouteType;
+          status: documentStatusType;
+        };
+      }[];
+    };
+
     documentStatus: {
       in: {
         documentId: string;
       };
-      out: string;
+      out: documentStatusType;
     };
 
     settings: {
@@ -264,6 +164,7 @@ export type ApiSchema = {
     };
 
     summary: {
+      in: Record<string, never>;
       out: {
         freeDocuments: number;
         pendingDocuments: number;
@@ -273,100 +174,117 @@ export type ApiSchema = {
       };
     };
 
+    publishableDocuments: {
+      out: {
+        _id: documentType['_id'];
+        appealNumber: documentType['decisionMetadata']['appealNumber'];
+        chamberName: documentType['decisionMetadata']['chamberName'];
+        creationDate: documentType['creationDate'];
+        documentNumber: documentType['documentNumber'];
+        jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+        publicationCategory: documentType['publicationCategory'];
+        route: documentRouteType;
+        status: documentStatusType;
+      }[];
+    };
+
+    toBeConfirmedDocuments: {
+      out: {
+        document: {
+          _id: documentType['_id'];
+          documentNumber: documentType['documentNumber'];
+          jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+          occultationBlock: documentType['decisionMetadata']['occultationBlock'];
+          reviewStatus: documentType['reviewStatus'];
+          publicationCategory: documentType['publicationCategory'];
+          route: documentRouteType;
+        };
+        totalTreatmentDuration: number | undefined;
+        lastTreatmentDate: number | undefined;
+        userNames: string[];
+      }[];
+    };
+
+    treatedDocuments: {
+      out: {
+        document: {
+          _id: documentType['_id'];
+          creationDate: documentType['creationDate'];
+          documentNumber: documentType['documentNumber'];
+          jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+          loss: documentType['loss'];
+          occultationBlock: documentType['decisionMetadata']['occultationBlock'];
+          reviewStatus: documentType['reviewStatus'];
+          publicationCategory: documentType['publicationCategory'];
+          route: documentRouteType;
+          source: documentType['source'];
+        };
+        totalTreatmentDuration: number | undefined;
+        lastTreatmentDate: number | undefined;
+        statistic: {
+          surAnnotationsCount: number | undefined;
+          subAnnotationsSensitiveCount: number | undefined;
+          subAnnotationsNonSensitiveCount: number | undefined;
+        };
+        userNames: string[];
+      }[];
+    };
+
+    personalStatistics: {
+      out: {
+        day: number;
+        simple: number;
+        exhaustive: number;
+      }[];
+    };
+
+    untreatedDocuments: {
+      out: {
+        document: {
+          _id: documentType['_id'];
+          creationDate: documentType['creationDate'];
+          decisionDate: documentType['decisionMetadata']['date'];
+          documentNumber: documentType['documentNumber'];
+          jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+          occultationBlock: documentType['decisionMetadata']['occultationBlock'];
+          reviewStatus: documentType['reviewStatus'];
+          publicationCategory: documentType['publicationCategory'];
+          route: documentRouteType;
+          source: documentType['source'];
+          status: documentStatusType;
+        };
+        userNames: string[];
+      }[];
+    };
+
+    mandatoryReplacementTerms: {
+      in: {
+        documentId: string;
+      };
+      out: replacementTermType[];
+    };
+
     workingUsers: {
       out: userType[];
+    };
+
+    preAssignations: {
+      out: {
+        preAssignation: preAssignationType;
+        userName: userType['name'];
+      }[];
     };
   };
 
   post: {
     assignDocumentToUser: {
       in: {
-        documentId: ObjectId;
-        userId: ObjectId;
+        documentId: string;
+        userId: string;
       };
-      out: documentType;
+      out: fetchedDocumentType;
     };
 
-    deletePreAssignation: {
-      in: {
-        preAssignationId: ObjectId;
-      };
-
-      out: void;
-
-    };
-
-    deleteProblemReport: {
-      in: {
-        problemReportId: ObjectId;
-      };
-      out: void;
-    };
-
-    updateDocumentRoute: {
-      in: {
-        documentId: ObjectId;
-        route: documentType['route']
-      };
-
-      out: documentType;
-    };
-
-    updateProblemReportHasBeenRead: {
-      in: {
-        problemReportId: ObjectId;
-        hasBeenRead: boolean;
-      };
-      out: void;
-    };
-
-    deleteHumanTreatmentsForDocument: {
-      in: {
-        documentId: ObjectId;
-      };
-      out: void;
-    };
-
-    resetTreatmentLastUpdateDate: {
-      in: {
-        assignationId: ObjectId;
-      };
-      out: void;
-    };
-
-    updateTreatmentDuration: {
-      in: {
-        assignationId: ObjectId;
-      };
-
-      out: void;
-    };
-
-    updateTreatmentForAssignationId: {
-      in: {
-        annotationsDiff: annotationsDiffType;
-        assignationId: ObjectId;
-      };
-      out: void;
-    };
-
-    problemReport: {
-      in: {
-        documentId: ObjectId;
-        problemType: problemReportTypeEnum;
-        problemText: string;
-      };
-
-      out: void;
-    };
-
-    updatePublishableDocumentStatus: {
-      in: {
-        documentId: ObjectId;
-        status: "done" | "toBePublished";
-      };
-      out: documentModelCommonFieldsType;
-    };
     createUser: {
       in: {
         name: string;
@@ -376,25 +294,113 @@ export type ApiSchema = {
       out: string;
     };
 
-    deleteDocument: {
+    deleteProblemReport: {
       in: {
-        documentId: ObjectId;
+        problemReportId: string;
       };
       out: void;
     };
 
+    deletePreAssignation: {
+      in: {
+        preAssignationId: string;
+      };
+
+      out: void;
+    };
+
+    deleteHumanTreatmentsForDocument: {
+      in: {
+        documentId: string;
+      };
+      out: void;
+    };
+
+    deleteDocument: {
+      in: {
+        documentId: string;
+      };
+      out: void;
+    };
+
+    problemReport: {
+      in: {
+        documentId: string;
+        problemType: problemReportTypeEnum;
+        problemText: string;
+      };
+
+      out: void;
+    };
+
+    resetTreatmentLastUpdateDate: {
+      in: {
+        assignationId: string;
+      };
+      out: void;
+    };
+
+    updateAssignationDocumentStatus: {
+      in: {
+        assignationId: string;
+        status: documentStatusType;
+      };
+      out: fetchedDocumentType;
+    };
+
     updateDocumentStatus: {
       in: {
-        documentId: ObjectId;
+        documentId: string;
         status: string;
       };
-      out: documentType;
+      out: fetchedDocumentType;
+    };
+
+    updateDocumentRoute: {
+      in: {
+        documentId: string;
+        route: documentRouteType;
+      };
+
+      out: fetchedDocumentType;
+    };
+
+    updatePublishableDocumentStatus: {
+      in: {
+        documentId: string;
+        status: 'done' | 'toBePublished';
+      };
+      out: fetchedDocumentType;
+    };
+
+    updateProblemReportHasBeenRead: {
+      in: {
+        problemReportId: string;
+        hasBeenRead: boolean;
+      };
+      out: void;
+    };
+
+    updateTreatmentDuration: {
+      in: {
+        assignationId: string;
+      };
+
+      out: void;
+    };
+
+    updateTreatmentForAssignationId: {
+      in: {
+        annotationsDiff: annotationsDiffType;
+        assignationId: string;
+      };
+      out: void;
     };
 
     updateTreatmentForDocumentId: {
       in: {
         annotationsDiff: annotationsDiffType;
-        documentId: ObjectId;
+        documentId: string;
       };
       out: void;
     };
@@ -408,10 +414,7 @@ export type ApiSchema = {
       out: void;
     };
   };
-}
-
-
-
+};
 
 export type apiSchemaType = {
   get: ApiSchema['get'];

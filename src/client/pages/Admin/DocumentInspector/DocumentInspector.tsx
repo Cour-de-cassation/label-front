@@ -51,7 +51,7 @@ function DocumentInspector(props: { settings: settingsType }) {
                   document.decisionMetadata.motivationOccultation,
                 );
 
-                const applyAutoSave = buildApplyAutoSave(document._id);
+                const applyAutoSave = buildApplyAutoSave(document._id.toHexString());
 
                 return (
                   <AnnotatorStateHandlerContextProvider
@@ -90,7 +90,7 @@ function DocumentInspector(props: { settings: settingsType }) {
     displayAlert({ variant: 'info', text: wordings.homePage.scrutatorInfo, autoHide: true });
   }
 
-  function buildApplyAutoSave(documentId: fetchedDocumentType['_id']) {
+  function buildApplyAutoSave(documentId: string) {
     return applyAutoSave;
 
     async function applyAutoSave(annotationsDiff: annotationsDiffType) {

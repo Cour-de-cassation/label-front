@@ -4,6 +4,7 @@ import { apiRouteOutType, idModule, ressourceFilterType, userType } from 'src/co
 import { FilterButton, FilterChip } from '../../../components';
 import { wordings } from '../../../wordings';
 import { documentType } from 'src/core';
+import { ObjectId } from 'bson';
 export { StatisticsFilterButton };
 
 function StatisticsFilterButton(props: {
@@ -180,7 +181,7 @@ function StatisticsFilterButton(props: {
     }
 
     function buildUserFilter() {
-      const userName = props.ressourceFilter.userId && findUserNameByUserId(props.ressourceFilter.userId);
+      const userName = props.ressourceFilter.userId && findUserNameByUserId(new ObjectId(props.ressourceFilter.userId));
 
       return {
         kind: 'dropdown' as const,
@@ -194,7 +195,7 @@ function StatisticsFilterButton(props: {
           }
           const userId = findUserIdByUserName(userName);
           if (!!userId) {
-            props.refetch({ ...props.ressourceFilter, userId });
+            props.refetch({ ...props.ressourceFilter, userId: userId.toHexString() });
           }
         },
       };
@@ -209,7 +210,7 @@ function StatisticsFilterButton(props: {
   }
 
   function findUserNameByUserId(userId: userType['_id']) {
-    const user = props.users.find(({ _id }) => idModule.lib.equalId(userId, _id));
+    const user = props.users.find(({ _id }) => idModule.lib.equalId(new ObjectId(userId), new ObjectId(_id)));
     if (user) {
       return user.name;
     }

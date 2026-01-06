@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, idModule } from 'src/core';
+import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
+import { ObjectId } from 'bson';
 
 export { DocumentDataFetcher };
 
@@ -10,7 +11,6 @@ function DocumentDataFetcher(props: {
   documentId: string;
 }) {
   const documentFetchInfo = useApi(buildFetchDocument(), { documentId: props.documentId });
-
   return (
     <DataFetcher
       buildComponentWithData={(document: apiRouteOutType<'get', 'document'>) => props.children({ document })}
@@ -22,11 +22,11 @@ function DocumentDataFetcher(props: {
 
 function buildFetchDocument() {
   return async ({ documentId }: { documentId: string }) => {
-    const { data: document, statusCode } = await apiCaller.get("document", documentId);
+    const { data: document, statusCode } = await apiCaller.get('document', documentId);
     return {
       data: {
         ...document,
-        _id: idModule.lib.buildId(document._id),
+        _id: new ObjectId(document._id),
       },
       statusCode,
     };

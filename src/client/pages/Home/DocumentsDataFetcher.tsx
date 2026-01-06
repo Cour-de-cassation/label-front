@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
-import { annotationType, assignationType, fetchedDocumentType, idModule } from 'src/core';
+import { annotationType, assignationType, fetchedDocumentType } from 'src/core';
 import { apiCaller, useApi } from '../../api';
 import { DataFetcher } from '../DataFetcher';
+import { ObjectId } from 'bson';
 
 export { DocumentsDataFetcher };
 
@@ -73,9 +74,9 @@ async function fetchDocumentsForUser(documentsMaxCount: number) {
       documentsForUser.push({
         document: {
           ...assignatedDocument.document,
-          _id: idModule.lib.buildId(assignatedDocument.document._id),
+          _id: new ObjectId(assignatedDocument.document._id),
         },
-        assignationId: idModule.lib.buildId(assignatedDocument.assignationId),
+        assignationId: new ObjectId(assignatedDocument.assignationId),
         annotations,
       });
       statusCodesAnnotations.push(statusCodeAnnotations);

@@ -7,8 +7,8 @@ export { problemReportGenerator };
 const problemReportGenerator: generatorType<problemReportType> = {
   generate: ({ documentId, userId, _id, date, hasBeenRead, text, type } = {}) => {
     return {
-      documentId: documentId ?? new ObjectId().toHexString(),
-      userId: userId ?? new ObjectId().toHexString(),
+      documentId: documentId ? new ObjectId(documentId) : new ObjectId(),
+      userId: userId ? new ObjectId(userId) : new ObjectId(),
       date: date ?? Date.now(),
       hasBeenRead: hasBeenRead ?? false,
       _id: _id ? new ObjectId(_id) : new ObjectId(),

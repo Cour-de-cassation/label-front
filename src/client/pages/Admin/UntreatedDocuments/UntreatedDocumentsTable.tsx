@@ -109,7 +109,7 @@ function UntreatedDocumentsTable(props: {
       text: wordings.untreatedDocumentsPage.table.optionItems.freeDocument,
       onClick: async () => {
         await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-          documentId: untreatedDocument.document._id.toHexString(),
+          documentId: untreatedDocument.document._id,
           status: 'free',
         });
         props.refetch();
@@ -155,7 +155,7 @@ function UntreatedDocumentsTable(props: {
   }) {
     try {
       await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-        documentId: documentId.toHexString(),
+        documentId: documentId,
         status: 'free',
       });
     } catch (error) {

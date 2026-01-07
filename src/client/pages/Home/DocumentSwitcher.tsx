@@ -119,7 +119,7 @@ function DocumentSwitcher(props: {
           route: choice.document.route,
         });
         const { data: updatedDocument } = await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-          documentId: choice.document._id.toHexString(),
+          documentId: choice.document._id,
           status: nextStatus,
         });
         setDocumentState({

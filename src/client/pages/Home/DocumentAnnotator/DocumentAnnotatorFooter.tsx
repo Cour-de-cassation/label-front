@@ -133,7 +133,7 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
   async function setDocumentStatus(documentId: documentType['_id'], status: documentType['status']) {
     try {
       await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-        documentId: documentId.toHexString(),
+        documentId: documentId,
         status,
       });
     } catch (error) {

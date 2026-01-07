@@ -37,7 +37,7 @@ function buildFetchPreAssignations() {
         preAssignation: {
           ...preAssignation.preAssignation,
           _id: idModule.lib.buildId(preAssignation.preAssignation._id),
-          userId: preAssignation.preAssignation.userId,
+          userId: idModule.lib.buildId(preAssignation.preAssignation.userId),
         },
         userName: preAssignation.userName,
       })),

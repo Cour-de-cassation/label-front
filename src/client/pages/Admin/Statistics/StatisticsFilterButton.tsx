@@ -195,7 +195,7 @@ function StatisticsFilterButton(props: {
           }
           const userId = findUserIdByUserName(userName);
           if (!!userId) {
-            props.refetch({ ...props.ressourceFilter, userId: userId.toHexString() });
+            props.refetch({ ...props.ressourceFilter, userId: userId });
           }
         },
       };

@@ -131,7 +131,7 @@ function TreatedDocumentsTable(props: {
       onClick: async () => {
         try {
           await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-            documentId: treatmentWithDetails.document._id.toHexString(),
+            documentId: idModule.lib.buildId(treatmentWithDetails.document._id),
             status: documentModule.lib.getNextStatus({
               status: 'pending',
               publicationCategory: treatmentWithDetails.document?.publicationCategory ?? [],
@@ -147,7 +147,7 @@ function TreatedDocumentsTable(props: {
         if (treatmentWithDetails.document?.route == 'simple') {
           try {
             await apiCaller.post<'updateDocumentRoute'>('updateDocumentRoute', {
-              documentId: treatmentWithDetails.document._id.toHexString(),
+              documentId: idModule.lib.buildId(treatmentWithDetails.document._id),
               route: 'exhaustive',
             });
           } catch (error) {

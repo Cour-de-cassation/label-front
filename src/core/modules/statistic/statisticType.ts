@@ -23,7 +23,7 @@ export type statisticType = {
   subAnnotationsNonSensitiveCount: number;
   treatmentDate: number;
   treatmentsSummary: {
-    userId: string;
+    userId: ObjectId;
     treatmentDuration: number;
   }[];
   wordsCount: number;

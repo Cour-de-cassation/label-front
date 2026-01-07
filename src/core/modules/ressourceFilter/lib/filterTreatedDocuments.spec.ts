@@ -102,7 +102,7 @@ describe('filterTreatedDocuments', () => {
     const userId1 = new ObjectId();
     const userId2 = new ObjectId();
     const ressourceFilter = ressourceFilterGenerator.generate({
-      userId: userId1.toHexString(),
+      userId: userId1,
     });
     const documents = ([{ status: 'done' }, { status: 'done' }] as const).map(documentModule.generator.generate);
     const treatments = [{ documentId: documents[0]._id }, { documentId: documents[1]._id }].map(

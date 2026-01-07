@@ -44,8 +44,8 @@ function buildFetchProblemReports() {
         problemReport: {
           ...problemReportWithDetails.problemReport,
           _id: idModule.lib.buildId(problemReportWithDetails.problemReport._id),
-          documentId: problemReportWithDetails.problemReport.documentId,
-          userId: problemReportWithDetails.problemReport.userId,
+          documentId: idModule.lib.buildId(problemReportWithDetails.problemReport.documentId),
+          userId: idModule.lib.buildId(problemReportWithDetails.problemReport.userId),
         },
       })),
       statusCode,

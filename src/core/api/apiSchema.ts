@@ -10,7 +10,6 @@ import {
   annotationsDiffType,
   fetchedDocumentType,
 } from '../modules';
-import { problemReportTypeEnum } from '../modules/problemReport/problemReportType';
 import { ressourceFilterType } from './../modules/ressourceFilter';
 import { documentRouteType, documentStatusType } from '../modules/document/documentType';
 
@@ -327,7 +326,7 @@ export type ApiSchema = {
     problemReport: {
       in: {
         documentId: string;
-        problemType: problemReportTypeEnum;
+        problemType: 'bug' | 'annotationProblem' | 'suggestion';
         problemText: string;
       };
 
@@ -351,7 +350,7 @@ export type ApiSchema = {
 
     updateDocumentStatus: {
       in: {
-        documentId: string;
+        documentId: ObjectId;
         status: string;
       };
       out: fetchedDocumentType;
@@ -359,7 +358,7 @@ export type ApiSchema = {
 
     updateDocumentRoute: {
       in: {
-        documentId: string;
+        documentId: ObjectId;
         route: documentRouteType;
       };
 
@@ -368,7 +367,7 @@ export type ApiSchema = {
 
     updatePublishableDocumentStatus: {
       in: {
-        documentId: string;
+        documentId: ObjectId;
         status: 'done' | 'toBePublished';
       };
       out: fetchedDocumentType;

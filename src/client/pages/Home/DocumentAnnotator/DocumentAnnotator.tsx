@@ -22,7 +22,6 @@ function DocumentAnnotator(props: { onStopAnnotatingDocument?: () => Promise<voi
   const viewerRef = useRef(null);
 
   const annotatorState = annotatorStateHandler.get();
-
   const styles = buildStyles();
   const categories = settingsModule.lib.getCategories(annotatorState.settings, {
     status: ['annotable', 'visible'],

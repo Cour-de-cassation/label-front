@@ -36,12 +36,7 @@ function buildFetchTreatedDocuments() {
     );
 
     return {
-      data: toBeConfirmedDocuments.map((treatedDocument) => ({
-        ...treatedDocument,
-        document: {
-          ...treatedDocument.document,
-        },
-      })),
+      data: toBeConfirmedDocuments,
       statusCode,
     };
   };

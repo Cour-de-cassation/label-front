@@ -97,7 +97,7 @@ function ReportProblemToolTipMenu(props: {
   async function setDocumentStatus(documentId: documentType['_id'], status: documentType['status']) {
     try {
       await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-        documentId: documentId,
+        documentId,
         status,
       });
     } catch (error) {

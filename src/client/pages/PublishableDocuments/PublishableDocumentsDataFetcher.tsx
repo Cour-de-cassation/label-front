@@ -31,9 +31,7 @@ function buildFetchPublishableDocuments() {
     );
 
     return {
-      data: publishableDocuments.map((publishableDocument) => ({
-        ...publishableDocument,
-      })),
+      data: publishableDocuments,
       statusCode,
     };
   };

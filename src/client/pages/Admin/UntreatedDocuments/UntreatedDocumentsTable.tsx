@@ -155,7 +155,7 @@ function UntreatedDocumentsTable(props: {
   }) {
     try {
       await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-        documentId: documentId,
+        documentId,
         status: 'free',
       });
     } catch (error) {
@@ -165,8 +165,8 @@ function UntreatedDocumentsTable(props: {
     }
     try {
       await apiCaller.post<'assignDocumentToUser'>('assignDocumentToUser', {
-        documentId: documentId,
-        userId: userId,
+        documentId,
+        userId,
       });
     } catch (error) {
       displayAlert({ text: wordings.business.errors.assignDocumentFailed, variant: 'alert', autoHide: true });

@@ -68,7 +68,7 @@ function HomeDocumentAnnotator(props: {
   );
 
   async function onStopAnnotatingDocument({ assignationId }: { assignationId: assignationType['_id'] }) {
-    await apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', { assignationId: assignationId });
+    await apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', { assignationId });
     props.fetchNewDocumentsForUser();
   }
 

@@ -23,9 +23,7 @@ function buildFetchDocument() {
   return async ({ documentId }: { documentId: string }) => {
     const { data: document, statusCode } = await apiCaller.get('document', documentId);
     return {
-      data: {
-        ...document,
-      },
+      data: document,
       statusCode,
     };
   };

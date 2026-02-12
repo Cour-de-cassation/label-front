@@ -128,7 +128,7 @@ function buildStyles(theme: customThemeType) {
       paddingLeft: theme.spacing * 3,
     },
     body: {
-      height: '74%',
+      height: '70%',
       // height: heights.statisticsBodyHeight,
       width: widths.adminContent,
       display: 'flex',

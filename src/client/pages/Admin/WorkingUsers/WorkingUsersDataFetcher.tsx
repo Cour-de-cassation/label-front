@@ -26,9 +26,7 @@ function buildFetchWorkingUsers() {
     const { data: workingUsers, statusCode } = await apiCaller.get<'workingUsers'>('workingUsers');
 
     return {
-      data: workingUsers.map((workingUser) => ({
-        ...workingUser,
-      })),
+      data: workingUsers,
       statusCode,
     };
   };

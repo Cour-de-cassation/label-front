@@ -31,14 +31,9 @@ function PreAssignDocumentsDataFetcher(props: {
 
 function buildFetchPreAssignations() {
   return async () => {
-    const { data: preAssignations, statusCode } = await apiCaller.get<'preAssignations'>('preAssignations');
+    const { data: preAssignations, statusCode } = await apiCaller.get('preAssignations');
     return {
-      data: preAssignations.map((preAssignation) => ({
-        preAssignation: {
-          ...preAssignation.preAssignation,
-        },
-        userName: preAssignation.userName,
-      })),
+      data: preAssignations,
       statusCode,
     };
   };

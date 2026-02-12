@@ -31,15 +31,10 @@ function TreatedDocumentsDataFetcher(props: {
 
 function buildFetchTreatedDocuments() {
   return async () => {
-    const { data: treatedDocuments, statusCode } = await apiCaller.get<'treatedDocuments'>('treatedDocuments');
+    const { data: treatedDocuments, statusCode } = await apiCaller.get('treatedDocuments');
 
     return {
-      data: treatedDocuments.map((treatedDocument) => ({
-        ...treatedDocument,
-        document: {
-          ...treatedDocument.document,
-        },
-      })),
+      data: treatedDocuments,
       statusCode,
     };
   };

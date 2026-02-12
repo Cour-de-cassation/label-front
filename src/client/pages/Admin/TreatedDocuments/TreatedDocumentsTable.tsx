@@ -100,8 +100,7 @@ function TreatedDocumentsTable(props: {
     const openDocumentOption = {
       kind: 'text' as const,
       text: wordings.treatedDocumentsPage.table.optionItems.openDocument,
-      onClick: () =>
-        history.push(routes.DOCUMENT.getPath(treatmentWithDetails.document._id)),
+      onClick: () => history.push(routes.DOCUMENT.getPath(treatmentWithDetails.document._id)),
       iconName: 'find' as const,
     };
 

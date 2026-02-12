@@ -110,55 +110,55 @@ function buildPublishableDocumentsFields() {
       (typeof publishableDocumentOrderByProperties)[number]
     >
   > = [
-      {
-        id: 'documentNumber',
-        title: wordings.business.filters.columnTitles.documentNumber,
-        canBeSorted: true,
-        extractor: (publishableDocument) => JSON.stringify(publishableDocument.documentNumber),
-        width: 3,
-      },
-      {
-        id: 'jurisdiction',
-        title: wordings.business.filters.columnTitles.jurisdiction.title,
-        tooltipText: wordings.business.filters.columnTitles.jurisdiction.tooltipText,
-        canBeSorted: true,
-        extractor: (publishableDocument) => publishableDocument.jurisdiction,
-        width: 4,
-      },
-      {
-        id: 'chamberName',
-        title: wordings.business.filters.columnTitles.chamberName,
-        canBeSorted: true,
-        extractor: (publishableDocument) => publishableDocument.chamberName,
-        width: 4,
-      },
-      {
-        id: 'appealNumber',
-        title: wordings.business.filters.columnTitles.appealNumber,
-        canBeSorted: true,
-        extractor: (publishableDocument) => publishableDocument.appealNumber,
-        width: 4,
-      },
-      {
-        id: 'status',
-        title: wordings.business.filters.columnTitles.status,
-        canBeSorted: true,
-        extractor: (publishableDocument) => wordings.business.documentStatus[publishableDocument.status],
-        width: 4,
-      },
-      {
-        id: 'creationDate',
-        title: wordings.business.filters.columnTitles.creationDate.title,
-        tooltipText: wordings.business.filters.columnTitles.creationDate.tooltipText,
-        canBeSorted: true,
-        extractor: (publishableDocument) =>
-          publishableDocument.creationDate
-            ? timeOperator.convertTimestampToReadableDate(publishableDocument.creationDate, true)
-            : '-',
-        getSortingValue: (publishableDocument) => publishableDocument.creationDate || 0,
-        width: 3,
-      },
-    ];
+    {
+      id: 'documentNumber',
+      title: wordings.business.filters.columnTitles.documentNumber,
+      canBeSorted: true,
+      extractor: (publishableDocument) => JSON.stringify(publishableDocument.documentNumber),
+      width: 3,
+    },
+    {
+      id: 'jurisdiction',
+      title: wordings.business.filters.columnTitles.jurisdiction.title,
+      tooltipText: wordings.business.filters.columnTitles.jurisdiction.tooltipText,
+      canBeSorted: true,
+      extractor: (publishableDocument) => publishableDocument.jurisdiction,
+      width: 4,
+    },
+    {
+      id: 'chamberName',
+      title: wordings.business.filters.columnTitles.chamberName,
+      canBeSorted: true,
+      extractor: (publishableDocument) => publishableDocument.chamberName,
+      width: 4,
+    },
+    {
+      id: 'appealNumber',
+      title: wordings.business.filters.columnTitles.appealNumber,
+      canBeSorted: true,
+      extractor: (publishableDocument) => publishableDocument.appealNumber,
+      width: 4,
+    },
+    {
+      id: 'status',
+      title: wordings.business.filters.columnTitles.status,
+      canBeSorted: true,
+      extractor: (publishableDocument) => wordings.business.documentStatus[publishableDocument.status],
+      width: 4,
+    },
+    {
+      id: 'creationDate',
+      title: wordings.business.filters.columnTitles.creationDate.title,
+      tooltipText: wordings.business.filters.columnTitles.creationDate.tooltipText,
+      canBeSorted: true,
+      extractor: (publishableDocument) =>
+        publishableDocument.creationDate
+          ? timeOperator.convertTimestampToReadableDate(publishableDocument.creationDate, true)
+          : '-',
+      getSortingValue: (publishableDocument) => publishableDocument.creationDate || 0,
+      width: 3,
+    },
+  ];
   return publishableDocumentsFields;
 }
 

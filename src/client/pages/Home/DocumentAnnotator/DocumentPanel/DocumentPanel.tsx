@@ -43,7 +43,7 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
     };
   }, [
     documentViewerModeHandler.documentViewerMode.kind === 'occurrence' &&
-    documentViewerModeHandler.documentViewerMode.entityId,
+      documentViewerModeHandler.documentViewerMode.entityId,
     annotatorStateChecksum,
   ]);
 

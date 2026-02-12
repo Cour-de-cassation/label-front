@@ -22,9 +22,9 @@ function AnnotationsDiffDrawer(props: { close: () => void; documentInfo: annotat
 
   const subtitle = props.documentInfo
     ? format(wordings.treatedDocumentsPage.table.annotationDiffDrawer.subtitle, {
-      documentNumber: props.documentInfo.documentNumber,
-      userName: props.documentInfo.userName,
-    })
+        documentNumber: props.documentInfo.documentNumber,
+        userName: props.documentInfo.userName,
+      })
     : undefined;
 
   return (

@@ -191,7 +191,7 @@ function ProblemReportsTable(props: {
         try {
           displayPopup({
             text: wordings.problemReportsPage.table.popupConfirmMessage,
-            onCancel: () => { },
+            onCancel: () => {},
             onConfirm: () => {
               problemReportWithDetails.document &&
                 apiCaller.post<'deleteDocument'>('deleteDocument', {

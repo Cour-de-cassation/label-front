@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { generatorType } from '../../../types';
 import { annotationsDiffModule } from '../../annotationsDiff';
 import { treatmentType } from '../treatmentType';
@@ -18,9 +17,9 @@ const treatmentGenerator: generatorType<treatmentType> = {
     surAnnotationsCount,
     subAnnotationsNonSensitiveCount,
   } = {}) => ({
-    _id: _id ? new ObjectId(_id).toHexString() : new ObjectId().toHexString(),
+    _id: _id ? _id : 'monId123',
     annotationsDiff: annotationsDiff ? annotationsDiff : annotationsDiffModule.generator.generate(),
-    documentId: documentId ? new ObjectId(documentId).toHexString() : new ObjectId().toHexString(),
+    documentId: documentId ? documentId : 'monId123',
     duration: duration ? duration : 0,
     lastUpdateDate: lastUpdateDate ? lastUpdateDate : new Date().getTime(),
     order: order ? order : 0,

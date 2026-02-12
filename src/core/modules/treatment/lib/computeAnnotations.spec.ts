@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { annotationModule } from '../../annotation';
 import { annotationsDiffModule } from '../../annotationsDiff';
 import { treatmentGenerator } from '../generator';
@@ -8,7 +7,7 @@ describe('computeAnnotations', () => {
   const annotations = [{ text: '0' }, { text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }].map(
     annotationModule.generator.generate,
   );
-  const documentId = new ObjectId().toHexString();
+  const documentId = 'monId123';
 
   it('should compute the annotations set from treatments', () => {
     const treatments = [
@@ -55,7 +54,7 @@ describe('computeAnnotations', () => {
           before: [],
           after: [annotations[0], annotations[1]],
         }),
-        documentId: new ObjectId().toHexString(),
+        documentId: 'monId123',
         order: 0,
         source: 'NLP' as const,
       },
@@ -64,7 +63,7 @@ describe('computeAnnotations', () => {
           before: [annotations[0]],
           after: [annotations[2]],
         }),
-        documentId: new ObjectId().toHexString(),
+        documentId: 'monId123',
         order: 1,
         source: 'postProcess' as const,
       },
@@ -134,7 +133,7 @@ describe('computeAnnotationsDiff', () => {
   const annotations = [{ text: '0' }, { text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }].map(
     annotationModule.generator.generate,
   );
-  const documentId = new ObjectId().toHexString();
+  const documentId = 'monId123';
 
   it('should compute the annotations set from treatments', () => {
     const treatments = [

@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { generatorType } from '../../../types';
 import { ressourceFilterType } from '../ressourceFilterType';
 
@@ -26,6 +25,6 @@ const ressourceFilterGenerator: generatorType<ressourceFilterType> = {
     route: route ?? undefined,
     importer: importer ?? undefined,
     source: source ?? undefined,
-    userId: userId ? new ObjectId(userId).toHexString() : undefined,
+    userId: userId ? userId : undefined,
   }),
 };

@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { cacheType } from '../cacheType';
 
 export { buildCache };
@@ -6,6 +5,6 @@ export { buildCache };
 function buildCache(cacheFields: Omit<cacheType, '_id'>): cacheType {
   return {
     ...cacheFields,
-    _id: new ObjectId().toHexString(),
+    _id: 'monId123',
   };
 }

@@ -1,5 +1,3 @@
-// import { buildType, idType } from '../modules';
-import { ObjectId } from 'bson';
 import { ApiSchema, apiSchemaMethodNameType } from './apiSchema';
 
 export type { apiRouteInType, apiRouteOutType, networkType };
@@ -31,7 +29,7 @@ type networkType<T> = T extends { [key: string]: unknown }
   ? { [key in keyof T]: networkType<T[key]> }
   : T extends Array<unknown>
   ? Array<networkType<T[0]>>
-  : T extends ObjectId
+  : T extends string
   ? string
   : T extends Date
   ? string

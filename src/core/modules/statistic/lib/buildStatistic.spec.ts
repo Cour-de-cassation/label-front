@@ -1,5 +1,4 @@
 import { documentModule } from '../../document';
-import { ObjectId } from 'bson';
 import { buildStatistic } from './buildStatistic';
 
 const TREATMENT_DATE = new Date(2021, 3, 30, 0, 0, 0);
@@ -17,7 +16,7 @@ describe('buildStatistic', () => {
     const documentSource = 'SOURCE';
     const linkedEntitiesCount = 2;
     const jurisdiction = 'Cour de cassation';
-    const userId = new ObjectId().toHexString();
+    const userId = 'monId123';
     const decisionDate = new Date().getTime();
     const document = documentModule.generator.generate({
       decisionMetadata: documentModule.decisionMetadataGenerator.generate({

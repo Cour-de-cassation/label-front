@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { treatmentGenerator } from '../generator';
 import { treatmentType } from '../treatmentType';
 
@@ -19,7 +18,7 @@ function buildEmpty(
 
   return {
     ...treatment,
-    _id: new ObjectId().toHexString(),
+    _id: 'monId123',
     subAnnotationsSensitiveCount: 0,
     surAnnotationsCount: 0,
     subAnnotationsNonSensitiveCount: 0,

@@ -4,7 +4,6 @@ import { documentModule } from '../../modules/document';
 import { treatmentModule } from '../../modules/treatment';
 import { settingsModule } from '../../modules/settings';
 import { statisticsCreator } from './statisticsCreator';
-import { ObjectId } from 'bson';
 
 const TREATMENT_DATE = new Date(2021, 3, 30, 0, 0, 0);
 
@@ -16,7 +15,7 @@ describe('statisticsCreator', () => {
   const documentNumber = 123456;
   const jurisdiction = 'Cour de cassation';
   const duration = 1500;
-  const userId = new ObjectId().toHexString();
+  const userId = '123';
   const decisionDate = new Date().getTime();
   const documentChecklist = documentModule.checklistGenerator.generate(4);
   const document = documentModule.generator.generate({

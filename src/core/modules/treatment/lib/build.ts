@@ -2,7 +2,6 @@ import { settingsType } from '../../settings';
 import { treatmentGenerator } from '../generator';
 import { treatmentType } from '../treatmentType';
 import { computeTreatmentInfo } from './computeTreatmentInfo';
-import { ObjectId } from 'bson';
 
 export { build };
 
@@ -26,7 +25,7 @@ function build(
 
   return {
     ...treatment,
-    _id: new ObjectId().toHexString(),
+    _id: 'monId123',
     subAnnotationsNonSensitiveCount,
     surAnnotationsCount,
     subAnnotationsSensitiveCount,

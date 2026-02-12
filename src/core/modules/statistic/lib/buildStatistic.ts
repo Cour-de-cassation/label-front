@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { documentModule, documentType } from '../../document';
 import { treatmentInfoType, treatmentType } from '../../treatment';
 import { statisticType } from '../statisticType';
@@ -25,7 +24,7 @@ function buildStatistic({
   comment?: string;
 }): statisticType {
   return {
-    _id: new ObjectId().toHexString(),
+    _id: 'monId123',
     annotationsCount,
     appealNumber: document.decisionMetadata.appealNumber || undefined,
     chamberName: document.decisionMetadata.chamberName

@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { documentModule } from '../../document';
 import { treatmentModule } from '../../treatment';
 import { ressourceFilterGenerator } from '../generator';
@@ -8,7 +7,7 @@ import { filterTreatedDocuments } from './filterTreatedDocuments';
 describe('filterTreatedDocuments', () => {
   it('should filter all the given treated documents with added annotations', () => {
     const documents = [{}, {}].map(documentModule.generator.generate);
-    const userId = new ObjectId().toHexString();
+    const userId = 'monId123';
     const treatments = [
       {
         subAnnotationsSensitiveCount: 5,
@@ -46,7 +45,7 @@ describe('filterTreatedDocuments', () => {
 
   it('should filter all the given treated documents with deleted annotations', () => {
     const documents = [{}, {}].map(documentModule.generator.generate);
-    const userId = new ObjectId().toHexString();
+    const userId = 'monId123';
     const treatments = [
       { surAnnotationsCount: 5, documentId: documents[1]._id, order: 2 },
       { documentId: documents[1]._id, order: 0 },
@@ -99,8 +98,8 @@ describe('filterTreatedDocuments', () => {
   });
 
   it('should filter all the given treated documents according to the user id', () => {
-    const userId1 = new ObjectId().toHexString();
-    const userId2 = new ObjectId().toHexString();
+    const userId1 = 'monId123';
+    const userId2 = 'monId123';
     const ressourceFilter = ressourceFilterGenerator.generate({
       userId: userId1,
     });

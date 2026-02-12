@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { documentType } from '../documentType';
 
 export { buildDocument };
@@ -8,7 +7,7 @@ function buildDocument(
 ): documentType {
   return {
     ...documentFields,
-    _id: new ObjectId().toHexString(),
+    _id: 'monId123',
     reviewStatus: { hasBeenAmended: false, viewerNames: [] },
     status: 'free',
     updateDate: new Date().getTime(),

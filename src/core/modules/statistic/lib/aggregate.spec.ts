@@ -1,11 +1,10 @@
-import { ObjectId } from 'bson';
 import { ressourceFilterModule } from '../../ressourceFilter';
 import { statisticGenerator } from '../generator';
 import { aggregate } from './aggregate';
 
 describe('aggregate', () => {
-  const userId1 = new ObjectId().toHexString();
-  const userId2 = new ObjectId().toHexString();
+  const userId1 = 'monId123';
+  const userId2 = 'monId123';
 
   const statistics = [
     {

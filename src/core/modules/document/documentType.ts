@@ -116,22 +116,3 @@ export type ZoningIntroductionSubzonage = {
   pourvoi?: string[];
   composition?: { start: number; end: number };
 };
-
-export type documentModelCommonFieldsType = {
-  creationDate?: number;
-  decisionMetadata: documentType['decisionMetadata'];
-  documentNumber: number;
-  _id: string;
-  importer: 'recent' | 'manual' | 'default';
-  loss?: number;
-  nlpVersions: nlpVersionsType;
-  publicationCategory: documentType['publicationCategory'];
-  reviewStatus: documentType['reviewStatus'];
-  route: 'automatic' | 'exhaustive' | 'simple' | 'confirmation' | 'request' | 'default';
-  source: string;
-  status: 'done' | 'free' | 'pending' | 'locked' | 'saved' | 'toBePublished' | 'toBeConfirmed';
-  title: string;
-  text: string;
-  zoning: Zoning;
-  checklist: documentType['checklist'];
-};

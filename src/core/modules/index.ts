@@ -19,7 +19,6 @@ import {
 import { statisticModule, statisticType } from './statistic';
 import { treatmentType, treatmentModule, treatmentInfoType } from './treatment';
 import { userModule, userType } from './user';
-import { documentModelCommonFieldsType } from './document/documentType';
 export {
   annotationModule,
   annotationsDiffModule,
@@ -56,5 +55,4 @@ export type {
   replacementTermType,
   treatmentType,
   treatmentInfoType,
-  documentModelCommonFieldsType,
 };

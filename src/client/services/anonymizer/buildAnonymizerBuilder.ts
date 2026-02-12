@@ -2,7 +2,7 @@ import {
   annotationType,
   buildAnonymizer,
   documentModule,
-  fetchedDocumentType,
+  documentType,
   replacementTermType,
   settingsType,
 } from 'src/core';
@@ -22,7 +22,7 @@ function buildAnonymizerBuilder({
   settings,
 }: {
   annotations: annotationType[];
-  document: fetchedDocumentType;
+  document: documentType;
   settings: settingsType;
   mandatoryReplacementTerms: replacementTermType[];
 }): { anonymizerBuilder: anonymizerBuilderType } {

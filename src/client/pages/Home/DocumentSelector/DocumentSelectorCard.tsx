@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import { groupBy, orderBy, sumBy } from 'lodash';
-import {
-  annotationType,
-  assignationType,
-  documentModule,
-  fetchedDocumentType,
-  settingsType,
-  settingsModule,
-} from 'src/core';
+import { annotationType, assignationType, documentModule, documentType, settingsType, settingsModule } from 'src/core';
 import { customThemeType, useCustomTheme, ButtonWithIcon, ComponentsList, Icon, Text } from 'pelta-design-system';
 import { CategoryIcon, PublicationCategoryBadge } from '../../../components';
 import { wordings } from '../../../wordings';
@@ -26,11 +19,11 @@ const ICONS_CONTAINER_HEIGHT = 140;
 function DocumentSelectorCard(props: {
   choice: {
     annotations: annotationType[];
-    document: fetchedDocumentType;
+    document: documentType;
     assignationId: assignationType['_id'];
   };
   onSelect: (choice: {
-    document: fetchedDocumentType;
+    document: documentType;
     annotations: annotationType[];
     assignationId: assignationType['_id'];
   }) => Promise<void>;

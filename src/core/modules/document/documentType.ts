@@ -68,7 +68,7 @@ export type reviewStatusType = {
   hasBeenAmended: boolean;
 };
 
-export type fetchedDocumentType = {
+export type documentType = {
   _id: string;
   creationDate?: number;
   decisionMetadata: decisionMetadataType;
@@ -84,9 +84,6 @@ export type fetchedDocumentType = {
   title: string;
   text: string;
   checklist: checklistItemType[];
-};
-
-export type documentType = fetchedDocumentType & {
   externalId: string;
   priority: number;
   updateDate: number;
@@ -122,7 +119,7 @@ export type ZoningIntroductionSubzonage = {
 
 export type documentModelCommonFieldsType = {
   creationDate?: number;
-  decisionMetadata: fetchedDocumentType['decisionMetadata'];
+  decisionMetadata: documentType['decisionMetadata'];
   documentNumber: number;
   _id: string;
   importer: 'recent' | 'manual' | 'default';

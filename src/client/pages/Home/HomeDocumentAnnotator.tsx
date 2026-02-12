@@ -4,7 +4,7 @@ import {
   annotationType,
   assignationType,
   documentModule,
-  fetchedDocumentType,
+  documentType,
   replacementTermType,
   settingsType,
 } from 'src/core';
@@ -26,7 +26,7 @@ function HomeDocumentAnnotator(props: {
   annotations: annotationType[];
   assignationId: assignationType['_id'];
   committer: annotationsCommitterType;
-  document: fetchedDocumentType;
+  document: documentType;
   fetchNewDocumentsForUser: () => void;
   settings: settingsType;
 }) {

@@ -1,5 +1,5 @@
 import { documentGenerator, decisionMetadataGenerator, checklistGenerator } from './generator';
-import { documentModelCommonFieldsType, documentType, fetchedDocumentType } from './documentType';
+import { documentModelCommonFieldsType, documentType } from './documentType';
 import {
   buildDocument,
   comparator,
@@ -12,7 +12,7 @@ import {
 
 export { documentModule };
 
-export type { documentType, fetchedDocumentType, documentModelCommonFieldsType };
+export type { documentType, documentModelCommonFieldsType };
 
 const documentModule = {
   generator: documentGenerator,

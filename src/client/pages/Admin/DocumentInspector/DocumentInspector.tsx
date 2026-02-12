@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { annotationsDiffType, fetchedDocumentType, settingsModule, settingsType } from 'src/core';
+import { annotationsDiffType, documentType, settingsModule, settingsType } from 'src/core';
 import { apiCaller } from '../../../api';
 import { MainHeader } from '../../../components';
 import {
@@ -76,7 +76,7 @@ function DocumentInspector(props: { settings: settingsType }) {
     </DocumentDataFetcher>
   );
 
-  function buildOnStopAnnotatingDocument(document: fetchedDocumentType) {
+  function buildOnStopAnnotatingDocument(document: documentType) {
     if (document.route !== 'confirmation' && document.route !== 'request') {
       return undefined;
     }

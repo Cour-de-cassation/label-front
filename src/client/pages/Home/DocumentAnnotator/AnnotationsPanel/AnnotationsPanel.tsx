@@ -1,5 +1,5 @@
 import React from 'react';
-import { settingsModule, fetchedDocumentType, documentType } from 'src/core';
+import { settingsModule, documentType, documentType } from 'src/core';
 import { Icon, Text, customThemeType, getColor, useCustomTheme, useDisplayMode } from 'pelta-design-system';
 import { heights } from '../../../../styles';
 import { wordings } from '../../../../wordings';
@@ -12,7 +12,7 @@ import { Checklist } from './Checklist';
 export { AnnotationsPanel };
 
 function AnnotationsPanel(props: {
-  document: fetchedDocumentType;
+  document: documentType;
   annotationPerCategoryAndEntity: annotationPerCategoryAndEntityType;
   splittedTextByLine: splittedTextByLineType;
   nonAnnotableCategories: string[];

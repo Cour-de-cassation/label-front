@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { annotationType, assignationType, fetchedDocumentType } from 'src/core';
+import { annotationType, assignationType, documentType } from 'src/core';
 import { apiCaller, useApi } from '../../api';
 import { DataFetcher } from '../DataFetcher';
 
@@ -9,7 +9,7 @@ function DocumentsDataFetcher(props: {
   children: (fetched: {
     documentsForUser: {
       assignationId: assignationType['_id'];
-      document: fetchedDocumentType;
+      document: documentType;
       annotations: annotationType[];
     }[];
     fetchNewDocumentsForUser: () => void;
@@ -25,7 +25,7 @@ function DocumentsDataFetcher(props: {
       buildComponentWithData={(
         documentsForUser: {
           assignationId: assignationType['_id'];
-          document: fetchedDocumentType;
+          document: documentType;
           annotations: annotationType[];
         }[],
       ) => props.children({ documentsForUser, fetchNewDocumentsForUser: () => documentsForUserFetchInfo.refetch() })}
@@ -46,7 +46,7 @@ function buildFetchDocumentsForUser() {
 
 async function fetchDocumentsForUser(documentsMaxCount: number) {
   const documentsForUser: Array<{
-    document: fetchedDocumentType;
+    document: documentType;
     assignationId: assignationType['_id'];
     annotations: annotationType[];
   }> = [];

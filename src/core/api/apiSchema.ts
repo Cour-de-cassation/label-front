@@ -7,7 +7,6 @@ import {
   replacementTermType,
   preAssignationType,
   annotationsDiffType,
-  fetchedDocumentType,
 } from '../modules';
 import { ressourceFilterType } from './../modules/ressourceFilter';
 import { documentRouteType, documentStatusType } from '../modules/document/documentType';
@@ -281,7 +280,7 @@ export type ApiSchema = {
         documentId: string;
         userId: string;
       };
-      out: fetchedDocumentType;
+      out: documentType;
     };
 
     createUser: {
@@ -344,7 +343,7 @@ export type ApiSchema = {
         assignationId: string;
         status: documentStatusType;
       };
-      out: fetchedDocumentType;
+      out: documentType;
     };
 
     updateDocumentStatus: {
@@ -352,7 +351,7 @@ export type ApiSchema = {
         documentId: string;
         status: string;
       };
-      out: fetchedDocumentType;
+      out: documentType;
     };
 
     updateDocumentRoute: {
@@ -361,7 +360,7 @@ export type ApiSchema = {
         route: documentRouteType;
       };
 
-      out: fetchedDocumentType;
+      out: documentType;
     };
 
     updatePublishableDocumentStatus: {
@@ -369,7 +368,7 @@ export type ApiSchema = {
         documentId: string;
         status: 'done' | 'toBePublished';
       };
-      out: fetchedDocumentType;
+      out: documentType;
     };
 
     updateProblemReportHasBeenRead: {

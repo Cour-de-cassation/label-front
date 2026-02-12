@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  annotationType,
-  fetchedDocumentType,
-  documentModule,
-  settingsModule,
-  settingsType,
-  assignationType,
-} from 'src/core';
+import { annotationType, documentType, documentModule, settingsModule, settingsType, assignationType } from 'src/core';
 import { Text } from 'pelta-design-system';
 import { wordings } from '../../../wordings';
 import { DocumentSelectorCard } from './DocumentSelectorCard';
@@ -17,12 +10,12 @@ export { DocumentSelector };
 function DocumentSelector(props: {
   choices: Array<{
     annotations: annotationType[];
-    document: fetchedDocumentType;
+    document: documentType;
     assignationId: assignationType['_id'];
   }>;
   settings: settingsType;
   onSelectDocument: (choice: {
-    document: fetchedDocumentType;
+    document: documentType;
     annotations: annotationType[];
     assignationId: assignationType['_id'];
   }) => Promise<void>;

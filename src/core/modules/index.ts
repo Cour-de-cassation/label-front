@@ -3,7 +3,7 @@ import { annotationsDiffModule, annotationsDiffType } from './annotationsDiff';
 import { assignationModule, assignationType } from './assignation';
 import { preAssignationModule, preAssignationType } from './preAssignation';
 import { cacheModule, cacheType } from './cache';
-import { documentModule, documentType, fetchedDocumentType } from './document';
+import { documentModule, documentType } from './document';
 import { ressourceFilterModule, ressourceFilterType } from './ressourceFilter';
 import { problemReportModule, problemReportType } from './problemReport';
 import { replacementTermModule, replacementTermType } from './replacementTerm';
@@ -36,8 +36,6 @@ export {
   userModule,
 };
 
-// export * from './modelType';
-
 export type {
   annotationType,
   annotationsDiffType,
@@ -49,7 +47,6 @@ export type {
   shadeColorType,
   displayModeType,
   documentType,
-  fetchedDocumentType,
   ressourceFilterType,
   problemReportType,
   settingsType,

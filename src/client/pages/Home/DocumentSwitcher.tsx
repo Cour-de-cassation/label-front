@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  annotationType,
-  fetchedDocumentType,
-  settingsType,
-  settingsModule,
-  documentModule,
-  assignationType,
-} from 'src/core';
+import { annotationType, documentType, settingsType, settingsModule, documentModule, assignationType } from 'src/core';
 import { apiCaller } from '../../api';
 import { MainHeader } from '../../components';
 import { buildAnnotationsCommitter } from '../../services/annotatorState';
@@ -19,7 +12,7 @@ type documentStateType =
   | {
       kind: 'annotating';
       choice: {
-        document: fetchedDocumentType;
+        document: documentType;
         annotations: annotationType[];
         assignationId: assignationType['_id'];
       };
@@ -28,7 +21,7 @@ type documentStateType =
 
 function DocumentSwitcher(props: {
   choices: Array<{
-    document: fetchedDocumentType;
+    document: documentType;
     annotations: annotationType[];
     assignationId: assignationType['_id'];
   }>;
@@ -92,7 +85,7 @@ function DocumentSwitcher(props: {
   }
 
   async function onSelectDocument(choice: {
-    document: fetchedDocumentType;
+    document: documentType;
     annotations: annotationType[];
     assignationId: assignationType['_id'];
   }) {

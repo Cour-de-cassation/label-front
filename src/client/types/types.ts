@@ -1,5 +1,5 @@
-import { anonymizerType, fetchedDocumentType } from 'src/core';
+import { anonymizerType, documentType } from 'src/core';
 
 export type { clientAnonymizerType };
 
-type clientAnonymizerType = anonymizerType<fetchedDocumentType>;
+type clientAnonymizerType = anonymizerType<documentType>;

@@ -1,8 +1,8 @@
-import { fetchedDocumentType } from 'src/core';
+import { documentType } from 'src/core';
 
 export { computeSpecificDocumentInfoEntries };
 
-function computeSpecificDocumentInfoEntries(document: fetchedDocumentType) {
+function computeSpecificDocumentInfoEntries(document: documentType) {
   return {
     decisionNumber: document.documentNumber,
     chamberName: document.decisionMetadata.chamberName || '-',

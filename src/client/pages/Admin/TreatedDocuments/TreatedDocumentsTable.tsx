@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { apiRouteOutType, documentType, idModule, documentModule } from 'src/core';
+import { apiRouteOutType, documentType, documentModule } from 'src/core';
 import { apiCaller } from '../../../api';
 import { PaginatedTable, tableRowFieldType, ConfirmationPopup, orderDirectionType } from 'pelta-design-system';
 import { wordings } from '../../../wordings';

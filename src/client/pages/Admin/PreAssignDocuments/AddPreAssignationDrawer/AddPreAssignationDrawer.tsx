@@ -10,7 +10,7 @@ import {
   Text,
 } from 'pelta-design-system';
 import { wordings } from '../../../../wordings';
-import { idModule, userType } from 'src/core';
+import { userType } from 'src/core';
 
 export { AddWorkingUserDrawer };
 
@@ -92,7 +92,7 @@ function AddWorkingUserDrawer(props: {
                   .sort((a, b) => a.name.localeCompare(b.name))
                   .map((user) => ({
                     text: user.name,
-                    value: idModule.lib.convertToString(user._id),
+                    value: user._id,
                   }))}
                 onChange={(user: string) => updateField('user', user)}
                 width={FIELD_WIDTH}

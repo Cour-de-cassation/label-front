@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { Text } from 'pelta-design-system';
-import { apiRouteOutType, documentModule, idModule, timeOperator } from 'src/core';
+import { apiRouteOutType, documentModule, timeOperator } from 'src/core';
 import { orderDirectionType, PaginatedTable, tableRowFieldType } from 'pelta-design-system';
 import { localStorage, publishableDocumentOrderByProperties } from '../../services/localStorage';
 import { wordings } from '../../wordings';
@@ -59,7 +59,7 @@ function PublishableDocumentsTable(props: {
       kind: 'text' as const,
       text: wordings.publishableDocumentsPage.table.optionItems.openAnonymizedDocument,
       onClick: () => {
-        history.push(routes.ANONYMIZED_DOCUMENT.getPath(idModule.lib.convertToString(publishableDocument._id)));
+        history.push(routes.ANONYMIZED_DOCUMENT.getPath(publishableDocument._id));
         return;
       },
     };

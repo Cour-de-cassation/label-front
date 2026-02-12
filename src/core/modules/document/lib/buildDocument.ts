@@ -1,11 +1,10 @@
 import { ObjectId } from 'bson';
-import { omitIdType } from '../../id';
 import { documentType } from '../documentType';
 
 export { buildDocument };
 
 function buildDocument(
-  documentFields: Omit<omitIdType<documentType>, 'status' | 'updateDate' | 'reviewStatus'>,
+  documentFields: Omit<documentType, '_id' | 'status' | 'updateDate' | 'reviewStatus'>,
 ): documentType {
   return {
     ...documentFields,

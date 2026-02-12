@@ -3,7 +3,6 @@ import {
   annotationType,
   fetchedDocumentType,
   settingsType,
-  idModule,
   settingsModule,
   documentModule,
   assignationType,

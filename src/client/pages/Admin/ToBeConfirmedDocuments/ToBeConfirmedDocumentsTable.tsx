@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { apiRouteOutType, timeOperator, idModule, userType } from 'src/core';
+import { apiRouteOutType, timeOperator, userType } from 'src/core';
 import { customThemeType, useCustomTheme, PaginatedTable, tableRowFieldType } from 'pelta-design-system';
 import { DocumentReviewStatusIcon, PublicationCategoryBadge } from '../../../components';
 import { wordings } from '../../../wordings';
@@ -33,8 +33,7 @@ function ToBeConfirmedDocumentsTable(props: {
     const openDocumentOption = {
       kind: 'text' as const,
       text: wordings.toBeConfirmedDocumentsPage.table.optionItems.openDocument,
-      onClick: () =>
-        history.push(routes.DOCUMENT.getPath(idModule.lib.convertToString(toBeConfirmedDocument.document._id))),
+      onClick: () => history.push(routes.DOCUMENT.getPath(toBeConfirmedDocument.document._id)),
       iconName: 'find' as const,
     };
 

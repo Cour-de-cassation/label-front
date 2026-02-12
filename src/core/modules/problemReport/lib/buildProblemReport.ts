@@ -1,10 +1,9 @@
 import { ObjectId } from 'bson';
-import { omitIdType } from '../../id';
 import { problemReportType } from '../problemReportType';
 
 export { buildProblemReport };
 
-function buildProblemReport(assignationFields: omitIdType<problemReportType>): problemReportType {
+function buildProblemReport(assignationFields: Omit<problemReportType, '_id'>): problemReportType {
   return {
     ...assignationFields,
     _id: new ObjectId().toHexString(),

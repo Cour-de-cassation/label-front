@@ -1,5 +1,4 @@
 import { ObjectId } from 'bson';
-import { omitIdType } from '../../id';
 import { treatmentGenerator } from '../generator';
 import { treatmentType } from '../treatmentType';
 
@@ -7,7 +6,8 @@ export { buildEmpty };
 
 function buildEmpty(
   treatmentFields: Omit<
-    omitIdType<treatmentType>,
+    treatmentType,
+    | '_id'
     | 'duration'
     | 'lastUpdateDate'
     | 'subAnnotationsSensitiveCount'

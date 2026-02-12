@@ -3,7 +3,6 @@ import {
   annotationType,
   fetchedDocumentType,
   documentModule,
-  idModule,
   settingsModule,
   settingsType,
   assignationType,
@@ -67,7 +66,7 @@ function DocumentSelector(props: {
 
           return (
             <DocumentSelectorCard
-              key={idModule.lib.convertToString(choice.document._id)}
+              key={choice.document._id}
               choice={choice}
               onSelect={props.onSelectDocument}
               settings={settingsForDocument}

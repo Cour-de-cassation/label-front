@@ -1,5 +1,4 @@
 import { settingsType } from '../../settings';
-import { omitIdType } from '../../id';
 import { treatmentGenerator } from '../generator';
 import { treatmentType } from '../treatmentType';
 import { computeTreatmentInfo } from './computeTreatmentInfo';
@@ -9,7 +8,8 @@ export { build };
 
 function build(
   treatmentFields: Omit<
-    omitIdType<treatmentType>,
+    treatmentType,
+    | '_id'
     | 'duration'
     | 'lastUpdateDate'
     | 'subAnnotationsSensitiveCount'

@@ -110,7 +110,7 @@ function DocumentSwitcher(props: {
 
       try {
         await apiCaller.post<'resetTreatmentLastUpdateDate'>('resetTreatmentLastUpdateDate', {
-          assignationId: choice.assignationId.toHexString(),
+          assignationId: choice.assignationId,
         });
 
         const nextStatus = documentModule.lib.getNextStatus({
@@ -124,7 +124,7 @@ function DocumentSwitcher(props: {
         });
         setDocumentState({
           kind: 'annotating',
-          choice: { ...choice, document: { ...updatedDocument, _id: idModule.lib.buildId(updatedDocument._id) } },
+          choice: { ...choice, document: { ...updatedDocument } },
         });
       } catch (error) {
         console.warn(error);

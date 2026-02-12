@@ -7,6 +7,6 @@ export { buildAssignation };
 function buildAssignation(assignationFields: omitIdType<assignationType>): assignationType {
   return {
     ...assignationFields,
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
   };
 }

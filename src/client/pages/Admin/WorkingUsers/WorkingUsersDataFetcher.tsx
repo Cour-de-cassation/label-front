@@ -28,7 +28,6 @@ function buildFetchWorkingUsers() {
     return {
       data: workingUsers.map((workingUser) => ({
         ...workingUser,
-        _id: idModule.lib.buildId(workingUser._id),
       })),
       statusCode,
     };

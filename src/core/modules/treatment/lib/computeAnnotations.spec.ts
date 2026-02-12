@@ -8,7 +8,7 @@ describe('computeAnnotations', () => {
   const annotations = [{ text: '0' }, { text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }].map(
     annotationModule.generator.generate,
   );
-  const documentId = new ObjectId();
+  const documentId = new ObjectId().toHexString();
 
   it('should compute the annotations set from treatments', () => {
     const treatments = [
@@ -55,7 +55,7 @@ describe('computeAnnotations', () => {
           before: [],
           after: [annotations[0], annotations[1]],
         }),
-        documentId: new ObjectId(),
+        documentId: new ObjectId().toHexString(),
         order: 0,
         source: 'NLP' as const,
       },
@@ -64,14 +64,14 @@ describe('computeAnnotations', () => {
           before: [annotations[0]],
           after: [annotations[2]],
         }),
-        documentId: new ObjectId(),
+        documentId: new ObjectId().toHexString(),
         order: 1,
         source: 'postProcess' as const,
       },
     ].map(treatmentGenerator.generate);
 
     expect(() => computeAnnotations(treatments)).toThrow(
-      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id.toHexString()}, ${treatments[1]._id.toHexString()}]`,
+      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id}, ${treatments[1]._id}]`,
     );
   });
 
@@ -98,7 +98,7 @@ describe('computeAnnotations', () => {
     ].map(treatmentGenerator.generate);
 
     expect(() => computeAnnotations(treatments)).toThrow(
-      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id.toHexString()}, ${treatments[1]._id.toHexString()}]`,
+      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id}, ${treatments[1]._id}]`,
     );
   });
 
@@ -125,7 +125,7 @@ describe('computeAnnotations', () => {
     ].map(treatmentGenerator.generate);
 
     expect(() => computeAnnotations(treatments)).toThrow(
-      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id.toHexString()}, ${treatments[1]._id.toHexString()}]`,
+      `Can not compute annotations from inconsistent treatments : [${treatments[0]._id}, ${treatments[1]._id}]`,
     );
   });
 });
@@ -134,7 +134,7 @@ describe('computeAnnotationsDiff', () => {
   const annotations = [{ text: '0' }, { text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }].map(
     annotationModule.generator.generate,
   );
-  const documentId = new ObjectId();
+  const documentId = new ObjectId().toHexString();
 
   it('should compute the annotations set from treatments', () => {
     const treatments = [

@@ -9,7 +9,7 @@ function buildDocument(
 ): documentType {
   return {
     ...documentFields,
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
     reviewStatus: { hasBeenAmended: false, viewerNames: [] },
     status: 'free',
     updateDate: new Date().getTime(),

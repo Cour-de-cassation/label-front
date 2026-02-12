@@ -1,9 +1,7 @@
-import { ObjectId } from 'bson';
-
 export type assignationType = {
-  _id: ObjectId;
-  documentId: ObjectId;
-  treatmentId: ObjectId;
-  userId: ObjectId;
+  _id: string;
+  documentId: string;
+  treatmentId: string;
+  userId: string;
   assignationDate: number;
 };

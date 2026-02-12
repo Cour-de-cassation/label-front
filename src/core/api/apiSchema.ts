@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import {
   statisticType,
   documentType,
@@ -350,7 +349,7 @@ export type ApiSchema = {
 
     updateDocumentStatus: {
       in: {
-        documentId: ObjectId;
+        documentId: string;
         status: string;
       };
       out: fetchedDocumentType;
@@ -358,7 +357,7 @@ export type ApiSchema = {
 
     updateDocumentRoute: {
       in: {
-        documentId: ObjectId;
+        documentId: string;
         route: documentRouteType;
       };
 
@@ -367,7 +366,7 @@ export type ApiSchema = {
 
     updatePublishableDocumentStatus: {
       in: {
-        documentId: ObjectId;
+        documentId: string;
         status: 'done' | 'toBePublished';
       };
       out: fetchedDocumentType;
@@ -407,7 +406,7 @@ export type ApiSchema = {
 
     createPreAssignation: {
       in: {
-        userId: ObjectId;
+        userId: string;
         source: string;
         number: string;
       };

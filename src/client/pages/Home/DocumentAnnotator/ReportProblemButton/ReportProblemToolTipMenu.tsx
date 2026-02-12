@@ -129,7 +129,7 @@ function ReportProblemToolTipMenu(props: {
       setIsLoading(true);
       try {
         await apiCaller.post<'problemReport'>('problemReport', {
-          documentId: annotatorState.document._id.toHexString(),
+          documentId: annotatorState.document._id,
           problemType: problemCategory,
           problemText: problemDescription,
         });

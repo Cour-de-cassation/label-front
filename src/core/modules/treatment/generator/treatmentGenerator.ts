@@ -18,9 +18,9 @@ const treatmentGenerator: generatorType<treatmentType> = {
     surAnnotationsCount,
     subAnnotationsNonSensitiveCount,
   } = {}) => ({
-    _id: _id ? new ObjectId(_id) : new ObjectId(),
+    _id: _id ? new ObjectId(_id).toHexString() : new ObjectId().toHexString(),
     annotationsDiff: annotationsDiff ? annotationsDiff : annotationsDiffModule.generator.generate(),
-    documentId: documentId ? new ObjectId(documentId) : new ObjectId(),
+    documentId: documentId ? new ObjectId(documentId).toHexString() : new ObjectId().toHexString(),
     duration: duration ? duration : 0,
     lastUpdateDate: lastUpdateDate ? lastUpdateDate : new Date().getTime(),
     order: order ? order : 0,

@@ -68,7 +68,7 @@ function HomeDocumentAnnotator(props: {
   );
 
   async function onStopAnnotatingDocument({ assignationId }: { assignationId: assignationType['_id'] }) {
-    await apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', { assignationId: assignationId.toHexString() });
+    await apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', { assignationId: assignationId });
     props.fetchNewDocumentsForUser();
   }
 
@@ -76,7 +76,7 @@ function HomeDocumentAnnotator(props: {
     try {
       await apiCaller.post<'updateTreatmentForAssignationId'>('updateTreatmentForAssignationId', {
         annotationsDiff,
-        assignationId: props.assignationId.toHexString(),
+        assignationId: props.assignationId,
       });
     } catch (error) {
       displayAlert({ variant: 'alert', text: wordings.business.errors.updateTreatmentFailed, autoHide: true });

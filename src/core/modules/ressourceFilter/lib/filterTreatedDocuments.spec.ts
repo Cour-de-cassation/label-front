@@ -8,7 +8,7 @@ import { filterTreatedDocuments } from './filterTreatedDocuments';
 describe('filterTreatedDocuments', () => {
   it('should filter all the given treated documents with added annotations', () => {
     const documents = [{}, {}].map(documentModule.generator.generate);
-    const userId = new ObjectId();
+    const userId = new ObjectId().toHexString();
     const treatments = [
       {
         subAnnotationsSensitiveCount: 5,
@@ -46,7 +46,7 @@ describe('filterTreatedDocuments', () => {
 
   it('should filter all the given treated documents with deleted annotations', () => {
     const documents = [{}, {}].map(documentModule.generator.generate);
-    const userId = new ObjectId();
+    const userId = new ObjectId().toHexString();
     const treatments = [
       { surAnnotationsCount: 5, documentId: documents[1]._id, order: 2 },
       { documentId: documents[1]._id, order: 0 },
@@ -99,8 +99,8 @@ describe('filterTreatedDocuments', () => {
   });
 
   it('should filter all the given treated documents according to the user id', () => {
-    const userId1 = new ObjectId();
-    const userId2 = new ObjectId();
+    const userId1 = new ObjectId().toHexString();
+    const userId2 = new ObjectId().toHexString();
     const ressourceFilter = ressourceFilterGenerator.generate({
       userId: userId1,
     });

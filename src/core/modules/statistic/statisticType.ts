@@ -1,8 +1,7 @@
-import { ObjectId } from 'bson';
 import { documentImporterType, documentRouteType, checklistItemType } from '../document/documentType';
 
 export type statisticType = {
-  _id: ObjectId;
+  _id: string;
   annotationsCount: number;
   appealNumber?: string;
   documentNumber: number;
@@ -23,7 +22,7 @@ export type statisticType = {
   subAnnotationsNonSensitiveCount: number;
   treatmentDate: number;
   treatmentsSummary: {
-    userId: ObjectId;
+    userId: string;
     treatmentDuration: number;
   }[];
   wordsCount: number;

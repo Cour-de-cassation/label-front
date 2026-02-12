@@ -26,6 +26,6 @@ const ressourceFilterGenerator: generatorType<ressourceFilterType> = {
     route: route ?? undefined,
     importer: importer ?? undefined,
     source: source ?? undefined,
-    userId: userId ? new ObjectId(userId) : undefined,
+    userId: userId ? new ObjectId(userId).toHexString() : undefined,
   }),
 };

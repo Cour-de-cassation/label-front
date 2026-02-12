@@ -1,8 +1,6 @@
 import { sum, sumBy } from 'lodash';
-import { idModule } from '../../id';
 import { ressourceFilterType } from '../../ressourceFilter';
 import { statisticType } from '../statisticType';
-import { ObjectId } from 'bson';
 
 export { aggregate };
 
@@ -15,7 +13,7 @@ function aggregate(statistics: statisticType[], filter: ressourceFilterType) {
           ? aggregatedStatistics.treatmentDuration +
             sum(
               statistic.treatmentsSummary
-                .filter(({ userId }) => idModule.lib.equalId(new ObjectId(userId), new ObjectId(userIdToFilter)))
+                .filter(({ userId }) => userId === userIdToFilter)
                 .map(({ treatmentDuration }) => treatmentDuration),
             )
           : aggregatedStatistics.treatmentDuration +

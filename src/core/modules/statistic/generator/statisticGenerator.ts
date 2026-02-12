@@ -32,7 +32,7 @@ const statisticGenerator: generatorType<statisticType> = {
     checklist,
     comment,
   } = {}) => ({
-    _id: _id ? new ObjectId(_id) : new ObjectId(),
+    _id: _id ? new ObjectId(_id).toHexString() : new ObjectId().toHexString(),
     annotationsCount: annotationsCount ? annotationsCount : 0,
     appealNumber: appealNumber ? appealNumber : undefined,
     chamberName: chamberName || `SOURCE_${Math.random()}`,

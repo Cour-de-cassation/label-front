@@ -103,7 +103,7 @@ const documentGenerator: generatorType<documentType> = {
     decisionMetadata: decisionMetadata ? decisionMetadata : decisionMetadataGenerator.generate(),
     documentNumber: documentNumber ?? Math.floor(Math.random() * 1000000),
     externalId: externalId ?? `EXTERNAL_ID_${Math.random()}`,
-    _id: _id ? new ObjectId(_id) : new ObjectId(),
+    _id: _id ? new ObjectId(_id).toHexString() : new ObjectId().toHexString(),
     importer: importer ?? 'default',
     loss: loss,
     priority: priority !== undefined ? priority : 0,

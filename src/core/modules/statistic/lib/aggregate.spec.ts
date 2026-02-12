@@ -4,8 +4,8 @@ import { statisticGenerator } from '../generator';
 import { aggregate } from './aggregate';
 
 describe('aggregate', () => {
-  const userId1 = new ObjectId();
-  const userId2 = new ObjectId();
+  const userId1 = new ObjectId().toHexString();
+  const userId2 = new ObjectId().toHexString();
 
   const statistics = [
     {

@@ -8,7 +8,7 @@ describe('sortInConsistentOrder', () => {
   const annotations = [{ text: '0' }, { text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }].map(
     annotationModule.generator.generate,
   );
-  const documentId = new ObjectId();
+  const documentId = new ObjectId().toHexString();
 
   it('should sort the treatments in a consistent order', () => {
     const treatments = [

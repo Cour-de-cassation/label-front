@@ -195,7 +195,7 @@ function ProblemReportsTable(props: {
             onConfirm: () => {
               problemReportWithDetails.document &&
                 apiCaller.post<'deleteDocument'>('deleteDocument', {
-                  documentId: problemReportWithDetails.document._id.toHexString(),
+                  documentId: problemReportWithDetails.document._id,
                 });
               props.refetch();
             },
@@ -216,7 +216,7 @@ function ProblemReportsTable(props: {
       onClick: async () => {
         try {
           await apiCaller.post<'deleteProblemReport'>('deleteProblemReport', {
-            problemReportId: problemReportWithDetails.problemReport._id.toHexString(),
+            problemReportId: problemReportWithDetails.problemReport._id,
           });
         } catch (error) {
           displayAlert({ text: wordings.business.errors.deleteProblemReportFailed, variant: 'alert', autoHide: true });
@@ -314,7 +314,7 @@ function ProblemReportsTable(props: {
     try {
       await apiCaller.post<'updateProblemReportHasBeenRead'>('updateProblemReportHasBeenRead', {
         hasBeenRead: !problemReportWithDetails.problemReport.hasBeenRead,
-        problemReportId: problemReportWithDetails.problemReport._id.toHexString(),
+        problemReportId: problemReportWithDetails.problemReport._id,
       });
     } catch (error) {
       displayAlert({

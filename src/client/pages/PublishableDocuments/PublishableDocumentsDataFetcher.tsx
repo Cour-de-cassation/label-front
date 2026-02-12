@@ -33,7 +33,6 @@ function buildFetchPublishableDocuments() {
     return {
       data: publishableDocuments.map((publishableDocument) => ({
         ...publishableDocument,
-        _id: idModule.lib.buildId(publishableDocument._id),
       })),
       statusCode,
     };

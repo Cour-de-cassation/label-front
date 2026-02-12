@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, idModule } from 'src/core';
+import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
 
@@ -36,8 +36,6 @@ function buildFetchPreAssignations() {
       data: preAssignations.map((preAssignation) => ({
         preAssignation: {
           ...preAssignation.preAssignation,
-          _id: idModule.lib.buildId(preAssignation.preAssignation._id),
-          userId: idModule.lib.buildId(preAssignation.preAssignation.userId),
         },
         userName: preAssignation.userName,
       })),

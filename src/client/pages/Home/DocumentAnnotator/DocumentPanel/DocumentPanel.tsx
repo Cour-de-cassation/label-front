@@ -30,11 +30,11 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
     if (!!updateTreatementDurationsInterval) {
       clearInterval(updateTreatementDurationsInterval);
       apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', {
-        assignationId: assignationId.toHexString(),
+        assignationId: assignationId,
       });
     }
     updateTreatementDurationsInterval = setInterval(
-      buildUpdateTreatmentUpdateDate(assignationId.toHexString()),
+      buildUpdateTreatmentUpdateDate(assignationId),
       TIME_THRESHOLD_FOR_UPDATE,
     );
 

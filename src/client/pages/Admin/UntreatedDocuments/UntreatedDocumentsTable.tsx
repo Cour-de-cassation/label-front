@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { apiRouteOutType, documentType, idModule, timeOperator, userType } from 'src/core';
+import { apiRouteOutType, documentType, timeOperator, userType } from 'src/core';
 import {
   customThemeType,
   useCustomTheme,
@@ -78,7 +78,7 @@ function UntreatedDocumentsTable(props: {
       kind: 'text' as const,
       text: wordings.untreatedDocumentsPage.table.optionItems.openAnonymizedDocument,
       onClick: () => {
-        history.push(routes.ANONYMIZED_DOCUMENT.getPath(idModule.lib.convertToString(untreatedDocument.document._id)));
+        history.push(routes.ANONYMIZED_DOCUMENT.getPath(untreatedDocument.document._id));
         return;
       },
       iconName: 'eye' as const,
@@ -165,8 +165,8 @@ function UntreatedDocumentsTable(props: {
     }
     try {
       await apiCaller.post<'assignDocumentToUser'>('assignDocumentToUser', {
-        documentId: documentId.toHexString(),
-        userId: userId.toHexString(),
+        documentId: documentId,
+        userId: userId,
       });
     } catch (error) {
       displayAlert({ text: wordings.business.errors.assignDocumentFailed, variant: 'alert', autoHide: true });

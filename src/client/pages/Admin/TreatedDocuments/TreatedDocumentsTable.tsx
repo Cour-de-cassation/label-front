@@ -72,7 +72,7 @@ function TreatedDocumentsTable(props: {
     setDocumentIdToReset(undefined);
     try {
       await apiCaller.post<'deleteHumanTreatmentsForDocument'>('deleteHumanTreatmentsForDocument', {
-        documentId: documentIdToReset.toHexString(),
+        documentId: documentIdToReset,
       });
       props.refetch();
     } catch (error) {
@@ -101,7 +101,7 @@ function TreatedDocumentsTable(props: {
       kind: 'text' as const,
       text: wordings.treatedDocumentsPage.table.optionItems.openDocument,
       onClick: () =>
-        history.push(routes.DOCUMENT.getPath(idModule.lib.convertToString(treatmentWithDetails.document._id))),
+        history.push(routes.DOCUMENT.getPath(treatmentWithDetails.document._id)),
       iconName: 'find' as const,
     };
 
@@ -131,7 +131,7 @@ function TreatedDocumentsTable(props: {
       onClick: async () => {
         try {
           await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
-            documentId: idModule.lib.buildId(treatmentWithDetails.document._id),
+            documentId: treatmentWithDetails.document._id,
             status: documentModule.lib.getNextStatus({
               status: 'pending',
               publicationCategory: treatmentWithDetails.document?.publicationCategory ?? [],
@@ -147,7 +147,7 @@ function TreatedDocumentsTable(props: {
         if (treatmentWithDetails.document?.route == 'simple') {
           try {
             await apiCaller.post<'updateDocumentRoute'>('updateDocumentRoute', {
-              documentId: idModule.lib.buildId(treatmentWithDetails.document._id),
+              documentId: treatmentWithDetails.document._id,
               route: 'exhaustive',
             });
           } catch (error) {

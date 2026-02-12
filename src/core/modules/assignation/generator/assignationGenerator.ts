@@ -6,10 +6,10 @@ export { assignationGenerator };
 
 const assignationGenerator: generatorType<assignationType> = {
   generate: ({ documentId, _id, treatmentId, userId, assignationDate } = {}) => ({
-    documentId: documentId ?? new ObjectId(),
-    _id: _id ? new ObjectId(_id) : new ObjectId(),
-    treatmentId: treatmentId ?? new ObjectId(),
-    userId: userId ?? new ObjectId(),
+    documentId: documentId ?? new ObjectId().toHexString(),
+    _id: _id ? new ObjectId(_id).toHexString() : new ObjectId().toHexString(),
+    treatmentId: treatmentId ?? new ObjectId().toHexString(),
+    userId: userId ?? new ObjectId().toHexString(),
     assignationDate: assignationDate ?? new Date().getTime(),
   }),
 };

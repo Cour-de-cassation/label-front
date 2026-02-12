@@ -13,7 +13,7 @@ async function buildUser({
   role: userType['role'];
 }): Promise<userType> {
   return {
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
     email: email.trim().toLowerCase(),
     name,
     role,

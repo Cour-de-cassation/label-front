@@ -47,7 +47,7 @@ function checkTreatmentsConsistency(treatments: treatmentType[]): boolean {
 }
 
 function areOnTheSameDocument(treatments: treatmentType[]): boolean {
-  return treatments.every((treatment) => treatment.documentId.equals(treatments[0].documentId));
+  return treatments.every((treatment) => treatment.documentId === treatments[0].documentId);
 }
 
 function haveConsistentOrder(treatments: treatmentType[]): boolean {

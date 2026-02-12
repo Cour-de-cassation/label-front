@@ -1,5 +1,3 @@
-import { ObjectId } from 'bson';
-
 export type documentRouteType = 'automatic' | 'exhaustive' | 'simple' | 'confirmation' | 'request' | 'default';
 export type documentImporterType = 'recent' | 'manual' | 'default';
 export type documentStatusType = 'done' | 'free' | 'pending' | 'locked' | 'saved' | 'toBePublished' | 'toBeConfirmed';
@@ -71,7 +69,7 @@ export type reviewStatusType = {
 };
 
 export type fetchedDocumentType = {
-  _id: ObjectId;
+  _id: string;
   creationDate?: number;
   decisionMetadata: decisionMetadataType;
   documentNumber: number;
@@ -126,7 +124,7 @@ export type documentModelCommonFieldsType = {
   creationDate?: number;
   decisionMetadata: fetchedDocumentType['decisionMetadata'];
   documentNumber: number;
-  _id: ObjectId;
+  _id: string;
   importer: 'recent' | 'manual' | 'default';
   loss?: number;
   nlpVersions: nlpVersionsType;

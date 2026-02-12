@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { annotationsDiffType } from '../annotationsDiff/annotationsDiffType';
 
 type treatmentSourceType =
@@ -10,9 +9,9 @@ type treatmentSourceType =
   | 'reimportedTreatment';
 
 export type treatmentType = {
-  _id: ObjectId;
+  _id: string;
   annotationsDiff: annotationsDiffType;
-  documentId: ObjectId;
+  documentId: string;
   duration: number;
   lastUpdateDate: number;
   order: number;

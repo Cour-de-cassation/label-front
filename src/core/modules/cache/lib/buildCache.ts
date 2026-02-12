@@ -7,6 +7,6 @@ export { buildCache };
 function buildCache(cacheFields: omitIdType<cacheType>): cacheType {
   return {
     ...cacheFields,
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
   };
 }

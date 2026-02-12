@@ -28,7 +28,7 @@ describe('build', () => {
           { start: 90, text: 'Gaston', category: 'personnePhysiquePrenom' },
         ].map(annotationModule.generator.generate),
       ),
-      documentId: new ObjectId(),
+      documentId: new ObjectId().toHexString(),
       order: 3,
       source: 'annotator' as const,
     };

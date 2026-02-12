@@ -11,7 +11,6 @@ import {
 } from 'pelta-design-system';
 import { wordings } from '../../../../wordings';
 import { idModule, userType } from 'src/core';
-import { ObjectId } from 'bson';
 
 export { AddWorkingUserDrawer };
 
@@ -136,7 +135,7 @@ function AddWorkingUserDrawer(props: {
       await apiCaller.post('createPreAssignation', {
         source,
         number: number.trim(),
-        userId: new ObjectId(user),
+        userId: user,
       });
       props.refetch();
       props.onClose();

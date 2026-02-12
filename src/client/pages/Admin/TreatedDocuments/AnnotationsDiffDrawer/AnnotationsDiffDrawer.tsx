@@ -1,18 +1,17 @@
 import { useCustomTheme, Drawer } from 'pelta-design-system';
 import React from 'react';
 import format from 'string-template';
-import { documentType, idModule } from 'src/core';
+import { documentType } from 'src/core';
 import { wordings } from '../../../../wordings';
 import { SettingsDataFetcher } from '../../../SettingsDataFetcher';
 import { AnnotationsDiffDetails } from './AnnotationsDiffDetails';
 import { AnnotationsDiffDetailsDataFetcher } from './AnnotationsDiffDetailsDataFetcher';
-import { ObjectId } from 'bson';
 
 export { AnnotationsDiffDrawer };
 export type { annotationDiffDocumentInfoType };
 
 type annotationDiffDocumentInfoType = {
-  _id: string | ObjectId;
+  _id: string;
   documentNumber: documentType['documentNumber'];
   userName: string;
 };
@@ -37,7 +36,7 @@ function AnnotationsDiffDrawer(props: { close: () => void; documentInfo: annotat
     >
       <div style={styles.drawer}>
         {!!props.documentInfo ? (
-          <AnnotationsDiffDetailsDataFetcher documentId={idModule.lib.convertToString(props.documentInfo._id)}>
+          <AnnotationsDiffDetailsDataFetcher documentId={props.documentInfo._id}>
             {({ annotationsDiffDetails }) => (
               <SettingsDataFetcher>
                 {({ settings }) => (

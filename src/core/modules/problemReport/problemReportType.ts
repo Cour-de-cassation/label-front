@@ -1,9 +1,7 @@
-import { ObjectId } from 'bson';
-
 export type problemReportType = {
-  _id: ObjectId;
-  documentId: ObjectId;
-  userId: ObjectId;
+  _id: string;
+  documentId: string;
+  userId: string;
   date: number;
   text: string;
   hasBeenRead: boolean;

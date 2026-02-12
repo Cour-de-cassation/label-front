@@ -51,7 +51,7 @@ function DocumentInspector(props: { settings: settingsType }) {
                   document.decisionMetadata.motivationOccultation,
                 );
 
-                const applyAutoSave = buildApplyAutoSave(document._id.toHexString());
+                const applyAutoSave = buildApplyAutoSave(document._id);
 
                 return (
                   <AnnotatorStateHandlerContextProvider

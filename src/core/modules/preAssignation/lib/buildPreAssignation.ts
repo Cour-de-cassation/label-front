@@ -7,6 +7,6 @@ export { buildPreAssignation };
 function buildPreAssignation(preAssignationFields: omitIdType<preAssignationType>): preAssignationType {
   return {
     ...preAssignationFields,
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
   };
 }

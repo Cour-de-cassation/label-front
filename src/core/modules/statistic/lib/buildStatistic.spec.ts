@@ -17,7 +17,7 @@ describe('buildStatistic', () => {
     const documentSource = 'SOURCE';
     const linkedEntitiesCount = 2;
     const jurisdiction = 'Cour de cassation';
-    const userId = new ObjectId();
+    const userId = new ObjectId().toHexString();
     const decisionDate = new Date().getTime();
     const document = documentModule.generator.generate({
       decisionMetadata: documentModule.decisionMetadataGenerator.generate({

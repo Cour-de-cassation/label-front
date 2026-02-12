@@ -26,7 +26,7 @@ function build(
 
   return {
     ...treatment,
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
     subAnnotationsNonSensitiveCount,
     surAnnotationsCount,
     subAnnotationsSensitiveCount,

@@ -1,7 +1,5 @@
-import { ObjectId } from 'bson';
-
 export type cacheType = {
-  _id: ObjectId;
+  _id: string;
   key: string;
   updateDate: number;
   content: string;

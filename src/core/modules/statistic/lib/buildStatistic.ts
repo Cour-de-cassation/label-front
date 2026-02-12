@@ -25,7 +25,7 @@ function buildStatistic({
   comment?: string;
 }): statisticType {
   return {
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
     annotationsCount,
     appealNumber: document.decisionMetadata.appealNumber || undefined,
     chamberName: document.decisionMetadata.chamberName

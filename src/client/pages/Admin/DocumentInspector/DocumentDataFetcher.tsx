@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react';
 import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
-import { ObjectId } from 'bson';
 
 export { DocumentDataFetcher };
 
@@ -26,7 +25,6 @@ function buildFetchDocument() {
     return {
       data: {
         ...document,
-        _id: new ObjectId(document._id),
       },
       statusCode,
     };

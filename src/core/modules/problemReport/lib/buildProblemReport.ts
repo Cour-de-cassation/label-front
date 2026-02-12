@@ -7,6 +7,6 @@ export { buildProblemReport };
 function buildProblemReport(assignationFields: omitIdType<problemReportType>): problemReportType {
   return {
     ...assignationFields,
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
   };
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, idModule } from 'src/core';
+import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
 
@@ -38,7 +38,6 @@ function buildFetchUntreatedDocuments() {
         ...untreatedDocument,
         document: {
           ...untreatedDocument.document,
-          _id: idModule.lib.buildId(untreatedDocument.document._id),
         },
       })),
       statusCode,

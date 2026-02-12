@@ -19,7 +19,7 @@ function buildEmpty(
 
   return {
     ...treatment,
-    _id: new ObjectId(),
+    _id: new ObjectId().toHexString(),
     subAnnotationsSensitiveCount: 0,
     surAnnotationsCount: 0,
     subAnnotationsNonSensitiveCount: 0,

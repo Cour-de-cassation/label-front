@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { documentRouteType, documentImporterType } from './../document/documentType';
 
 export type ressourceFilterType = {
@@ -11,5 +10,5 @@ export type ressourceFilterType = {
   importer?: documentImporterType;
   source?: string;
   jurisdiction?: string;
-  userId?: ObjectId;
+  userId?: string;
 };

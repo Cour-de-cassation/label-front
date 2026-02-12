@@ -25,12 +25,16 @@ type apiRouteOutType<
   ? Pick<ApiSchema[methodNameT], routeNameT>[routeNameT]['out']
   : never;
 
-type networkType<T> = T extends { [key: string]: unknown }
-  ? { [key in keyof T]: networkType<T[key]> }
+type networkType<T> = T extends Date
+  ? string
+  : T extends string
+  ? T
+  : T extends number
+  ? T
+  : T extends boolean
+  ? T
   : T extends Array<unknown>
   ? Array<networkType<T[0]>>
-  : T extends string
-  ? string
-  : T extends Date
-  ? string
+  : T extends { [key: string]: unknown }
+  ? { [key in keyof T]: networkType<T[key]> }
   : T;

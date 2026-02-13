@@ -1,9 +1,19 @@
 import { apiSchema, apiRouteInType, apiRouteOutType, networkType } from 'src/core';
 import { urlHandler } from '../utils';
+import { jwtTokenHandler } from '../services/jwtToken';
 
 export { apiCaller };
 
 const DEFAULT_HEADER = { 'Content-Type': 'application/json' };
+
+function getAuthHeaders(): Record<string, string> {
+  const headers: Record<string, string> = { ...DEFAULT_HEADER };
+  const token = jwtTokenHandler.get();
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  return headers;
+}
 
 const apiCaller = {
   async get<routeNameT extends keyof typeof apiSchema.get>(
@@ -15,10 +25,9 @@ const apiCaller = {
   }> {
     const response = await fetch(buildUrlWithParams(`${urlHandler.getApiUrl()}/label/api/${routeName}`, args), {
       cache: 'default',
-      headers: DEFAULT_HEADER,
+      headers: getAuthHeaders(),
       method: 'get',
       mode: 'cors',
-      credentials: 'include',
     });
 
     const data = (await computeDataFromResponse(response)) as networkType<apiRouteOutType<'get', routeNameT>>;
@@ -39,10 +48,9 @@ const apiCaller = {
     const response = await fetch(`${urlHandler.getApiUrl()}/label/api/${routeName}`, {
       body: JSON.stringify(args),
       cache: 'default',
-      headers: DEFAULT_HEADER,
+      headers: getAuthHeaders(),
       method: 'post',
       mode: 'cors',
-      credentials: 'include',
     });
 
     const data = (await computeDataFromResponse(response)) as networkType<apiRouteOutType<'post', routeNameT>>;

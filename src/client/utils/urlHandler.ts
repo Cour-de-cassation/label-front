@@ -12,7 +12,8 @@ const urlHandler = {
   },
 
   getSsoLoginUrl() {
-    return `${this.getApiUrl()}/label/api/sso/login`;
+    const redirectUrl = encodeURIComponent(`${window.location.origin}/login`);
+    return `${this.getApiUrl()}/label/api/sso/login?redirectUrl=${redirectUrl}`;
   },
 
   getSsoLogoutUrl() {

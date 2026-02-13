@@ -10,13 +10,21 @@ const Login: FunctionComponent = () => {
   const history = useHistory();
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
+
   useEffect(() => {
-    window.location.href = urlHandler.getSsoLoginUrl();
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (!token) {
+      window.location.href = urlHandler.getSsoLoginUrl();
+    } else {
+      history.push('/');
+    }
   }, [history]);
 
   return (
     <div style={styles.mainContainer}>
-      Redirection vers SSO...
+      <div>Redirection vers SSO...</div>
       <div style={styles.logoContainer}>
         <Logo size="medium" />
       </div>

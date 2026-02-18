@@ -99,7 +99,7 @@ describe('filterTreatedDocuments', () => {
 
   it('should filter all the given treated documents according to the user id', () => {
     const userId1 = 'monId123';
-    const userId2 = 'monId123';
+    const userId2 = 'monId456';
     const ressourceFilter = ressourceFilterGenerator.generate({
       userId: userId1,
     });

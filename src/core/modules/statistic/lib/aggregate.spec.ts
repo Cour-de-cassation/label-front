@@ -4,7 +4,7 @@ import { aggregate } from './aggregate';
 
 describe('aggregate', () => {
   const userId1 = 'monId123';
-  const userId2 = 'monId123';
+  const userId2 = 'monId456';
 
   const statistics = [
     {

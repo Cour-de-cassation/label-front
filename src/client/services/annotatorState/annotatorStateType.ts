@@ -1,4 +1,4 @@
-import { annotationType, assignationType, documentType, replacementTermType, settingsType } from 'src/core';
+import { annotationType, assignationType, documentType, settingsType } from 'src/core';
 
 export type { annotatorStateType };
 
@@ -7,5 +7,4 @@ type annotatorStateType = {
   annotations: annotationType[];
   document: documentType;
   settings: settingsType;
-  mandatoryReplacementTerms: replacementTermType[];
 };

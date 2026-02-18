@@ -5,7 +5,6 @@ import {
   assignationType,
   documentModule,
   documentType,
-  replacementTermType,
   settingsType,
 } from 'src/core';
 import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
@@ -57,7 +56,6 @@ function HomeDocumentAnnotator(props: {
         annotations: props.annotations,
         document: props.document,
         settings: props.settings,
-        mandatoryReplacementTerms: [] as replacementTermType[],
       }}
     >
       <MainHeader title={props.document.title} subtitle={subtitle} />

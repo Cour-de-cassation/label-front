@@ -4,7 +4,6 @@ import {
   annotationType,
   problemReportType,
   userType,
-  replacementTermType,
   preAssignationType,
   annotationsDiffType,
 } from '../modules';
@@ -253,13 +252,6 @@ export type ApiSchema = {
         };
         userNames: string[];
       }[];
-    };
-
-    mandatoryReplacementTerms: {
-      in: {
-        documentId: string;
-      };
-      out: replacementTermType[];
     };
 
     workingUsers: {

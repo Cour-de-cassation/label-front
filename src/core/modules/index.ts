@@ -6,7 +6,6 @@ import { cacheModule, cacheType } from './cache';
 import { documentModule, documentType } from './document';
 import { ressourceFilterModule, ressourceFilterType } from './ressourceFilter';
 import { problemReportModule, problemReportType } from './problemReport';
-import { replacementTermModule, replacementTermType } from './replacementTerm';
 import {
   colorType,
   constantColorType,
@@ -28,7 +27,6 @@ export {
   documentModule,
   ressourceFilterModule,
   problemReportModule,
-  replacementTermModule,
   settingsModule,
   statisticModule,
   treatmentModule,
@@ -52,7 +50,6 @@ export type {
   statisticType,
   categoryIconNameType,
   userType,
-  replacementTermType,
   treatmentType,
   treatmentInfoType,
 };

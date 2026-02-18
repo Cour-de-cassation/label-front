@@ -13,7 +13,6 @@ import { useAlert } from '../../../services/alert';
 import { wordings } from '../../../wordings';
 import { AnnotationsDataFetcher } from './AnnotationsDataFetcher';
 import { DocumentDataFetcher } from './DocumentDataFetcher';
-import { MandatoryReplacementTermsDataFetcher } from './MandatoryReplacementTermsDataFetcher';
 import { useCtxUser } from '../../../contexts/user.context';
 
 export { DocumentInspector };
@@ -38,40 +37,35 @@ function DocumentInspector(props: { settings: settingsType }) {
   return (
     <DocumentDataFetcher documentId={params.documentId}>
       {({ document }) => (
-        <MandatoryReplacementTermsDataFetcher documentId={params.documentId}>
-          {({ mandatoryReplacementTerms }) => (
-            <AnnotationsDataFetcher documentId={params.documentId}>
-              {({ annotations }) => {
-                const settingsForDocument = settingsModule.lib.computeFilteredSettings(
-                  props.settings,
-                  document.decisionMetadata.categoriesToOmit,
-                  document.decisionMetadata.additionalTermsToAnnotate,
-                  document.decisionMetadata.computedAdditionalTerms,
-                  document.decisionMetadata.additionalTermsParsingFailed,
-                  document.decisionMetadata.motivationOccultation,
-                );
+        <AnnotationsDataFetcher documentId={params.documentId}>
+          {({ annotations }) => {
+            const settingsForDocument = settingsModule.lib.computeFilteredSettings(
+              props.settings,
+              document.decisionMetadata.categoriesToOmit,
+              document.decisionMetadata.additionalTermsToAnnotate,
+              document.decisionMetadata.computedAdditionalTerms,
+              document.decisionMetadata.additionalTermsParsingFailed,
+              document.decisionMetadata.motivationOccultation,
+            );
 
-                const applyAutoSave = buildApplyAutoSave(document._id);
+            const applyAutoSave = buildApplyAutoSave(document._id);
 
-                return (
-                  <AnnotatorStateHandlerContextProvider
-                    autoSaver={buildAutoSaver({ applySave: applyAutoSave })}
-                    committer={buildAnnotationsCommitter()}
-                    initialAnnotatorState={{
-                      annotations: annotations,
-                      document: document,
-                      settings: settingsForDocument,
-                      mandatoryReplacementTerms: mandatoryReplacementTerms,
-                    }}
-                  >
-                    <MainHeader title={document.title} onBackButtonPress={history.goBack} />
-                    <DocumentAnnotator onStopAnnotatingDocument={buildOnStopAnnotatingDocument(document)} />
-                  </AnnotatorStateHandlerContextProvider>
-                );
-              }}
-            </AnnotationsDataFetcher>
-          )}
-        </MandatoryReplacementTermsDataFetcher>
+            return (
+              <AnnotatorStateHandlerContextProvider
+                autoSaver={buildAutoSaver({ applySave: applyAutoSave })}
+                committer={buildAnnotationsCommitter()}
+                initialAnnotatorState={{
+                  annotations: annotations,
+                  document: document,
+                  settings: settingsForDocument,
+                }}
+              >
+                <MainHeader title={document.title} onBackButtonPress={history.goBack} />
+                <DocumentAnnotator onStopAnnotatingDocument={buildOnStopAnnotatingDocument(document)} />
+              </AnnotatorStateHandlerContextProvider>
+            );
+          }}
+        </AnnotationsDataFetcher>
       )}
     </DocumentDataFetcher>
   );

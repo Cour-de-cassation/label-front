@@ -10,7 +10,7 @@
     "compile": "tsc",
     "preview": "vite preview",
     "start:docker": "docker compose up -d",
-    "test": "npm run compile && react-scripts test",
+    "test": "npm run compile && vitest run",
     "format": "prettier \"src/**/*.ts\" --check",
     "lint": "eslint \"src/**/*.ts\" --max-warnings 0",
     "fix": "eslint \"src/**/*.ts\" --fix && prettier \"src/**/*.ts\" --write"
@@ -58,7 +58,8 @@
     "prettier": "2.8.8",
     "react-dev-utils": "10.2.1",
     "rimraf": "3.0.2",
-    "vite": "7.3.1"
+    "vite": "7.3.1",
+    "vitest": "^4.1.0"
   },
   "browserslist": {
     "production": [

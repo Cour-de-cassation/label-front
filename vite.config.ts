@@ -22,5 +22,8 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': env,
     },
+    test: {
+      globals: true,
+    },
   };
 });

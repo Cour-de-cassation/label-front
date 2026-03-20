@@ -5,11 +5,10 @@
   "description": "Cour de cassation annotation tool.",
   "homepage": "/label",
   "scripts": {
-    "dev": "vite",
+    "start:dev": "vite",
     "build": "vite build",
     "compile": "tsc",
     "preview": "vite preview",
-    "start:dev": "PORT=55432 react-scripts start",
     "start:docker": "docker compose up -d",
     "test": "npm run compile && react-scripts test",
     "format": "prettier \"src/**/*.ts\" --check",

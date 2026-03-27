@@ -60,7 +60,7 @@ function SettingsDrawer(props: { close: () => void; isOpen: boolean }) {
   function logout() {
     localStorage.adminViewHandler.remove();
     onLogout();
-    window.location.replace(urlHandler.getSsoLogoutUrl());
+    window.location.replace(urlHandler.getSsoLogoutUrl(user?.email, user?.sessionIndex));
   }
 
   function buildStyles() {

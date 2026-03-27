@@ -14,7 +14,7 @@ function ErrorPage(props: { route?: string; errorCode?: number }) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
   const history = useHistory();
-  const { onLogout } = useCtxUser();
+  const { user, onLogout } = useCtxUser();
 
   return (
     <div style={styles.container}>
@@ -45,7 +45,7 @@ function ErrorPage(props: { route?: string; errorCode?: number }) {
   function logout() {
     localStorage.adminViewHandler.remove();
     onLogout();
-    window.location.replace(urlHandler.getSsoLogoutUrl());
+    window.location.replace(urlHandler.getSsoLogoutUrl(user?.email, user?.sessionIndex));
   }
 
   function reload() {

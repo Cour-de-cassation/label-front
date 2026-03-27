@@ -16,7 +16,11 @@ const urlHandler = {
     return `${this.getApiUrl()}/label/api/sso/login?redirectUrl=${redirectUrl}`;
   },
 
-  getSsoLogoutUrl() {
-    return `${this.getApiUrl()}/label/api/sso/logout`;
+  getSsoLogoutUrl(email?: string, sessionIndex?: string) {
+    const params = new URLSearchParams();
+    if (email) params.append('email', email);
+    if (sessionIndex) params.append('sessionIndex', sessionIndex);
+    const query = params.toString();
+    return `${this.getApiUrl()}/label/api/sso/logout${query ? `?${query}` : ''}`;
   },
 };

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["vite/client", "node", "jest"],
+    "types": ["vite/client", "node", "vitest/globals"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",

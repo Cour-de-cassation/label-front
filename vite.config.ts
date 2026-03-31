@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
     base: '/label',
     server: {
       port: 55432,
+      host: true,
     },
     resolve: {
       alias: {

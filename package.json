@@ -12,7 +12,7 @@
     "test": "npm run compile && react-scripts test",
     "format": "prettier \"src/**/*.{ts,tsx}\" --check",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings 0",
-    "fix": "eslint \"src/**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts, tsx}\" --write"
+    "fix": "eslint \"src/**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write"
   },
   "dependencies": {
     "axios": "0.24.0",

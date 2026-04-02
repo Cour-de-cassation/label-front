@@ -7,7 +7,7 @@ import {
   preAssignationType,
   annotationsDiffType,
 } from '../modules';
-import { ressourceFilterType } from './../modules/ressourceFilter';
+import { ressourceFilterType } from './../modules/ressourceFilter/ressourceFilterType';
 import { documentRouteType, documentStatusType } from '../modules/document/documentType';
 
 export type ApiSchema = {

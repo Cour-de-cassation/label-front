@@ -1,10 +1,10 @@
 import { annotationModule, annotationType } from './annotation';
 import { annotationsDiffModule, annotationsDiffType } from './annotationsDiff';
 import { assignationModule, assignationType } from './assignation';
-import { preAssignationModule, preAssignationType } from './preAssignation';
+import { preAssignationType } from './preAssignation/preAssignationType';
 import { documentModule, documentType } from './document';
-import { ressourceFilterModule, ressourceFilterType } from './ressourceFilter';
-import { problemReportModule, problemReportType } from './problemReport';
+import { ressourceFilterType } from './ressourceFilter/ressourceFilterType';
+import { problemReportType } from './problemReport/problemReportType';
 import {
   colorType,
   constantColorType,
@@ -14,22 +14,10 @@ import {
   shadeColorType,
   categoryIconNameType,
 } from './settings';
-import { statisticModule, statisticType } from './statistic';
-import { treatmentType, treatmentModule, treatmentInfoType } from './treatment';
-import { userModule, userType } from './user';
-export {
-  annotationModule,
-  annotationsDiffModule,
-  assignationModule,
-  preAssignationModule,
-  documentModule,
-  ressourceFilterModule,
-  problemReportModule,
-  settingsModule,
-  statisticModule,
-  treatmentModule,
-  userModule,
-};
+import { statisticType } from './statistic/statisticType';
+import { treatmentType } from './treatment/treatmentType';
+import { userType } from './user';
+export { annotationModule, annotationsDiffModule, assignationModule, documentModule, settingsModule };
 
 export type {
   annotationType,
@@ -48,5 +36,4 @@ export type {
   categoryIconNameType,
   userType,
   treatmentType,
-  treatmentInfoType,
 };

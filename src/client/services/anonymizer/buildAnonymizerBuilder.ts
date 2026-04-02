@@ -1,4 +1,4 @@
-import { annotationType, buildAnonymizer, documentModule, documentType, settingsType } from 'src/core';
+import { annotationType, buildAnonymizer, documentType, settingsType } from 'src/core';
 import { clientAnonymizerType } from '../../types';
 
 export { buildAnonymizerBuilder };
@@ -25,7 +25,7 @@ function buildAnonymizerBuilder({
   };
 
   function get() {
-    const seed = documentModule.lib.computeCaseNumber(document);
+    const seed = document.documentNumber;
     const anonymizer = buildAnonymizer(settings, annotations, seed);
     return anonymizer;
   }

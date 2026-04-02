@@ -1,6 +1,6 @@
 import { annotationType } from '../../annotation';
 import { settingsModule, settingsType } from '../../settings';
-import { treatmentType } from '../../treatment';
+import { treatmentType } from '../../treatment/treatmentType';
 import { annotationsDiffType } from '../annotationsDiffType';
 import { assertAnnotationsDiffCompatibleWithPreviousAnnotations } from './assertAnnotationsDiffCompatibleWithPreviousAnnotations';
 import { assertAnnotationsDiffCompatibleWithAvailableCategories } from './assertAnnotationsDiffCompatibleWithAvailableCategories';

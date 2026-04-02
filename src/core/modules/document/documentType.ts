@@ -88,31 +88,3 @@ export type documentType = {
   priority: number;
   updateDate: number;
 };
-
-export type Zoning = {
-  zones?: ZoningZones;
-  introduction_subzonage?: ZoningIntroductionSubzonage;
-  visa?: string[];
-  is_public?: number;
-  is_public_text?: string[];
-  arret_id: number;
-};
-
-export type ZoningZones = {
-  introduction?: { start: number; end: number };
-  moyens?: { start: number; end: number } | Array<{ start: number; end: number }>;
-  'expose du litige'?: { start: number; end: number } | Array<{ start: number; end: number }>;
-  motivations?: { start: number; end: number } | Array<{ start: number; end: number }>;
-  dispositif?: { start: number; end: number };
-  'moyens annexes'?: { start: number; end: number };
-};
-
-export type ZoningIntroductionSubzonage = {
-  n_arret?: string;
-  formation?: string;
-  publication?: string[];
-  juridiction: string;
-  chambre: string;
-  pourvoi?: string[];
-  composition?: { start: number; end: number };
-};

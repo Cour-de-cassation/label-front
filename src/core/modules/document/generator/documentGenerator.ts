@@ -116,6 +116,5 @@ const documentGenerator: generatorType<documentType> = {
     updateDate: updateDate ?? new Date().getTime(),
     nlpVersions: nlpVersions ?? undefined,
     checklist: checklist ?? checklistGenerator.generate(Math.floor(Math.random() * (10 - 0 + 1) + 0)),
-    zoning: undefined,
   }),
 };

@@ -8,7 +8,7 @@ const DEFAULT_HEADER = { 'Content-Type': 'application/json' };
 const apiCaller = {
   async get<RouteName extends keyof apiSchemaType['get']>(
     routeName: RouteName,
-    args?: unknown,
+    args?: apiRouteInType<'get', RouteName>,
   ): Promise<{
     data: networkType<apiRouteOutType<'get', RouteName>>;
     statusCode: number;

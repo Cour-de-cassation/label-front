@@ -8,7 +8,7 @@ import {
   annotationsDiffType,
 } from '../modules';
 import { ressourceFilterType } from './../modules/ressourceFilter/ressourceFilterType';
-import { documentRouteType, documentStatusType } from '../modules/document/documentType';
+import { documentImporterType, documentRouteType, documentStatusType } from '../modules/document/documentType';
 
 export type ApiSchema = {
   get: {
@@ -99,8 +99,8 @@ export type ApiSchema = {
         publicationCategories: string[];
         maxDate?: number;
         minDate?: number;
-        routes: string[]; // todo after
-        importers: string[];
+        routes: documentRouteType[];
+        importers: documentImporterType[];
         sources: string[];
         jurisdictions: string[];
       };
@@ -279,7 +279,7 @@ export type ApiSchema = {
       in: {
         name: string;
         email: string;
-        role: string;
+        role: userType['role'];
       };
       out: string;
     };
@@ -341,7 +341,7 @@ export type ApiSchema = {
     updateDocumentStatus: {
       in: {
         documentId: string;
-        status: string;
+        status: documentStatusType;
       };
       out: documentType;
     };

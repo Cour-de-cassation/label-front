@@ -1,6 +1,6 @@
 import { annotationModule, annotationType } from './annotation';
 import { annotationsDiffModule, annotationsDiffType } from './annotationsDiff';
-import { assignationModule, assignationType } from './assignation';
+import { assignationType } from './assignation/assignationType';
 import { preAssignationType } from './preAssignation/preAssignationType';
 import { documentModule, documentType } from './document';
 import { ressourceFilterType } from './ressourceFilter/ressourceFilterType';
@@ -17,7 +17,7 @@ import {
 import { statisticType } from './statistic/statisticType';
 import { treatmentType } from './treatment/treatmentType';
 import { userType } from './user';
-export { annotationModule, annotationsDiffModule, assignationModule, documentModule, settingsModule };
+export { annotationModule, annotationsDiffModule, documentModule, settingsModule };
 
 export type {
   annotationType,

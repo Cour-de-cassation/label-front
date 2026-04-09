@@ -5,11 +5,12 @@
   "description": "Cour de cassation annotation tool.",
   "homepage": "/label",
   "scripts": {
-    "build": "react-scripts build",
+    "start:dev": "vite",
+    "build": "vite build",
     "compile": "tsc",
-    "start:dev": "PORT=55432 react-scripts start",
+    "preview": "vite preview",
     "start:docker": "docker compose up -d",
-    "test": "npm run compile && react-scripts test",
+    "test": "npm run compile && vitest run",
     "format": "prettier \"src/**/*.ts\" --check",
     "lint": "eslint \"src/**/*.ts\" --max-warnings 0",
     "fix": "eslint \"src/**/*.ts\" --fix && prettier \"src/**/*.ts\" --write"
@@ -23,22 +24,17 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-router-dom": "5.3.4",
-    "react-scripts": "5.0.1",
     "string-template": "1.0.0",
     "styled-components": "4.0.3",
     "typescript": "4.7.4"
   },
   "devDependencies": {
     "@babel/cli": "7.28.3",
-    "@babel/core": "7.28.3",
     "@babel/polyfill": "7.12.1",
-    "@babel/preset-env": "7.28.3",
-    "@babel/preset-typescript": "7.27.1",
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.5.0",
     "@testing-library/user-event": "7.2.1",
     "@types/dateformat": "5.0.3",
-    "@types/jest": "30.0.0",
     "@types/lodash": "4.14.65",
     "@types/node": "22.18.0",
     "@types/react": "17.0.88",
@@ -49,14 +45,15 @@
     "@types/testing-library__dom": "7.5.0",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
+    "@vitejs/plugin-react": "4.7.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-prettier": "3.4.1",
     "eslint-plugin-react": "7.37.5",
-    "jest": "30.0.5",
     "prettier": "2.8.8",
-    "react-dev-utils": "10.2.1",
-    "rimraf": "3.0.2"
+    "rimraf": "3.0.2",
+    "vite": "7.3.1",
+    "vitest": "4.1.0"
   },
   "browserslist": {
     "production": [

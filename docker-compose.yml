@@ -4,8 +4,6 @@ services:
   labelct:
     build:
       dockerfile: Dockerfile.label.local
-    environment:
-      - RUN_MODE=LOCAL
     ports:
       - 55432:55432
     env_file:

@@ -4,7 +4,7 @@ import { urlHandler } from '../../utils';
 
 export { Login };
 
-const isDev = window.location.hostname === 'localhost';
+const isDev = process.env.NODE_ENV === 'development';
 
 const DEV_USERS = [
   { label: 'Admin', email: 'test.admin@label.fr' },

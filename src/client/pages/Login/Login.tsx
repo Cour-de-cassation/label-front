@@ -4,7 +4,7 @@ import { urlHandler } from '../../utils';
 
 export { Login };
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = import.meta.env.DEV;
 
 const DEV_USERS = [
   { label: 'Admin', email: 'test.admin@label.fr' },

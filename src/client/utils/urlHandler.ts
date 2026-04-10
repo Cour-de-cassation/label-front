@@ -12,15 +12,10 @@ const urlHandler = {
   },
 
   getSsoLoginUrl() {
-    const redirectUrl = encodeURIComponent(`${window.location.origin}/login`);
-    return `${this.getApiUrl()}/label/api/sso/login?redirectUrl=${redirectUrl}`;
+    return `${this.getApiUrl()}/label/api/sso/login`;
   },
 
-  getSsoLogoutUrl(email?: string, sessionIndex?: string) {
-    const params = new URLSearchParams();
-    if (email) params.append('email', email);
-    if (sessionIndex) params.append('sessionIndex', sessionIndex);
-    const query = params.toString();
-    return `${this.getApiUrl()}/label/api/sso/logout${query ? `?${query}` : ''}`;
+  getSsoLogoutUrl() {
+    return `${this.getApiUrl()}/label/api/sso/logout`;
   },
 };

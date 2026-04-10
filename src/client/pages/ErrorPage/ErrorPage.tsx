@@ -45,7 +45,7 @@ function ErrorPage(props: { route?: string; errorCode?: number }) {
   function logout() {
     localStorage.adminViewHandler.remove();
     onLogout();
-    window.location.replace(urlHandler.getSsoLogoutUrl(user?.email, user?.sessionIndex));
+    window.location.replace(urlHandler.getSsoLogoutUrl());
   }
 
   function reload() {

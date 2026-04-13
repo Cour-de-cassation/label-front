@@ -2,6 +2,9 @@
 - name: Deploy namespace
   import_tasks: namespace.yml
 
+- name: Deploy configmap
+  include_tasks: configmap.yml
+
 - name: Deploy client deployment
   include_tasks: deployment.yml
 

@@ -1,18 +1,15 @@
 name: opendata
 
 services:
-
   labelct:
     build:
       dockerfile: Dockerfile.label.local
-    environment:
-      - RUN_MODE=LOCAL
     ports:
-      - ${LABEL_CLIENT_PORT}:55432
+      - 55432:55432
     env_file:
       - .env
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - 'host.docker.internal:host-gateway'
     volumes:
       - .:/home/node
     stdin_open: true

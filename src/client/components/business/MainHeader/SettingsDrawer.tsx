@@ -11,7 +11,7 @@ export { SettingsDrawer };
 function SettingsDrawer(props: { close: () => void; isOpen: boolean }) {
   const { displayMode, setDisplayMode } = useDisplayMode();
   const styles = buildStyles();
-  const { user, loading } = useCtxUser();
+  const { user, loading, onLogout } = useCtxUser();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -59,6 +59,7 @@ function SettingsDrawer(props: { close: () => void; isOpen: boolean }) {
 
   function logout() {
     localStorage.adminViewHandler.remove();
+    onLogout();
     window.location.replace(urlHandler.getSsoLogoutUrl());
   }
 

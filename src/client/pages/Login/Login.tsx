@@ -4,7 +4,7 @@ import { urlHandler } from '../../utils';
 
 export { Login };
 
-const isDev = import.meta.env.DEV;
+const isDev = import.meta.env.MODE !== 'production';
 
 const DEV_USERS = [
   { label: 'Admin', email: 'test.admin@label.fr' },

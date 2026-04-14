@@ -3,6 +3,8 @@ FROM node:22-alpine AS builder
 ARG http_proxy
 ARG https_proxy
 
+ARG build_mode
+
 USER node
 WORKDIR /home/node
 
@@ -14,7 +16,7 @@ RUN npm ci
 
 COPY --chown=node:node . .
 
-RUN npm run build
+RUN npm run build -- --mode=$build_mode
 
 FROM nginx:1.23.0-alpine AS label-front
 

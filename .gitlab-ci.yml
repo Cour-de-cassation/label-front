@@ -5,5 +5,14 @@ include:
     ref: 'master'
 
 # Configuration spécifique liée au Dockerfile de label-front
-variables:
-  DOCKER_BUILD_ARGS: '--target=label-front'
+build_and_push_dev:
+  variables:
+    DOCKER_BUILD_ARGS: '--target=label-front --build-arg build_mode=development'
+
+build_and_push_preprod:
+  variables:
+    DOCKER_BUILD_ARGS: '--target=label-front --build-arg build_mode=production'
+
+build_and_push_prod:
+  variables:
+    DOCKER_BUILD_ARGS: '--target=label-front --build-arg build_mode=production'

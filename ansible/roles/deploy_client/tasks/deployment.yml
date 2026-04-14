@@ -8,23 +8,23 @@
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: "{{ label_client_app_id }}-deployment"
-        namespace: "{{ label_kube_namespace }}"
+        name: '{{ label_client_app_id }}-deployment'
+        namespace: '{{ label_kube_namespace }}'
         labels:
-          app: "{{ label_client_app_id }}"
+          app: '{{ label_client_app_id }}'
       spec:
         replicas: 1
         selector:
           matchLabels:
-            app: "{{ label_client_app_id }}"
+            app: '{{ label_client_app_id }}'
         template:
           metadata:
             labels:
-              app: "{{ label_client_app_id }}"
+              app: '{{ label_client_app_id }}'
           spec:
             containers:
-              - name: "{{ label_client_app_id }}"
-                image: "{{ label_client_image }}"
+              - name: '{{ label_client_app_id }}'
+                image: '{{ app_image }}'
                 ports:
                   - containerPort: 55432
                 envFrom:

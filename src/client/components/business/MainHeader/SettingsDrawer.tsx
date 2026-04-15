@@ -1,10 +1,8 @@
 import React from 'react';
 import { useDisplayMode, ButtonWithIcon, Drawer, RadioButton, Text } from 'pelta-design-system';
-import { localStorage } from '../../../services/localStorage';
 import { wordings } from '../../../wordings';
 import { SettingsSection } from './SettingsSection';
 import { useCtxUser } from '../../../contexts/user.context';
-import { urlHandler } from '../../../utils';
 
 export { SettingsDrawer };
 
@@ -58,9 +56,7 @@ function SettingsDrawer(props: { close: () => void; isOpen: boolean }) {
   );
 
   function logout() {
-    localStorage.adminViewHandler.remove();
     onLogout();
-    window.location.replace(urlHandler.getSsoLogoutUrl());
   }
 
   function buildStyles() {

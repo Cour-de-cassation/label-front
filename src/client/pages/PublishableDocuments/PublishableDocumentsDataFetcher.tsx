@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, idModule } from 'src/core';
+import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../api';
 import { DataFetcher } from '../DataFetcher';
 
@@ -31,10 +31,7 @@ function buildFetchPublishableDocuments() {
     );
 
     return {
-      data: publishableDocuments.map((publishableDocument) => ({
-        ...publishableDocument,
-        _id: idModule.lib.buildId(publishableDocument._id),
-      })),
+      data: publishableDocuments,
       statusCode,
     };
   };

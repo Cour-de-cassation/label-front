@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, idModule } from 'src/core';
+import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
 
@@ -31,23 +31,9 @@ function ProblemReportsDataFetcher(props: {
 
 function buildFetchProblemReports() {
   return async () => {
-    const { data: problemReportsWithDetails, statusCode } = await apiCaller.get<'problemReportsWithDetails'>(
-      'problemReportsWithDetails',
-    );
+    const { data: problemReportsWithDetails, statusCode } = await apiCaller.get('problemReportsWithDetails');
     return {
-      data: problemReportsWithDetails.map((problemReportWithDetails) => ({
-        ...problemReportWithDetails,
-        document: problemReportWithDetails.document && {
-          ...problemReportWithDetails.document,
-          _id: idModule.lib.buildId(problemReportWithDetails.document?._id),
-        },
-        problemReport: {
-          ...problemReportWithDetails.problemReport,
-          _id: idModule.lib.buildId(problemReportWithDetails.problemReport._id),
-          documentId: idModule.lib.buildId(problemReportWithDetails.problemReport.documentId),
-          userId: idModule.lib.buildId(problemReportWithDetails.problemReport.userId),
-        },
-      })),
+      data: problemReportsWithDetails,
       statusCode,
     };
   };

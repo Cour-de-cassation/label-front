@@ -1,11 +1,10 @@
-import { annotationType, assignationType, fetchedDocumentType, replacementTermType, settingsType } from 'src/core';
+import { annotationType, assignationType, documentType, settingsType } from 'src/core';
 
 export type { annotatorStateType };
 
 type annotatorStateType = {
   assignationId?: assignationType['_id'];
   annotations: annotationType[];
-  document: fetchedDocumentType;
+  document: documentType;
   settings: settingsType;
-  mandatoryReplacementTerms: replacementTermType[];
 };

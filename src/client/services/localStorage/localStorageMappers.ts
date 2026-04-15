@@ -1,5 +1,3 @@
-import { idModule, idType } from 'src/core';
-
 export { localStorageMappers };
 
 export type { localStorageMapperType };
@@ -36,17 +34,17 @@ function buildBooleanMapper(): localStorageMapperType<boolean> {
   };
 }
 
-function buildIdMapper(): localStorageMapperType<idType> {
+function buildIdMapper(): localStorageMapperType<string> {
   return {
     fromLocalStorage(item) {
       if (item === null) {
         return undefined;
       }
-      return idModule.lib.buildId(item);
+      return item;
     },
 
     toLocalStorage(value) {
-      return idModule.lib.convertToString(value);
+      return value;
     },
   };
 }

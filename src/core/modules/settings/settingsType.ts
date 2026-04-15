@@ -1,7 +1,6 @@
 import { stringComparisonSensitivityType } from '../../lib';
-import { buildModel } from '../modelType';
 
-export { categoryIconNames, constantColors, settingsModel, shadeColors };
+export { categoryIconNames, constantColors, shadeColors };
 
 export type {
   categoryIconNameType,
@@ -85,11 +84,3 @@ type constantColorType = (typeof constantColors)[number];
 type shadeColorType = [(typeof shadeColors)[number], string];
 
 type colorType = constantColorType | shadeColorType;
-
-// The settings are passed as a JSON string to parse
-const settingsModel = buildModel({
-  kind: 'object',
-  content: {
-    json: { kind: 'primitive', content: 'string' },
-  },
-} as const);

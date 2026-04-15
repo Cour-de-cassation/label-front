@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, idModule } from 'src/core';
+import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
 
@@ -26,10 +26,7 @@ function buildFetchWorkingUsers() {
     const { data: workingUsers, statusCode } = await apiCaller.get<'workingUsers'>('workingUsers');
 
     return {
-      data: workingUsers.map((workingUser) => ({
-        ...workingUser,
-        _id: idModule.lib.buildId(workingUser._id),
-      })),
+      data: workingUsers,
       statusCode,
     };
   };

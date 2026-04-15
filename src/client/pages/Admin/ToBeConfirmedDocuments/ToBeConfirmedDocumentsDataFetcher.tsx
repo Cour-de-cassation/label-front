@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, idModule } from 'src/core';
+import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
 
@@ -36,13 +36,7 @@ function buildFetchTreatedDocuments() {
     );
 
     return {
-      data: toBeConfirmedDocuments.map((treatedDocument) => ({
-        ...treatedDocument,
-        document: {
-          ...treatedDocument.document,
-          _id: idModule.lib.buildId(treatedDocument.document._id),
-        },
-      })),
+      data: toBeConfirmedDocuments,
       statusCode,
     };
   };

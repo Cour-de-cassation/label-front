@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { apiRouteOutType, documentType, idModule, documentModule } from 'src/core';
+import { apiRouteOutType, documentType, documentModule } from 'src/core';
 import { apiCaller } from '../../../api';
 import { PaginatedTable, tableRowFieldType, ConfirmationPopup, orderDirectionType } from 'pelta-design-system';
 import { wordings } from '../../../wordings';
@@ -100,8 +100,7 @@ function TreatedDocumentsTable(props: {
     const openDocumentOption = {
       kind: 'text' as const,
       text: wordings.treatedDocumentsPage.table.optionItems.openDocument,
-      onClick: () =>
-        history.push(routes.DOCUMENT.getPath(idModule.lib.convertToString(treatmentWithDetails.document._id))),
+      onClick: () => history.push(routes.DOCUMENT.getPath(treatmentWithDetails.document._id)),
       iconName: 'find' as const,
     };
 

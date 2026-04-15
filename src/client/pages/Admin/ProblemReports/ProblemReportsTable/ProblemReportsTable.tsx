@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import format from 'string-template';
 import { optionItemType, Table, tableRowFieldType } from 'pelta-design-system';
-import { apiRouteOutType, documentModule, idModule, timeOperator } from 'src/core';
+import { apiRouteOutType, documentModule, timeOperator } from 'src/core';
 import { apiCaller } from '../../../../api';
 import { DocumentStatusIcon, ProblemReportIcon } from '../../../../components';
 import { useAlert } from '../../../../services/alert';
@@ -235,7 +235,7 @@ function ProblemReportsTable(props: {
       text: wordings.problemReportsPage.table.optionItems.openDocument,
       onClick: () => {
         problemReportWithDetails.document &&
-          history.push(routes.DOCUMENT.getPath(idModule.lib.convertToString(problemReportWithDetails.document._id)));
+          history.push(routes.DOCUMENT.getPath(problemReportWithDetails.document._id));
         return;
       },
       iconName: 'find' as const,

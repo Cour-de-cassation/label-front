@@ -1,6 +1,6 @@
 import React from 'react';
 import { customThemeType, useCustomTheme } from 'pelta-design-system';
-import { apiRouteOutType, idModule, ressourceFilterType, userType } from 'src/core';
+import { apiRouteOutType, ressourceFilterType, userType } from 'src/core';
 import { FilterButton, FilterChip } from '../../../components';
 import { wordings } from '../../../wordings';
 import { documentType } from 'src/core';
@@ -209,7 +209,7 @@ function StatisticsFilterButton(props: {
   }
 
   function findUserNameByUserId(userId: userType['_id']) {
-    const user = props.users.find(({ _id }) => idModule.lib.equalId(userId, _id));
+    const user = props.users.find(({ _id }) => _id === userId);
     if (user) {
       return user.name;
     }

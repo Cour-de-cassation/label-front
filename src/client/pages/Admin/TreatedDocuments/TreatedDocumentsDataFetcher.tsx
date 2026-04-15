@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { apiRouteOutType, idModule } from 'src/core';
+import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
 
@@ -31,16 +31,10 @@ function TreatedDocumentsDataFetcher(props: {
 
 function buildFetchTreatedDocuments() {
   return async () => {
-    const { data: treatedDocuments, statusCode } = await apiCaller.get<'treatedDocuments'>('treatedDocuments');
+    const { data: treatedDocuments, statusCode } = await apiCaller.get('treatedDocuments');
 
     return {
-      data: treatedDocuments.map((treatedDocument) => ({
-        ...treatedDocument,
-        document: {
-          ...treatedDocument.document,
-          _id: idModule.lib.buildId(treatedDocument.document._id),
-        },
-      })),
+      data: treatedDocuments,
       statusCode,
     };
   };

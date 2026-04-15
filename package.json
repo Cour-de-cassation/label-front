@@ -11,13 +11,12 @@
     "preview": "vite preview",
     "start:docker": "docker compose up -d",
     "test": "npm run compile && vitest run",
-    "format": "prettier \"src/**/*.ts\" --check",
-    "lint": "eslint \"src/**/*.ts\" --max-warnings 0",
-    "fix": "eslint \"src/**/*.ts\" --fix && prettier \"src/**/*.ts\" --write"
+    "format": "prettier \"src/**/*.{ts,tsx}\" --check",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings 0",
+    "fix": "eslint \"src/**/*.{ts,tsx}\" --fix && prettier \"src/**/*.{ts,tsx}\" --write"
   },
   "dependencies": {
     "axios": "0.24.0",
-    "bson": "6.10.4",
     "dateformat": "5.0.3",
     "lodash": "4.17.5",
     "pelta-design-system": "https://github.com/Cour-de-cassation/pelta-design-system#509d01c4c925f354127887596b6a30252511334b",

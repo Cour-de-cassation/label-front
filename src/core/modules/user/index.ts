@@ -1,13 +1,3 @@
-import { userGenerator } from './generator';
-import { userLib } from './lib';
-import { userModel, userType } from './userType';
-
-export { userModule };
+import { userType } from './userType';
 
 export type { userType };
-
-const userModule = {
-  models: { user: userModel },
-  generator: userGenerator,
-  lib: userLib,
-};

@@ -1,818 +1,421 @@
 import {
-  annotationModule,
-  annotationsDiffModule,
-  documentModule,
-  problemReportModule,
-  settingsModule,
-  userModule,
-  ressourceFilterModule,
-  statisticModule,
-  treatmentModule,
-  replacementTermModule,
-  preAssignationModule,
+  statisticType,
+  documentType,
+  annotationType,
+  problemReportType,
+  userType,
+  preAssignationType,
+  annotationsDiffType,
 } from '../modules';
-import { buildModel, modelType } from '../modules/modelType';
+import { ressourceFilterType } from './../modules/ressourceFilter/ressourceFilterType';
+import { documentImporterType, documentRouteType, documentStatusType } from '../modules/document/documentType';
 
-export { apiSchema };
-
-export type { apiSchemaType, apiSchemaMethodNameType, apiSchemaMethodType, apiSchemaEntryType };
-
-const apiSchema = {
+export type ApiSchema = {
   get: {
     aggregatedStatistics: {
       in: {
-        ressourceFilter: ressourceFilterModule.model,
-      },
-      out: buildModel({
-        kind: 'object',
-        content: {
-          cumulatedValue: {
-            kind: 'object',
-            content: {
-              subAnnotationsSensitiveCount: buildModel({
-                kind: 'primitive',
-                content: 'number',
-              } as const),
-              subAnnotationsNonSensitiveCount: buildModel({
-                kind: 'primitive',
-                content: 'number',
-              } as const),
-              surAnnotationsCount: buildModel({
-                kind: 'primitive',
-                content: 'number',
-              } as const),
-              treatmentDuration: treatmentModule.model.content.duration,
-              annotationsCount: statisticModule.model.content.annotationsCount,
-              wordsCount: statisticModule.model.content.wordsCount,
-            },
-          },
-          total: { kind: 'primitive', content: 'number' },
-        },
-      } as const),
-    },
+        ressourceFilter: ressourceFilterType;
+      };
+      out: {
+        cumulatedValue: {
+          subAnnotationsSensitiveCount: number;
+          subAnnotationsNonSensitiveCount: number;
+          surAnnotationsCount: number;
+          treatmentDuration: number;
+          annotationsCount: number;
+          wordsCount: number;
+        };
+        total: number;
+      };
+    };
+
     documentStatistics: {
       in: {
-        documentNumber: documentModule.fetchedModel.content.documentNumber,
-      },
+        documentNumber: number;
+      };
       out: {
-        kind: 'array',
-        content: buildModel({
-          kind: 'object',
-          content: {
-            ...statisticModule.model.content,
-            treatmentsSummary: {
-              kind: 'array',
-              content: {
-                kind: 'object',
-                content: {
-                  id: {
-                    kind: 'or',
-                    content: [
-                      buildModel({
-                        kind: 'custom',
-                        content: 'id',
-                      } as const),
-                      { kind: 'primitive', content: 'undefined' },
-                    ],
-                  },
-                  statId: buildModel({
-                    kind: 'custom',
-                    content: 'id',
-                  } as const),
-                  treatmentDuration: { kind: 'primitive', content: 'number' },
-                  name: {
-                    kind: 'or',
-                    content: [
-                      { kind: 'primitive', content: 'string' },
-                      { kind: 'primitive', content: 'undefined' },
-                    ],
-                  },
-                },
-              },
-            },
-          },
-        }),
-      },
-    },
+        statistics: statisticType;
+        treatmentsSummary: {
+          id?: string;
+          statId: string;
+          treatmentDuration: number;
+          name?: string;
+        }[];
+      }[];
+    };
+
     annotations: {
       in: {
-        documentId: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'array',
-        content: annotationModule.model,
-      } as const),
-    },
+        documentId: string;
+      };
+      out: annotationType[];
+    };
+
     annotationsDiffDetails: {
       in: {
-        documentId: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'object',
-        content: {
-          addedAnnotations: {
-            kind: 'array',
-            content: {
-              kind: 'object',
-              content: {
-                text: { kind: 'primitive', content: 'string' },
-                textStart: { kind: 'primitive', content: 'number' },
-                addedAnnotation: annotationModule.model,
-              },
-            },
-          },
-          deletedAnnotations: {
-            kind: 'array',
-            content: {
-              kind: 'object',
-              content: {
-                text: { kind: 'primitive', content: 'string' },
-                textStart: { kind: 'primitive', content: 'number' },
-                deletedAnnotation: annotationModule.model,
-              },
-            },
-          },
-          resizedBiggerAnnotations: {
-            kind: 'array',
-            content: {
-              kind: 'object',
-              content: {
-                text: { kind: 'primitive', content: 'string' },
-                textStart: { kind: 'primitive', content: 'number' },
-                annotationBefore: annotationModule.model,
-                annotationAfter: annotationModule.model,
-              },
-            },
-          },
-          resizedSmallerAnnotations: {
-            kind: 'array',
-            content: {
-              kind: 'object',
-              content: {
-                text: { kind: 'primitive', content: 'string' },
-                textStart: { kind: 'primitive', content: 'number' },
-                annotationBefore: annotationModule.model,
-                annotationAfter: annotationModule.model,
-              },
-            },
-          },
-          categoryChangedAnnotations: {
-            kind: 'array',
-            content: {
-              kind: 'object',
-              content: {
-                text: { kind: 'primitive', content: 'string' },
-                textStart: { kind: 'primitive', content: 'number' },
-                annotationBefore: annotationModule.model,
-                annotationAfter: annotationModule.model,
-              },
-            },
-          },
-        },
-      } as const),
-    },
+        documentId: string;
+      };
+      out: {
+        addedAnnotations: {
+          text: string;
+          textStart: number;
+          addedAnnotation: annotationType;
+        }[];
+        deletedAnnotations: {
+          text: string;
+          textStart: number;
+          deletedAnnotation: annotationType;
+        }[];
+        resizedBiggerAnnotations: {
+          text: string;
+          textStart: number;
+          annotationBefore: annotationType;
+          annotationAfter: annotationType;
+        }[];
+        resizedSmallerAnnotations: {
+          text: string;
+          textStart: number;
+          annotationBefore: annotationType;
+          annotationAfter: annotationType;
+        }[];
+        categoryChangedAnnotations: {
+          text: string;
+          textStart: number;
+          annotationBefore: annotationType;
+          annotationAfter: annotationType;
+        }[];
+      };
+    };
+
     anonymizedDocumentText: {
       in: {
-        documentId: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'string',
-      } as const),
-    },
+        documentId: string;
+      };
+      out: string;
+    };
+
     availableStatisticFilters: {
-      out: buildModel({
-        kind: 'object',
-        content: {
-          publicationCategories: {
-            kind: 'array',
-            content: {
-              kind: 'primitive',
-              content: 'string',
-            },
-          },
-          maxDate: {
-            kind: 'or',
-            content: [
-              { kind: 'primitive', content: 'number' },
-              { kind: 'primitive', content: 'undefined' },
-            ],
-          },
-          minDate: {
-            kind: 'or',
-            content: [
-              { kind: 'primitive', content: 'number' },
-              { kind: 'primitive', content: 'undefined' },
-            ],
-          },
-          routes: {
-            kind: 'array',
-            content: {
-              kind: 'constant',
-              content: ['automatic', 'exhaustive', 'simple', 'confirmation', 'request', 'default'] as const,
-            },
-          },
-          importers: {
-            kind: 'array',
-            content: {
-              kind: 'constant',
-              content: ['recent', 'manual', 'default'] as const,
-            },
-          },
-          sources: {
-            kind: 'array',
-            content: {
-              kind: 'primitive',
-              content: 'string',
-            },
-          },
-          jurisdictions: {
-            kind: 'array',
-            content: {
-              kind: 'primitive',
-              content: 'string',
-            },
-          },
-        },
-      } as const),
-    },
+      out: {
+        publicationCategories: string[];
+        maxDate?: number;
+        minDate?: number;
+        routes: documentRouteType[];
+        importers: documentImporterType[];
+        sources: string[];
+        jurisdictions: string[];
+      };
+    };
+
     document: {
       in: {
-        documentId: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-      },
-      out: documentModule.fetchedModel,
-    },
+        documentId: string;
+      };
+      out: documentType;
+    };
+
     documentsForUser: {
       in: {
-        documentsMaxCount: buildModel({
-          kind: 'primitive',
-          content: 'number',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            document: documentModule.fetchedModel,
-            assignationId: buildModel({
-              kind: 'custom',
-              content: 'id',
-            } as const),
-          },
-        },
-      }),
-    },
+        documentsMaxCount: number;
+      };
+      out: {
+        document: documentType;
+        assignationId: string;
+      }[];
+    };
+
     health: {
-      out: buildModel({
-        kind: 'primitive',
-        content: 'boolean',
-      } as const),
-    },
+      out: boolean;
+    };
+
     problemReportsWithDetails: {
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            problemReport: problemReportModule.model,
-            document: {
-              kind: 'or',
-              content: [
-                {
-                  kind: 'object',
-                  content: {
-                    _id: documentModule.fetchedModel.content._id,
-                    documentNumber: documentModule.fetchedModel.content.documentNumber,
-                    source: documentModule.fetchedModel.content.source,
-                    jurisdiction: documentModule.fetchedModel.content.decisionMetadata.content.jurisdiction,
-                    appealNumber: documentModule.fetchedModel.content.decisionMetadata.content.appealNumber,
-                    publicationCategory: documentModule.fetchedModel.content.publicationCategory,
-                    route: documentModule.fetchedModel.content.route,
-                    status: documentModule.fetchedModel.content.status,
-                  },
-                },
-                { kind: 'primitive', content: 'undefined' },
-              ],
-            },
-            user: {
-              kind: 'object',
-              content: {
-                email: userModule.models.user.content.email,
-                name: userModule.models.user.content.name,
-              },
-            },
-          },
-        },
-      } as const),
-    },
+      out: {
+        problemReport: problemReportType;
+        user: {
+          email: userType['email'];
+          name: userType['name'];
+        };
+        document?: {
+          _id: documentType['_id'];
+          documentNumber: documentType['documentNumber'];
+          source: documentType['source'];
+          jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+          appealNumber: documentType['decisionMetadata']['appealNumber'];
+          publicationCategory: documentType['publicationCategory'];
+          route: documentRouteType;
+          status: documentStatusType;
+        };
+      }[];
+    };
+
     documentStatus: {
       in: {
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: documentModule.fetchedModel.content.status,
-    },
+        documentId: string;
+      };
+      out: documentStatusType;
+    };
+
     settings: {
-      out: settingsModule.model,
-    },
+      out: {
+        json: string;
+      };
+    };
+
     summary: {
-      in: {},
-      out: buildModel({
-        kind: 'object',
-        content: {
-          freeDocuments: buildModel({
-            kind: 'primitive',
-            content: 'number',
-          } as const),
-          pendingDocuments: buildModel({
-            kind: 'primitive',
-            content: 'number',
-          } as const),
-          savedDocuments: buildModel({
-            kind: 'primitive',
-            content: 'number',
-          } as const),
-          doneDocuments: buildModel({
-            kind: 'primitive',
-            content: 'number',
-          } as const),
-          lockedDocuments: buildModel({
-            kind: 'primitive',
-            content: 'number',
-          } as const),
-        },
-      } as const),
-    },
+      in: Record<string, never>;
+      out: {
+        freeDocuments: number;
+        pendingDocuments: number;
+        savedDocuments: number;
+        doneDocuments: number;
+        lockedDocuments: number;
+      };
+    };
+
     publishableDocuments: {
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            _id: documentModule.fetchedModel.content._id,
-            appealNumber: documentModule.fetchedModel.content.decisionMetadata.content.appealNumber,
-            chamberName: documentModule.fetchedModel.content.decisionMetadata.content.chamberName,
-            creationDate: documentModule.fetchedModel.content.creationDate,
-            documentNumber: documentModule.fetchedModel.content.documentNumber,
-            jurisdiction: documentModule.fetchedModel.content.decisionMetadata.content.jurisdiction,
-            publicationCategory: documentModule.fetchedModel.content.publicationCategory,
-            route: documentModule.fetchedModel.content.route,
-            status: documentModule.fetchedModel.content.status,
-          },
-        },
-      } as const),
-    },
+      out: {
+        _id: documentType['_id'];
+        appealNumber: documentType['decisionMetadata']['appealNumber'];
+        chamberName: documentType['decisionMetadata']['chamberName'];
+        creationDate: documentType['creationDate'];
+        documentNumber: documentType['documentNumber'];
+        jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+        publicationCategory: documentType['publicationCategory'];
+        route: documentRouteType;
+        status: documentStatusType;
+      }[];
+    };
+
     toBeConfirmedDocuments: {
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            document: {
-              kind: 'object',
-              content: {
-                _id: documentModule.fetchedModel.content._id,
-                documentNumber: documentModule.fetchedModel.content.documentNumber,
-                jurisdiction: documentModule.fetchedModel.content.decisionMetadata.content.jurisdiction,
-                occultationBlock: documentModule.fetchedModel.content.decisionMetadata.content.occultationBlock,
-                reviewStatus: documentModule.fetchedModel.content.reviewStatus,
-                publicationCategory: documentModule.fetchedModel.content.publicationCategory,
-                route: documentModule.fetchedModel.content.route,
-              },
-            },
-            totalTreatmentDuration: {
-              kind: 'or',
-              content: [
-                { kind: 'primitive', content: 'number' },
-                { kind: 'primitive', content: 'undefined' },
-              ],
-            },
-            lastTreatmentDate: {
-              kind: 'or',
-              content: [
-                { kind: 'primitive', content: 'number' },
-                { kind: 'primitive', content: 'undefined' },
-              ],
-            },
-            userNames: {
-              kind: 'array',
-              content: {
-                kind: 'primitive',
-                content: 'string',
-              },
-            },
-          },
-        },
-      } as const),
-    },
+      out: {
+        document: {
+          _id: documentType['_id'];
+          documentNumber: documentType['documentNumber'];
+          jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+          occultationBlock: documentType['decisionMetadata']['occultationBlock'];
+          reviewStatus: documentType['reviewStatus'];
+          publicationCategory: documentType['publicationCategory'];
+          route: documentRouteType;
+        };
+        totalTreatmentDuration: number | undefined;
+        lastTreatmentDate: number | undefined;
+        userNames: string[];
+      }[];
+    };
+
     treatedDocuments: {
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            document: {
-              kind: 'object',
-              content: {
-                _id: documentModule.fetchedModel.content._id,
-                creationDate: documentModule.fetchedModel.content.creationDate,
-                documentNumber: documentModule.fetchedModel.content.documentNumber,
-                jurisdiction: documentModule.fetchedModel.content.decisionMetadata.content.jurisdiction,
-                loss: documentModule.fetchedModel.content.loss,
-                occultationBlock: documentModule.fetchedModel.content.decisionMetadata.content.occultationBlock,
-                publicationCategory: documentModule.fetchedModel.content.publicationCategory,
-                reviewStatus: documentModule.fetchedModel.content.reviewStatus,
-                route: documentModule.fetchedModel.content.route,
-                source: documentModule.fetchedModel.content.source,
-              },
-            },
-            totalTreatmentDuration: {
-              kind: 'or',
-              content: [
-                { kind: 'primitive', content: 'number' },
-                { kind: 'primitive', content: 'undefined' },
-              ],
-            },
-            lastTreatmentDate: {
-              kind: 'or',
-              content: [
-                { kind: 'primitive', content: 'number' },
-                { kind: 'primitive', content: 'undefined' },
-              ],
-            },
-            statistic: {
-              kind: 'object',
-              content: {
-                surAnnotationsCount: {
-                  kind: 'or',
-                  content: [
-                    { kind: 'primitive', content: 'number' },
-                    { kind: 'primitive', content: 'undefined' },
-                  ],
-                },
-                subAnnotationsSensitiveCount: {
-                  kind: 'or',
-                  content: [
-                    { kind: 'primitive', content: 'number' },
-                    { kind: 'primitive', content: 'undefined' },
-                  ],
-                },
-                subAnnotationsNonSensitiveCount: {
-                  kind: 'or',
-                  content: [
-                    { kind: 'primitive', content: 'number' },
-                    { kind: 'primitive', content: 'undefined' },
-                  ],
-                },
-              },
-            },
-            userNames: {
-              kind: 'array',
-              content: {
-                kind: 'primitive',
-                content: 'string',
-              },
-            },
-          },
-        },
-      } as const),
-    },
+      out: {
+        document: {
+          _id: documentType['_id'];
+          creationDate: documentType['creationDate'];
+          documentNumber: documentType['documentNumber'];
+          jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+          loss: documentType['loss'];
+          occultationBlock: documentType['decisionMetadata']['occultationBlock'];
+          reviewStatus: documentType['reviewStatus'];
+          publicationCategory: documentType['publicationCategory'];
+          route: documentRouteType;
+          source: documentType['source'];
+        };
+        totalTreatmentDuration: number | undefined;
+        lastTreatmentDate: number | undefined;
+        statistic: {
+          surAnnotationsCount: number | undefined;
+          subAnnotationsSensitiveCount: number | undefined;
+          subAnnotationsNonSensitiveCount: number | undefined;
+        };
+        userNames: string[];
+      }[];
+    };
+
     personalStatistics: {
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            day: { kind: 'primitive', content: 'number' },
-            simple: { kind: 'primitive', content: 'number' },
-            exhaustive: { kind: 'primitive', content: 'number' },
-          },
-        },
-      } as const),
-    },
+      out: {
+        day: number;
+        simple: number;
+        exhaustive: number;
+      }[];
+    };
+
     untreatedDocuments: {
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            document: {
-              kind: 'object',
-              content: {
-                _id: documentModule.fetchedModel.content._id,
-                creationDate: documentModule.fetchedModel.content.creationDate,
-                decisionDate: documentModule.fetchedModel.content.decisionMetadata.content.date,
-                documentNumber: documentModule.fetchedModel.content.documentNumber,
-                occultationBlock: documentModule.fetchedModel.content.decisionMetadata.content.occultationBlock,
-                jurisdiction: documentModule.fetchedModel.content.decisionMetadata.content.jurisdiction,
-                publicationCategory: documentModule.fetchedModel.content.publicationCategory,
-                route: documentModule.fetchedModel.content.route,
-                source: documentModule.fetchedModel.content.source,
-                status: documentModule.fetchedModel.content.status,
-              },
-            },
-            userNames: {
-              kind: 'array',
-              content: {
-                kind: 'primitive',
-                content: 'string',
-              },
-            },
-          },
-        },
-      } as const),
-    },
-    mandatoryReplacementTerms: {
-      in: {
-        documentId: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'array',
-        content: replacementTermModule.model,
-      } as const),
-    },
+      out: {
+        document: {
+          _id: documentType['_id'];
+          creationDate: documentType['creationDate'];
+          decisionDate: documentType['decisionMetadata']['date'];
+          documentNumber: documentType['documentNumber'];
+          jurisdiction: documentType['decisionMetadata']['jurisdiction'];
+          occultationBlock: documentType['decisionMetadata']['occultationBlock'];
+          reviewStatus: documentType['reviewStatus'];
+          publicationCategory: documentType['publicationCategory'];
+          route: documentRouteType;
+          source: documentType['source'];
+          status: documentStatusType;
+        };
+        userNames: string[];
+      }[];
+    };
+
     workingUsers: {
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            _id: userModule.models.user.content._id,
-            email: userModule.models.user.content.email,
-            name: userModule.models.user.content.name,
-            role: userModule.models.user.content.role,
-          },
-        },
-      } as const),
-    },
+      out: userType[];
+    };
+
     preAssignations: {
-      out: buildModel({
-        kind: 'array',
-        content: {
-          kind: 'object',
-          content: {
-            preAssignation: preAssignationModule.model,
-            userName: userModule.models.user.content.name,
-          },
-        },
-      } as const),
-    },
-  },
+      out: {
+        preAssignation: preAssignationType;
+        userName: userType['name'];
+      }[];
+    };
+  };
 
   post: {
     assignDocumentToUser: {
       in: {
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-        userId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: documentModule.fetchedModel,
-    },
+        documentId: string;
+        userId: string;
+      };
+      out: documentType;
+    };
+
     createUser: {
       in: {
-        name: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-        email: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-        role: userModule.models.user.content.role,
-      },
-      out: buildModel({ kind: 'primitive', content: 'string' } as const),
-    },
+        name: string;
+        email: string;
+        role: userType['role'];
+      };
+      out: string;
+    };
+
     deleteProblemReport: {
       in: {
-        problemReportId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
+        problemReportId: string;
+      };
+      out: void;
+    };
+
     deletePreAssignation: {
       in: {
-        preAssignationId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
+        preAssignationId: string;
+      };
+
+      out: void;
+    };
+
     deleteHumanTreatmentsForDocument: {
       in: {
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
-    problemReport: {
-      in: {
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-        problemType: problemReportModule.model.content.type,
-        problemText: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
+        documentId: string;
+      };
+      out: void;
+    };
+
     deleteDocument: {
       in: {
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
+        documentId: string;
+      };
+      out: void;
+    };
+
+    problemReport: {
+      in: {
+        documentId: string;
+        problemType: 'bug' | 'annotationProblem' | 'suggestion';
+        problemText: string;
+      };
+
+      out: void;
+    };
+
     resetTreatmentLastUpdateDate: {
       in: {
-        assignationId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
+        assignationId: string;
+      };
+      out: void;
+    };
+
     updateAssignationDocumentStatus: {
       in: {
-        assignationId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-        status: documentModule.fetchedModel.content.status,
-      },
-      out: documentModule.fetchedModel,
-    },
+        assignationId: string;
+        status: documentStatusType;
+      };
+      out: documentType;
+    };
+
     updateDocumentStatus: {
       in: {
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-        status: documentModule.fetchedModel.content.status,
-      },
-      out: documentModule.fetchedModel,
-    },
+        documentId: string;
+        status: documentStatusType;
+      };
+      out: documentType;
+    };
+
     updateDocumentRoute: {
       in: {
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-        route: documentModule.fetchedModel.content.route,
-      },
-      out: documentModule.fetchedModel,
-    },
+        documentId: string;
+        route: documentRouteType;
+      };
+
+      out: documentType;
+    };
+
     updatePublishableDocumentStatus: {
       in: {
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-        status: buildModel({
-          kind: documentModule.fetchedModel.content.status.kind,
-          content: ['done', 'toBePublished'],
-        } as const),
-      },
-      out: documentModule.fetchedModel,
-    },
+        documentId: string;
+        status: 'done' | 'toBePublished';
+      };
+      out: documentType;
+    };
+
     updateProblemReportHasBeenRead: {
       in: {
-        problemReportId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-        hasBeenRead: buildModel({
-          kind: 'primitive',
-          content: 'boolean',
-        }),
-      },
-      out: {
-        kind: 'primitive',
-        content: 'void',
-      },
-    },
+        problemReportId: string;
+        hasBeenRead: boolean;
+      };
+      out: void;
+    };
+
     updateTreatmentDuration: {
       in: {
-        assignationId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
+        assignationId: string;
+      };
+
+      out: void;
+    };
+
     updateTreatmentForAssignationId: {
       in: {
-        annotationsDiff: annotationsDiffModule.model,
-        assignationId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
+        annotationsDiff: annotationsDiffType;
+        assignationId: string;
+      };
+      out: void;
+    };
+
     updateTreatmentForDocumentId: {
       in: {
-        annotationsDiff: annotationsDiffModule.model,
-        documentId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-      },
-      out: buildModel({
-        kind: 'primitive',
-        content: 'void',
-      } as const),
-    },
+        annotationsDiff: annotationsDiffType;
+        documentId: string;
+      };
+      out: void;
+    };
+
     createPreAssignation: {
       in: {
-        userId: buildModel({
-          kind: 'custom',
-          content: 'id',
-        } as const),
-        source: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-        number: buildModel({
-          kind: 'primitive',
-          content: 'string',
-        } as const),
-      },
-      out: buildModel({ kind: 'primitive', content: 'void' } as const),
-    },
-  },
-} as const;
-
-type apiSchemaType = {
-  get: apiSchemaMethodType;
-  post: apiSchemaMethodType;
+        userId: string;
+        source: string;
+        number: string;
+      };
+      out: void;
+    };
+  };
 };
 
-type apiSchemaMethodNameType = keyof apiSchemaType;
-
-type apiSchemaMethodType = { [key: string]: apiSchemaEntryType };
-
-type apiSchemaEntryType = {
-  in?: { [param: string]: modelType };
-  out: modelType;
+export type apiSchemaType = {
+  get: ApiSchema['get'];
+  post: ApiSchema['post'];
 };
 
-// We need this line for type checking
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _typeCheck: apiSchemaType = apiSchema;
+export type apiSchemaMethodNameType = keyof apiSchemaType;
+
+export type apiSchemaMethodType = { [key: string]: apiSchemaEntryType };
+
+export type apiSchemaEntryType = {
+  in?: ApiSchema[keyof ApiSchema][keyof ApiSchema[keyof ApiSchema]]['in'];
+  out: ApiSchema[keyof ApiSchema][keyof ApiSchema[keyof ApiSchema]]['out'];
+};

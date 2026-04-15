@@ -1,5 +1,5 @@
 import React, { createContext, ReactElement, ReactNode } from 'react';
-import { buildAnonymizer, annotationType, fetchedDocumentType, replacementTermType, settingsType } from 'src/core';
+import { buildAnonymizer, annotationType, documentType, settingsType } from 'src/core';
 import { anonymizerBuilderType, buildAnonymizerBuilder } from './buildAnonymizerBuilder';
 
 export { AnonymizerBuilderContext, AnonymizerBuilderContextProvider };
@@ -13,19 +13,16 @@ function AnonymizerBuilderContextProvider({
   children,
   document,
   settings,
-  mandatoryReplacementTerms,
 }: {
   annotations: annotationType[];
   children: ReactNode;
-  document: fetchedDocumentType;
+  document: documentType;
   settings: settingsType;
-  mandatoryReplacementTerms: replacementTermType[];
 }): ReactElement {
   const { anonymizerBuilder } = buildAnonymizerBuilder({
     settings,
     annotations,
     document,
-    mandatoryReplacementTerms,
   });
 
   return <AnonymizerBuilderContext.Provider value={anonymizerBuilder}>{children}</AnonymizerBuilderContext.Provider>;

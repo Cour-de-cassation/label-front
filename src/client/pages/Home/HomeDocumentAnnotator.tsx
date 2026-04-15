@@ -4,8 +4,7 @@ import {
   annotationType,
   assignationType,
   documentModule,
-  fetchedDocumentType,
-  replacementTermType,
+  documentType,
   settingsType,
 } from 'src/core';
 import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
@@ -26,7 +25,7 @@ function HomeDocumentAnnotator(props: {
   annotations: annotationType[];
   assignationId: assignationType['_id'];
   committer: annotationsCommitterType;
-  document: fetchedDocumentType;
+  document: documentType;
   fetchNewDocumentsForUser: () => void;
   settings: settingsType;
 }) {
@@ -57,7 +56,6 @@ function HomeDocumentAnnotator(props: {
         annotations: props.annotations,
         document: props.document,
         settings: props.settings,
-        mandatoryReplacementTerms: [] as replacementTermType[],
       }}
     >
       <MainHeader title={props.document.title} subtitle={subtitle} />

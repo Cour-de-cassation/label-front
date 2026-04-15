@@ -1,4 +1,4 @@
-import { annotationModule, settingsModule, documentModule, replacementTermType } from 'src/core';
+import { annotationModule, settingsModule, documentModule } from 'src/core';
 import { range } from 'lodash';
 import { computeAnnotatorStateChecksum } from './computeAnnotatorStateChecksum';
 
@@ -22,7 +22,6 @@ describe('computeAnnotatorStateChecksum', () => {
       document,
       settings,
       annotations: annotations,
-      mandatoryReplacementTerms: [] as replacementTermType[],
     };
 
     const annotatorStateChecksum1 = computeAnnotatorStateChecksum(annotatorState);
@@ -48,14 +47,12 @@ describe('computeAnnotatorStateChecksum', () => {
       document,
       settings,
       annotations: annotations1,
-      mandatoryReplacementTerms: [] as replacementTermType[],
     };
     const annotatorState2 = {
       checklist,
       document,
       settings,
       annotations: annotations2,
-      mandatoryReplacementTerms: [] as replacementTermType[],
     };
 
     const annotatorStateChecksum1 = computeAnnotatorStateChecksum(annotatorState1);
@@ -84,14 +81,12 @@ describe('computeAnnotatorStateChecksum', () => {
       document,
       settings,
       annotations: annotations1,
-      mandatoryReplacementTerms: [] as replacementTermType[],
     };
     const annotatorState2 = {
       checklist,
       document,
       settings,
       annotations: annotations2,
-      mandatoryReplacementTerms: [] as replacementTermType[],
     };
 
     const annotatorStateChecksum1 = computeAnnotatorStateChecksum(annotatorState1);
@@ -117,14 +112,12 @@ describe('computeAnnotatorStateChecksum', () => {
       document,
       settings,
       annotations: annotations1,
-      mandatoryReplacementTerms: [] as replacementTermType[],
     };
     const annotatorState2 = {
       checklist,
       document,
       settings,
       annotations: annotations2,
-      mandatoryReplacementTerms: [] as replacementTermType[],
     };
 
     const annotatorStateChecksum1 = computeAnnotatorStateChecksum(annotatorState1);
@@ -149,7 +142,6 @@ describe('computeAnnotatorStateChecksum', () => {
       document,
       settings,
       annotations: annotations,
-      mandatoryReplacementTerms: [] as replacementTermType[],
     };
 
     const annotatorStateChecksum1 = computeAnnotatorStateChecksum(annotatorState);

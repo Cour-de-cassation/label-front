@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  annotationType,
-  fetchedDocumentType,
-  settingsType,
-  idModule,
-  settingsModule,
-  documentModule,
-  assignationType,
-} from 'src/core';
+import { annotationType, documentType, settingsType, settingsModule, documentModule, assignationType } from 'src/core';
 import { apiCaller } from '../../api';
 import { MainHeader } from '../../components';
 import { buildAnnotationsCommitter } from '../../services/annotatorState';
@@ -20,7 +12,7 @@ type documentStateType =
   | {
       kind: 'annotating';
       choice: {
-        document: fetchedDocumentType;
+        document: documentType;
         annotations: annotationType[];
         assignationId: assignationType['_id'];
       };
@@ -29,7 +21,7 @@ type documentStateType =
 
 function DocumentSwitcher(props: {
   choices: Array<{
-    document: fetchedDocumentType;
+    document: documentType;
     annotations: annotationType[];
     assignationId: assignationType['_id'];
   }>;
@@ -85,7 +77,6 @@ function DocumentSwitcher(props: {
 
   function computeInitialDocumentState(): documentStateType {
     const savedDocumentForUser = props.choices.find(({ document }) => document.status === 'saved');
-
     if (savedDocumentForUser) {
       return { kind: 'annotating', choice: savedDocumentForUser };
     } else {
@@ -94,7 +85,7 @@ function DocumentSwitcher(props: {
   }
 
   async function onSelectDocument(choice: {
-    document: fetchedDocumentType;
+    document: documentType;
     annotations: annotationType[];
     assignationId: assignationType['_id'];
   }) {
@@ -125,7 +116,7 @@ function DocumentSwitcher(props: {
         });
         setDocumentState({
           kind: 'annotating',
-          choice: { ...choice, document: { ...updatedDocument, _id: idModule.lib.buildId(updatedDocument._id) } },
+          choice: { ...choice, document: { ...updatedDocument } },
         });
       } catch (error) {
         console.warn(error);

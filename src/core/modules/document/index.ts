@@ -1,30 +1,16 @@
-import { documentGenerator, decisionMetadataGenerator, checklistGenerator } from './generator';
-import { documentModel, documentType, fetchedDocumentModel, fetchedDocumentType } from './documentType';
-import {
-  buildDocument,
-  comparator,
-  computeCaseNumber,
-  countWords,
-  getNextStatus,
-  getMinutesBeforeFreeingPendingDocuments,
-  publicationHandler,
-} from './lib';
+import { documentType } from './documentType';
+import { checklistGenerator, decisionMetadataGenerator, documentGenerator } from './generator/documentGenerator';
+import { getNextStatus, getMinutesBeforeFreeingPendingDocuments, publicationHandler } from './lib';
 
 export { documentModule };
 
-export type { documentType, fetchedDocumentType };
+export type { documentType };
 
 const documentModule = {
-  fetchedModel: fetchedDocumentModel,
-  model: documentModel,
   generator: documentGenerator,
   decisionMetadataGenerator: decisionMetadataGenerator,
   checklistGenerator: checklistGenerator,
   lib: {
-    buildDocument,
-    comparator,
-    computeCaseNumber,
-    countWords,
     getNextStatus,
     getMinutesBeforeFreeingPendingDocuments,
     publicationHandler,

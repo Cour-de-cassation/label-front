@@ -1,17 +1,15 @@
 import React from 'react';
 import { useDisplayMode, ButtonWithIcon, Drawer, RadioButton, Text } from 'pelta-design-system';
-import { localStorage } from '../../../services/localStorage';
 import { wordings } from '../../../wordings';
 import { SettingsSection } from './SettingsSection';
 import { useCtxUser } from '../../../contexts/user.context';
-import { urlHandler } from '../../../utils';
 
 export { SettingsDrawer };
 
 function SettingsDrawer(props: { close: () => void; isOpen: boolean }) {
   const { displayMode, setDisplayMode } = useDisplayMode();
   const styles = buildStyles();
-  const { user, loading } = useCtxUser();
+  const { user, loading, onLogout } = useCtxUser();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -58,8 +56,7 @@ function SettingsDrawer(props: { close: () => void; isOpen: boolean }) {
   );
 
   function logout() {
-    localStorage.adminViewHandler.remove();
-    window.location.replace(urlHandler.getSsoLogoutUrl());
+    onLogout();
   }
 
   function buildStyles() {

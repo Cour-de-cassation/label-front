@@ -1,40 +1,56 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { customThemeType, useCustomTheme } from 'pelta-design-system';
-import { Logo } from '../../components';
 import { urlHandler } from '../../utils';
 
 export { Login };
 
+const isDev = import.meta.env.MODE !== 'production';
+
+const DEV_USERS = [
+  { label: 'Admin', email: 'test.admin@label.fr' },
+  { label: 'Annotateur', email: 'test.annotator@label.fr' },
+  { label: 'Publicateur', email: 'test.publicator@label.fr' },
+  { label: 'Scrutateur', email: 'test.scrutator@label.fr' },
+];
+
 const Login: FunctionComponent = () => {
   const history = useHistory();
-  const theme = useCustomTheme();
-  const styles = buildStyles(theme);
+
   useEffect(() => {
-    window.location.href = urlHandler.getSsoLoginUrl();
+    const token = new URLSearchParams(window.location.search).get('token');
+    if (token) {
+      history.push('/');
+    } else if (!isDev) {
+      window.location.href = urlHandler.getSsoLoginUrl();
+    }
   }, [history]);
 
-  return (
-    <div style={styles.mainContainer}>
-      Redirection vers SSO...
-      <div style={styles.logoContainer}>
-        <Logo size="medium" />
-      </div>
-    </div>
-  );
+  if (!isDev) return <p>Redirection vers SSO...</p>;
 
-  function buildStyles(theme: customThemeType) {
-    return {
-      mainContainer: {
-        height: '100vh',
+  return (
+    <div
+      style={{
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column',
-      },
-      logoContainer: {
-        marginBottom: theme.spacing * 2,
-      },
-    } as const;
-  }
+        height: '100vh',
+        gap: 8,
+      }}
+    >
+      <p>Connexion locale</p>
+      {DEV_USERS.map(({ label, email }) => (
+        <button
+          key={email}
+          onClick={() =>
+            (window.location.href = `${urlHandler.getApiUrl()}/label/api/sso/dev-login?email=${encodeURIComponent(
+              email,
+            )}`)
+          }
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
 };

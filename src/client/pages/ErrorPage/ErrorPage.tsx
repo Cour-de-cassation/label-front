@@ -4,8 +4,7 @@ import { customThemeType, useCustomTheme, ButtonWithIcon, Icon, Text } from 'pel
 import { wordings } from '../../wordings';
 import format from 'string-template';
 
-import { urlHandler } from '../../utils';
-import { localStorage } from '../../services/localStorage';
+import { useCtxUser } from '../../contexts/user.context';
 
 export { ErrorPage };
 
@@ -13,6 +12,7 @@ function ErrorPage(props: { route?: string; errorCode?: number }) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
   const history = useHistory();
+  const { onLogout } = useCtxUser();
 
   return (
     <div style={styles.container}>
@@ -41,8 +41,7 @@ function ErrorPage(props: { route?: string; errorCode?: number }) {
   );
 
   function logout() {
-    localStorage.adminViewHandler.remove();
-    window.location.replace(urlHandler.getSsoLogoutUrl());
+    onLogout();
   }
 
   function reload() {

@@ -55,8 +55,9 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const onLogout = () => {
+    localStorage.adminViewHandler.remove();
     jwtTokenHandler.remove();
-    setUser(null);
+    window.location.replace(urlHandler.getSsoLogoutUrl());
   };
 
   return <UserContext.Provider value={{ user, loading, onLogout, onLogin }}>{children}</UserContext.Provider>;

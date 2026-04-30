@@ -17,7 +17,7 @@ export { AddWorkingUserDrawer };
 const FIELD_WIDTH = 400;
 const DRAWER_WIDTH = 600;
 
-const sources = ['jurinet', 'jurica', 'juritj', 'juritcom'];
+const sources = ['jurinet', 'jurica', 'juritj', 'juritcom', 'portalis-cph'];
 
 type formErrorType = {
   source?: boolean;

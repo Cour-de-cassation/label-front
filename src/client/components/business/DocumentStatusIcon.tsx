@@ -12,7 +12,6 @@ const documentStatusIconNameMapping: Record<
   free: { iconName: 'waiting', colorName: 'primary' },
   pending: { iconName: 'assigned', colorName: 'primary' },
   saved: { iconName: 'update', colorName: 'primary' },
-  toBePublished: { iconName: 'publish', colorName: 'primary' },
   done: { iconName: 'check', colorName: 'primary' },
   toBeConfirmed: { iconName: 'checkBox', colorName: 'primary' },
   locked: { iconName: 'stop', colorName: 'alert' },

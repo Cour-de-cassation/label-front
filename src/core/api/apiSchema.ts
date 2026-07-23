@@ -355,14 +355,6 @@ export type ApiSchema = {
       out: documentType;
     };
 
-    updatePublishableDocumentStatus: {
-      in: {
-        documentId: string;
-        status: 'done' | 'toBePublished';
-      };
-      out: documentType;
-    };
-
     updateProblemReportHasBeenRead: {
       in: {
         problemReportId: string;

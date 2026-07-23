@@ -1,6 +1,6 @@
 export type documentRouteType = 'automatic' | 'exhaustive' | 'simple' | 'confirmation' | 'request' | 'default';
 export type documentImporterType = 'recent' | 'manual' | 'default';
-export type documentStatusType = 'done' | 'free' | 'pending' | 'locked' | 'saved' | 'toBePublished' | 'toBeConfirmed';
+export type documentStatusType = 'done' | 'free' | 'pending' | 'locked' | 'saved' | 'toBeConfirmed';
 
 export type checklistEntityType = {
   text: string;

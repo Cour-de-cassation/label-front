@@ -40,11 +40,11 @@ function HomeDocumentAnnotator(props: {
           <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
         </div>
       ))}
-      <Text>{wordings.homePage.publishedDocument}</Text>
+      <Text>{wordings.homePage.prioritaryDocument}</Text>
     </div>
-  ) : props.document.route == 'simple' ? (
+  ) : props.document.decisionMetadata.raisonInteretParticulier != null ? (
     <div style={styles.documentHeaderSubtitle}>
-      <Text>{wordings.homePage.simpleReviewScreen.title}</Text>
+      <Text>{wordings.homePage.particularInterestDocument}</Text>
     </div>
   ) : undefined;
   return (

@@ -152,7 +152,6 @@ function ProblemReportsTable(props: {
             documentId: problemReportWithDetails.problemReport.documentId,
             status: documentModule.lib.getNextStatus({
               status: problemReportWithDetails.document?.status ?? 'locked',
-              publicationCategory: problemReportWithDetails.document?.publicationCategory ?? [],
               route: problemReportWithDetails.document?.route ?? 'default',
             }),
           });
@@ -164,10 +163,7 @@ function ProblemReportsTable(props: {
         props.refetch();
       },
       iconName: 'send' as const,
-      isDisabled:
-        userRole !== 'admin' ||
-        problemReportWithDetails.document?.status === 'done' ||
-        problemReportWithDetails.document?.status === 'toBePublished',
+      isDisabled: userRole !== 'admin' || problemReportWithDetails.document?.status === 'done',
     };
 
     const answerByEmailOptionItem = {
@@ -250,7 +246,6 @@ function ProblemReportsTable(props: {
             documentId: problemReportWithDetails.problemReport.documentId,
             status: documentModule.lib.getNextStatus({
               status: 'pending',
-              publicationCategory: problemReportWithDetails.document?.publicationCategory ?? [],
               route: problemReportWithDetails.document?.route ?? 'default',
             }),
           });

@@ -34,8 +34,6 @@ export type decisionMetadataType = {
   additionalTermsParsingFailed?: boolean;
   categoriesToOmit: string[];
   chamberName: string;
-  civilMatterCode: string;
-  criminalCaseCode: string;
   date?: number;
   jurisdiction: string;
   occultationBlock?: number;

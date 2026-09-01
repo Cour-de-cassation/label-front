@@ -70,6 +70,5 @@ export type documentType = {
   text: string;
   checklist: checklistItemType[];
   externalId: string;
-  priority: number;
   updateDate: number;
 };

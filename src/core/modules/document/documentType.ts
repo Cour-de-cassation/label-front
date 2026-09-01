@@ -32,7 +32,6 @@ export type decisionMetadataType = {
     additionalTermsToUnAnnotate: string[];
   };
   additionalTermsParsingFailed?: boolean;
-  boundDecisionDocumentNumbers: number[];
   categoriesToOmit: string[];
   chamberName: string;
   civilCaseCode: string;

@@ -17,7 +17,6 @@ describe('computeSpecificDocumentInfoEntries', () => {
         jurisdiction: 'Cour de cassation',
         NACCode: '',
         endCaseCode: '',
-        boundDecisionDocumentNumbers: [],
         categoriesToOmit: [],
         additionalTermsToAnnotate: '',
         occultationBlock: undefined,

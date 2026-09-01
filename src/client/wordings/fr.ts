@@ -28,7 +28,6 @@ const fr = {
     documentRoute: {
       automatic: 'Automatique',
       exhaustive: 'Exhaustif',
-      simple: 'Simple',
       confirmation: 'Confirmation',
       request: 'Demande',
       default: 'N/A',
@@ -206,11 +205,6 @@ const fr = {
     reset: 'Réinitialiser',
     send: 'Envoyer',
     scrutatorInfo: 'Vous êtes en mode lecture seule. Les modifications que vous ferez ne seront pas sauvegardées.',
-    simpleReviewScreen: {
-      title: 'Relecture simple',
-      subtitle:
-        'Ce document ne nécessite pas de relecture exhaustive de la décision. Vous pouvez effectuer la vérification par le panneau latéral.',
-    },
     undo: 'Annuler',
     unlink: 'Supprimer la liaison',
     unlinkOption: {

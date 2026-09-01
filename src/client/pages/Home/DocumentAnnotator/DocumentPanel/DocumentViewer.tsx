@@ -7,7 +7,6 @@ import { useViewerScrollerHandler } from '../../../../services/viewerScroller';
 import { heights } from '../../../../styles';
 import { splittedTextByLineType } from '../lib';
 import { DocumentLine } from './DocumentLine';
-import { SimpleReviewScreen } from './SimpleReviewScreen';
 import { useAlert } from '../../../../services/alert';
 import { wordings } from '../../../../wordings';
 import { annotationHandler, settingsModule } from 'src/core';
@@ -137,63 +136,58 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
 
   return (
     <>
-      {displayedText ? (
-        <div
-          style={styles.container}
-          ref={viewerRef}
-          key={documentViewerMode.kind === 'occurrence' ? documentViewerMode.entityId : documentViewerMode.kind}
-        >
-          <table style={styles.table}>
-            <tbody>
-              {displayedText.map((splittedLine) => {
-                const isHighlighted =
-                  selectedLines.includes(splittedLine.line) ||
-                  (selectedLines.length === 2 &&
-                    splittedLine.line > selectedLines[0] &&
-                    splittedLine.line < selectedLines[1]);
-                if (splittedLine.line != expectedLine) {
-                  expectedLine = splittedLine.line + 1;
-                  return (
-                    <>
-                      <DocumentLine
-                        key={splittedLine.line + 'p'}
-                        line={undefined}
-                        content={undefined}
-                        anonymizer={anonymizer}
-                        onLineClick={handleLineClick}
-                        isHighlighted={isHighlighted}
-                      />
-                      <DocumentLine
-                        key={splittedLine.line}
-                        line={splittedLine.line}
-                        content={splittedLine.content}
-                        anonymizer={anonymizer}
-                        onLineClick={handleLineClick}
-                        isHighlighted={isHighlighted}
-                      />
-                    </>
-                  );
-                }
+      <div
+        style={styles.container}
+        ref={viewerRef}
+        key={documentViewerMode.kind === 'occurrence' ? documentViewerMode.entityId : documentViewerMode.kind}
+      >
+        <table style={styles.table}>
+          <tbody>
+            {displayedText.map((splittedLine) => {
+              const isHighlighted =
+                selectedLines.includes(splittedLine.line) ||
+                (selectedLines.length === 2 &&
+                  splittedLine.line > selectedLines[0] &&
+                  splittedLine.line < selectedLines[1]);
+              if (splittedLine.line != expectedLine) {
                 expectedLine = splittedLine.line + 1;
                 return (
-                  <DocumentLine
-                    key={splittedLine.line}
-                    line={splittedLine.line}
-                    content={splittedLine.content}
-                    anonymizer={anonymizer}
-                    onLineClick={handleLineClick}
-                    isHighlighted={isHighlighted}
-                  />
+                  <>
+                    <DocumentLine
+                      key={splittedLine.line + 'p'}
+                      line={undefined}
+                      content={undefined}
+                      anonymizer={anonymizer}
+                      onLineClick={handleLineClick}
+                      isHighlighted={isHighlighted}
+                    />
+                    <DocumentLine
+                      key={splittedLine.line}
+                      line={splittedLine.line}
+                      content={splittedLine.content}
+                      anonymizer={anonymizer}
+                      onLineClick={handleLineClick}
+                      isHighlighted={isHighlighted}
+                    />
+                  </>
                 );
-              })}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <div style={styles.simpleScreenContainer}>
-          <SimpleReviewScreen />
-        </div>
-      )}
+              }
+              expectedLine = splittedLine.line + 1;
+              return (
+                <DocumentLine
+                  key={splittedLine.line}
+                  line={splittedLine.line}
+                  content={splittedLine.content}
+                  anonymizer={anonymizer}
+                  onLineClick={handleLineClick}
+                  isHighlighted={isHighlighted}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      )
     </>
   );
 
@@ -205,14 +199,7 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
         return getDisplayedUniqueLines(detectedLines);
 
       case 'annotation':
-        switch (document.route) {
-          case 'simple':
-            if (document.status != 'done' && document.status != 'locked' && document.status != 'toBeConfirmed') {
-              return undefined;
-            }
-          default:
-            return props.splittedTextByLine;
-        }
+        return props.splittedTextByLine;
 
       case 'checklist':
         const { checkLineNumbers } = documentViewerModeHandler.documentViewerMode;
@@ -278,9 +265,6 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
         backgroundImage,
         height: heights.annotatorPanel,
         width: '100%',
-      },
-      simpleScreenContainer: {
-        height: heights.annotatorPanel,
       },
       table: {
         borderSpacing: 0,

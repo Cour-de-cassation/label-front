@@ -74,7 +74,6 @@ export type documentType = {
   decisionMetadata: decisionMetadataType;
   documentNumber: number;
   importer: documentImporterType;
-  loss?: number;
   nlpVersions?: nlpVersionsType;
   publicationCategory: string[];
   reviewStatus: reviewStatusType;

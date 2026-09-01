@@ -10,7 +10,6 @@ describe('computeSpecificDocumentInfoEntries', () => {
       decisionMetadata: documentModule.decisionMetadataGenerator.generate({
         appealNumber: '',
         chamberName: 'Civile',
-        civilCaseCode: '',
         criminalCaseCode: '',
         civilMatterCode: '',
         date: decisionDate,

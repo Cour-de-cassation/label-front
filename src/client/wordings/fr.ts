@@ -107,10 +107,6 @@ const fr = {
           title: 'Dif.',
           tooltipText: 'Type de diffusion',
         },
-        session: {
-          title: 'Formation',
-          tooltipText: 'Acronyme de la formation',
-        },
         source: { title: 'Source', tooltipText: 'Base de données source' },
         userName: 'Attribué à',
         route: { title: 'Circuit', tooltipText: 'Circuit de traitement' },

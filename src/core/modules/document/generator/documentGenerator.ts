@@ -43,11 +43,8 @@ const decisionMetadataGenerator: generatorType<documentType['decisionMetadata']>
     jurisdiction,
     NACCode,
     occultationBlock,
-    session,
-    solution,
     motivationOccultation,
     selection,
-    sommaire,
   } = {}) => ({
     additionalTermsToAnnotate: additionalTermsToAnnotate ?? '',
     computedAdditionalTerms: computedAdditionalTerms ?? undefined,
@@ -59,11 +56,8 @@ const decisionMetadataGenerator: generatorType<documentType['decisionMetadata']>
     jurisdiction: jurisdiction ?? '',
     NACCode: NACCode ?? '',
     occultationBlock: occultationBlock ?? 0,
-    session: session ?? '',
-    solution: solution ?? '',
     motivationOccultation: motivationOccultation ?? undefined,
     selection: selection ?? false,
-    sommaire: sommaire ?? '',
   }),
 };
 

@@ -16,8 +16,6 @@ describe('computeSpecificDocumentInfoEntries', () => {
         categoriesToOmit: [],
         additionalTermsToAnnotate: '',
         occultationBlock: undefined,
-        session: '',
-        solution: '',
       }),
     });
 

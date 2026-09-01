@@ -12,7 +12,6 @@ export type statisticType = {
   jurisdiction: string;
   linkedEntitiesCount: number;
   publicationCategory: string[];
-  session?: string;
   NACCode?: string;
   route: documentRouteType;
   source: string;

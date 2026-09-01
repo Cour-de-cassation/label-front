@@ -38,11 +38,8 @@ export type decisionMetadataType = {
   jurisdiction: string;
   occultationBlock?: number;
   NACCode: string;
-  session: string;
-  solution: string;
   motivationOccultation?: boolean;
   selection?: boolean;
-  sommaire?: string;
 };
 
 export type reviewStatusType = {

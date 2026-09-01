@@ -341,7 +341,6 @@ const fr = {
         treatmentDuration: 'Temps de traitement',
         wordsCount: 'Mots',
         documentNumber: 'N° décision',
-        endCaseCode: 'Code décision',
         NACCode: 'Code NAC',
         chamberName: 'Chambre',
         circuit: 'Circuit',

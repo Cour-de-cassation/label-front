@@ -38,7 +38,6 @@ export type decisionMetadataType = {
   jurisdiction: string;
   occultationBlock?: number;
   NACCode: string;
-  endCaseCode: string;
   session: string;
   solution: string;
   motivationOccultation?: boolean;

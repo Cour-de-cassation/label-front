@@ -229,8 +229,7 @@ export type ApiSchema = {
     personalStatistics: {
       out: {
         day: number;
-        simple: number;
-        exhaustive: number;
+        total: number;
       }[];
     };
 

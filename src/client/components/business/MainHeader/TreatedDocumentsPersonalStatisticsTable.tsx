@@ -33,7 +33,7 @@ function TreatedDocumentsPersonalStatisticsTable(props: {
         id: 'total',
         canBeSorted: true,
         title: wordings.statisticsPage.box.computation.total,
-        extractor: (personalStatistic) => personalStatistic.exhaustive,
+        extractor: (personalStatistic) => personalStatistic.total,
         width: 10,
         cellStyle: { maxWidth: `${PERSONAL_STATISTICS_TEXT_CELL_MAX_WIDTH}px`, overflow: 'hidden' },
       },

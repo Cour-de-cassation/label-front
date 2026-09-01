@@ -24,19 +24,6 @@ export type checklistItemType = {
   metadata_text: string[];
 };
 
-export type nlpVersionType = {
-  version: string;
-  date: string;
-};
-
-export type nlpVersionsType = {
-  juriSpacyTokenizer: nlpVersionType;
-  juritools: nlpVersionType;
-  pseudonymisationApi: nlpVersionType;
-  model: {
-    name: string;
-  };
-};
 export type decisionMetadataType = {
   appealNumber: string;
   additionalTermsToAnnotate: string;
@@ -74,7 +61,6 @@ export type documentType = {
   decisionMetadata: decisionMetadataType;
   documentNumber: number;
   importer: documentImporterType;
-  nlpVersions?: nlpVersionsType;
   publicationCategory: string[];
   reviewStatus: reviewStatusType;
   route: documentRouteType;

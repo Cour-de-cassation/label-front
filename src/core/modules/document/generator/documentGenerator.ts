@@ -94,7 +94,7 @@ const documentGenerator: generatorType<documentType> = {
     title,
     text,
     updateDate,
-    nlpVersions,
+
     checklist,
   } = {}) => ({
     creationDate: creationDate ? creationDate : new Date().getTime(),
@@ -112,7 +112,6 @@ const documentGenerator: generatorType<documentType> = {
     title: title ?? `TITLE_${Math.random()}`,
     text: text ?? `TEXT_${Math.random()}`,
     updateDate: updateDate ?? new Date().getTime(),
-    nlpVersions: nlpVersions ?? undefined,
     checklist: checklist ?? checklistGenerator.generate(Math.floor(Math.random() * (10 - 0 + 1) + 0)),
   }),
 };

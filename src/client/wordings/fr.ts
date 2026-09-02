@@ -183,8 +183,9 @@ const fr = {
       representative: 'Représentant seul ({count} annot.)',
       entity: "Supprimer toute l'entité",
     },
+    prioritaryDocument: 'Cette décision est prioritaire.',
+    particularInterestDocument: 'Cette décision présente un intérêt particulier',
     documentSelector: {
-      publishedDocumentTitle: 'Cette décision sera publiée',
       genericDocumentInfoEntries: {
         annotations: 'Annotations',
         entities: 'Entités',
@@ -207,7 +208,6 @@ const fr = {
       "Les débats de cette décision ne sont pas publics, l'exposé du litige et la motivation sont occultés.",
     problemIsBlocking: `Ce problème m'empêche de terminer l'annotation du document.`,
     problemType: 'Type de problème',
-    publishedDocument: 'Cette décision sera publiée',
     redo: 'Rétablir',
     replacement: 'Remplacement',
     reportProblem: 'Signaler un problème',

@@ -51,23 +51,38 @@ function DocumentSelectorCard(props: {
     props.choice.document.publicationCategory,
     props.choice.document.decisionMetadata.NACCode,
   );
-  return mustBePublished ? (
-    <div style={styles.publishedDocumentCardContainer}>
-      <div style={styles.publishedDocumentTitleContainer}>
-        {props.choice.document.publicationCategory.map((publicationCategoryLetter) => (
-          <div style={styles.publicationCategoryLetter} key={publicationCategoryLetter}>
-            <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
-          </div>
-        ))}
-        <Text variant="h2" weight="bold" style={styles.publishedDocumentTitle}>
-          {wordings.homePage.documentSelector.publishedDocumentTitle}
-        </Text>
+  const hasParticularInterest = props.choice.document.decisionMetadata.raisonInteretParticulier != null;
+
+  if (mustBePublished) {
+    return (
+      <div style={styles.flaggedDocumentCardContainer}>
+        <div style={styles.flaggedDocumentTitleContainer}>
+          {props.choice.document.publicationCategory.map((publicationCategoryLetter) => (
+            <div style={styles.publicationCategoryLetter} key={publicationCategoryLetter}>
+              <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
+            </div>
+          ))}
+          <Text variant="h2" weight="bold" style={styles.flaggedDocumentText}>
+            {wordings.homePage.prioritaryDocument}
+          </Text>
+        </div>
+        {renderCard()}
       </div>
-      {renderCard()}
-    </div>
-  ) : (
-    renderCard()
-  );
+    );
+  } else if (hasParticularInterest) {
+    return (
+      <div style={styles.flaggedDocumentCardContainer}>
+        <div style={styles.flaggedDocumentTitleContainer}>
+          <Text variant="h2" weight="bold" style={styles.flaggedDocumentText}>
+            {wordings.homePage.particularInterestDocument}
+          </Text>
+        </div>
+        {renderCard()}
+      </div>
+    );
+  } else {
+    return renderCard();
+  }
 
   function renderCard() {
     return (
@@ -209,21 +224,21 @@ function computeCategoryIconNamesByEntitiesCount(annotations: annotationType[], 
 
 function buildStyles(theme: customThemeType) {
   return {
-    publishedDocumentCardContainer: {
+    flaggedDocumentCardContainer: {
       backgroundColor: theme.colors.primary.background,
       borderRadius: theme.shape.borderRadius.m,
       display: 'flex',
       flexDirection: 'column',
       padding: theme.spacing,
     },
-    publishedDocumentTitleContainer: {
+    flaggedDocumentTitleContainer: {
       display: 'flex',
       alignItems: 'center',
       paddingLeft: theme.spacing * 2,
       paddingBottom: theme.spacing * 2,
       paddingTop: theme.spacing,
     },
-    publishedDocumentTitle: {
+    flaggedDocumentText: {
       paddingLeft: theme.spacing * 2,
     },
     publicationCategoryLetter: {

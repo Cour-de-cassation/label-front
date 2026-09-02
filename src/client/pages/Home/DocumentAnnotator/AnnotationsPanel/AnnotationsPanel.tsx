@@ -84,17 +84,6 @@ function AnnotationsPanel(props: {
     computedAdditionalTerms?: { additionalTermsToAnnotate: string[]; additionalTermsToUnAnnotate: string[] },
     additionalTermsParsingFailed?: boolean,
   ) {
-    <Text variant="h3">
-      <a
-        href="file://nms81-cassation/Data/SDER-SCOM-SRI/2-SDER/1-Bureaux/8-BDN-CA/3-ANO/guide_annotation.pdf"
-        target="_blank"
-        rel="noreferrer"
-        style={styles.annotationGuideLink}
-      >
-        {wordings.homePage.annotationGuide}
-        <Icon iconName="help" style={styles.annotationGuideIcon} />
-      </a>
-    </Text>;
     if (
       additionalTermsParsingFailed ||
       (additionalTermsParsingFailed == undefined && additionalTermsToAnnotate !== '') ||

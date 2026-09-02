@@ -130,7 +130,7 @@ function buildRouteFilter({
     kind: 'dropdown' as const,
     name: 'route',
     label: wordings.business.filters.fields.route,
-    possibleValues: ['automatic', 'exhaustive', 'simple', 'confirmation', 'request', 'default'] as unknown as string[],
+    possibleValues: ['automatic', 'exhaustive', 'confirmation', 'request', 'default'] as unknown as string[],
     value,
     computeChipLabel: (route: string) => wordings.business.documentRoute[route as documentType['route']],
     computeReadableValue: (route: string) => wordings.business.documentRoute[route as documentType['route']],

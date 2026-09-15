@@ -7,9 +7,9 @@ import {
   documentType,
   settingsType,
 } from 'src/core';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text, CircleIcon } from 'pelta-design-system';
 import { apiCaller } from '../../api';
-import { MainHeader, PublicationCategoryBadge } from '../../components';
+import { MainHeader } from '../../components';
 import {
   annotationsCommitterType,
   AnnotatorStateHandlerContextProvider,
@@ -33,20 +33,28 @@ function HomeDocumentAnnotator(props: {
   const theme = useCustomTheme();
 
   const styles = buildStyles(theme);
-  const subtitle = documentModule.lib.publicationHandler.mustBePublished(props.document.publicationCategory) ? (
-    <div style={styles.documentHeaderSubtitle}>
-      {props.document.publicationCategory.map((publicationCategoryLetter) => (
-        <div key={publicationCategoryLetter} style={styles.publicationCategoryLetter}>
-          <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
+  const mustBePublished = documentModule.lib.publicationHandler.mustBePublished(props.document.publicationCategory);
+  const hasParticularInterest = props.document.decisionMetadata.raisonInteretParticulier != null;
+  const subtitle =
+    mustBePublished || hasParticularInterest ? (
+      <div style={styles.documentHeaderSubtitle}>
+        <div>
+          <CircleIcon
+            iconName={mustBePublished ? 'openedBook' : 'flag'}
+            backgroundColor="primary"
+            iconSize={40}
+            hint={
+              mustBePublished
+                ? wordings.homePage.mustBePublishedHint
+                : hasParticularInterest
+                ? wordings.homePage.hasParticularInterestHint
+                : undefined
+            }
+          />
         </div>
-      ))}
-      <Text>{wordings.homePage.prioritaryDocument}</Text>
-    </div>
-  ) : props.document.decisionMetadata.raisonInteretParticulier != null ? (
-    <div style={styles.documentHeaderSubtitle}>
-      <Text>{wordings.homePage.particularInterestDocument}</Text>
-    </div>
-  ) : undefined;
+        <Text>{wordings.homePage.prioritaryDocument}</Text>
+      </div>
+    ) : undefined;
   return (
     <AnnotatorStateHandlerContextProvider
       autoSaver={buildAutoSaver({ applySave: applyAutoSave })}

@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { groupBy, orderBy, sumBy } from 'lodash';
 import { annotationType, assignationType, documentModule, documentType, settingsType, settingsModule } from 'src/core';
-import { customThemeType, useCustomTheme, ButtonWithIcon, ComponentsList, Icon, Text } from 'pelta-design-system';
-import { CategoryIcon, PublicationCategoryBadge } from '../../../components';
+import {
+  customThemeType,
+  useCustomTheme,
+  ButtonWithIcon,
+  ComponentsList,
+  Icon,
+  Text,
+  CircleIcon,
+} from 'pelta-design-system';
+import { CategoryIcon } from '../../../components';
 import { wordings } from '../../../wordings';
 import { computeGenericDocumentInfoEntries } from './computeGenericDocumentInfoEntries';
 import { computeSpecificDocumentInfoEntries } from './computeSpecificDocumentInfoEntries';
@@ -53,28 +61,26 @@ function DocumentSelectorCard(props: {
   );
   const hasParticularInterest = props.choice.document.decisionMetadata.raisonInteretParticulier != null;
 
-  if (mustBePublished) {
+  if (mustBePublished || hasParticularInterest) {
     return (
       <div style={styles.flaggedDocumentCardContainer}>
         <div style={styles.flaggedDocumentTitleContainer}>
-          {props.choice.document.publicationCategory.map((publicationCategoryLetter) => (
-            <div style={styles.publicationCategoryLetter} key={publicationCategoryLetter}>
-              <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
-            </div>
-          ))}
+          <div>
+            <CircleIcon
+              iconName={mustBePublished ? 'openedBook' : 'flag'}
+              backgroundColor="primary"
+              iconSize={40}
+              hint={
+                mustBePublished
+                  ? wordings.homePage.mustBePublishedHint
+                  : hasParticularInterest
+                  ? wordings.homePage.hasParticularInterestHint
+                  : undefined
+              }
+            />
+          </div>
           <Text variant="h2" weight="bold" style={styles.flaggedDocumentText}>
             {wordings.homePage.prioritaryDocument}
-          </Text>
-        </div>
-        {renderCard()}
-      </div>
-    );
-  } else if (hasParticularInterest) {
-    return (
-      <div style={styles.flaggedDocumentCardContainer}>
-        <div style={styles.flaggedDocumentTitleContainer}>
-          <Text variant="h2" weight="bold" style={styles.flaggedDocumentText}>
-            {wordings.homePage.particularInterestDocument}
           </Text>
         </div>
         {renderCard()}
@@ -234,15 +240,12 @@ function buildStyles(theme: customThemeType) {
     flaggedDocumentTitleContainer: {
       display: 'flex',
       alignItems: 'center',
-      paddingLeft: theme.spacing * 2,
-      paddingBottom: theme.spacing * 2,
+      paddingLeft: theme.spacing,
+      paddingBottom: theme.spacing,
       paddingTop: theme.spacing,
     },
     flaggedDocumentText: {
       paddingLeft: theme.spacing * 2,
-    },
-    publicationCategoryLetter: {
-      marginLeft: theme.spacing,
     },
     card: {
       borderRadius: theme.shape.borderRadius.m,

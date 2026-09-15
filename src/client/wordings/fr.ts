@@ -184,7 +184,8 @@ const fr = {
       entity: "Supprimer toute l'entité",
     },
     prioritaryDocument: 'Cette décision est prioritaire.',
-    particularInterestDocument: 'Cette décision présente un intérêt particulier',
+    mustBePublishedHint: 'Cette décision sera publiée au Bulletin ou au Rapport de la Cour de cassation.',
+    hasParticularInterestHint: 'Cette décision présente un intérêt particulier.',
     documentSelector: {
       genericDocumentInfoEntries: {
         annotations: 'Annotations',

@@ -106,6 +106,13 @@ export type ApiSchema = {
       };
     };
 
+    adminBadgeCounts: {
+      out: {
+        unreadProblemReportsCount: number;
+        toBeConfirmedDocumentsCount: number;
+      };
+    };
+
     document: {
       in: {
         documentId: string;

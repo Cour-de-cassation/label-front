@@ -187,7 +187,6 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
           </tbody>
         </table>
       </div>
-      )
     </>
   );
 

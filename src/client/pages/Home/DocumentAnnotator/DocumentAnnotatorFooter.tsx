@@ -120,7 +120,6 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
     try {
       const nextDocumentStatus = documentModule.lib.getNextStatus({
         status: document.status,
-        publicationCategory: document.publicationCategory,
         route: document.route,
       });
       await setDocumentStatus(document._id, nextDocumentStatus);

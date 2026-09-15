@@ -207,12 +207,7 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
       case 'annotation':
         switch (document.route) {
           case 'simple':
-            if (
-              document.status != 'done' &&
-              document.status != 'locked' &&
-              document.status != 'toBePublished' &&
-              document.status != 'toBeConfirmed'
-            ) {
+            if (document.status != 'done' && document.status != 'locked' && document.status != 'toBeConfirmed') {
               return undefined;
             }
           default:

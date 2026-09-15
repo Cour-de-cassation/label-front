@@ -1,11 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { Text } from 'pelta-design-system';
-import { apiRouteOutType, documentModule, timeOperator } from 'src/core';
+import { apiRouteOutType, timeOperator } from 'src/core';
 import { orderDirectionType, PaginatedTable, tableRowFieldType } from 'pelta-design-system';
 import { localStorage, publishableDocumentOrderByProperties } from '../../services/localStorage';
 import { wordings } from '../../wordings';
-import { apiCaller } from '../../api';
 import { routes } from '../routes';
 import format from 'string-template';
 
@@ -64,42 +63,7 @@ function PublishableDocumentsTable(props: {
       },
     };
 
-    const markAsPublished = {
-      kind: 'text' as const,
-      text: wordings.publishableDocumentsPage.table.optionItems.markAsPublished,
-      onClick: async () => {
-        await apiCaller.post<'updatePublishableDocumentStatus'>('updatePublishableDocumentStatus', {
-          documentId: publishableDocument._id,
-          status: documentModule.lib.getNextStatus({
-            status: publishableDocument.status,
-            publicationCategory: publishableDocument.publicationCategory,
-            route: publishableDocument.route,
-          }) as 'done' | 'toBePublished',
-        });
-        props.refetch();
-      },
-    };
-
-    const markAsUnpublished = {
-      kind: 'text' as const,
-      text: wordings.publishableDocumentsPage.table.optionItems.markAsUnPublished,
-      onClick: async () => {
-        await apiCaller.post<'updatePublishableDocumentStatus'>('updatePublishableDocumentStatus', {
-          documentId: publishableDocument._id,
-          status: 'toBePublished',
-        });
-        props.refetch();
-      },
-    };
-
-    switch (publishableDocument.status) {
-      case 'toBePublished':
-        return [openAnonymizedDocumentOptionItem, markAsPublished];
-      case 'done':
-        return [openAnonymizedDocumentOptionItem, markAsUnpublished];
-      default:
-        return [];
-    }
+    return [openAnonymizedDocumentOptionItem];
   }
 }
 

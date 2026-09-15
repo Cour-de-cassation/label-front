@@ -133,7 +133,6 @@ function TreatedDocumentsTable(props: {
             documentId: treatmentWithDetails.document._id,
             status: documentModule.lib.getNextStatus({
               status: 'pending',
-              publicationCategory: treatmentWithDetails.document?.publicationCategory ?? [],
               route: treatmentWithDetails.document?.route ?? 'default',
             }),
           });

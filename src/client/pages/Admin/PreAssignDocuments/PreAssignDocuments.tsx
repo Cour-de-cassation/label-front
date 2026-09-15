@@ -2,6 +2,7 @@ import React from 'react';
 import { apiRouteOutType, userType } from 'src/core';
 import { customThemeType, useCustomTheme, RefreshButton } from 'pelta-design-system';
 import { heights, widths } from '../../../styles';
+import { useCtxUser } from '../../../contexts/user.context';
 import { PreAssignDocumentsTable } from './PreAssignDocumentsTable';
 import { AddPreAssignationButton } from './AddPreAssignationDrawer/AddPreAssignationButton';
 
@@ -12,12 +13,11 @@ function PreAssignDocuments(props: {
   preAssignations: apiRouteOutType<'get', 'preAssignations'>;
   refetch: () => void;
   isLoading: boolean;
-  userRole: userType['role'];
 }) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
-
-  const userRole = props.userRole;
+  const { user } = useCtxUser();
+  const userRole = user?.role;
 
   return (
     <div style={styles.table}>

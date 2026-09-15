@@ -106,6 +106,13 @@ export type ApiSchema = {
       };
     };
 
+    adminBadgeCounts: {
+      out: {
+        unreadProblemReportsCount: number;
+        toBeConfirmedDocumentsCount: number;
+      };
+    };
+
     document: {
       in: {
         documentId: string;
@@ -352,14 +359,6 @@ export type ApiSchema = {
         route: documentRouteType;
       };
 
-      out: documentType;
-    };
-
-    updatePublishableDocumentStatus: {
-      in: {
-        documentId: string;
-        status: 'done' | 'toBePublished';
-      };
       out: documentType;
     };
 

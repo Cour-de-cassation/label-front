@@ -91,10 +91,6 @@ function DocumentStatisticsBox(props: { documentStatistic: documentStatsType; wi
         value: documentStatistic.documentNumber,
       },
       {
-        label: wordings.statisticsPage.box.fields.endCaseCode,
-        value: documentStatistic.endCaseCode,
-      },
-      {
         label: wordings.statisticsPage.box.fields.NACCode,
         value: documentStatistic.NACCode,
       },

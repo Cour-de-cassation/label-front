@@ -43,8 +43,6 @@ function DocumentInspector(props: { settings: settingsType }) {
               props.settings,
               document.decisionMetadata.categoriesToOmit,
               document.decisionMetadata.additionalTermsToAnnotate,
-              document.decisionMetadata.computedAdditionalTerms,
-              document.decisionMetadata.additionalTermsParsingFailed,
               document.decisionMetadata.motivationOccultation,
             );
 

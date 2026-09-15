@@ -28,7 +28,6 @@ const fr = {
     documentRoute: {
       automatic: 'Automatique',
       exhaustive: 'Exhaustif',
-      simple: 'Simple',
       confirmation: 'Confirmation',
       request: 'Demande',
       default: 'N/A',
@@ -107,10 +106,6 @@ const fr = {
           title: 'Dif.',
           tooltipText: 'Type de diffusion',
         },
-        session: {
-          title: 'Formation',
-          tooltipText: 'Acronyme de la formation',
-        },
         source: { title: 'Source', tooltipText: 'Base de données source' },
         userName: 'Attribué à',
         route: { title: 'Circuit', tooltipText: 'Circuit de traitement' },
@@ -129,10 +124,6 @@ const fr = {
         problemReportDate: 'Date du signalement',
         problemReportText: 'Message',
         reviewStatus: { title: 'Revue', tooltipText: 'Statut de revue' },
-        loss: {
-          title: 'Loss',
-          tooltipText: 'Complexité de la décision et du traitement',
-        },
         surAnnotationsCount: {
           title: 'Sur.',
           tooltipText: 'Nombre de sur-annotations',
@@ -214,11 +205,6 @@ const fr = {
     reset: 'Réinitialiser',
     send: 'Envoyer',
     scrutatorInfo: 'Vous êtes en mode lecture seule. Les modifications que vous ferez ne seront pas sauvegardées.',
-    simpleReviewScreen: {
-      title: 'Relecture simple',
-      subtitle:
-        'Ce document ne nécessite pas de relecture exhaustive de la décision. Vous pouvez effectuer la vérification par le panneau latéral.',
-    },
     undo: 'Annuler',
     unlink: 'Supprimer la liaison',
     unlinkOption: {
@@ -345,7 +331,6 @@ const fr = {
         treatmentDuration: 'Temps de traitement',
         wordsCount: 'Mots',
         documentNumber: 'N° décision',
-        endCaseCode: 'Code décision',
         NACCode: 'Code NAC',
         chamberName: 'Chambre',
         circuit: 'Circuit',

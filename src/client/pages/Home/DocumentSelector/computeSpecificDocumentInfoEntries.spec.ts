@@ -10,19 +10,12 @@ describe('computeSpecificDocumentInfoEntries', () => {
       decisionMetadata: documentModule.decisionMetadataGenerator.generate({
         appealNumber: '',
         chamberName: 'Civile',
-        civilCaseCode: '',
-        criminalCaseCode: '',
-        civilMatterCode: '',
         date: decisionDate,
         jurisdiction: 'Cour de cassation',
         NACCode: '',
-        endCaseCode: '',
-        boundDecisionDocumentNumbers: [],
         categoriesToOmit: [],
         additionalTermsToAnnotate: '',
         occultationBlock: undefined,
-        session: '',
-        solution: '',
       }),
     });
 

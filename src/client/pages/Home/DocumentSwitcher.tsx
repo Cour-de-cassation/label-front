@@ -40,8 +40,6 @@ function DocumentSwitcher(props: {
           props.settings,
           documentState.choice.document.decisionMetadata.categoriesToOmit,
           documentState.choice.document.decisionMetadata.additionalTermsToAnnotate,
-          documentState.choice.document.decisionMetadata.computedAdditionalTerms,
-          documentState.choice.document.decisionMetadata.additionalTermsParsingFailed,
           documentState.choice.document.decisionMetadata.motivationOccultation,
         );
         return (

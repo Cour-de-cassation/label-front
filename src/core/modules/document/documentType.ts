@@ -1,4 +1,4 @@
-export type documentRouteType = 'automatic' | 'exhaustive' | 'simple' | 'confirmation' | 'request' | 'default';
+export type documentRouteType = 'automatic' | 'exhaustive' | 'confirmation' | 'request' | 'default';
 export type documentImporterType = 'recent' | 'manual' | 'default';
 export type documentStatusType = 'done' | 'free' | 'pending' | 'locked' | 'saved' | 'toBeConfirmed';
 
@@ -24,19 +24,6 @@ export type checklistItemType = {
   metadata_text: string[];
 };
 
-export type nlpVersionType = {
-  version: string;
-  date: string;
-};
-
-export type nlpVersionsType = {
-  juriSpacyTokenizer: nlpVersionType;
-  juritools: nlpVersionType;
-  pseudonymisationApi: nlpVersionType;
-  model: {
-    name: string;
-  };
-};
 export type decisionMetadataType = {
   appealNumber: string;
   additionalTermsToAnnotate: string;
@@ -45,22 +32,14 @@ export type decisionMetadataType = {
     additionalTermsToUnAnnotate: string[];
   };
   additionalTermsParsingFailed?: boolean;
-  boundDecisionDocumentNumbers: number[];
   categoriesToOmit: string[];
   chamberName: string;
-  civilCaseCode: string;
-  civilMatterCode: string;
-  criminalCaseCode: string;
   date?: number;
   jurisdiction: string;
   occultationBlock?: number;
   NACCode: string;
-  endCaseCode: string;
-  session: string;
-  solution: string;
   motivationOccultation?: boolean;
   selection?: boolean;
-  sommaire?: string;
 };
 
 export type reviewStatusType = {
@@ -74,8 +53,6 @@ export type documentType = {
   decisionMetadata: decisionMetadataType;
   documentNumber: number;
   importer: documentImporterType;
-  loss?: number;
-  nlpVersions?: nlpVersionsType;
   publicationCategory: string[];
   reviewStatus: reviewStatusType;
   route: documentRouteType;
@@ -85,6 +62,5 @@ export type documentType = {
   text: string;
   checklist: checklistItemType[];
   externalId: string;
-  priority: number;
   updateDate: number;
 };

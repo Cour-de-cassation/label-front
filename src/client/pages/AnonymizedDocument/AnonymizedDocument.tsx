@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router';
-import { customThemeType, useCustomTheme, ButtonWithIcon, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, ButtonWithIcon, Text } from 'src/pelta-design-system';
 import { MainHeader } from '../../components';
 import { lineSplitter } from '../../services/lineSplitter';
 import { heights } from '../../styles';

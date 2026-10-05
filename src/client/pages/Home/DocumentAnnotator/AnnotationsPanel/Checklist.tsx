@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, customThemeType, Icon, Text, useCustomTheme } from 'pelta-design-system';
+import { Accordion, customThemeType, Icon, Text, useCustomTheme } from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
 import { ChecklistEntry } from './ChecklistEntry';
 import { splittedTextByLineType } from '../lib';

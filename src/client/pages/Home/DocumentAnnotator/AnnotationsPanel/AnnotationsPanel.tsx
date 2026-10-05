@@ -1,6 +1,6 @@
 import React from 'react';
 import { documentType, settingsModule } from 'src/core';
-import { customThemeType, getColor, Icon, Text, useCustomTheme, useDisplayMode } from 'pelta-design-system';
+import { customThemeType, getColor, Icon, Text, useCustomTheme, useDisplayMode } from 'src/pelta-design-system';
 import { heights } from '../../../../styles';
 import { wordings } from '../../../../wordings';
 import { annotationPerCategoryAndEntityType, splittedTextByLineType } from '../lib';

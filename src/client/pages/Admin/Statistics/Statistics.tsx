@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { apiRouteOutType, ressourceFilterType, userType } from 'src/core';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { heights, widths } from '../../../styles';
 import { wordings } from '../../../wordings';
 import { StatisticsBox } from './StatisticsBox';

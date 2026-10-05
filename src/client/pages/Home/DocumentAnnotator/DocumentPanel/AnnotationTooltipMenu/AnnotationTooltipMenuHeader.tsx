@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { annotationHandler, annotationType, settingsModule } from 'src/core';
-import { customThemeType, useCustomTheme, Header, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Header, Text } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../../components';
 import { clientAnonymizerType } from '../../../../../types';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';

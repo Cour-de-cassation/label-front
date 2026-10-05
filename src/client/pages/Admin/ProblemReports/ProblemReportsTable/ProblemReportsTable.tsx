@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import format from 'string-template';
-import { optionItemType, Table, tableRowFieldType } from 'pelta-design-system';
+import { optionItemType, Table, tableRowFieldType } from 'src/pelta-design-system';
 import { apiRouteOutType, documentModule, timeOperator } from 'src/core';
 import { apiCaller } from '../../../../api';
 import { DocumentStatusIcon, ProblemReportIcon } from '../../../../components';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton } from 'pelta-design-system';
+import { IconButton } from 'src/pelta-design-system';
 import { useAnnotatorStateHandler } from '../../../services/annotatorState';
 import { useAnonymizerBuilder } from '../../../services/anonymizer';
 import { wordings } from '../../../wordings';

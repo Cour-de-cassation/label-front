@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCustomTheme, Header, IconButton, Text, Icon, customThemeType } from 'pelta-design-system';
+import { useCustomTheme, Header, IconButton, Text, Icon, customThemeType } from 'src/pelta-design-system';
 import { heights } from '../../../../../styles';
 import { wordings } from '../../../../../wordings';
 import { useDocumentViewerModeHandler } from '../../../../../services/documentViewerMode';

@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { customThemeType, useCustomTheme } from 'pelta-design-system';
+import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 import { useAnonymizerBuilder } from '../../../../services/anonymizer';
 import { useDocumentViewerModeHandler, viewerModeType } from '../../../../services/documentViewerMode';

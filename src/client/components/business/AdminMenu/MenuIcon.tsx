@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { customThemeType, useCustomTheme, Icon, iconNameType, Tooltip } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Icon, iconNameType, Tooltip } from 'src/pelta-design-system';
 import { widths } from '../../../styles';
 import { AlertBadge } from './AlertBadge';
 

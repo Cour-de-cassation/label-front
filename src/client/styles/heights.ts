@@ -1,4 +1,4 @@
-import { heights as peltaHeights } from 'pelta-design-system';
+import { heights as peltaHeights } from 'src/pelta-design-system';
 
 export { heights };
 

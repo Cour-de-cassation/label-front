@@ -1,6 +1,6 @@
 import React from 'react';
 import dateFormat from 'dateformat';
-import { Table, tableRowFieldType } from 'pelta-design-system';
+import { Table, tableRowFieldType } from 'src/pelta-design-system';
 import { apiRouteOutType } from 'src/core';
 import { wordings } from '../../../wordings';
 

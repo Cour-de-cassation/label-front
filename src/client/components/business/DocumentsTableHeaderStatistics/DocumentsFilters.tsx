@@ -1,6 +1,6 @@
 import React from 'react';
 import format from 'string-template';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { FilterButton, FilterChip } from '../../business';
 import { wordings } from '../../../wordings';
 import {

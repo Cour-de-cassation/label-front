@@ -1,1 +1,1 @@
-export { PaginatedTable } from "./PaginatedTable";
+export { PaginatedTable } from './PaginatedTable';

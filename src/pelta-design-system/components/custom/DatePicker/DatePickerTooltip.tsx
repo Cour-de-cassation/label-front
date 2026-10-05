@@ -1,19 +1,11 @@
-import React, { useState } from "react";
-import { range } from "lodash";
-import {
-  customThemeType,
-  useCustomTheme,
-  rectPositionType,
-} from "../../../theme";
-import { Icon, Text } from "../../materialUI";
-import { TooltipMenu } from "../TooltipMenu";
-import {
-  getMonthFromDate,
-  getNextMonthDate,
-  getPreviousMonthDate,
-} from "./lib";
-import { createCalendarTable } from "./lib/createCalendarTable";
-import { wordings } from "../../../wordings";
+import React, { useState } from 'react';
+import { range } from 'lodash';
+import { customThemeType, useCustomTheme, rectPositionType } from '../../../theme';
+import { Icon, Text } from '../../materialUI';
+import { TooltipMenu } from '../TooltipMenu';
+import { getMonthFromDate, getNextMonthDate, getPreviousMonthDate } from './lib';
+import { createCalendarTable } from './lib/createCalendarTable';
+import { wordings } from '../../../wordings';
 
 export { DatePickerTooltip };
 
@@ -27,15 +19,7 @@ type dateType = {
 
 const TOOLTIP_WIDTH = 300;
 
-const dayOfTheWeekKeys = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-  "sunday",
-] as const;
+const dayOfTheWeekKeys = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const;
 
 function DatePickerTooltip(props: {
   value: Date | undefined;
@@ -48,7 +32,7 @@ function DatePickerTooltip(props: {
   const styles = buildStyles(theme);
   const now = new Date();
   const [currentDate, setCurrentDate] = useState<Date>(
-    props.value || new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    props.value || new Date(now.getFullYear(), now.getMonth(), now.getDate()),
   );
 
   return (
@@ -60,19 +44,13 @@ function DatePickerTooltip(props: {
     >
       <div style={styles.tooltipContent}>
         <div style={styles.header}>
-          <div
-            style={styles.arrowContainer}
-            onClick={() => setCurrentDate(getPreviousMonthDate(currentDate))}
-          >
+          <div style={styles.arrowContainer} onClick={() => setCurrentDate(getPreviousMonthDate(currentDate))}>
             <Icon iconName="arrowLeft" />
           </div>
           <Text>
             {getMonthFromDate(currentDate)}/{currentDate.getFullYear()}
           </Text>
-          <div
-            style={styles.arrowContainer}
-            onClick={() => setCurrentDate(getNextMonthDate(currentDate))}
-          >
+          <div style={styles.arrowContainer} onClick={() => setCurrentDate(getNextMonthDate(currentDate))}>
             <Icon iconName="arrowRight" />
           </div>
         </div>
@@ -108,15 +86,9 @@ function DatePickerTooltip(props: {
               <div
                 style={{
                   ...styles.dayContainer,
-                  ...(isDateAvailable
-                    ? undefined
-                    : styles.unavailableDayContainer),
+                  ...(isDateAvailable ? undefined : styles.unavailableDayContainer),
                 }}
-                onClick={
-                  isDateAvailable
-                    ? () => changeDate({ year, month, dayOfMonth })
-                    : undefined
-                }
+                onClick={isDateAvailable ? () => changeDate({ year, month, dayOfMonth }) : undefined}
               >
                 <Text>{dayOfMonth}</Text>
               </div>
@@ -138,23 +110,23 @@ function DatePickerTooltip(props: {
 function buildStyles(theme: customThemeType) {
   return {
     header: {
-      display: "flex",
-      justifyContent: "space-between",
+      display: 'flex',
+      justifyContent: 'space-between',
     },
     arrowContainer: {
-      cursor: "pointer",
+      cursor: 'pointer',
     },
     tooltipContent: {
-      display: "flex",
-      flexDirection: "column",
+      display: 'flex',
+      flexDirection: 'column',
     },
-    daysTable: { width: "100%" },
+    daysTable: { width: '100%' },
     dayContainer: {
-      cursor: "pointer",
+      cursor: 'pointer',
     },
     unavailableDayContainer: {
       color: theme.colors.disabled.color,
-      cursor: "default",
+      cursor: 'default',
     },
   } as const;
 }

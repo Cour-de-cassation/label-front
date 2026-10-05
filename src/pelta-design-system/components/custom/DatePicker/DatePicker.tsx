@@ -1,8 +1,8 @@
-import React, { MouseEvent, useState } from "react";
-import { rectPositionType } from "../../../theme";
-import { DropdownButton } from "../DropdownButton";
-import { DatePickerTooltip, dateType } from "./DatePickerTooltip";
-import { convertTimestampToReadableDate } from "./lib";
+import React, { MouseEvent, useState } from 'react';
+import { rectPositionType } from '../../../theme';
+import { DropdownButton } from '../DropdownButton';
+import { DatePickerTooltip, dateType } from './DatePickerTooltip';
+import { convertTimestampToReadableDate } from './lib';
 
 export { DatePicker };
 
@@ -15,9 +15,7 @@ function DatePicker(props: {
   width?: number;
   parentRectPosition?: rectPositionType;
 }) {
-  const [tooltipMenuRectPosition, setTooltipMenuRectPosition] = useState<
-    rectPositionType | undefined
-  >();
+  const [tooltipMenuRectPosition, setTooltipMenuRectPosition] = useState<rectPositionType | undefined>();
   const isDatePickerOpen = !!tooltipMenuRectPosition;
   const item = props.value
     ? {

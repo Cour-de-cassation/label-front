@@ -1,9 +1,9 @@
-import React, { ReactNode } from "react";
-import { Drawer as MuiDrawer, makeStyles } from "@material-ui/core";
-import { customThemeType, heights, useCustomTheme } from "../../theme";
-import { wordings } from "../../wordings";
-import { IconButton, Text } from "..";
-import { zIndices } from "./constants";
+import React, { ReactNode } from 'react';
+import { Drawer as MuiDrawer, makeStyles } from '@material-ui/core';
+import { customThemeType, heights, useCustomTheme } from '../../theme';
+import { wordings } from '../../wordings';
+import { IconButton, Text } from '..';
+import { zIndices } from './constants';
 
 export { Drawer };
 
@@ -19,13 +19,7 @@ function Drawer(props: {
   const classes = buildClasses(theme);
 
   return (
-    <MuiDrawer
-      style={styles.drawer}
-      classes={classes}
-      anchor="right"
-      open={props.isOpen}
-      onClose={props.onClose}
-    >
+    <MuiDrawer style={styles.drawer} classes={classes} anchor="right" open={props.isOpen} onClose={props.onClose}>
       <div style={styles.container}>
         <div style={styles.header}>
           <div>
@@ -37,11 +31,7 @@ function Drawer(props: {
             )}
           </div>
           <div>
-            <IconButton
-              hint={wordings.cancel}
-              onClick={props.onClose}
-              iconName="close"
-            />
+            <IconButton hint={wordings.cancel} onClick={props.onClose} iconName="close" />
           </div>
         </div>
         <div style={styles.content}>{props.children}</div>
@@ -57,26 +47,26 @@ function Drawer(props: {
       container: {
         paddingLeft: theme.spacing * 8,
         paddingRight: theme.spacing * 8,
-        height: "inherit",
-        display: "flex",
-        flexDirection: "column",
+        height: 'inherit',
+        display: 'flex',
+        flexDirection: 'column',
       },
       subtitle: {
-        display: "inherit",
+        display: 'inherit',
       },
       content: {
-        overflow: "auto",
+        overflow: 'auto',
         paddingBottom: theme.spacing * 4,
       },
       header: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         paddingBottom: theme.spacing * 3,
         marginTop: theme.spacing * 4,
-        borderBottom: "solid 1px",
+        borderBottom: 'solid 1px',
         borderBottomColor: theme.colors.separator,
-        width: "100%",
+        width: '100%',
       },
     } as const;
   }

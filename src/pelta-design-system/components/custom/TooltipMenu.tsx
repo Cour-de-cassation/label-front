@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
-import { useCustomTheme, rectPositionType } from "../../theme";
-import { zIndices } from "../materialUI/constants";
+import React, { ReactElement } from 'react';
+import { useCustomTheme, rectPositionType } from '../../theme';
+import { zIndices } from '../materialUI/constants';
 
 export { TooltipMenu };
 
@@ -15,9 +15,7 @@ function TooltipMenu(props: {
   const styles = buildStyles();
   return (
     <>
-      {props.shouldCloseWhenClickedAway && (
-        <div onClick={props.onClose} style={styles.overlay} />
-      )}
+      {props.shouldCloseWhenClickedAway && <div onClick={props.onClose} style={styles.overlay} />}
       <div style={styles.tooltipMenu}>
         <div style={styles.tooltipMenuContent}>{props.children}</div>
       </div>
@@ -29,11 +27,11 @@ function TooltipMenu(props: {
       overlay: {
         backgroundColor: theme.colors.overlay,
         opacity: 0.2,
-        position: "fixed",
+        position: 'fixed',
         top: 0,
         left: 0,
-        width: "100vw",
-        height: "100vh",
+        width: '100vw',
+        height: '100vh',
       },
       tooltipMenuContent: {
         padding: `${theme.spacing * 2}px`,
@@ -42,7 +40,7 @@ function TooltipMenu(props: {
         boxShadow: theme.boxShadow.minor.out,
         backgroundColor: theme.colors.background,
         borderRadius: theme.shape.borderRadius.xxs,
-        position: "absolute",
+        position: 'absolute',
         width: props.width,
         zIndex: zIndices.tooltipMenu,
         ...props.rectPosition,

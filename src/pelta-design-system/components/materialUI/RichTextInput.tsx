@@ -1,6 +1,6 @@
-import React, { ChangeEvent, CSSProperties, ReactElement } from "react";
-import { makeStyles, TextField } from "@material-ui/core";
-import { customThemeType, useCustomTheme } from "../../theme";
+import React, { ChangeEvent, CSSProperties, ReactElement } from 'react';
+import { makeStyles, TextField } from '@material-ui/core';
+import { customThemeType, useCustomTheme } from '../../theme';
 
 export { RichTextInput };
 
@@ -15,7 +15,7 @@ function RichTextInput(props: {
   onChange: (value: string) => void;
   size?: number;
   style?: CSSProperties;
-  type?: React.InputHTMLAttributes<unknown>["type"];
+  type?: React.InputHTMLAttributes<unknown>['type'];
   width?: number;
 }): ReactElement {
   const theme = useCustomTheme();

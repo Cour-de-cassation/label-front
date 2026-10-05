@@ -1,13 +1,13 @@
-import React, { ReactElement, ReactNode } from "react";
-import { useCustomTheme } from "../../theme";
-import { Menu, Text } from "../materialUI";
-import { ComponentsList } from "./ComponentsList";
+import React, { ReactElement, ReactNode } from 'react';
+import { useCustomTheme } from '../../theme';
+import { Menu, Text } from '../materialUI';
+import { ComponentsList } from './ComponentsList';
 
 export { DropdownMenu };
 
 function DropdownMenu<T extends string>(props: {
   anchorElement: Element | undefined;
-  dropdownPosition: "bottom" | "top";
+  dropdownPosition: 'bottom' | 'top';
   items: Array<{
     icon?: ReactElement;
     text: string;
@@ -27,10 +27,7 @@ function DropdownMenu<T extends string>(props: {
       items={props.items.map(({ icon, text, value, isDisabled }) => ({
         element: icon ? (
           <ComponentsList
-            components={[
-              icon,
-              <ItemText isDisabled={isDisabled}>{text}</ItemText>,
-            ]}
+            components={[icon, <ItemText isDisabled={isDisabled}>{text}</ItemText>]}
             spaceBetweenComponents={theme.spacing}
           />
         ) : (
@@ -58,8 +55,8 @@ function ItemText(props: { children: ReactNode; isDisabled?: boolean }) {
 function buildStyles() {
   return {
     itemText: {
-      whiteSpace: "normal",
-      color: "inherit",
+      whiteSpace: 'normal',
+      color: 'inherit',
     } as const,
   };
 }

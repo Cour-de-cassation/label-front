@@ -1,5 +1,5 @@
-import React, { MouseEvent, ReactElement, ReactNode, useState } from "react";
-import { DropdownMenu } from "./DropdownMenu";
+import React, { MouseEvent, ReactElement, ReactNode, useState } from 'react';
+import { DropdownMenu } from './DropdownMenu';
 
 export { Dropdown };
 
@@ -20,15 +20,9 @@ function Dropdown<T extends string>(props: {
   onClose?: () => void;
   width?: number;
 }): ReactElement {
-  const [anchorElement, setAnchorElement] = useState<Element | undefined>(
-    undefined
-  );
-  const [selectedValue, setSelectedValue] = useState<T | undefined>(
-    props.defaultValue
-  );
-  const [dropdownPosition, setdDropdownPosition] = useState<"bottom" | "top">(
-    "bottom"
-  );
+  const [anchorElement, setAnchorElement] = useState<Element | undefined>(undefined);
+  const [selectedValue, setSelectedValue] = useState<T | undefined>(props.defaultValue);
+  const [dropdownPosition, setdDropdownPosition] = useState<'bottom' | 'top'>('bottom');
 
   return (
     <>
@@ -60,18 +54,11 @@ function Dropdown<T extends string>(props: {
     setAnchorElement(event.currentTarget);
 
     function getDisplayPosition(anchorElement: Element | undefined) {
-      const { bottom: dropdownMenuVerticalPosition } =
-        anchorElement?.getBoundingClientRect() || { bottom: 0 };
-      const windowHeight =
-        window.innerHeight ||
-        document.documentElement.clientHeight ||
-        document.body.clientHeight;
-      const dropdownMenuVerticalWindowPercentagePosition =
-        (100 * dropdownMenuVerticalPosition) / windowHeight;
+      const { bottom: dropdownMenuVerticalPosition } = anchorElement?.getBoundingClientRect() || { bottom: 0 };
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      const dropdownMenuVerticalWindowPercentagePosition = (100 * dropdownMenuVerticalPosition) / windowHeight;
 
-      return dropdownMenuVerticalWindowPercentagePosition < 75
-        ? "bottom"
-        : "top";
+      return dropdownMenuVerticalWindowPercentagePosition < 75 ? 'bottom' : 'top';
     }
   }
 

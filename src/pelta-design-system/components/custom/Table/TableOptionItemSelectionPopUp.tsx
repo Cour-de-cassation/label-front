@@ -1,10 +1,10 @@
-import React from "react";
-import { customThemeType, useCustomTheme } from "../../../theme";
-import { wordings } from "../../../wordings";
-import { Text } from "../../materialUI";
-import { ButtonWithIcon } from "../ButtonWithIcon";
-import { LabelledDropdown } from "../LabelledDropdown";
-import { PopUp } from "../PopUp";
+import React from 'react';
+import { customThemeType, useCustomTheme } from '../../../theme';
+import { wordings } from '../../../wordings';
+import { Text } from '../../materialUI';
+import { ButtonWithIcon } from '../ButtonWithIcon';
+import { LabelledDropdown } from '../LabelledDropdown';
+import { PopUp } from '../PopUp';
 
 export { TableOptionItemSelectionPopUp };
 
@@ -33,12 +33,7 @@ function TableOptionItemSelectionPopUp(props: {
           />
         </div>
         <div style={styles.cancelButtonContainer}>
-          <ButtonWithIcon
-            iconName="close"
-            onClick={props.onClose}
-            text={wordings.cancel}
-            color="default"
-          />
+          <ButtonWithIcon iconName="close" onClick={props.onClose} text={wordings.cancel} color="default" />
         </div>
       </div>
     </PopUp>
@@ -48,17 +43,17 @@ function TableOptionItemSelectionPopUp(props: {
 function buildStyles(theme: customThemeType) {
   return {
     contentContainer: {
-      display: "flex",
-      flexDirection: "column",
+      display: 'flex',
+      flexDirection: 'column',
     },
     dropdownContainer: {
-      display: "flex",
-      justifyContent: "center",
+      display: 'flex',
+      justifyContent: 'center',
       marginBottom: theme.spacing * 6,
     },
     cancelButtonContainer: {
-      display: "flex",
-      justifyContent: "flex-end",
+      display: 'flex',
+      justifyContent: 'flex-end',
     },
     description: {
       marginBottom: theme.spacing * 3,

@@ -1,4 +1,4 @@
-import { fr } from "./fr";
+import { fr } from './fr';
 
 export { wordings };
 

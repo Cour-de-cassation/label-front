@@ -1,14 +1,14 @@
-import React, { CSSProperties } from "react";
-import { customThemeType, useCustomTheme } from "../../../theme";
-import { TableSortLabel, Text, Tooltip } from "../../materialUI";
+import React, { CSSProperties } from 'react';
+import { customThemeType, useCustomTheme } from '../../../theme';
+import { TableSortLabel, Text, Tooltip } from '../../materialUI';
 
 export { TableHeader, DEFAULT_ORDER_DIRECTION };
 
 export type { orderDirectionType };
 
-type orderDirectionType = "asc" | "desc";
+type orderDirectionType = 'asc' | 'desc';
 
-const DEFAULT_ORDER_DIRECTION = "asc";
+const DEFAULT_ORDER_DIRECTION = 'asc';
 
 type cellType<orderByPropertyT> = {
   id: orderByPropertyT;
@@ -54,9 +54,7 @@ function TableHeader<orderByPropertyT extends string = string>(props: {
   function onOrderByPropertyClickBuilder(newOrderByProperty: orderByPropertyT) {
     const onOrderByPropertyClick = () => {
       if (newOrderByProperty === props.orderByProperty) {
-        props.setOrderDirection(
-          props.orderDirection === "asc" ? "desc" : "asc"
-        );
+        props.setOrderDirection(props.orderDirection === 'asc' ? 'desc' : 'asc');
       } else {
         props.setOrderDirection(DEFAULT_ORDER_DIRECTION);
         props.setOrderByProperty(newOrderByProperty);
@@ -81,7 +79,7 @@ function buildStyles(theme: customThemeType) {
   return {
     header: {
       top: 0,
-      position: "sticky",
+      position: 'sticky',
       backgroundColor: theme.colors.background,
     },
   } as const;

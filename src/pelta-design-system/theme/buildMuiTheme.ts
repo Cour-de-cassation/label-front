@@ -1,6 +1,6 @@
-import { createTheme } from "@material-ui/core";
-import { displayModeType } from "./types";
-import { buildCustomTheme } from "./theme";
+import { createTheme } from '@material-ui/core';
+import { displayModeType } from './types';
+import { buildCustomTheme } from './theme';
 
 export { buildMuiTheme };
 
@@ -28,7 +28,7 @@ function buildMuiTheme(displayMode: displayModeType) {
         disabledBackground: customTheme.colors.disabled.background,
       },
       grey: {
-        "300": customTheme.colors.default.background,
+        '300': customTheme.colors.default.background,
       },
     },
   });

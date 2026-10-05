@@ -1,9 +1,9 @@
-import React, { CSSProperties, useState } from "react";
-import { customThemeType, useCustomTheme } from "../../../theme";
-import { Icon, Text } from "../../materialUI";
-import { OptionButton } from "./OptionButton";
-import { optionItemType, tableRowFieldType } from "./Table";
-import { TableOptionItemSelectionPopUp } from "./TableOptionItemSelectionPopUp";
+import React, { CSSProperties, useState } from 'react';
+import { customThemeType, useCustomTheme } from '../../../theme';
+import { Icon, Text } from '../../materialUI';
+import { OptionButton } from './OptionButton';
+import { optionItemType, tableRowFieldType } from './Table';
+import { TableOptionItemSelectionPopUp } from './TableOptionItemSelectionPopUp';
 
 export { TableRow };
 
@@ -26,20 +26,14 @@ function TableRow<InputT>(props: {
   optionCellStyle?: CSSProperties;
 }) {
   const theme = useCustomTheme();
-  const [optionItemSelection, setOptionItemSelection] = useState<
-    optionItemSelectionType | undefined
-  >();
+  const [optionItemSelection, setOptionItemSelection] = useState<optionItemSelectionType | undefined>();
   const [isHovered, setIsHovered] = useState(false);
   const styles = buildStyles(theme);
-  const cellWeight = props.isHighlighted ? "bold" : "normal";
-  const cellColor = props.isMinored ? "textSecondary" : "textPrimary";
+  const cellWeight = props.isHighlighted ? 'bold' : 'normal';
+  const cellColor = props.isMinored ? 'textSecondary' : 'textPrimary';
   const formattedRow = props.fields.map((field) => ({
     style: field.cellStyle,
-    content: field.render ? (
-      field.render(props.row)
-    ) : (
-      <Text variant="h3">{field.extractor(props.row)}</Text>
-    ),
+    content: field.render ? field.render(props.row) : <Text variant="h3">{field.extractor(props.row)}</Text>,
   }));
   const { onRowClick } = props;
 
@@ -86,22 +80,18 @@ function TableRow<InputT>(props: {
       text: optionItem.text,
       value: optionItem.text,
       isDisabled: optionItem.isDisabled,
-      icon: optionItem.iconName ? (
-        <Icon iconName={optionItem.iconName} />
-      ) : undefined,
+      icon: optionItem.iconName ? <Icon iconName={optionItem.iconName} /> : undefined,
     }));
     const onSelect = (optionItemText: string) => {
-      const optionItem = optionItems.find(
-        ({ text }) => text === optionItemText
-      );
+      const optionItem = optionItems.find(({ text }) => text === optionItemText);
       if (!optionItem) {
         return;
       }
       switch (optionItem.kind) {
-        case "text":
+        case 'text':
           optionItem.onClick();
           return;
-        case "selection":
+        case 'selection':
           setOptionItemSelection({
             description: optionItem.description,
             items: optionItem.items,
@@ -111,13 +101,7 @@ function TableRow<InputT>(props: {
           return;
       }
     };
-    return (
-      <OptionButton
-        items={items}
-        onClose={() => setIsHovered(false)}
-        onSelect={onSelect}
-      />
-    );
+    return <OptionButton items={items} onClose={() => setIsHovered(false)} onSelect={onSelect} />;
   }
 
   function buildOptionItemOnSelect(onSelect: (text: string) => Promise<void>) {
@@ -128,10 +112,8 @@ function TableRow<InputT>(props: {
   }
 
   function buildStyles(theme: customThemeType) {
-    const cursor = !!props.onRowClick ? "pointer" : "default";
-    const backgroundColor = isHovered
-      ? theme.colors.default.background
-      : undefined;
+    const cursor = !!props.onRowClick ? 'pointer' : 'default';
+    const backgroundColor = isHovered ? theme.colors.default.background : undefined;
     return {
       row: {
         cursor,

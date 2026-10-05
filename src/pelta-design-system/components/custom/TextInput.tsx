@@ -1,5 +1,5 @@
-import React, { ChangeEvent, ReactElement } from "react";
-import { customThemeType, typography, useCustomTheme } from "../../theme";
+import React, { ChangeEvent, ReactElement } from 'react';
+import { customThemeType, typography, useCustomTheme } from '../../theme';
 
 export { TextInput };
 
@@ -31,14 +31,14 @@ function TextInput(props: {
 function buildStyles(theme: customThemeType, alignRight: boolean) {
   return {
     input: {
-      width: "100%",
-      boxSizing: "border-box",
+      width: '100%',
+      boxSizing: 'border-box',
       padding: theme.spacing,
-      backgroundColor: "transparent",
-      border: "none",
+      backgroundColor: 'transparent',
+      border: 'none',
       color: theme.colors.line.level1,
       borderBottom: `${theme.colors.line.level2} 2px solid`,
-      textAlign: alignRight ? "right" : "left",
+      textAlign: alignRight ? 'right' : 'left',
       ...typography.body1.normal,
     },
   } as const;

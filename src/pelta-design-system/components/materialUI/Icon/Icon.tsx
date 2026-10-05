@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties } from 'react';
 import {
   AccessibilityNewRounded,
   AccountBalanceRounded,
@@ -78,9 +78,9 @@ import {
   VpnKeyRounded,
   FlagRounded,
   MenuBookRounded,
-} from "@material-ui/icons";
-import { Tooltip } from "../Tooltip";
-import { Judge, Scissors, Meditation } from "./svgIcons";
+} from '@material-ui/icons';
+import { Tooltip } from '../Tooltip';
+import { Judge, Scissors, Meditation } from './svgIcons';
 
 export { Icon };
 
@@ -182,11 +182,7 @@ const iconMapping = {
 
 type iconNameType = keyof typeof iconMapping;
 
-function Icon(props: {
-  iconName: iconNameType;
-  hint?: string;
-  style?: CSSProperties;
-}) {
+function Icon(props: { iconName: iconNameType; hint?: string; style?: CSSProperties }) {
   const IconComponent = iconMapping[props.iconName];
   if (props.hint) {
     return (

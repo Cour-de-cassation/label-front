@@ -1,8 +1,8 @@
-import React, { CSSProperties, ReactElement, MouseEvent } from "react";
-import { iconNameType, Icon, Text } from "../materialUI";
-import { customThemeType, useCustomTheme } from "../../theme";
-import { Button, buttonColorType } from "./Button";
-import { Loader } from "./Loader";
+import React, { CSSProperties, ReactElement, MouseEvent } from 'react';
+import { iconNameType, Icon, Text } from '../materialUI';
+import { customThemeType, useCustomTheme } from '../../theme';
+import { Button, buttonColorType } from './Button';
+import { Loader } from './Loader';
 
 export { ButtonWithIcon };
 
@@ -14,7 +14,7 @@ function ButtonWithIcon(props: {
   onClick?: (event: MouseEvent) => void;
   style?: CSSProperties;
   text: string;
-  type?: "submit";
+  type?: 'submit';
 }): ReactElement {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
@@ -41,15 +41,15 @@ function ButtonWithIcon(props: {
   function buildStyles(theme: customThemeType) {
     return {
       button: {
-        justifyContent: "start",
-        textTransform: "none",
+        justifyContent: 'start',
+        textTransform: 'none',
         padding: `${theme.spacing}px ${theme.spacing * 2}px`,
       },
       iconContainer: {
-        display: "flex",
+        display: 'flex',
       },
       loadingWheelContainer: {
-        backgroundColor: "red",
+        backgroundColor: 'red',
       },
       loadingWheel: {
         margin: 0,

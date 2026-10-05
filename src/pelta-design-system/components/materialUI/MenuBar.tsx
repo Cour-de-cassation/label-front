@@ -1,25 +1,16 @@
-import React, { ReactNode } from "react";
-import { AppBar, makeStyles, PropTypes } from "@material-ui/core";
-import { zIndices } from "./constants";
-import { customThemeType, useCustomTheme } from "../../theme";
+import React, { ReactNode } from 'react';
+import { AppBar, makeStyles, PropTypes } from '@material-ui/core';
+import { zIndices } from './constants';
+import { customThemeType, useCustomTheme } from '../../theme';
 
 export { MenuBar };
 
-function MenuBar(props: {
-  children: ReactNode;
-  color?: PropTypes.Color;
-  isElevated: boolean;
-}) {
+function MenuBar(props: { children: ReactNode; color?: PropTypes.Color; isElevated: boolean }) {
   const theme = useCustomTheme();
   const styles = buildStyles();
   const classes = buildClasses(theme, props.isElevated);
   return (
-    <AppBar
-      classes={classes}
-      position="relative"
-      style={styles.appBar}
-      color={props.color}
-    >
+    <AppBar classes={classes} position="relative" style={styles.appBar} color={props.color}>
       {props.children}
     </AppBar>
   );
@@ -36,7 +27,7 @@ function MenuBar(props: {
 function buildClasses(theme: customThemeType, isElevated: boolean) {
   return makeStyles({
     root: {
-      boxShadow: isElevated ? theme.boxShadow.major.out : "none",
+      boxShadow: isElevated ? theme.boxShadow.major.out : 'none',
     },
   })();
 }

@@ -1,6 +1,6 @@
-import { displayModeType, shadeColorType } from "./types";
-import { customColors } from "./customColors";
-import { emphasizeShadeColor, getColor, getShadeColor } from "./palette";
+import { displayModeType, shadeColorType } from './types';
+import { customColors } from './customColors';
+import { emphasizeShadeColor, getColor, getShadeColor } from './palette';
 
 export { buildCustomColorsTheme };
 
@@ -38,7 +38,7 @@ function buildCustomColorsTheme(displayMode: displayModeType) {
       level1: getColor(customColorsMode.line.level1),
       level2: getShadeColor(customColorsMode.line.level2),
     },
-    overlay: "black",
+    overlay: 'black',
     primary: buildCustomColorsVariations(customColorsMode.primary),
     separator: getShadeColor(customColorsMode.line.level2),
     success: buildCustomColorsVariations(customColorsMode.success),
@@ -49,8 +49,7 @@ function buildCustomColorsTheme(displayMode: displayModeType) {
     return {
       background: getShadeColor(shadeColor),
       hoveredBackground: emphasizeShadeColor(shadeColor, displayMode),
-      hoveredTextColor:
-        displayMode === "darkMode" ? getColor("black") : getColor("white"),
+      hoveredTextColor: displayMode === 'darkMode' ? getColor('black') : getColor('white'),
     };
   }
 }

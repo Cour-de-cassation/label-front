@@ -1,5 +1,5 @@
-import React, { ReactElement, CSSProperties } from "react";
-import { ComponentsList } from "./ComponentsList";
+import React, { ReactElement, CSSProperties } from 'react';
+import { ComponentsList } from './ComponentsList';
 
 export { Header };
 
@@ -8,16 +8,13 @@ function Header(props: {
   rightHeaderComponents: ReactElement[];
   spaceBetweenComponents: number;
   style?: CSSProperties;
-  variant: "classic" | "mainLeft" | "mainRight";
+  variant: 'classic' | 'mainLeft' | 'mainRight';
 }): ReactElement {
   const styles = buildStyles();
   return (
     <div style={{ ...styles.mainContainer, ...props.style }}>
       <div style={styles.leftContainer}>
-        <ComponentsList
-          components={props.leftHeaderComponents}
-          spaceBetweenComponents={props.spaceBetweenComponents}
-        />
+        <ComponentsList components={props.leftHeaderComponents} spaceBetweenComponents={props.spaceBetweenComponents} />
       </div>
       <div style={styles.rightContainer}>
         <ComponentsList
@@ -33,17 +30,17 @@ function Header(props: {
 
     return {
       mainContainer: {
-        display: "flex",
+        display: 'flex',
       },
       leftContainer: {
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center',
         width: `${left}%`,
       },
       rightContainer: {
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "center",
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
         width: `${right}%`,
       },
     };
@@ -51,11 +48,11 @@ function Header(props: {
 
   function buildHeaderSized() {
     switch (props.variant) {
-      case "classic":
+      case 'classic':
         return { left: 50, right: 50 } as const;
-      case "mainLeft":
+      case 'mainLeft':
         return { left: 92, right: 8 } as const;
-      case "mainRight":
+      case 'mainRight':
         return { left: 8, right: 92 } as const;
     }
   }

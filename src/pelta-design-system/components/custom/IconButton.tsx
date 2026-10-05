@@ -1,7 +1,7 @@
-import React, { ReactElement, MouseEvent } from "react";
-import { customThemeType, useCustomTheme } from "../../theme";
-import { iconNameType, Icon } from "../materialUI";
-import { Button, buttonColorType } from "./Button";
+import React, { ReactElement, MouseEvent } from 'react';
+import { customThemeType, useCustomTheme } from '../../theme';
+import { iconNameType, Icon } from '../materialUI';
+import { Button, buttonColorType } from './Button';
 
 export { IconButton };
 
@@ -15,7 +15,7 @@ function IconButton(props: {
   hint: string;
   iconName: iconNameType;
   onClick: (event: MouseEvent) => void;
-  type?: "submit";
+  type?: 'submit';
 }): ReactElement {
   const theme = useCustomTheme();
   const style = buildStyle(theme);
@@ -37,9 +37,7 @@ function IconButton(props: {
 
   function buildStyle(theme: customThemeType) {
     const buttonSize = props.buttonSize || ICON_BUTTON_SIZE;
-    const color = props.color
-      ? theme.colors[props.color].background
-      : undefined;
+    const color = props.color ? theme.colors[props.color].background : undefined;
 
     return {
       button: {
@@ -49,7 +47,7 @@ function IconButton(props: {
         borderRadius: buttonSize / 2,
       },
       iconContainer: {
-        display: "flex",
+        display: 'flex',
       },
       icon: {
         color,

@@ -1,5 +1,5 @@
-import React, { CSSProperties } from "react";
-import { SvgIcon } from "@material-ui/core";
+import React, { CSSProperties } from 'react';
+import { SvgIcon } from '@material-ui/core';
 
 export { Scissors };
 
@@ -11,9 +11,7 @@ function Scissors(props: { style?: CSSProperties }) {
       <svg
         width={props.style?.width || DEFAULT_SIZE}
         height={props.style?.height || DEFAULT_SIZE}
-        viewBox={`0 0 ${props.style?.height || DEFAULT_SIZE} ${
-          props.style?.width || DEFAULT_SIZE
-        }`}
+        viewBox={`0 0 ${props.style?.height || DEFAULT_SIZE} ${props.style?.width || DEFAULT_SIZE}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

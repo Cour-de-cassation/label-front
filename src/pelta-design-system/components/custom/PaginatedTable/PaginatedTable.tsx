@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { optionItemType, Table, tableRowFieldType } from "../Table";
-import { footerCellType } from "../Table/TableFooter";
-import { orderDirectionType } from "../Table/TableHeader";
-import { computeNumberOfPages, computePagination } from "./lib";
-import { PaginationFooter } from "./PaginationFooter";
+import React, { useEffect, useState } from 'react';
+import { optionItemType, Table, tableRowFieldType } from '../Table';
+import { footerCellType } from '../Table/TableFooter';
+import { orderDirectionType } from '../Table/TableHeader';
+import { computeNumberOfPages, computePagination } from './lib';
+import { PaginationFooter } from './PaginationFooter';
 
 const ROWS_PER_PAGE = 20;
 
 export { PaginatedTable };
 
-function PaginatedTable<
-  InputT,
-  orderByPropertyT extends string = string
->(props: {
+function PaginatedTable<InputT, orderByPropertyT extends string = string>(props: {
   defaultOrderByProperty?: orderByPropertyT;
   defaultOrderDirection?: orderDirectionType;
   footer?: Array<footerCellType>;
@@ -41,11 +38,7 @@ function PaginatedTable<
         buildOptionItems={props.buildOptionItems}
         pagination={pagination}
       />
-      <PaginationFooter
-        numberOfPages={numberOfPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <PaginationFooter numberOfPages={numberOfPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </>
   );
 }

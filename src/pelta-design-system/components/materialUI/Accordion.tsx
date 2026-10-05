@@ -1,11 +1,6 @@
-import React, { CSSProperties, ReactElement } from "react";
-import {
-  Accordion as MuiAccordion,
-  AccordionDetails,
-  AccordionSummary,
-  makeStyles,
-} from "@material-ui/core";
-import { customThemeType, useCustomTheme } from "../../theme";
+import React, { CSSProperties, ReactElement } from 'react';
+import { Accordion as MuiAccordion, AccordionDetails, AccordionSummary, makeStyles } from '@material-ui/core';
+import { customThemeType, useCustomTheme } from '../../theme';
 
 export { Accordion };
 
@@ -47,10 +42,10 @@ function buildAccordionClasses(theme: customThemeType) {
     rounded: {
       backgroundColor: theme.colors.default.background,
       borderRadius: theme.shape.borderRadius.m,
-      "&:first-child": {
+      '&:first-child': {
         borderRadius: theme.shape.borderRadius.m,
       },
-      "&:last-child": {
+      '&:last-child': {
         borderRadius: theme.shape.borderRadius.m,
       },
     },
@@ -61,8 +56,8 @@ function buildAccordionHeaderClasses() {
   return makeStyles({
     content: {
       margin: 0,
-      "&$expanded": {
-        margin: "0",
+      '&$expanded': {
+        margin: '0',
       },
     },
     expanded: {},

@@ -1,33 +1,28 @@
-import blue from "@material-ui/core/colors/blue";
-import blueGrey from "@material-ui/core/colors/blueGrey";
-import brown from "@material-ui/core/colors/brown";
-import cyan from "@material-ui/core/colors/cyan";
-import deepOrange from "@material-ui/core/colors/deepOrange";
-import deepPurple from "@material-ui/core/colors/deepPurple";
-import green from "@material-ui/core/colors/green";
-import grey from "@material-ui/core/colors/grey";
-import indigo from "@material-ui/core/colors/indigo";
-import lightBlue from "@material-ui/core/colors/lightBlue";
-import lightGreen from "@material-ui/core/colors/lightGreen";
-import lime from "@material-ui/core/colors/lime";
-import orange from "@material-ui/core/colors/orange";
-import pink from "@material-ui/core/colors/pink";
-import purple from "@material-ui/core/colors/purple";
-import red from "@material-ui/core/colors/red";
-import teal from "@material-ui/core/colors/teal";
-import yellow from "@material-ui/core/colors/yellow";
-import {
-  colorType,
-  constantColorType,
-  displayModeType,
-  shadeColorType,
-} from "./types";
+import blue from '@material-ui/core/colors/blue';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+import brown from '@material-ui/core/colors/brown';
+import cyan from '@material-ui/core/colors/cyan';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+import deepPurple from '@material-ui/core/colors/deepPurple';
+import green from '@material-ui/core/colors/green';
+import grey from '@material-ui/core/colors/grey';
+import indigo from '@material-ui/core/colors/indigo';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+import lightGreen from '@material-ui/core/colors/lightGreen';
+import lime from '@material-ui/core/colors/lime';
+import orange from '@material-ui/core/colors/orange';
+import pink from '@material-ui/core/colors/pink';
+import purple from '@material-ui/core/colors/purple';
+import red from '@material-ui/core/colors/red';
+import teal from '@material-ui/core/colors/teal';
+import yellow from '@material-ui/core/colors/yellow';
+import { colorType, constantColorType, displayModeType, shadeColorType } from './types';
 
 export { emphasizeShadeColor, getColor, getShadeColor };
 
 const COLORS: { [color in constantColorType]: string } = {
-  black: "#000000",
-  white: "#FFFFFF",
+  black: '#000000',
+  white: '#FFFFFF',
 };
 
 const shadeColors: {
@@ -53,31 +48,28 @@ const shadeColors: {
   yellow,
 };
 
-function emphasizeShadeColor(
-  color: colorType,
-  displayMode: displayModeType
-): string {
-  if (typeof color === "string") {
+function emphasizeShadeColor(color: colorType, displayMode: displayModeType): string {
+  if (typeof color === 'string') {
     switch (color) {
-      case "black":
-        return "white";
-      case "white":
-        return "black";
+      case 'black':
+        return 'white';
+      case 'white':
+        return 'black';
     }
   } else {
     const [tint] = color;
 
     switch (displayMode) {
-      case "darkMode":
-        return getShadeColor([tint, "100"]);
-      case "lightMode":
-        return getShadeColor([tint, "900"]);
+      case 'darkMode':
+        return getShadeColor([tint, '100']);
+      case 'lightMode':
+        return getShadeColor([tint, '900']);
     }
   }
 }
 
 function getColor(color: colorType): string {
-  if (typeof color === "string") {
+  if (typeof color === 'string') {
     return COLORS[color];
   } else {
     return getShadeColor(color);

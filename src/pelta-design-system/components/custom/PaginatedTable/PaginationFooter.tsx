@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Icon, Text } from "../../materialUI";
-import { customThemeType, useCustomTheme } from "../../../theme";
-import { computeDisplayedPages } from "./lib";
+import React from 'react';
+import styled from 'styled-components';
+import { Icon, Text } from '../../materialUI';
+import { customThemeType, useCustomTheme } from '../../../theme';
+import { computeDisplayedPages } from './lib';
 
 export { PaginationFooter };
 
@@ -17,30 +17,19 @@ function PaginationFooter(props: {
 }) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
-  const displayedPages = computeDisplayedPages(
-    props.currentPage,
-    props.numberOfPages
-  );
+  const displayedPages = computeDisplayedPages(props.currentPage, props.numberOfPages);
   const { ClickableDiv } = buildStyledComponents();
 
   return (
     <div style={styles.container}>
       <div style={styles.pagesContainer}>
-        <ClickableDiv
-          onClick={() =>
-            props.currentPage > 0
-              ? props.setCurrentPage(props.currentPage - 1)
-              : null
-          }
-        >
+        <ClickableDiv onClick={() => (props.currentPage > 0 ? props.setCurrentPage(props.currentPage - 1) : null)}>
           <Icon iconName="arrowLeft" />
         </ClickableDiv>
         {displayedPages.map(renderContent)}
         <ClickableDiv
           onClick={() =>
-            props.currentPage < props.numberOfPages - 1
-              ? props.setCurrentPage(props.currentPage + 1)
-              : null
+            props.currentPage < props.numberOfPages - 1 ? props.setCurrentPage(props.currentPage + 1) : null
           }
         >
           <Icon iconName="arrowRight" />
@@ -49,11 +38,9 @@ function PaginationFooter(props: {
     </div>
   );
 
-  function renderContent(
-    content: { kind: "page"; value: number } | { kind: "blank" }
-  ) {
+  function renderContent(content: { kind: 'page'; value: number } | { kind: 'blank' }) {
     switch (content.kind) {
-      case "page":
+      case 'page':
         return (
           <ClickableDiv
             isSelected={props.currentPage === content.value}
@@ -62,7 +49,7 @@ function PaginationFooter(props: {
             <Text variant="h3">{content.value + 1}</Text>
           </ClickableDiv>
         );
-      case "blank":
+      case 'blank':
         return (
           <div style={styles.blank}>
             <Text variant="h3">...</Text>
@@ -109,13 +96,13 @@ function buildStyles(theme: customThemeType) {
   return {
     container: {
       height: `${HEIGHT}px`,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     pagesContainer: {
-      display: "flex",
-      alignItems: "center",
+      display: 'flex',
+      alignItems: 'center',
     },
     blank: {
       marginRight: theme.spacing,

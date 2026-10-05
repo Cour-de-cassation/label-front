@@ -6,7 +6,7 @@ export { customDarkColors };
 const customDarkColors: customColorsType = {
   alert: ['red', '500'],
   background: ['grey', '900'],
-  checklist:['grey', '700'],
+  checklist: ['grey', '700'],
   badge: {
     type1: { backgroundColor: 'white', color: ['grey', '900'] },
   },

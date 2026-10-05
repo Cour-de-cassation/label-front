@@ -1,6 +1,6 @@
-import React from "react";
-import { Icon, iconNameType } from "../materialUI";
-import { customThemeType, useCustomTheme } from "../../theme";
+import React from 'react';
+import { Icon, iconNameType } from '../materialUI';
+import { customThemeType, useCustomTheme } from '../../theme';
 
 export { CircleIcon };
 
@@ -28,9 +28,9 @@ function CircleIcon(props: {
         borderRadius: props.iconSize / 2,
         backgroundColor: props.backgroundColor,
         opacity: props.isDisabled ? 0.5 : 1,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       },
       icon: {
         color: theme.colors.icon,

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export { Loader };
 
@@ -13,9 +13,9 @@ function Loader(props: { size?: number }) {
 
     return {
       loader: {
-        borderColor: "inherit",
-        border: "2px solid",
-        borderTop: "2px solid transparent",
+        borderColor: 'inherit',
+        border: '2px solid',
+        borderTop: '2px solid transparent',
         width: `${size}px`,
         height: `${size}px`,
       },

@@ -1,12 +1,12 @@
-import React, { MouseEvent, ReactElement, ReactNode } from "react";
-import { makeStyles, Menu as MUMenu, MenuItem } from "@material-ui/core";
-import { customThemeType, useCustomTheme } from "../../theme";
+import React, { MouseEvent, ReactElement, ReactNode } from 'react';
+import { makeStyles, Menu as MUMenu, MenuItem } from '@material-ui/core';
+import { customThemeType, useCustomTheme } from '../../theme';
 
 export { Menu };
 
 function Menu<T extends string>(props: {
   anchorElement: Element | undefined;
-  dropdownPosition: "bottom" | "top";
+  dropdownPosition: 'bottom' | 'top';
   items: Array<{ value: T; element: ReactNode; isDisabled?: boolean }>;
   onChange: (value: T) => void;
   onClose: (event: MouseEvent) => void;
@@ -16,9 +16,9 @@ function Menu<T extends string>(props: {
   const menuClasses = buildMenuClasses(theme);
   const menuItemClasses = buildMenuItemClasses(theme);
   const dropdownMenuConfiguration = {
-    anchorOrigin: { horizontal: "left", vertical: props.dropdownPosition },
+    anchorOrigin: { horizontal: 'left', vertical: props.dropdownPosition },
     transformOrigin: {
-      horizontal: "left",
+      horizontal: 'left',
       vertical: oppositePosition(props.dropdownPosition),
     },
   } as const;
@@ -51,7 +51,7 @@ function Menu<T extends string>(props: {
     return makeStyles({
       paper: {
         backgroundColor: theme.colors.background,
-        maxHeight: "300px",
+        maxHeight: '300px',
         width: `${props.width}px`,
       },
     })();
@@ -62,7 +62,7 @@ function Menu<T extends string>(props: {
       root: {
         borderRadius: theme.shape.borderRadius.m,
         margin: theme.spacing,
-        "&:hover": {
+        '&:hover': {
           background: theme.colors.default.hoveredBackground,
           borderRadius: theme.shape.borderRadius.m,
           color: theme.colors.default.hoveredTextColor,
@@ -86,6 +86,6 @@ function Menu<T extends string>(props: {
   }
 }
 
-function oppositePosition(position: "bottom" | "top") {
-  return position === "bottom" ? "top" : "bottom";
+function oppositePosition(position: 'bottom' | 'top') {
+  return position === 'bottom' ? 'top' : 'bottom';
 }

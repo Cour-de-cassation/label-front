@@ -1,5 +1,5 @@
-import React, { ReactElement } from "react";
-import { customThemeType, useCustomTheme } from "../../../theme";
+import React, { ReactElement } from 'react';
+import { customThemeType, useCustomTheme } from '../../../theme';
 
 export { TableFooter };
 

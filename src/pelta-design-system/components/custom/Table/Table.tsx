@@ -1,13 +1,9 @@
-import React, { useState } from "react";
-import { sumBy } from "lodash";
-import { iconNameType } from "../../materialUI";
-import {
-  DEFAULT_ORDER_DIRECTION,
-  orderDirectionType,
-  TableHeader,
-} from "./TableHeader";
-import { TableBody, tableRowFieldType } from "./TableBody";
-import { footerCellType, TableFooter } from "./TableFooter";
+import React, { useState } from 'react';
+import { sumBy } from 'lodash';
+import { iconNameType } from '../../materialUI';
+import { DEFAULT_ORDER_DIRECTION, orderDirectionType, TableHeader } from './TableHeader';
+import { TableBody, tableRowFieldType } from './TableBody';
+import { footerCellType, TableFooter } from './TableFooter';
 
 export { Table };
 
@@ -17,14 +13,14 @@ const OPTION_CELL_WIDTH = 40;
 
 type optionItemType =
   | {
-      kind: "text";
+      kind: 'text';
       text: string;
       onClick: () => void;
       iconName?: iconNameType;
       isDisabled?: boolean;
     }
   | {
-      kind: "selection";
+      kind: 'selection';
       text: string;
       items: Array<string>;
       dropdownLabel: string;
@@ -48,17 +44,13 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
   pagination?: { start: number; end: number };
   fields: Array<tableRowFieldType<InputT, orderByPropertyT>>;
 }) {
-  const [orderByProperty, setOrderByProperty] = useState<
-    orderByPropertyT | undefined
-  >(props.defaultOrderByProperty);
+  const [orderByProperty, setOrderByProperty] = useState<orderByPropertyT | undefined>(props.defaultOrderByProperty);
   const [orderDirection, setOrderDirection] = useState<orderDirectionType>(
-    props.defaultOrderDirection || DEFAULT_ORDER_DIRECTION
+    props.defaultOrderDirection || DEFAULT_ORDER_DIRECTION,
   );
   const tableStyle = buildTableStyle();
   const fieldCellStyles = buildFieldCellStyles();
-  const optionCellStyle = props.buildOptionItems
-    ? buildOptionCellStyle()
-    : undefined;
+  const optionCellStyle = props.buildOptionItems ? buildOptionCellStyle() : undefined;
   return (
     <table style={tableStyle}>
       {renderHeader()}
@@ -88,14 +80,12 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
 
   function onOrderByPropertyChange(newOrderByProperty: orderByPropertyT) {
     setOrderByProperty(newOrderByProperty);
-    props.onOrderByPropertyChange &&
-      props.onOrderByPropertyChange(newOrderByProperty);
+    props.onOrderByPropertyChange && props.onOrderByPropertyChange(newOrderByProperty);
   }
 
   function onOrderDirectionChange(newOrderDirection: orderDirectionType) {
     setOrderDirection(newOrderDirection);
-    props.onOrderDirectionChange &&
-      props.onOrderDirectionChange(newOrderDirection);
+    props.onOrderDirectionChange && props.onOrderDirectionChange(newOrderDirection);
   }
 
   function renderBody() {
@@ -137,14 +127,14 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
 
   function buildTableStyle() {
     return {
-      borderCollapse: "collapse",
-      width: "100%",
+      borderCollapse: 'collapse',
+      width: '100%',
     } as const;
   }
 
   function buildOptionCellStyle() {
     return {
-      display: "block",
+      display: 'block',
       width: OPTION_CELL_WIDTH,
     } as const;
   }

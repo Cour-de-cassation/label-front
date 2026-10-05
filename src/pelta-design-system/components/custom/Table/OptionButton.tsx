@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
-import { wordings } from "../../../wordings";
-import { IconDropdown } from "../IconDropdown";
+import React, { ReactElement } from 'react';
+import { wordings } from '../../../wordings';
+import { IconDropdown } from '../IconDropdown';
 
 export { OptionButton };
 

@@ -1,7 +1,7 @@
-import React, { CSSProperties } from "react";
-import { optionItemType } from "./Table";
-import { orderDirectionType } from "./TableHeader";
-import { TableRow } from "./TableRow";
+import React, { CSSProperties } from 'react';
+import { optionItemType } from './Table';
+import { orderDirectionType } from './TableHeader';
+import { TableRow } from './TableRow';
 
 export { TableBody };
 
@@ -38,9 +38,7 @@ function TableBody<InputT, orderByPropertyT extends string = string>(props: {
       {sortedData.map((row) => (
         <TableRow
           fields={props.fields}
-          isHighlighted={
-            !!props.isRowHighlighted && props.isRowHighlighted(row)
-          }
+          isHighlighted={!!props.isRowHighlighted && props.isRowHighlighted(row)}
           isMinored={!!props.isRowMinored && props.isRowMinored(row)}
           onRowClick={onRowClick ? () => onRowClick(row) : undefined}
           optionCellStyle={props.optionCellStyle}
@@ -60,9 +58,7 @@ function TableBody<InputT, orderByPropertyT extends string = string>(props: {
   }
 
   function sortData(data: InputT[]): InputT[] {
-    const orderByField = props.fields.find(
-      (field) => field.id === props.orderByProperty
-    );
+    const orderByField = props.fields.find((field) => field.id === props.orderByProperty);
     if (!orderByField) {
       return data;
     }
@@ -76,9 +72,9 @@ function TableBody<InputT, orderByPropertyT extends string = string>(props: {
       if (propertyA === propertyB) {
         return 0;
       } else if (propertyA < propertyB) {
-        return props.orderDirection === "asc" ? -1 : 1;
+        return props.orderDirection === 'asc' ? -1 : 1;
       } else {
-        return props.orderDirection === "asc" ? 1 : -1;
+        return props.orderDirection === 'asc' ? 1 : -1;
       }
     });
   }

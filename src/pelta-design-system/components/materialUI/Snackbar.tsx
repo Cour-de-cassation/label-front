@@ -1,8 +1,8 @@
-import React from "react";
-import { Snackbar as MUSnackbar } from "@material-ui/core";
-import { customThemeType, useCustomTheme } from "../../theme";
-import { Text } from "./Text";
-import { Icon } from "./Icon";
+import React from 'react';
+import { Snackbar as MUSnackbar } from '@material-ui/core';
+import { customThemeType, useCustomTheme } from '../../theme';
+import { Text } from './Text';
+import { Icon } from './Icon';
 
 export { Snackbar };
 
@@ -12,7 +12,7 @@ const DELAY_SHOW = 3 * 1000;
 
 const MAX_WIDTH = 400;
 
-type snackbarVariantType = "success" | "alert" | "info";
+type snackbarVariantType = 'success' | 'alert' | 'info';
 
 function Snackbar(props: {
   variant: snackbarVariantType;
@@ -24,11 +24,7 @@ function Snackbar(props: {
   const theme = useCustomTheme();
   const styles = buildStyles(theme, props.variant);
   return (
-    <MUSnackbar
-      open={props.isOpen}
-      onClose={props.onClose}
-      autoHideDuration={props.autoHide ? DELAY_SHOW : undefined}
-    >
+    <MUSnackbar open={props.isOpen} onClose={props.onClose} autoHideDuration={props.autoHide ? DELAY_SHOW : undefined}>
       <div style={styles.container}>
         <Text style={styles.text}>{props.text}</Text>
         {!props.autoHide && (
@@ -44,36 +40,31 @@ function buildStyles(theme: customThemeType, variant: snackbarVariantType) {
   const backgroundColor = getBackgroundColor(theme, variant);
   return {
     container: {
-      padding: `${theme.spacing * 2}px ${theme.spacing}px ${
-        theme.spacing * 2
-      }px ${theme.spacing * 4}px`,
+      padding: `${theme.spacing * 2}px ${theme.spacing}px ${theme.spacing * 2}px ${theme.spacing * 4}px`,
       maxWidth: MAX_WIDTH,
       borderRadius: theme.shape.borderRadius.xxxs,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
       backgroundColor: backgroundColor,
     },
     text: {
       marginRight: theme.spacing * 2,
     },
     iconContainer: {
-      paddingTop: "2px",
-      cursor: "pointer",
+      paddingTop: '2px',
+      cursor: 'pointer',
     },
   };
 }
 
-function getBackgroundColor(
-  theme: customThemeType,
-  variant: snackbarVariantType
-) {
+function getBackgroundColor(theme: customThemeType, variant: snackbarVariantType) {
   switch (variant) {
-    case "alert":
+    case 'alert':
       return theme.colors.alert.background;
-    case "info":
+    case 'info':
       return theme.colors.primary.background;
-    case "success":
+    case 'success':
       return theme.colors.success.background;
   }
 }

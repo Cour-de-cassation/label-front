@@ -1,13 +1,13 @@
-import React, { ChangeEvent, ReactElement } from "react";
-import { makeStyles, Switch as MUSwitch } from "@material-ui/core";
-import { customThemeType, useCustomTheme } from "../../theme";
+import React, { ChangeEvent, ReactElement } from 'react';
+import { makeStyles, Switch as MUSwitch } from '@material-ui/core';
+import { customThemeType, useCustomTheme } from '../../theme';
 
 export { SwitchButton };
 
 function SwitchButton(props: {
   checked: boolean;
   disabled?: boolean;
-  color: "primary" | "secondary" | "default";
+  color: 'primary' | 'secondary' | 'default';
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }): ReactElement {
   const theme = useCustomTheme();
@@ -30,17 +30,17 @@ function SwitchButton(props: {
         height: 30,
         padding: 0,
         borderRadius: theme.shape.borderRadius.m,
-        border: "2px solid",
+        border: '2px solid',
       },
       switchBase: {
         color: theme.colors.line.level1,
-        position: "absolute",
-        top: "-7px",
-        left: "-7px",
-        "&$checked": {
+        position: 'absolute',
+        top: '-7px',
+        left: '-7px',
+        '&$checked': {
           color: theme.colors.line.level1,
         },
-        "&$checked + $track": {
+        '&$checked + $track': {
           backgroundColor: theme.colors.primary,
           opacity: 1,
         },

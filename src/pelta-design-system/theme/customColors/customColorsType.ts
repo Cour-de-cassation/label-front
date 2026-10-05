@@ -1,4 +1,4 @@
-import { colorType, shadeColorType } from "../types";
+import { colorType, shadeColorType } from '../types';
 
 export type { customColorsType };
 

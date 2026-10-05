@@ -1,7 +1,7 @@
-import React from "react";
-import { wordings } from "../../wordings";
-import { IconButton } from "./IconButton";
-import { Loader } from "./Loader";
+import React from 'react';
+import { wordings } from '../../wordings';
+import { IconButton } from './IconButton';
+import { Loader } from './Loader';
 
 const REFRESH_BUTTON_SIZE = 40;
 
@@ -30,9 +30,9 @@ function RefreshButton(props: { onClick: () => void; isLoading: boolean }) {
 function buildStyles() {
   return {
     refreshLoaderContainer: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       width: REFRESH_BUTTON_SIZE,
       height: REFRESH_BUTTON_SIZE,
     },

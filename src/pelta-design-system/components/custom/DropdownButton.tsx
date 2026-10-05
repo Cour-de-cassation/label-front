@@ -1,8 +1,8 @@
-import React, { MouseEvent, ReactElement } from "react";
-import { useCustomTheme, customThemeType } from "../../theme";
-import { Icon, Text } from "../materialUI";
-import { Button } from "./Button";
-import { ComponentsList } from "./ComponentsList";
+import React, { MouseEvent, ReactElement } from 'react';
+import { useCustomTheme, customThemeType } from '../../theme';
+import { Icon, Text } from '../materialUI';
+import { Button } from './Button';
+import { ComponentsList } from './ComponentsList';
 
 export { DropdownButton };
 
@@ -37,17 +37,13 @@ function DropdownButton<T extends string>(props: {
             : buildDropdownLabel(props.label, props.labelIcon)}
         </div>
         <div style={style.dropdownArrow}>
-          <Icon iconName={props.isOpen ? "arrowUp" : "arrowDown"} />
+          <Icon iconName={props.isOpen ? 'arrowUp' : 'arrowDown'} />
         </div>
       </div>
     </Button>
   );
 
-  function buildDropdownLabel(
-    text: string,
-    icon?: ReactElement,
-    isItemSelected?: boolean
-  ) {
+  function buildDropdownLabel(text: string, icon?: ReactElement, isItemSelected?: boolean) {
     const textStyle = isItemSelected
       ? { color: theme.colors.line.level1 }
       : props.error
@@ -64,32 +60,30 @@ function DropdownButton<T extends string>(props: {
   }
 
   function buildStyle(theme: customThemeType) {
-    const borderColor = props.error
-      ? theme.colors.dropdown.border.error
-      : theme.colors.dropdown.border.default;
+    const borderColor = props.error ? theme.colors.dropdown.border.error : theme.colors.dropdown.border.default;
     return {
       dropdown: {
-        backgroundColor: "transparent",
+        backgroundColor: 'transparent',
         border: `${LABELLED_DROPDOWN_BORDER_THICKNESS}px solid ${borderColor}`,
-        textTransform: "none",
-        width: props.width ? `${props.width - theme.spacing * 2}px` : "100%",
+        textTransform: 'none',
+        width: props.width ? `${props.width - theme.spacing * 2}px` : '100%',
         padding: theme.spacing,
         borderRadius: theme.shape.borderRadius.xxs,
       },
       dropdownContent: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         flex: 1,
       },
       dropdownText: {
-        display: "flex",
-        alignItems: "center",
-        textAlign: "left",
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'left',
         paddingLeft: theme.spacing,
       },
       dropdownArrow: {
-        display: "flex",
+        display: 'flex',
       },
     } as const;
   }

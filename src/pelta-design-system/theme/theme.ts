@@ -1,11 +1,8 @@
-import {
-  buildCustomColorsTheme,
-  customColorsThemeType,
-} from "./buildCustomColorsTheme";
-import { useDisplayMode } from "./displayMode";
-import { typography } from "./typography";
-import { displayModeType } from "./types";
-import { boxShadow } from "./boxShadow";
+import { buildCustomColorsTheme, customColorsThemeType } from './buildCustomColorsTheme';
+import { useDisplayMode } from './displayMode';
+import { typography } from './typography';
+import { displayModeType } from './types';
+import { boxShadow } from './boxShadow';
 
 export { buildCustomTheme, commonTheme, useCustomTheme };
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { customThemeType, useCustomTheme } from '../../../theme';
-import { wordings } from '../../../wordings';
 import { Text } from '../../materialUI';
 import { ButtonWithIcon } from '../ButtonWithIcon';
 import { LabelledDropdown } from '../LabelledDropdown';
 import { PopUp } from '../PopUp';
+import { wordings } from 'src/client/wordings';
 
 export { TableOptionItemSelectionPopUp };
 
@@ -33,7 +33,7 @@ function TableOptionItemSelectionPopUp(props: {
           />
         </div>
         <div style={styles.cancelButtonContainer}>
-          <ButtonWithIcon iconName="close" onClick={props.onClose} text={wordings.cancel} color="default" />
+          <ButtonWithIcon iconName="close" onClick={props.onClose} text={wordings.shared.cancel} color="default" />
         </div>
       </div>
     </PopUp>

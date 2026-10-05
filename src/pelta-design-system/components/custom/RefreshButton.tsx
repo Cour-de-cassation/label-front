@@ -1,7 +1,7 @@
 import React from 'react';
-import { wordings } from '../../wordings';
 import { IconButton } from './IconButton';
 import { Loader } from './Loader';
+import { wordings } from 'src/client/wordings';
 
 const REFRESH_BUTTON_SIZE = 40;
 
@@ -21,7 +21,7 @@ function RefreshButton(props: { onClick: () => void; isLoading: boolean }) {
       buttonSize={REFRESH_BUTTON_SIZE}
       backgroundColor="primary"
       onClick={props.onClick}
-      hint={wordings.refresh}
+      hint={wordings.shared.refresh}
       iconName="reset"
     />
   );

@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import { Drawer as MuiDrawer, makeStyles } from '@material-ui/core';
 import { customThemeType, heights, useCustomTheme } from '../../theme';
-import { wordings } from '../../wordings';
 import { IconButton, Text } from '..';
 import { zIndices } from './constants';
+import { wordings } from 'src/client/wordings';
 
 export { Drawer };
 
@@ -31,7 +31,7 @@ function Drawer(props: {
             )}
           </div>
           <div>
-            <IconButton hint={wordings.cancel} onClick={props.onClose} iconName="close" />
+            <IconButton hint={wordings.shared.cancel} onClick={props.onClose} iconName="close" />
           </div>
         </div>
         <div style={styles.content}>{props.children}</div>

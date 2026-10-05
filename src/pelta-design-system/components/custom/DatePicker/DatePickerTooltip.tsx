@@ -5,7 +5,7 @@ import { Icon, Text } from '../../materialUI';
 import { TooltipMenu } from '../TooltipMenu';
 import { getMonthFromDate, getNextMonthDate, getPreviousMonthDate } from './lib';
 import { createCalendarTable } from './lib/createCalendarTable';
-import { wordings } from '../../../wordings';
+import { wordings } from 'src/client/wordings';
 
 export { DatePickerTooltip };
 
@@ -58,7 +58,7 @@ function DatePickerTooltip(props: {
           <tr>
             {range(7).map((day) => (
               <td key={day}>
-                <Text>{wordings.daysOfWeek[dayOfTheWeekKeys[day]]}</Text>
+                <Text>{wordings.shared.daysOfWeek[dayOfTheWeekKeys[day]]}</Text>
               </td>
             ))}
           </tr>

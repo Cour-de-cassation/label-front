@@ -1,9 +1,9 @@
 import React from 'react';
 import { customThemeType, useCustomTheme } from '../../theme';
-import { wordings } from '../../wordings';
 import { Text } from '../materialUI';
 import { ButtonWithIcon } from './ButtonWithIcon';
 import { PopUp } from './PopUp';
+import { wordings } from 'src/client/wordings';
 
 export { ConfirmationPopup };
 
@@ -18,9 +18,9 @@ function ConfirmationPopup(props: { text: string; onConfirm: () => void; onCance
       </div>
       <div style={styles.buttonContainer}>
         <div style={styles.confirmButtonContainer}>
-          <ButtonWithIcon iconName="check" onClick={props.onConfirm} text={wordings.confirm} color="primary" />
+          <ButtonWithIcon iconName="check" onClick={props.onConfirm} text={wordings.shared.confirm} color="primary" />
         </div>
-        <ButtonWithIcon iconName="close" onClick={props.onCancel} text={wordings.cancel} color="default" />
+        <ButtonWithIcon iconName="close" onClick={props.onCancel} text={wordings.shared.cancel} color="default" />
       </div>
     </PopUp>
   );

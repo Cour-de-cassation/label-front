@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { wordings } from '../../../wordings';
 import { IconDropdown } from '../IconDropdown';
+import { wordings } from 'src/client/wordings';
 
 export { OptionButton };
 
@@ -17,7 +17,7 @@ function OptionButton<T extends string>(props: {
   return (
     <IconDropdown
       onClose={props.onClose}
-      hint={wordings.moreOptions}
+      hint={wordings.shared.moreOptions}
       items={props.items}
       iconName="moreVert"
       onChange={props.onSelect}

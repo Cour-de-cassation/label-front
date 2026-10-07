@@ -6,7 +6,7 @@ import { wordings } from '../../../wordings';
 
 export { TreatedDocumentsPersonalStatisticsTable };
 
-const PROBLEM_REPORT_TEXT_CELL_MAX_WIDTH = 400;
+const PERSONAL_STATISTICS_TEXT_CELL_MAX_WIDTH = 400;
 
 function TreatedDocumentsPersonalStatisticsTable(props: {
   refetch: () => void;
@@ -26,31 +26,16 @@ function TreatedDocumentsPersonalStatisticsTable(props: {
         title: wordings.business.filters.columnTitles.treatmentDate,
         extractor: (personalStatistic) => dateFormat(personalStatistic.day, 'dd/mm'),
         width: 10,
-        cellStyle: { maxWidth: `${PROBLEM_REPORT_TEXT_CELL_MAX_WIDTH}px`, overflow: 'hidden' },
+        cellStyle: { maxWidth: `${PERSONAL_STATISTICS_TEXT_CELL_MAX_WIDTH}px`, overflow: 'hidden' },
       },
-      {
-        id: 'simple',
-        canBeSorted: true,
-        title: wordings.business.documentRoute.simple,
-        extractor: (personalStatistic) => personalStatistic.simple,
-        width: 10,
-        cellStyle: { maxWidth: `${PROBLEM_REPORT_TEXT_CELL_MAX_WIDTH}px`, overflow: 'hidden' },
-      },
-      {
-        id: 'exhaustive',
-        canBeSorted: true,
-        title: wordings.business.documentRoute.exhaustive,
-        extractor: (personalStatistic) => personalStatistic.exhaustive,
-        width: 10,
-        cellStyle: { maxWidth: `${PROBLEM_REPORT_TEXT_CELL_MAX_WIDTH}px`, overflow: 'hidden' },
-      },
+
       {
         id: 'total',
         canBeSorted: true,
         title: wordings.statisticsPage.box.computation.total,
-        extractor: (personalStatistic) => personalStatistic.simple + personalStatistic.exhaustive,
+        extractor: (personalStatistic) => personalStatistic.total,
         width: 10,
-        cellStyle: { maxWidth: `${PROBLEM_REPORT_TEXT_CELL_MAX_WIDTH}px`, overflow: 'hidden' },
+        cellStyle: { maxWidth: `${PERSONAL_STATISTICS_TEXT_CELL_MAX_WIDTH}px`, overflow: 'hidden' },
       },
     ];
   }

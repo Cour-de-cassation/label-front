@@ -216,7 +216,6 @@ export type ApiSchema = {
           creationDate: documentType['creationDate'];
           documentNumber: documentType['documentNumber'];
           jurisdiction: documentType['decisionMetadata']['jurisdiction'];
-          loss: documentType['loss'];
           occultationBlock: documentType['decisionMetadata']['occultationBlock'];
           reviewStatus: documentType['reviewStatus'];
           publicationCategory: documentType['publicationCategory'];
@@ -237,8 +236,7 @@ export type ApiSchema = {
     personalStatistics: {
       out: {
         day: number;
-        simple: number;
-        exhaustive: number;
+        total: number;
       }[];
     };
 

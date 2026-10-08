@@ -129,7 +129,6 @@ function buildStyles(theme: customThemeType) {
     },
     body: {
       height: '70%',
-      // height: heights.statisticsBodyHeight,
       width: widths.adminContent,
       display: 'flex',
       flexDirection: 'row',
@@ -137,7 +136,6 @@ function buildStyles(theme: customThemeType) {
       alignItems: 'center',
     },
     row: {
-      height: heights.statisticsBodyHeight,
       width: widths.adminContent,
       display: 'flex',
       flexDirection: 'column',

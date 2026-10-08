@@ -142,23 +142,6 @@ function TreatedDocumentsTable(props: {
           return;
         }
 
-        if (treatmentWithDetails.document?.route == 'simple') {
-          try {
-            await apiCaller.post<'updateDocumentRoute'>('updateDocumentRoute', {
-              documentId: treatmentWithDetails.document._id,
-              route: 'exhaustive',
-            });
-          } catch (error) {
-            displayAlert({
-              text: wordings.business.errors.updateDocumentRouteFailded,
-              variant: 'alert',
-              autoHide: true,
-            });
-            console.warn(error);
-            return;
-          }
-        }
-
         props.refetch();
       },
       isDisabled: userRole !== 'admin' || adminView !== 'admin',

@@ -39,7 +39,7 @@ export type decisionMetadataType = {
   occultationBlock?: number;
   NACCode: string;
   motivationOccultation?: boolean;
-  selection?: boolean;
+  raisonInteretParticulier?: boolean;
 };
 
 export type reviewStatusType = {

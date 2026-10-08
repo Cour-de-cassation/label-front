@@ -1,3 +1,4 @@
 import { useKeyboardShortcutsHandler } from './useKeyboardShortcutsHandler';
+import { useIsCtrlPressed } from './useIsCtrlPressed';
 
-export { useKeyboardShortcutsHandler };
+export { useKeyboardShortcutsHandler, useIsCtrlPressed };

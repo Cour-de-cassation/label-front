@@ -38,6 +38,8 @@ function AnnotationCreationTooltipMenu(props: {
     status: ['annotable', 'visible'],
     canBeAnnotatedBy: 'human',
   });
+
+  const isManualMultiSelect = props.textSelection.length > 1 && annotationTextsAndIndices.length === 0;
   const annotationText = computeAnnotationText();
 
   const [tooltipWidth, setTooltipWidth] = useState(TOOLTIP_MENU_MIN_WIDTH);
@@ -60,6 +62,15 @@ function AnnotationCreationTooltipMenu(props: {
             {annotationText}
           </Text>
         </div>
+
+        {isManualMultiSelect && (
+          <div style={styles.identicalOccurrencesContainer}>
+            <Text variant="h3">
+              <span style={styles.identicalOccurrencesNumber}>{props.textSelection.length}</span>{' '}
+              {wordings.homePage.multipleSelectedTerms}
+            </Text>
+          </div>
+        )}
         {annotationTextsAndIndices.length > 1 && (
           <>
             <div style={styles.identicalOccurrencesContainer}>
@@ -136,6 +147,9 @@ function AnnotationCreationTooltipMenu(props: {
   }
 
   function computeAnnotationText() {
+    if (props.textSelection.length > 1) {
+      return props.textSelection.map((t) => t.text).join(' · ');
+    }
     const { text } = props.textSelection[0];
     if (text.length > ANNOTATION_TEXT_MAX_LENGTH) {
       return text.slice(0, ANNOTATION_TEXT_MAX_LENGTH / 2) + '\n[...]\n' + text.slice(-ANNOTATION_TEXT_MAX_LENGTH / 2);
@@ -150,8 +164,15 @@ function AnnotationCreationTooltipMenu(props: {
         annotationText: props.textSelection[0].text,
         annotations: annotatorState.annotations,
       });
+    } else {
+      return props.textSelection.flatMap((term) =>
+        annotationTextDetector.detectAnnotationTextsAndIndices({
+          documentText: annotatorState.document.text,
+          annotationText: term.text,
+          annotations: annotatorState.annotations,
+        }),
+      );
     }
-    return [];
   }
 
   function buildStyles(theme: customThemeType) {

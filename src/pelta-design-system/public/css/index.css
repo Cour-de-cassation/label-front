@@ -1,0 +1,19 @@
+@import "./Loader.css";
+
+body {
+  margin: 0;
+}
+
+@font-face {
+  font-weight: "normal";
+  font-family: "Luciole";
+  src: local("Luciole"),
+    url("../fonts/Luciole/Luciole-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: "bold";
+  font-family: "Luciole-Bold";
+  src: local("Luciole-Bold"),
+    url("../fonts/Luciole/Luciole-Bold.ttf") format("truetype");
+}

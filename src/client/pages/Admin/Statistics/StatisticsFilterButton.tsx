@@ -1,5 +1,5 @@
 import React from 'react';
-import { customThemeType, useCustomTheme } from 'pelta-design-system';
+import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { apiRouteOutType, ressourceFilterType, userType } from 'src/core';
 import { FilterButton, FilterChip } from '../../../components';
 import { wordings } from '../../../wordings';

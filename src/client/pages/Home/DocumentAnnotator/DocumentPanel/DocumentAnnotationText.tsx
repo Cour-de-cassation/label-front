@@ -1,5 +1,5 @@
 import React, { MouseEvent, ReactElement, useState } from 'react';
-import { customThemeType, getColor, useCustomTheme, useDisplayMode, positionType } from 'pelta-design-system';
+import { customThemeType, getColor, useCustomTheme, useDisplayMode, positionType } from 'src/pelta-design-system';
 import { annotationType, settingsModule } from 'src/core';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 import { useDocumentViewerModeHandler } from '../../../../services/documentViewerMode';

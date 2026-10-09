@@ -1,6 +1,6 @@
 import React from 'react';
 import { settingsModule, settingsType } from 'src/core';
-import { getColor, useDisplayMode, CircleIcon } from 'pelta-design-system';
+import { getColor, useDisplayMode, CircleIcon } from 'src/pelta-design-system';
 
 export { CategoryIcon };
 

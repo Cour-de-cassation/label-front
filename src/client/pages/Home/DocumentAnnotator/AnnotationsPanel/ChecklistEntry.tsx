@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Checkbox, customThemeType, Text, useCustomTheme } from 'pelta-design-system';
+import { Checkbox, customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { useChecklistEntryHandler } from './useChecklistEntryHandler';
 import { useViewerScrollerHandler } from '../../../../services/viewerScroller';
 import { documentType, settingsType } from 'src/core';

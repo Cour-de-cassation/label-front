@@ -1,6 +1,6 @@
 import React from 'react';
 import { uniq } from 'lodash';
-import { customThemeType, useCustomTheme, Header, IconButton, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Header, IconButton, Text } from 'src/pelta-design-system';
 import { annotationLinkHandler, settingsModule } from 'src/core';
 import { CategoryIcon } from '../../../../../components';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';

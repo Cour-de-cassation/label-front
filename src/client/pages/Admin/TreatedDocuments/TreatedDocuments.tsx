@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { flatten, uniq } from 'lodash';
-import { customThemeType, useCustomTheme, tableRowFieldType } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, tableRowFieldType } from 'src/pelta-design-system';
 import { apiRouteOutType, keysOf, timeOperator, documentType, userType } from 'src/core';
 import { DocumentReviewStatusIcon, DocumentsTableHeader, PublicationCategoryBadge } from '../../../components';
 import {

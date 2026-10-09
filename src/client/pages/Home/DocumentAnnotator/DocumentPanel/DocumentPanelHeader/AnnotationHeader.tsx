@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCustomTheme, Header } from 'pelta-design-system';
+import { useCustomTheme, Header } from 'src/pelta-design-system';
 import { heights } from '../../../../../styles';
 
 export { AnnotationHeader };

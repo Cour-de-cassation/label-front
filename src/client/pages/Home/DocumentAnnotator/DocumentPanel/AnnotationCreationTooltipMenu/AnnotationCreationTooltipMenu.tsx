@@ -8,7 +8,7 @@ import {
   LabelledDropdown,
   Text,
   positionType,
-} from 'pelta-design-system';
+} from 'src/pelta-design-system';
 import { annotationHandler, annotationTextDetector, settingsModule } from 'src/core';
 import { CategoryIcon } from '../../../../../components';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { customThemeType, useCustomTheme, RefreshButton } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, RefreshButton } from 'src/pelta-design-system';
 import { filtersType } from '../../../services/filters';
 import { heights } from '../../../styles';
 import { DocumentNumberTextInput } from '../DocumentNumberTextInput';

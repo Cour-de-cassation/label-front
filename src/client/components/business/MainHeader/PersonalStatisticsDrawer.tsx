@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer } from 'pelta-design-system';
+import { Drawer } from 'src/pelta-design-system';
 import { wordings } from '../../../wordings';
 import { PersonalStatisticsSection } from './PersonalStatisticsSection';
 import { TreatedDocumentsPersonalStatisticsTable } from './TreatedDocumentsPersonalStatisticsTable';

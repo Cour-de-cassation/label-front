@@ -8,7 +8,7 @@ import {
   LabelledDropdown,
   RichTextInput,
   Text,
-} from 'pelta-design-system';
+} from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
 import { userType } from 'src/core';
 

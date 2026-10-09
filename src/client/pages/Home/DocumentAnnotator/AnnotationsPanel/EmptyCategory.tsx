@@ -1,6 +1,6 @@
 import React from 'react';
 import { settingsModule } from 'src/core';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../components';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 

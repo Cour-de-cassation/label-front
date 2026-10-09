@@ -5,7 +5,7 @@ import {
   LinkAnnotationDropdown,
   UnlinkAnnotationDropdown,
 } from '../../../../../components';
-import { useCustomTheme, ComponentsList } from 'pelta-design-system';
+import { useCustomTheme, ComponentsList } from 'src/pelta-design-system';
 import { entityEntryHandlerType } from '../useEntityEntryHandler';
 import { CategoryTableEntryDeleteAnnotationDropdown } from './CategoryTableEntryDeleteAnnotationDropdown';
 

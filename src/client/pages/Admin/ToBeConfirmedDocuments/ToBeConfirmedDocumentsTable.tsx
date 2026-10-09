@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { apiRouteOutType, timeOperator, userType } from 'src/core';
-import { customThemeType, useCustomTheme, PaginatedTable, tableRowFieldType } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, PaginatedTable, tableRowFieldType } from 'src/pelta-design-system';
 import { DocumentReviewStatusIcon, PublicationCategoryBadge } from '../../../components';
 import { wordings } from '../../../wordings';
 import { routes } from '../../routes';

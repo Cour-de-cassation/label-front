@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { customThemeType, useCustomTheme, ButtonWithIcon, Icon, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, ButtonWithIcon, Icon, Text } from 'src/pelta-design-system';
 import { wordings } from '../../wordings';
 import format from 'string-template';
 

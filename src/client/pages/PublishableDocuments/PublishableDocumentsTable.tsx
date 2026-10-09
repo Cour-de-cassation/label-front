@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { Text } from 'pelta-design-system';
+import { Text } from 'src/pelta-design-system';
 import { apiRouteOutType, timeOperator } from 'src/core';
-import { orderDirectionType, PaginatedTable, tableRowFieldType } from 'pelta-design-system';
+import { orderDirectionType, PaginatedTable, tableRowFieldType } from 'src/pelta-design-system';
 import { localStorage, publishableDocumentOrderByProperties } from '../../services/localStorage';
 import { wordings } from '../../wordings';
 import { routes } from '../routes';

@@ -9,7 +9,7 @@ import {
   FloatingTooltipMenu,
   LabelledDropdown,
   RichTextInput,
-} from 'pelta-design-system';
+} from 'src/pelta-design-system';
 import { apiCaller } from '../../../../api';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 import { wordings } from '../../../../wordings';

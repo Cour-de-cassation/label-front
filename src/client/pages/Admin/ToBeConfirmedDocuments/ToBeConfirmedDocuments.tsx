@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { flatten, uniq } from 'lodash';
 import { apiRouteOutType, userType, documentType, keysOf } from 'src/core';
-import { customThemeType, useCustomTheme } from 'pelta-design-system';
+import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { DocumentsTableHeader } from '../../../components';
 import {
   convertDocumentReviewStatusToFilter,

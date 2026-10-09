@@ -1,5 +1,6 @@
 import React, { MouseEvent, ReactElement, ReactNode } from 'react';
-import { makeStyles, Menu as MUMenu, MenuItem } from '@material-ui/core';
+import { Menu as MUMenu, MenuItem } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { customThemeType, useCustomTheme } from '../../theme';
 
 export { Menu };
@@ -28,7 +29,6 @@ function Menu<T extends string>(props: {
       anchorEl={props.anchorElement}
       anchorOrigin={dropdownMenuConfiguration?.anchorOrigin}
       classes={menuClasses}
-      getContentAnchorEl={null} // To prevent materialUI to log cryptic error
       onClose={onClose}
       open={isOpen()}
       transformOrigin={dropdownMenuConfiguration.transformOrigin}

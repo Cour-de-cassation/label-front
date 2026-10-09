@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import { AppBar, makeStyles, PropTypes } from '@material-ui/core';
+import { AppBar, PropTypes } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { zIndices } from './constants';
 import { customThemeType, useCustomTheme } from '../../theme';
 

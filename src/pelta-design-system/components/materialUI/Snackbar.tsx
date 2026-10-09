@@ -1,5 +1,5 @@
 import React from 'react';
-import { Snackbar as MUSnackbar } from '@material-ui/core';
+import { Snackbar as MUSnackbar } from '@mui/material';
 import { customThemeType, useCustomTheme } from '../../theme';
 import { Text } from './Text';
 import { Icon } from './Icon';

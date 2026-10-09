@@ -1,4 +1,4 @@
-import { Checkbox as MuiCheckbox, FormControlLabel } from '@material-ui/core';
+import { Checkbox as MuiCheckbox, FormControlLabel } from '@mui/material';
 import React, { ReactElement, useState, CSSProperties } from 'react';
 
 export { Checkbox };

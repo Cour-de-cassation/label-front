@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactElement } from 'react';
-import { Accordion as MuiAccordion, AccordionDetails, AccordionSummary, makeStyles } from '@material-ui/core';
+import { Accordion as MuiAccordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { customThemeType, useCustomTheme } from '../../theme';
 
 export { Accordion };

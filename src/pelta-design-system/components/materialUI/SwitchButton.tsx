@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ReactElement } from 'react';
-import { makeStyles, Switch as MUSwitch } from '@material-ui/core';
+import { Switch as MUSwitch } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { customThemeType, useCustomTheme } from '../../theme';
 
 export { SwitchButton };

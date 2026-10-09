@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControlLabel, Radio } from '@material-ui/core';
+import { FormControlLabel, Radio } from '@mui/material';
 
 export { RadioButton };
 

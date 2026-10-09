@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import { Drawer as MuiDrawer, makeStyles } from '@material-ui/core';
+import { Drawer as MuiDrawer } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { customThemeType, heights, useCustomTheme } from '../../theme';
 import { IconButton, Text } from '..';
 import { zIndices } from './constants';

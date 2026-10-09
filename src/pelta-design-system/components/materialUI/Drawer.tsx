@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Drawer as MuiDrawer, makeStyles } from '@material-ui/core';
+import { Drawer as MuiDrawer } from '@mui/material';
 import { customThemeType, heights, useCustomTheme } from '../../theme';
 import { IconButton, Text } from '..';
 import { zIndices } from './constants';
@@ -16,10 +16,10 @@ function Drawer(props: {
 }) {
   const theme = useCustomTheme();
   const styles = buildStyles();
-  const classes = buildClasses(theme);
+  const sx = buildSx(theme);
 
   return (
-    <MuiDrawer style={styles.drawer} classes={classes} anchor="right" open={props.isOpen} onClose={props.onClose}>
+    <MuiDrawer style={styles.drawer} sx={sx} anchor="right" open={props.isOpen} onClose={props.onClose}>
       <div style={styles.container}>
         <div style={styles.header}>
           <div>
@@ -71,13 +71,13 @@ function Drawer(props: {
     } as const;
   }
 
-  function buildClasses(theme: customThemeType) {
-    return makeStyles({
-      paper: {
+  function buildSx(theme: customThemeType) {
+    return {
+      '& .MuiDrawer-paper': {
         boxShadow: theme.boxShadow.minor.out,
         marginTop: heights.header,
         height: heights.adminPanel,
       },
-    })();
+    };
   }
 }

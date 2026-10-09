@@ -1,5 +1,5 @@
 import React, { ChangeEvent, ReactElement } from 'react';
-import { makeStyles, Switch as MUSwitch } from '@material-ui/core';
+import { Switch as MUSwitch } from '@mui/material';
 import { customThemeType, useCustomTheme } from '../../theme';
 
 export { SwitchButton };
@@ -11,45 +11,36 @@ function SwitchButton(props: {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }): ReactElement {
   const theme = useCustomTheme();
-  const classes = buildSwitchButtonClasses(theme);
+  const sx = buildSx(theme);
 
   return (
-    <MUSwitch
-      disabled={props.disabled}
-      checked={props.checked}
-      classes={{ ...classes }}
-      color={props.color}
-      onChange={props.onChange}
-    />
+    <MUSwitch disabled={props.disabled} checked={props.checked} color={props.color} onChange={props.onChange} sx={sx} />
   );
 
-  function buildSwitchButtonClasses(theme: customThemeType) {
-    return makeStyles({
-      root: {
-        width: 50,
-        height: 30,
-        padding: 0,
-        borderRadius: theme.shape.borderRadius.m,
-        border: '2px solid',
-      },
-      switchBase: {
+  function buildSx(theme: customThemeType) {
+    return {
+      width: 50,
+      height: 30,
+      padding: 0,
+      borderRadius: `${theme.shape.borderRadius.m}px`,
+      border: '2px solid',
+      '& .MuiSwitch-switchBase': {
         color: theme.colors.line.level1,
         position: 'absolute',
         top: '-7px',
         left: '-7px',
-        '&$checked': {
+        '&.Mui-checked': {
           color: theme.colors.line.level1,
         },
-        '&$checked + $track': {
-          backgroundColor: theme.colors.primary,
+        '&.Mui-checked + .MuiSwitch-track': {
+          backgroundColor: theme.colors.primary.background,
           opacity: 1,
         },
       },
-      thumb: { height: 22, width: 22 },
-      checked: {},
-      track: {
+      '& .MuiSwitch-thumb': { height: 22, width: 22 },
+      '& .MuiSwitch-track': {
         backgroundColor: theme.colors.background,
       },
-    })();
+    } as const;
   }
 }

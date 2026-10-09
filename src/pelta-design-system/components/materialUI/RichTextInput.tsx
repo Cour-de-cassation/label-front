@@ -1,6 +1,5 @@
 import React, { ChangeEvent, CSSProperties, ReactElement } from 'react';
 import { TextField } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { customThemeType, useCustomTheme } from '../../theme';
 
 export { RichTextInput };
@@ -20,12 +19,11 @@ function RichTextInput(props: {
   width?: number;
 }): ReactElement {
   const theme = useCustomTheme();
-  const inputClasses = buildInputClasses(theme);
+  const sx = buildSx(theme);
 
   return (
     <TextField
       id={props.name}
-      InputProps={{ classes: inputClasses }}
       error={props.error}
       helperText={props.error ? props.errorText : props.helperText}
       label={props.placeholder}
@@ -33,6 +31,7 @@ function RichTextInput(props: {
       onChange={onChange}
       rows={props.size}
       style={props.style}
+      sx={sx}
       type={props.type}
       value={props.value}
       variant="outlined"
@@ -42,13 +41,13 @@ function RichTextInput(props: {
   function onChange(event: ChangeEvent<HTMLInputElement>) {
     return props.onChange(event.target.value);
   }
-  function buildInputClasses(theme: customThemeType) {
-    return makeStyles({
-      notchedOutline: {
+  function buildSx(theme: customThemeType) {
+    return {
+      '& .MuiOutlinedInput-root': { width: props.width },
+      '& .MuiOutlinedInput-notchedOutline': {
         borderWidth: 2,
         borderColor: theme.colors.line.level2,
       },
-      root: { width: props.width },
-    })();
+    };
   }
 }

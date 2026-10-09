@@ -1,6 +1,5 @@
 import React, { MouseEvent, ReactElement, ReactNode } from 'react';
 import { Menu as MUMenu, MenuItem } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { customThemeType, useCustomTheme } from '../../theme';
 
 export { Menu };
@@ -14,8 +13,8 @@ function Menu<T extends string>(props: {
   width?: number;
 }): ReactElement {
   const theme = useCustomTheme();
-  const menuClasses = buildMenuClasses(theme);
-  const menuItemClasses = buildMenuItemClasses(theme);
+  const menuSx = buildMenuSx(theme);
+  const menuItemSx = buildMenuItemSx(theme);
   const dropdownMenuConfiguration = {
     anchorOrigin: { horizontal: 'left', vertical: props.dropdownPosition },
     transformOrigin: {
@@ -28,18 +27,18 @@ function Menu<T extends string>(props: {
     <MUMenu
       anchorEl={props.anchorElement}
       anchorOrigin={dropdownMenuConfiguration?.anchorOrigin}
-      classes={menuClasses}
       onClose={onClose}
       open={isOpen()}
+      sx={menuSx}
       transformOrigin={dropdownMenuConfiguration.transformOrigin}
     >
       {props.items.map(({ value, element, isDisabled }, ind) => (
         <MenuItem
           disabled={isDisabled}
-          classes={menuItemClasses}
           key={ind}
           value={value}
           onClick={(event: MouseEvent) => handleSelection(event, value)}
+          sx={menuItemSx}
         >
           {element}
         </MenuItem>
@@ -47,28 +46,26 @@ function Menu<T extends string>(props: {
     </MUMenu>
   );
 
-  function buildMenuClasses(theme: customThemeType) {
-    return makeStyles({
-      paper: {
+  function buildMenuSx(theme: customThemeType) {
+    return {
+      '& .MuiMenu-paper': {
         backgroundColor: theme.colors.background,
         maxHeight: '300px',
-        width: `${props.width}px`,
+        width: props.width !== undefined ? `${props.width}px` : undefined,
       },
-    })();
+    };
   }
 
-  function buildMenuItemClasses(theme: customThemeType) {
-    return makeStyles({
-      root: {
-        borderRadius: theme.shape.borderRadius.m,
-        margin: theme.spacing,
-        '&:hover': {
-          background: theme.colors.default.hoveredBackground,
-          borderRadius: theme.shape.borderRadius.m,
-          color: theme.colors.default.hoveredTextColor,
-        },
+  function buildMenuItemSx(theme: customThemeType) {
+    return {
+      borderRadius: `${theme.shape.borderRadius.m}px`,
+      margin: `${theme.spacing}px`,
+      '&:hover': {
+        background: theme.colors.default.hoveredBackground,
+        borderRadius: `${theme.shape.borderRadius.m}px`,
+        color: theme.colors.default.hoveredTextColor,
       },
-    })();
+    };
   }
 
   function isOpen() {

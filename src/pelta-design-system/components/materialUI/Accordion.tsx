@@ -1,6 +1,5 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import { Accordion as MuiAccordion, AccordionDetails, AccordionSummary } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { customThemeType, useCustomTheme } from '../../theme';
 
 export { Accordion };
@@ -14,23 +13,16 @@ function Accordion(props: {
   defaultExpanded?: boolean;
 }): ReactElement {
   const theme = useCustomTheme();
-  const accordionClasses = buildAccordionClasses(theme);
-  const accordionHeaderClasses = buildAccordionHeaderClasses();
+  const accordionSx = buildAccordionSx(theme);
 
   return (
     <MuiAccordion
-      classes={accordionClasses}
       onChange={(_event, expanded) => props.onChange(expanded)}
       style={props.style}
       defaultExpanded={props.defaultExpanded}
+      sx={accordionSx}
     >
-      <AccordionSummary
-        classes={{
-          content: accordionHeaderClasses.content,
-          expanded: accordionHeaderClasses.expanded,
-        }}
-        style={props.headerStyle}
-      >
+      <AccordionSummary style={props.headerStyle} sx={ACCORDION_HEADER_SX}>
         {props.header}
       </AccordionSummary>
       <AccordionDetails>{props.body}</AccordionDetails>
@@ -38,29 +30,26 @@ function Accordion(props: {
   );
 }
 
-function buildAccordionClasses(theme: customThemeType) {
-  return makeStyles({
-    rounded: {
-      backgroundColor: theme.colors.default.background,
-      borderRadius: theme.shape.borderRadius.m,
-      '&:first-child': {
-        borderRadius: theme.shape.borderRadius.m,
-      },
-      '&:last-child': {
-        borderRadius: theme.shape.borderRadius.m,
-      },
-    },
-  })();
-}
-
-function buildAccordionHeaderClasses() {
-  return makeStyles({
-    content: {
+const ACCORDION_HEADER_SX = {
+  '& .MuiAccordionSummary-content': {
+    margin: 0,
+    '&.Mui-expanded': {
       margin: 0,
-      '&$expanded': {
-        margin: '0',
-      },
     },
-    expanded: {},
-  })();
+  },
+};
+
+function buildAccordionSx(theme: customThemeType) {
+  const borderRadius = `${theme.shape.borderRadius.m}px`;
+
+  return {
+    backgroundColor: theme.colors.default.background,
+    borderRadius,
+    '&:first-of-type': {
+      borderRadius,
+    },
+    '&:last-of-type': {
+      borderRadius,
+    },
+  };
 }

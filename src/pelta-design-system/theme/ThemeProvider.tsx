@@ -1,13 +1,8 @@
 import React, { ReactNode, useState } from 'react';
-import { ThemeProvider as MuiThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { displayModeType } from './types';
 import { buildMuiTheme } from './buildMuiTheme';
 import { DisplayModeContext } from './displayMode';
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
 export { ThemeProvider };
 
@@ -27,11 +22,9 @@ function ThemeProvider(props: { defaultDisplayMode?: displayModeType; children: 
 
   return (
     <DisplayModeContext.Provider value={displayModeContext}>
-      <StyledEngineProvider injectFirst>
-        <MuiThemeProvider theme={theme}>
-          <div style={style}>{props.children}</div>
-        </MuiThemeProvider>
-      </StyledEngineProvider>
+      <MuiThemeProvider theme={theme}>
+        <div style={style}>{props.children}</div>
+      </MuiThemeProvider>
     </DisplayModeContext.Provider>
   );
 

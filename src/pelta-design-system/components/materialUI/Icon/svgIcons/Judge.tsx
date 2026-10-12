@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { SvgIcon } from '@material-ui/core';
+import { SvgIcon } from '@mui/material';
 
 export { Judge };
 

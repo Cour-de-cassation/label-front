@@ -1,4 +1,5 @@
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
+import { pink } from '@mui/material/colors';
 import { displayModeType } from './types';
 import { buildCustomTheme } from './theme';
 
@@ -14,6 +15,9 @@ function buildMuiTheme(displayMode: displayModeType) {
     palette: {
       primary: {
         main: customTheme.colors.primary.background,
+      },
+      secondary: {
+        main: pink.A400,
       },
       text: {
         primary: customTheme.colors.line.level1,

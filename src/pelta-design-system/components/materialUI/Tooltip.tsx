@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Tooltip as MuiTooltip } from '@material-ui/core';
+import { Tooltip as MuiTooltip } from '@mui/material';
 import { Text } from './Text';
 
 export { Tooltip };

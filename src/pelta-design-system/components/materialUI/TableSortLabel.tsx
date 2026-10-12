@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { TableSortLabel as MuiTableSortLabel } from '@material-ui/core';
+import { TableSortLabel as MuiTableSortLabel } from '@mui/material';
 import { orderDirectionType } from '../custom';
 export { TableSortLabel };
 

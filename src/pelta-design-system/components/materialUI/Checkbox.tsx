@@ -1,4 +1,4 @@
-import { Checkbox as MuiCheckbox, FormControlLabel } from '@material-ui/core';
+import { Checkbox as MuiCheckbox, FormControlLabel } from '@mui/material';
 import React, { ReactElement, useState, CSSProperties } from 'react';
 
 export { Checkbox };
@@ -14,14 +14,14 @@ function Checkbox(props: {
   if (props.text) {
     return (
       <FormControlLabel
-        control={<MuiCheckbox checked={checked} />}
+        control={<MuiCheckbox checked={checked} color="secondary" />}
         label={props.text}
         onChange={handleChange}
         style={props.style}
       />
     );
   } else {
-    return <MuiCheckbox checked={checked} onChange={handleChange} style={props.style} />;
+    return <MuiCheckbox checked={checked} color="secondary" onChange={handleChange} style={props.style} />;
   }
 
   function handleChange(event: any, checked: boolean) {

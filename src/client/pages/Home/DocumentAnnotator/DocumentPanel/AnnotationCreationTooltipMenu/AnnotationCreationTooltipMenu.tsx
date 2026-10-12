@@ -39,7 +39,7 @@ function AnnotationCreationTooltipMenu(props: {
     canBeAnnotatedBy: 'human',
   });
 
-  const isManualMultiSelect = props.textSelection.length > 1 && annotationTextsAndIndices.length === 0;
+  const isManualMultiSelect = props.textSelection.length > 1;
   const annotationText = computeAnnotationText();
 
   const [tooltipWidth, setTooltipWidth] = useState(TOOLTIP_MENU_MIN_WIDTH);

@@ -1,8 +1,10 @@
 import React, { ReactElement, useState, MouseEvent } from 'react';
+import { useAlert } from './../../../../services/alert';
 import { positionType } from 'pelta-design-system';
 import { AnnotationCreationTooltipMenu } from './AnnotationCreationTooltipMenu';
 import { textNeighboursType } from '../lib';
 import { useIsCtrlPressed } from '../hooks';
+import { wordings } from 'src/client/wordings';
 
 export { PureDocumentText as DocumentText };
 
@@ -32,6 +34,7 @@ function DocumentText(props: propsType): ReactElement {
   const [textSelection, setTextSelection] = useState<textSelectionType>([]);
   const [tooltipMenuOriginPosition, setTooltipMenuOriginPosition] = useState<positionType | undefined>();
   const isCtrlPressed = useIsCtrlPressed();
+  const { displayAlert } = useAlert();
 
   const styles = buildStyles();
   return (
@@ -39,7 +42,7 @@ function DocumentText(props: propsType): ReactElement {
       <span onMouseUp={handleSelection} style={styles.text}>
         {props.neighbours.current.text}
       </span>
-      {tooltipMenuOriginPosition && textSelection.length > 0 && (
+      {tooltipMenuOriginPosition && textSelection.length > 0 && !isCtrlPressed && (
         <AnnotationCreationTooltipMenu
           onClose={closeTooltipMenu}
           originPosition={tooltipMenuOriginPosition}
@@ -56,10 +59,13 @@ function DocumentText(props: propsType): ReactElement {
     }
 
     if (isCtrlPressed) {
-      // Mode multi-sélection : on ajoute (ou on retire si déjà sélectionné) au lieu d'écraser
       setTextSelection((previousSelection) => mergeSelection(previousSelection, validSelection[0]));
+      displayAlert({
+        text: `${wordings.homePage.multipleSelectedTerms} : ${validSelection[0].text} sélectionné`,
+        variant: 'info',
+        autoHide: true,
+      });
     } else {
-      // Comportement existant inchangé
       setTextSelection(validSelection);
     }
     openTooltipMenu(event);

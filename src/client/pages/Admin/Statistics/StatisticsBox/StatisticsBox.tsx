@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { timeOperator } from 'src/core';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
 import { ComputationToggle, computationType } from './ComputationToggle';
 

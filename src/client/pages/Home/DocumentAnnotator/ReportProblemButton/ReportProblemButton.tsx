@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
-import { IconButton, positionType } from 'pelta-design-system';
+import { IconButton, positionType } from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
 import { ReportProblemToolTipMenu } from './ReportProblemToolTipMenu';
 

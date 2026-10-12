@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { heights, Text } from 'pelta-design-system';
+import { heights, Text } from 'src/pelta-design-system';
 import { AdminMenu, MainHeader } from '../../components';
 import { localStorage } from '../../services/localStorage';
 

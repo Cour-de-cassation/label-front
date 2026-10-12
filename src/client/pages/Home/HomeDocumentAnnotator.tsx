@@ -7,7 +7,7 @@ import {
   documentType,
   settingsType,
 } from 'src/core';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { apiCaller } from '../../api';
 import { MainHeader, PublicationCategoryBadge } from '../../components';
 import {
@@ -41,10 +41,6 @@ function HomeDocumentAnnotator(props: {
         </div>
       ))}
       <Text>{wordings.homePage.publishedDocument}</Text>
-    </div>
-  ) : props.document.route == 'simple' ? (
-    <div style={styles.documentHeaderSubtitle}>
-      <Text>{wordings.homePage.simpleReviewScreen.title}</Text>
     </div>
   ) : undefined;
   return (

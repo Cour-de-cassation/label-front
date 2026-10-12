@@ -1,4 +1,4 @@
-import { useCustomTheme, Drawer } from 'pelta-design-system';
+import { useCustomTheme, Drawer } from 'src/pelta-design-system';
 import React from 'react';
 import format from 'string-template';
 import { documentType } from 'src/core';

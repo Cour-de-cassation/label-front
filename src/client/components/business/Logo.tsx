@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCustomTheme, SvgImage } from 'pelta-design-system';
+import { useCustomTheme, SvgImage } from 'src/pelta-design-system';
 
 export { Logo };
 

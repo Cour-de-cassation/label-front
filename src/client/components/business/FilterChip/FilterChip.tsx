@@ -1,6 +1,6 @@
 import React from 'react';
 import format from 'string-template';
-import { customThemeType, useCustomTheme } from 'pelta-design-system';
+import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { timeOperator } from 'src/core';
 import { wordings } from '../../../wordings';
 import { filterType } from '../FilterButton';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { timeOperator } from 'src/core';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { statisticType } from 'src/core';
 import { wordings } from '../../../../wordings';
 
@@ -89,10 +89,6 @@ function DocumentStatisticsBox(props: { documentStatistic: documentStatsType; wi
       {
         label: wordings.statisticsPage.box.fields.documentNumber,
         value: documentStatistic.documentNumber,
-      },
-      {
-        label: wordings.statisticsPage.box.fields.endCaseCode,
-        value: documentStatistic.endCaseCode,
       },
       {
         label: wordings.statisticsPage.box.fields.NACCode,

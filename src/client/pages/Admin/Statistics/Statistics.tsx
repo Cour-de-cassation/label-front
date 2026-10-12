@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { apiRouteOutType, ressourceFilterType, userType } from 'src/core';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { heights, widths } from '../../../styles';
 import { wordings } from '../../../wordings';
 import { StatisticsBox } from './StatisticsBox';
@@ -129,7 +129,6 @@ function buildStyles(theme: customThemeType) {
     },
     body: {
       height: '70%',
-      // height: heights.statisticsBodyHeight,
       width: widths.adminContent,
       display: 'flex',
       flexDirection: 'row',
@@ -137,7 +136,6 @@ function buildStyles(theme: customThemeType) {
       alignItems: 'center',
     },
     row: {
-      height: heights.statisticsBodyHeight,
       width: widths.adminContent,
       display: 'flex',
       flexDirection: 'column',

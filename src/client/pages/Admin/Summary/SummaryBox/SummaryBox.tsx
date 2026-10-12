@@ -1,5 +1,5 @@
 import React from 'react';
-import { customThemeType, useCustomTheme, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
 
 export { SummaryBox };

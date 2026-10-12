@@ -1,5 +1,5 @@
 import React, { createContext, ReactElement, ReactNode, useState } from 'react';
-import { ConfirmationPopup } from 'pelta-design-system';
+import { ConfirmationPopup } from 'src/pelta-design-system';
 
 export { PopupHandlerContext, PopupHandlerContextProvider };
 

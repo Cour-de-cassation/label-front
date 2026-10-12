@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { settingsModule } from 'src/core';
-import { customThemeType, useCustomTheme, Accordion, Text, Icon } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Accordion, Text, Icon } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../components';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 import { annotationPerEntityType, splittedTextByLineType } from '../lib';

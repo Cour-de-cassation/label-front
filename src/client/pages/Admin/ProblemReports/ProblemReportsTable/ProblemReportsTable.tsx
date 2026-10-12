@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import format from 'string-template';
-import { optionItemType, Table, tableRowFieldType } from 'pelta-design-system';
+import { optionItemType, Table, tableRowFieldType } from 'src/pelta-design-system';
 import { apiRouteOutType, documentModule, timeOperator } from 'src/core';
 import { apiCaller } from '../../../../api';
 import { DocumentStatusIcon, ProblemReportIcon } from '../../../../components';
@@ -253,23 +253,6 @@ function ProblemReportsTable(props: {
           displayAlert({ text: wordings.business.errors.updateDocumentStatusFailed, variant: 'alert', autoHide: true });
           console.warn(error);
           return;
-        }
-
-        if (problemReportWithDetails.document?.route == 'simple') {
-          try {
-            await apiCaller.post<'updateDocumentRoute'>('updateDocumentRoute', {
-              documentId: problemReportWithDetails.problemReport.documentId,
-              route: 'exhaustive',
-            });
-          } catch (error) {
-            displayAlert({
-              text: wordings.business.errors.updateDocumentRouteFailded,
-              variant: 'alert',
-              autoHide: true,
-            });
-            console.warn(error);
-            return;
-          }
         }
 
         props.refetch();

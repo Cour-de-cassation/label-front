@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { groupBy, orderBy, sumBy } from 'lodash';
 import { annotationType, assignationType, documentModule, documentType, settingsType, settingsModule } from 'src/core';
-import { customThemeType, useCustomTheme, ButtonWithIcon, ComponentsList, Icon, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, ButtonWithIcon, ComponentsList, Icon, Text } from 'src/pelta-design-system';
 import { CategoryIcon, PublicationCategoryBadge } from '../../../components';
 import { wordings } from '../../../wordings';
 import { computeGenericDocumentInfoEntries } from './computeGenericDocumentInfoEntries';

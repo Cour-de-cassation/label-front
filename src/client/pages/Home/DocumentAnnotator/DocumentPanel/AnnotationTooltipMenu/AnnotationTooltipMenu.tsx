@@ -5,7 +5,7 @@ import {
   FloatingTooltipMenu,
   ComponentsList,
   positionType,
-} from 'pelta-design-system';
+} from 'src/pelta-design-system';
 import { annotationType } from 'src/core';
 import {
   ChangeAnnotationCategoryDropdown,

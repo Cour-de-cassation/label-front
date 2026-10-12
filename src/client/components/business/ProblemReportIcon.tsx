@@ -1,6 +1,6 @@
 import React from 'react';
 import { problemReportType } from 'src/core';
-import { useCustomTheme, CircleIcon, iconNameType } from 'pelta-design-system';
+import { useCustomTheme, CircleIcon, iconNameType } from 'src/pelta-design-system';
 import { wordings } from '../../wordings';
 
 export { ProblemReportIcon };

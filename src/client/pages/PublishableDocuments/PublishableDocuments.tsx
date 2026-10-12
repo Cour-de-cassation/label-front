@@ -1,5 +1,5 @@
 import React from 'react';
-import { customThemeType, useCustomTheme } from 'pelta-design-system';
+import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { MainHeader } from '../../components';
 import { heights } from '../../styles';
 import { wordings } from '../../wordings';

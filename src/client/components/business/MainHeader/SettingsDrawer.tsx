@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDisplayMode, ButtonWithIcon, Drawer, RadioButton, Text } from 'pelta-design-system';
+import { useDisplayMode, ButtonWithIcon, Drawer, RadioButton, Text } from 'src/pelta-design-system';
 import { wordings } from '../../../wordings';
 import { SettingsSection } from './SettingsSection';
 import { useCtxUser } from '../../../contexts/user.context';

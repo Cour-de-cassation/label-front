@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { flatten, uniq } from 'lodash';
-import { customThemeType, useCustomTheme, tableRowFieldType } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, tableRowFieldType } from 'src/pelta-design-system';
 import { apiRouteOutType, keysOf, timeOperator, documentType, userType } from 'src/core';
 import { DocumentReviewStatusIcon, DocumentsTableHeader, PublicationCategoryBadge } from '../../../components';
 import {
@@ -352,16 +352,6 @@ function TreatedDocuments(props: {
             : '-',
         getSortingValue: (treatedDocument) => treatedDocument.document.creationDate || 0,
         width: 2,
-      },
-      {
-        id: 'loss',
-        title: wordings.business.filters.columnTitles.loss.title,
-        tooltipText: wordings.business.filters.columnTitles.loss.tooltipText,
-        canBeSorted: true,
-        extractor: (treatedDocument) =>
-          treatedDocument.document.loss !== undefined ? treatedDocument.document.loss : '-',
-        getSortingValue: (treatedDocument) => treatedDocument.document.creationDate || 0,
-        width: 1,
       },
       {
         id: 'surAnnotationsCount',

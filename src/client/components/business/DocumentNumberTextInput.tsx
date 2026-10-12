@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import { customThemeType, useCustomTheme, IconButton, TextInput } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, IconButton, TextInput } from 'src/pelta-design-system';
 import { wordings } from '../../wordings';
 
 export { DocumentNumberTextInput };

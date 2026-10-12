@@ -8,7 +8,7 @@ import {
   orderDirectionType,
   PaginatedTable,
   tableRowFieldType,
-} from 'pelta-design-system';
+} from 'src/pelta-design-system';
 import { apiCaller } from '../../../api';
 import { PublicationCategoryBadge, DocumentStatusIcon } from '../../../components';
 import { useAlert } from '../../../services/alert';

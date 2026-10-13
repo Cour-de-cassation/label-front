@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import { BrowserRouter, Switch, Route, Redirect, RouteProps } from 'react-router-dom';
 import { localStorage } from '../services/localStorage';
 import { wordings } from '../wordings';
@@ -181,7 +181,9 @@ function BadgeRefreshingChild(props: { refetch: () => void; children: (combinedR
   return props.children(combinedRefetch);
 }
 
-const AuthenticatedRoute: FunctionComponent<RouteProps> = ({ children, ...rest }: RouteProps) => {
+type GuardedRouteProps = Omit<RouteProps, 'children'> & { children?: ReactNode };
+
+const AuthenticatedRoute: FunctionComponent<GuardedRouteProps> = ({ children, ...rest }: GuardedRouteProps) => {
   const { user, loading } = useCtxUser();
   if (loading) {
     return <div>Loading...</div>;
@@ -244,7 +246,7 @@ function getRedirectionRoute(user: CurrentUser | null) {
   return defaultRoutes[userRole as 'annotator' | 'scrutator' | 'admin'];
 }
 
-const UnauthenticatedRoute: FunctionComponent<RouteProps> = ({ children, ...rest }: RouteProps) => {
+const UnauthenticatedRoute: FunctionComponent<GuardedRouteProps> = ({ children, ...rest }: GuardedRouteProps) => {
   const { user, loading } = useCtxUser();
   if (loading) {
     return <div>Loading...</div>;

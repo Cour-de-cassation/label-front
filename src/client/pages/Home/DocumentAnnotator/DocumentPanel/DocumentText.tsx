@@ -61,7 +61,7 @@ function DocumentText(props: propsType): ReactElement {
     if (isCtrlPressed) {
       setTextSelection((previousSelection) => mergeSelection(previousSelection, validSelection[0]));
       displayAlert({
-        text: `${wordings.homePage.multipleSelectedTerms} : ${validSelection[0].text} sélectionné`,
+        text: `${wordings.homePage.multipleSelectedTerms} : ${textSelection.map(term => term.text).join(', ')}`,
         variant: 'info',
         autoHide: true,
       });
@@ -74,7 +74,6 @@ function DocumentText(props: propsType): ReactElement {
   function mergeSelection(previousSelection: textSelectionType, newTerm: textSelectionType[number]): textSelectionType {
     const alreadySelected = previousSelection.some((term) => term.index === newTerm.index);
     if (alreadySelected) {
-      // Ctrl + reclic sur un terme déjà sélectionné => on le retire du lot
       return previousSelection.filter((term) => term.index !== newTerm.index);
     }
     return [...previousSelection, newTerm];
@@ -97,7 +96,7 @@ function DocumentText(props: propsType): ReactElement {
     ) {
       return [];
     }
-    // Check if selection in contained in one line
+ 
     if (anchorNodeValue === focusNodeValue && !selectionText.includes('\n')) {
       return [{ text: selectionText.trim(), index: computeSelectedTextIndex(selection) }];
     }

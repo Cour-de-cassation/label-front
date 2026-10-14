@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, MouseEvent } from 'react';
 import { useAlert } from './../../../../services/alert';
-import { positionType } from 'pelta-design-system';
+import { positionType } from 'src/pelta-design-system';
 import { AnnotationCreationTooltipMenu } from './AnnotationCreationTooltipMenu';
 import { textNeighboursType } from '../lib';
 import { useIsCtrlPressed } from '../hooks';
@@ -60,8 +60,9 @@ function DocumentText(props: propsType): ReactElement {
 
     if (isCtrlPressed) {
       setTextSelection((previousSelection) => mergeSelection(previousSelection, validSelection[0]));
+      const selectedTerms = mergeSelection(textSelection, validSelection[0]);
       displayAlert({
-        text: `${wordings.homePage.multipleSelectedTerms} : ${textSelection.map(term => term.text).join(', ')}`,
+        text: `${wordings.homePage.multipleSelectedTerms} : ${selectedTerms.map((term) => term.text).join(', ')}`,
         variant: 'info',
         autoHide: true,
       });
@@ -96,7 +97,7 @@ function DocumentText(props: propsType): ReactElement {
     ) {
       return [];
     }
- 
+
     if (anchorNodeValue === focusNodeValue && !selectionText.includes('\n')) {
       return [{ text: selectionText.trim(), index: computeSelectedTextIndex(selection) }];
     }

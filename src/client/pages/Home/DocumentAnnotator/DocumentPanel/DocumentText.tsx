@@ -1,7 +1,10 @@
 import React, { ReactElement, useState, MouseEvent } from 'react';
+import { useAlert } from './../../../../services/alert';
 import { positionType } from 'src/pelta-design-system';
 import { AnnotationCreationTooltipMenu } from './AnnotationCreationTooltipMenu';
 import { textNeighboursType } from '../lib';
+import { useIsCtrlPressed } from '../hooks';
+import { wordings } from 'src/client/wordings';
 
 export { PureDocumentText as DocumentText };
 
@@ -30,6 +33,8 @@ class PureDocumentText extends React.Component<propsType> {
 function DocumentText(props: propsType): ReactElement {
   const [textSelection, setTextSelection] = useState<textSelectionType>([]);
   const [tooltipMenuOriginPosition, setTooltipMenuOriginPosition] = useState<positionType | undefined>();
+  const isCtrlPressed = useIsCtrlPressed();
+  const { displayAlert } = useAlert();
 
   const styles = buildStyles();
   return (
@@ -37,7 +42,7 @@ function DocumentText(props: propsType): ReactElement {
       <span onMouseUp={handleSelection} style={styles.text}>
         {props.neighbours.current.text}
       </span>
-      {tooltipMenuOriginPosition && textSelection.length > 0 && (
+      {tooltipMenuOriginPosition && textSelection.length > 0 && !isCtrlPressed && (
         <AnnotationCreationTooltipMenu
           onClose={closeTooltipMenu}
           originPosition={tooltipMenuOriginPosition}
@@ -53,8 +58,26 @@ function DocumentText(props: propsType): ReactElement {
       return;
     }
 
-    setTextSelection(validSelection);
+    if (isCtrlPressed) {
+      setTextSelection((previousSelection) => mergeSelection(previousSelection, validSelection[0]));
+      const selectedTerms = mergeSelection(textSelection, validSelection[0]);
+      displayAlert({
+        text: `${wordings.homePage.multipleSelectedTerms} : ${selectedTerms.map((term) => term.text).join(', ')}`,
+        variant: 'info',
+        autoHide: true,
+      });
+    } else {
+      setTextSelection(validSelection);
+    }
     openTooltipMenu(event);
+  }
+
+  function mergeSelection(previousSelection: textSelectionType, newTerm: textSelectionType[number]): textSelectionType {
+    const alreadySelected = previousSelection.some((term) => term.index === newTerm.index);
+    if (alreadySelected) {
+      return previousSelection.filter((term) => term.index !== newTerm.index);
+    }
+    return [...previousSelection, newTerm];
   }
 
   function getValidSelection(selection: Selection | null) {
@@ -74,7 +97,7 @@ function DocumentText(props: propsType): ReactElement {
     ) {
       return [];
     }
-    // Check if selection in contained in one line
+
     if (anchorNodeValue === focusNodeValue && !selectionText.includes('\n')) {
       return [{ text: selectionText.trim(), index: computeSelectedTextIndex(selection) }];
     }

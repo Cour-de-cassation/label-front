@@ -192,6 +192,7 @@ const fr = {
       unknownJuridiction: 'Juridiction non précisée',
     },
     identicalOccurrencesSpotted: 'occurence(s) identique(s) détectée(s)',
+    multipleSelectedTerms: 'Sélection(s) multiple(s)',
     link: 'Créer une liaison',
     originalText: 'Texte original',
     motivationOccultation:

@@ -219,7 +219,6 @@ const HomeRoute: FunctionComponent<RouteProps> = ({ ...props }: RouteProps) => {
       render={({ location }) => (
         <Redirect
           to={{
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             pathname: getRedirectionRoute(user),
             state: { from: location },
           }}

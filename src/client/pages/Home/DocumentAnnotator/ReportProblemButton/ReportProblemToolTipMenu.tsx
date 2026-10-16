@@ -136,7 +136,7 @@ function ReportProblemToolTipMenu(props: {
 
         if (isBlocking) {
           await setDocumentStatus(annotatorState.document._id, 'locked');
-          props.onStopAnnotatingDocument && (await props.onStopAnnotatingDocument());
+          await props.onStopAnnotatingDocument?.();
         }
 
         closeTooltipMenu();

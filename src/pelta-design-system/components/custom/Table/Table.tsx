@@ -80,12 +80,12 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
 
   function onOrderByPropertyChange(newOrderByProperty: orderByPropertyT) {
     setOrderByProperty(newOrderByProperty);
-    props.onOrderByPropertyChange && props.onOrderByPropertyChange(newOrderByProperty);
+    props.onOrderByPropertyChange?.(newOrderByProperty);
   }
 
   function onOrderDirectionChange(newOrderDirection: orderDirectionType) {
     setOrderDirection(newOrderDirection);
-    props.onOrderDirectionChange && props.onOrderDirectionChange(newOrderDirection);
+    props.onOrderDirectionChange?.(newOrderDirection);
   }
 
   function renderBody() {
@@ -114,7 +114,7 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
 
   function buildFieldCellStyles() {
     const totalWidths = sumBy(props.fields, (field) => field.width);
-    const styles = props.fields.reduce((accumulator, field) => {
+    return props.fields.reduce((accumulator, field) => {
       return {
         ...accumulator,
         [field.id]: {
@@ -122,7 +122,6 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
         },
       };
     }, {} as Record<string, { width: string }>);
-    return styles;
   }
 
   function buildTableStyle() {

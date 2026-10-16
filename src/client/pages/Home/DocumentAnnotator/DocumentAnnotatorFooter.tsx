@@ -123,7 +123,7 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
         route: document.route,
       });
       await setDocumentStatus(document._id, nextDocumentStatus);
-      props.onStopAnnotatingDocument && (await props.onStopAnnotatingDocument());
+      await props.onStopAnnotatingDocument?.();
     } finally {
       setIsValidating(false);
     }

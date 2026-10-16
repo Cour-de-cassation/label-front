@@ -19,7 +19,6 @@ interface UserContextType {
 }
 const UserContext = createContext<UserContextType | null>(null);
 
-// eslint-disable-next-line react/prop-types
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<CurrentUser | null>(null);
   const [loading, setLoading] = useState(true);

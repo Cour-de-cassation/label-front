@@ -64,7 +64,7 @@ function Dropdown<T extends string>(props: {
 
   function closeDropdown() {
     setAnchorElement(undefined);
-    props.onClose && props.onClose();
+    props.onClose?.();
   }
 
   function handleSelection(value: T) {

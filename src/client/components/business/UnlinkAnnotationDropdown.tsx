@@ -83,7 +83,7 @@ function UnlinkAnnotationDropdown(props: {
       annotatorStateHandler.set(newAnnotatorState);
     }
 
-    props.onClose && props.onClose();
+    props.onClose?.();
   }
 
   function unlinkOnAnnotation(text: string) {

@@ -83,6 +83,8 @@ function Button(props: {
 
   function onClick(event: MouseEvent) {
     event.stopPropagation();
-    !props.disabled && props.onClick && props.onClick(event);
+    if (!props.disabled) {
+      props.onClick?.(event);
+    }
   }
 }

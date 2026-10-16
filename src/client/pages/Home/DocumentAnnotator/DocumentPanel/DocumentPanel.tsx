@@ -28,13 +28,6 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
     if (!assignationId) {
       return;
     }
-    const updateTreatementDurationsInterval = setInterval(
-      buildUpdateTreatmentUpdateDate(assignationId),
-      TIME_THRESHOLD_FOR_UPDATE,
-    );
-
-    return () => clearInterval(updateTreatementDurationsInterval);
-
     function buildUpdateTreatmentUpdateDate(assignationId: string) {
       let lastVerticalPosition = 0;
       return async () => {
@@ -51,6 +44,12 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
         lastVerticalPosition = currentVerticalPosition;
       };
     }
+    const updateTreatementDurationsInterval = setInterval(
+      buildUpdateTreatmentUpdateDate(assignationId),
+      TIME_THRESHOLD_FOR_UPDATE,
+    );
+
+    return () => clearInterval(updateTreatementDurationsInterval);
   }, [assignationId, occurrenceEntityId, annotatorStateChecksum, viewerScrollerHandler]);
 
   return (

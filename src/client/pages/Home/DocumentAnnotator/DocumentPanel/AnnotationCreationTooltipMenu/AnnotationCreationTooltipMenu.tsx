@@ -1,13 +1,13 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useState } from 'react';
 import {
-  customThemeType,
-  useCustomTheme,
   Checkbox,
   CircleIcon,
+  customThemeType,
   FloatingTooltipMenu,
   LabelledDropdown,
-  Text,
   positionType,
+  Text,
+  useCustomTheme,
 } from 'src/pelta-design-system';
 import { annotationHandler, annotationTextDetector, settingsModule } from 'src/core';
 import { CategoryIcon } from '../../../../../components';
@@ -39,20 +39,14 @@ function AnnotationCreationTooltipMenu(props: {
     canBeAnnotatedBy: 'human',
   });
   const annotationText = computeAnnotationText();
-
-  const [tooltipWidth, setTooltipWidth] = useState(TOOLTIP_MENU_MIN_WIDTH);
-  useEffect(() => {
-    const textLength = annotationText.length;
-    const newWidth = Math.min(TOOLTIP_MENU_MAX_WIDTH, Math.max(TOOLTIP_MENU_MIN_WIDTH, textLength * 4));
-    setTooltipWidth(newWidth);
-  }, [annotationText]);
+  const toolTipWidth = Math.min(TOOLTIP_MENU_MAX_WIDTH, Math.max(TOOLTIP_MENU_MIN_WIDTH, annotationText.length * 4));
 
   return (
     <FloatingTooltipMenu
       shouldCloseWhenClickedAway
       originPosition={props.originPosition}
       onClose={props.onClose}
-      width={tooltipWidth}
+      width={toolTipWidth}
     >
       <div style={styles.tooltipMenuContent}>
         <div style={styles.annotationTextContainer}>

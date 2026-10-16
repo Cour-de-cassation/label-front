@@ -4,7 +4,7 @@ import { buildViewerScrollerHandler, viewerScrollerHandlerHandlerType } from './
 export { ViewerScrollerContext, ViewerScrollerContextProvider };
 
 const ViewerScrollerContext = createContext<viewerScrollerHandlerHandlerType>({
-  //TODO: remove linter
+  //TODO: remove linter disabler and get the correct types
   /* eslint-disable-next-line @typescript-eslint/no-unsafe-return */
   getViewerRef: () => null as any,
   getCurrentVerticalPosition: () => 0,

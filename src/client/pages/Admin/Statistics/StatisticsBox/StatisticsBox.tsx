@@ -33,7 +33,7 @@ function StatisticsBox(props: {
       <ComputationToggle value={computation} onChange={setComputation} />
       <div style={styles.rowsContainer}>
         {statisticsRows.map((statisticRow) => (
-          <div style={styles.rowContainer}>
+          <div key={statisticRow.label} style={styles.rowContainer}>
             <Text>{statisticRow.label}</Text>
             <Text>{statisticRow.value}</Text>
           </div>

@@ -58,7 +58,7 @@ function CategoryTableEntry(props: {
     <Div_CategoryTableEntry key={props.entityId} onClick={selectEntity} styleProps={styleProps}>
       <Div_EntityText styleProps={styleProps}>
         {entityAnnotationTexts.map((text, index) => (
-          <div>
+          <div key={text}>
             <Div_AnnotationText styleProps={styleProps}>
               <CategoryTableEntryBracketLink
                 color={computeBracketLinkColor(entityAnnotation.category)}

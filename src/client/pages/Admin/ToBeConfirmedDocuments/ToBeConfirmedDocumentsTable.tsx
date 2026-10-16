@@ -82,7 +82,7 @@ function ToBeConfirmedDocumentsTable(props: {
           toBeConfirmedDocument.document.publicationCategory.length > 0 ? (
             <div style={styles.publicationCategoryBadgesContainer}>
               {toBeConfirmedDocument.document.publicationCategory.map((publicationCategoryLetter) => (
-                <div style={styles.publicationCategoryBadgeContainer}>
+                <div key={publicationCategoryLetter} style={styles.publicationCategoryBadgeContainer}>
                   <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
                 </div>
               ))}

@@ -29,7 +29,6 @@ export default defineConfig(
     rules: {
       'prettier/prettier': 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
-      'react/jsx-key': 'off',
       'react/display-name': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-empty-function': 'off',

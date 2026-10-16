@@ -32,6 +32,7 @@ function TableRow<InputT>(props: {
   const cellWeight = props.isHighlighted ? 'bold' : 'normal';
   const cellColor = props.isMinored ? 'textSecondary' : 'textPrimary';
   const formattedRow = props.fields.map((field) => ({
+    id: field.id,
     style: field.cellStyle,
     content: field.render ? field.render(props.row) : <Text variant="h3">{field.extractor(props.row)}</Text>,
   }));
@@ -54,8 +55,8 @@ function TableRow<InputT>(props: {
         onClick={!!onRowClick ? onRowClick : undefined}
         style={styles.row}
       >
-        {formattedRow.map(({ content, style }) => (
-          <td style={style}>
+        {formattedRow.map(({ id, content, style }) => (
+          <td key={id} style={style}>
             <Text weight={cellWeight} color={cellColor} variant="h3">
               {content}
             </Text>

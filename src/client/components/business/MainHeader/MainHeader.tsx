@@ -40,12 +40,12 @@ function MainHeader(props: {
     const userRole = user?.role;
     if (userRole === 'admin') {
       return [
-        <AdminViewDropdown updateAdminMenu={props.updateAdminMenu} />,
-        <PersonalStatisticsButton />,
-        <SettingsButton />,
+        <AdminViewDropdown key="adminViewDropdown" updateAdminMenu={props.updateAdminMenu} />,
+        <PersonalStatisticsButton key="personalStatisticsButton" />,
+        <SettingsButton key="settingsButton" />,
       ];
     }
-    return [<PersonalStatisticsButton />, <SettingsButton />];
+    return [<PersonalStatisticsButton key="personalStatisticsButton" />, <SettingsButton key="settingsButton" />];
   }
 
   function buildStyles(theme: customThemeType) {

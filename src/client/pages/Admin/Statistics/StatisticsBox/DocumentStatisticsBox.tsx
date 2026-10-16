@@ -35,7 +35,7 @@ function DocumentStatisticsBox(props: { documentStatistic: documentStatsType; wi
       <div style={styles.rowsContainer}>
         <div>
           {DocumentStatisticsRows.map((documentStatisticsRows) => (
-            <div style={styles.rowContainer}>
+            <div key={documentStatisticsRows.label} style={styles.rowContainer}>
               <Text weight="normal">{documentStatisticsRows.label} </Text>
               <Text weight="normal" color="textPrimary">
                 {documentStatisticsRows.value}

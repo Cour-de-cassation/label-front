@@ -282,7 +282,7 @@ function TreatedDocuments(props: {
           treatedDocument.document.publicationCategory.length > 0 ? (
             <div style={styles.publicationCategoryBadgesContainer}>
               {treatedDocument.document.publicationCategory.map((publicationCategoryLetter) => (
-                <div style={styles.publicationCategoryBadgeContainer}>
+                <div key={publicationCategoryLetter} style={styles.publicationCategoryBadgeContainer}>
                   <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
                 </div>
               ))}

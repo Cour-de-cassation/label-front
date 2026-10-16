@@ -21,6 +21,7 @@ function useApi<dataT, paramsT>(
       },
       (error) => {
         setIsLoaded(true);
+        //TODO clean the unsafe member access
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (error.statusCode) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -30,7 +31,10 @@ function useApi<dataT, paramsT>(
         }
       },
     );
-  }, [refetchFlag]);
+    // callApi is recreated on every render by the callers: adding it would refetch in a loop.
+    // TODO: use useEffectEvent once on React 19.2+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refetchFlag, params]);
 
   return { data, params, isLoaded, refetch, statusCode };
 

@@ -4,6 +4,7 @@ import { buildViewerScrollerHandler, viewerScrollerHandlerHandlerType } from './
 export { ViewerScrollerContext, ViewerScrollerContextProvider };
 
 const ViewerScrollerContext = createContext<viewerScrollerHandlerHandlerType>({
+  //TODO: remove linter
   /* eslint-disable-next-line @typescript-eslint/no-unsafe-return */
   getViewerRef: () => null as any,
   getCurrentVerticalPosition: () => 0,
@@ -16,7 +17,8 @@ function ViewerScrollerContextProvider(props: {
   viewerRef: React.MutableRefObject<HTMLDivElement | null>;
   children: ReactElement;
 }): ReactElement {
-  const viewerScrollerHandler = useMemo(() => buildViewerScrollerHandler(props.viewerRef), []);
+  //TODO remove use memo when compiler is implemented
+  const viewerScrollerHandler = useMemo(() => buildViewerScrollerHandler(props.viewerRef), [props.viewerRef]);
 
   return (
     <ViewerScrollerContext.Provider value={viewerScrollerHandler}>{props.children}</ViewerScrollerContext.Provider>

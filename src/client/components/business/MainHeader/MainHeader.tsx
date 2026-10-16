@@ -1,5 +1,5 @@
 import React from 'react';
-import { customThemeType, heights, useCustomTheme, Header, IconButton, MenuBar, Text } from 'pelta-design-system';
+import { customThemeType, heights, useCustomTheme, Header, IconButton, MenuBar, Text } from 'src/pelta-design-system';
 import { wordings } from '../../../wordings';
 import { AdminViewDropdown } from './AdminViewDropdown';
 import { PersonalStatisticsButton } from './PersonalStatisticsButton';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { LabelledDropdown } from 'pelta-design-system';
+import { LabelledDropdown } from 'src/pelta-design-system';
 import { defaultRoutes } from '../../../pages';
 import { adminViews, localStorage } from '../../../services/localStorage';
 import { wordings } from '../../../wordings';

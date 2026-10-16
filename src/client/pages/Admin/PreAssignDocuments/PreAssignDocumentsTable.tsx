@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, tableRowFieldType } from 'pelta-design-system';
+import { Table, tableRowFieldType } from 'src/pelta-design-system';
 import { apiRouteOutType, timeOperator } from 'src/core';
 import { apiCaller } from '../../../api';
 import { useAlert } from '../../../services/alert';

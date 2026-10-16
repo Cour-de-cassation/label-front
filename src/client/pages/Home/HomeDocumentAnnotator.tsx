@@ -7,7 +7,7 @@ import {
   documentType,
   settingsType,
 } from 'src/core';
-import { customThemeType, useCustomTheme, Text, CircleIcon } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Text, CircleIcon } from 'src/pelta-design-system';
 import { apiCaller } from '../../api';
 import { MainHeader } from '../../components';
 import {

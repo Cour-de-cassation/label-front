@@ -8,7 +8,7 @@ import {
   useCustomTheme,
   useDisplayMode,
   Text,
-} from 'pelta-design-system';
+} from 'src/pelta-design-system';
 import { CategoryTableEntryBracketLink } from './CategoryTableEntryBracketLink';
 import { displayModeType, annotationType, settingsModule } from 'src/core';
 import { annotatorStateHandlerType, useAnnotatorStateHandler } from '../../../../../services/annotatorState';

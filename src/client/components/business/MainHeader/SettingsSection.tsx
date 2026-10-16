@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { useCustomTheme, customThemeType, Text } from 'pelta-design-system';
+import { useCustomTheme, customThemeType, Text } from 'src/pelta-design-system';
 
 export { SettingsSection };
 

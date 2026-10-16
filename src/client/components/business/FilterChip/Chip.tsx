@@ -1,5 +1,5 @@
 import React from 'react';
-import { customThemeType, useCustomTheme, Icon, Text } from 'pelta-design-system';
+import { customThemeType, useCustomTheme, Icon, Text } from 'src/pelta-design-system';
 
 export { Chip };
 

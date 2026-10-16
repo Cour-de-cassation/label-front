@@ -10,7 +10,7 @@ import {
   DatePicker,
   Icon,
   rectPositionType,
-} from 'pelta-design-system';
+} from 'src/pelta-design-system';
 import { filterType } from './filterType';
 import { buildComputeIsDateAvailable } from './lib';
 

@@ -9,7 +9,7 @@ import {
   Icon,
   Text,
   CircleIcon,
-} from 'pelta-design-system';
+} from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../components';
 import { wordings } from '../../../wordings';
 import { computeGenericDocumentInfoEntries } from './computeGenericDocumentInfoEntries';

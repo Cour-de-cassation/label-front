@@ -9,9 +9,9 @@ function useIsCtrlPressed(): boolean {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      const isEventCalled = event.ctrlKey || event.metaKey;
-      const isBrowserShortcut = isEventCalled && BROWSER_SHORTCUT_KEYS.has(event.key.toLowerCase());
-      setIsCtrlPressed(isEventCalled && !isBrowserShortcut);
+      const isCtrlOrMetaPressed = event.ctrlKey || event.metaKey;
+      const isBrowserShortcut = isCtrlOrMetaPressed && BROWSER_SHORTCUT_KEYS.has(event.key.toLowerCase());
+      setIsCtrlPressed(isCtrlOrMetaPressed && !isBrowserShortcut);
     }
 
     function handleKeyUp(event: KeyboardEvent) {

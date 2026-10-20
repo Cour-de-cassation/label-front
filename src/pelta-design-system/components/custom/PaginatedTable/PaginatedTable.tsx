@@ -13,6 +13,7 @@ function PaginatedTable<InputT, orderByPropertyT extends string = string>(props:
   defaultOrderDirection?: orderDirectionType;
   footer?: Array<footerCellType>;
   data: InputT[];
+  getRowKey?: (row: InputT) => string;
   onOrderByPropertyChange?: (newOrderByProperty: orderByPropertyT) => void;
   onOrderDirectionChange?: (newOrderDirection: orderDirectionType) => void;
   buildOptionItems?: (data: InputT) => Array<optionItemType>;
@@ -31,6 +32,7 @@ function PaginatedTable<InputT, orderByPropertyT extends string = string>(props:
     <>
       <Table
         data={props.data}
+        getRowKey={props.getRowKey}
         defaultOrderByProperty={props.defaultOrderByProperty}
         defaultOrderDirection={props.defaultOrderDirection}
         fields={props.fields}

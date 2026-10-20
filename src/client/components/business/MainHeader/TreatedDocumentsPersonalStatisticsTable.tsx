@@ -14,7 +14,13 @@ function TreatedDocumentsPersonalStatisticsTable(props: {
 }) {
   const treatedDocumentsPersonalStatisticsFields = buildtreatedDocumentsPersonalStatisticsFields();
 
-  return <Table data={props.personalStatistics} fields={treatedDocumentsPersonalStatisticsFields} />;
+  return (
+    <Table
+      data={props.personalStatistics}
+      getRowKey={(personalStatistic) => String(personalStatistic.day)}
+      fields={treatedDocumentsPersonalStatisticsFields}
+    />
+  );
 
   function buildtreatedDocumentsPersonalStatisticsFields(): Array<
     tableRowFieldType<apiRouteOutType<'get', 'personalStatistics'>[number]>

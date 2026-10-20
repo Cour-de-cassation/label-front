@@ -53,6 +53,7 @@ function UntreatedDocumentsTable(props: {
       <PaginatedTable
         fields={fields}
         data={props.untreatedDocuments}
+        getRowKey={(untreatedDocument) => untreatedDocument.document._id}
         buildOptionItems={buildOptionItems}
         onOrderByPropertyChange={onOrderByPropertyChange}
         onOrderDirectionChange={onOrderDirectionChange}

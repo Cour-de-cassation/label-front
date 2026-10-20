@@ -52,6 +52,7 @@ function TreatedDocumentsTable(props: {
         onOrderByPropertyChange={onOrderByPropertyChange}
         onOrderDirectionChange={onOrderDirectionChange}
         data={props.treatedDocuments}
+        getRowKey={(treatedDocument) => treatedDocument.document._id}
         buildOptionItems={buildOptionItems}
       />
     </div>

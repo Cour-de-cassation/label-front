@@ -21,6 +21,7 @@ type tableRowFieldType<InputT, orderByPropertyT = string> = {
 
 function TableBody<InputT, orderByPropertyT extends string = string>(props: {
   data: InputT[];
+  getRowKey?: (row: InputT) => string;
   fields: Array<tableRowFieldType<InputT, orderByPropertyT>>;
   isRowHighlighted?: (row: InputT) => boolean;
   isRowMinored?: (row: InputT) => boolean;
@@ -35,8 +36,9 @@ function TableBody<InputT, orderByPropertyT extends string = string>(props: {
   const { onRowClick } = props;
   return (
     <tbody>
-      {sortedData.map((row) => (
+      {sortedData.map((row, index) => (
         <TableRow
+          key={props.getRowKey ? props.getRowKey(row) : index}
           fields={props.fields}
           isHighlighted={!!props.isRowHighlighted && props.isRowHighlighted(row)}
           isMinored={!!props.isRowMinored && props.isRowMinored(row)}

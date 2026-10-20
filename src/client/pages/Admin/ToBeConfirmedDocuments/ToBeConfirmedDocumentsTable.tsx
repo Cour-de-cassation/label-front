@@ -25,7 +25,12 @@ function ToBeConfirmedDocumentsTable(props: {
 
   return (
     <div style={styles.container}>
-      <PaginatedTable buildOptionItems={buildOptionItems} fields={fields} data={props.toBeConfirmedDocuments} />
+      <PaginatedTable
+        buildOptionItems={buildOptionItems}
+        fields={fields}
+        data={props.toBeConfirmedDocuments}
+        getRowKey={(toBeConfirmedDocument) => toBeConfirmedDocument.document._id}
+      />
     </div>
   );
 

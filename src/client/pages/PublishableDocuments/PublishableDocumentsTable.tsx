@@ -36,6 +36,7 @@ function PublishableDocumentsTable(props: {
       <PaginatedTable
         fields={fields}
         data={props.publishableDocuments}
+        getRowKey={(publishableDocument) => publishableDocument._id}
         buildOptionItems={buildOptionItems}
         defaultOrderByProperty={orderByProperty}
         defaultOrderDirection={orderDirection}

@@ -45,6 +45,7 @@ function ProblemReportsTable(props: {
       <AnnotationsDiffDrawer documentInfo={annotationDiffDocumentInfo} close={resetDrawer} />
       <Table
         data={props.problemReportsWithDetails}
+        getRowKey={(problemReportWithDetails) => problemReportWithDetails.problemReport._id}
         isRowHighlighted={isRowHighlighted}
         fields={problemReportsFields}
         buildOptionItems={buildOptionItems}

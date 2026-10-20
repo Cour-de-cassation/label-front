@@ -18,6 +18,7 @@ function PreAssignDocumentsTable(props: {
   return (
     <Table
       data={props.preAssignations}
+      getRowKey={(preAssignation) => preAssignation.preAssignation._id}
       fields={preAssignationFields}
       buildOptionItems={buildOptionItems}
       defaultOrderByProperty="date"

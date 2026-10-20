@@ -85,7 +85,7 @@ function Statistics(props: {
               <div style={styles.rowBox}>
                 {documentStatistics?.map((documentStatistic) => {
                   return (
-                    <div>
+                    <div key={documentStatistic._id}>
                       <DocumentStatisticsBox
                         documentStatistic={documentStatistic}
                         width={DOCUMENT_STATISTIC_BOX_WIDTH}

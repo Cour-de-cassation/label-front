@@ -45,7 +45,7 @@ function DocumentStatisticsBox(props: { documentStatistic: documentStatsType; wi
         </div>
         <div>
           {DocumentAgentRows.map((documentAgentRow) => (
-            <div style={styles.rowAgentContainer}>
+            <div key={documentAgentRow.label} style={styles.rowAgentContainer}>
               <div>
                 {' '}
                 <Text weight="normal"> {documentAgentRow.label} </Text>{' '}

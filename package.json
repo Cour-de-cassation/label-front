@@ -31,8 +31,10 @@
   },
   "devDependencies": {
     "@babel/cli": "7.28.3",
+    "@babel/core": "7.29.7",
     "@babel/polyfill": "7.12.1",
     "@eslint-react/eslint-plugin": "5.28.4",
+    "@rolldown/plugin-babel": "0.2.4",
     "@types/dateformat": "5.0.3",
     "@types/lodash": "4.14.65",
     "@types/node": "24.19.1",
@@ -41,6 +43,7 @@
     "@types/react-router-dom": "5.3.3",
     "@types/string-template": "1.0.7",
     "@vitejs/plugin-react": "6.1.2",
+    "babel-plugin-react-compiler": "1.0.0",
     "eslint": "10.13.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.7",

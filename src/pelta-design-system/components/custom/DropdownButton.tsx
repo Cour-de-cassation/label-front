@@ -51,7 +51,12 @@ function DropdownButton<T extends string>(props: {
       : { color: theme.colors.line.level2 };
     return icon ? (
       <ComponentsList
-        components={[icon, <Text style={textStyle}>{text}</Text>]}
+        components={[
+          icon,
+          <Text key="text" style={textStyle}>
+            {text}
+          </Text>,
+        ]}
         spaceBetweenComponents={theme.spacing}
       />
     ) : (

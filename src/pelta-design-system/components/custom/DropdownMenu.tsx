@@ -27,7 +27,12 @@ function DropdownMenu<T extends string>(props: {
       items={props.items.map(({ icon, text, value, isDisabled }) => ({
         element: icon ? (
           <ComponentsList
-            components={[icon, <ItemText isDisabled={isDisabled}>{text}</ItemText>]}
+            components={[
+              icon,
+              <ItemText key="text" isDisabled={isDisabled}>
+                {text}
+              </ItemText>,
+            ]}
             spaceBetweenComponents={theme.spacing}
           />
         ) : (

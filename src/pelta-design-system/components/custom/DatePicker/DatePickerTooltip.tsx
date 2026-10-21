@@ -70,11 +70,11 @@ function DatePickerTooltip(props: {
 
   function renderCalendar(year: number, month: number) {
     const calendarTable = createCalendarTable(year, month);
-    const calendar = calendarTable.map((week) => (
-      <tr>
-        {week.map((dayOfMonth) => {
+    const calendar = calendarTable.map((week, weekIndex) => (
+      <tr key={`${weekIndex}-${week.join(',')}`}>
+        {week.map((dayOfMonth, dayIndex) => {
           if (dayOfMonth === undefined) {
-            return <td />;
+            return <td key={`${dayIndex}-empty`} />;
           }
           const isDateAvailable = props.computeIsDateAvailable({
             year,
@@ -82,7 +82,7 @@ function DatePickerTooltip(props: {
             dayOfMonth,
           });
           return (
-            <td>
+            <td key={`${dayIndex}-${dayOfMonth}`}>
               <div
                 style={{
                   ...styles.dayContainer,

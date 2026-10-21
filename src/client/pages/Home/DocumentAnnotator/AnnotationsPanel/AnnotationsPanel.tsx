@@ -115,8 +115,10 @@ function AnnotationsPanel(props: {
                   computedAdditionalTerms.additionalTermsToAnnotate.length > 0 && (
                     <>
                       <Text>{wordings.homePage.additionalTermsToAnnotate}</Text>
-                      {computedAdditionalTerms.additionalTermsToAnnotate.map((term) => (
-                        <Text variant="body2">- {term}</Text>
+                      {computedAdditionalTerms.additionalTermsToAnnotate.map((term, termIndex) => (
+                        <Text key={`${termIndex}-${term}`} variant="body2">
+                          - {term}
+                        </Text>
                       ))}
                     </>
                   )}
@@ -124,8 +126,10 @@ function AnnotationsPanel(props: {
                   computedAdditionalTerms.additionalTermsToUnAnnotate.length > 0 && (
                     <>
                       <Text>{wordings.homePage.additionalTermsToUnAnnotate}</Text>
-                      {computedAdditionalTerms.additionalTermsToUnAnnotate.map((term) => (
-                        <Text variant="body2">- {term}</Text>
+                      {computedAdditionalTerms.additionalTermsToUnAnnotate.map((term, termIndex) => (
+                        <Text key={`${termIndex}-${term}`} variant="body2">
+                          - {term}
+                        </Text>
                       ))}
                     </>
                   )}

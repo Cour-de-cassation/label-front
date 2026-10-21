@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router';
-import { customThemeType, useCustomTheme, ButtonWithIcon, Text } from 'src/pelta-design-system';
+import { ButtonWithIcon, customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { MainHeader } from '../../components';
 import { lineSplitter } from '../../services/lineSplitter';
 import { heights } from '../../styles';
@@ -36,8 +36,8 @@ function AnonymizedDocument() {
               <div style={styles.documentContainer}>
                 <div style={styles.documentTextContainer}>
                   <table style={styles.documentTextTable}>
-                    {splittedTextByLine.map((line) => (
-                      <tr>
+                    {splittedTextByLine.map((line, lineIndex) => (
+                      <tr key={`${lineIndex + 1}-${line}`}>
                         <td style={styles.lineCell}>
                           <Text variant="body2">{line}</Text>
                         </td>

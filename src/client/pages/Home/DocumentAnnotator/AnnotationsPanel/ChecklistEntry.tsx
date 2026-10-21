@@ -53,11 +53,12 @@ function ChecklistEntry(props: {
 
   function renderShortMessageWithIcons(shortMessage: string) {
     const parts = shortMessage.split(/(\[.*?\])/g);
-    return parts.map((part) => {
+    return parts.map((part, partIndex) => {
       if (part.startsWith('[') && part.endsWith(']')) {
         const category = part.slice(1, -1);
         return (
           <CategoryIcon
+            key={`${partIndex}-${category}`}
             category={category}
             iconSize={CHECKLIST_ICON_SIZE}
             settings={props.settings}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Icon, Text } from '../../materialUI';
 import { customThemeType, useCustomTheme } from '../../../theme';
 import { computeDisplayedPages } from './lib';
@@ -18,16 +18,19 @@ function PaginationFooter(props: {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
   const displayedPages = computeDisplayedPages(props.currentPage, props.numberOfPages);
-  const { ClickableDiv } = buildStyledComponents();
 
   return (
     <div style={styles.container}>
       <div style={styles.pagesContainer}>
-        <ClickableDiv onClick={() => (props.currentPage > 0 ? props.setCurrentPage(props.currentPage - 1) : null)}>
+        <ClickableDiv
+          customTheme={theme}
+          onClick={() => (props.currentPage > 0 ? props.setCurrentPage(props.currentPage - 1) : null)}
+        >
           <Icon iconName="arrowLeft" />
         </ClickableDiv>
         {displayedPages.map(renderContent)}
         <ClickableDiv
+          customTheme={theme}
           onClick={() =>
             props.currentPage < props.numberOfPages - 1 ? props.setCurrentPage(props.currentPage + 1) : null
           }
@@ -43,6 +46,7 @@ function PaginationFooter(props: {
       case 'page':
         return (
           <ClickableDiv
+            customTheme={theme}
             isSelected={props.currentPage === content.value}
             onClick={() => props.setCurrentPage(content.value)}
           >
@@ -57,40 +61,35 @@ function PaginationFooter(props: {
         );
     }
   }
+}
 
-  function buildStyledComponents() {
-    type stylePropsType = { isSelected?: boolean };
-    const ClickableDiv = styled.div<stylePropsType>`
-      ${({ isSelected }) => {
-        return `
-      width: ${PAGE_SIZE}px;
-      height: ${PAGE_SIZE}px;
-      border-radius: ${PAGE_SIZE / 2}px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: ${theme.spacing}px;
-      ${
-        isSelected
-          ? `
-          background-color: ${theme.colors.default.hoveredBackground};
-          color: ${theme.colors.default.hoveredTextColor};
-        `
-          : `
-      &:hover {
-        background-color: ${theme.colors.default.background};
-      }
-      `
-      }
-    }
-    `;
-      }}
-    `;
-
-    return { ClickableDiv };
+const ClickableDiv = styled.div<{ customTheme: customThemeType; isSelected?: boolean }>`
+  ${({ customTheme: theme, isSelected }) => {
+    return `
+  width: ${PAGE_SIZE}px;
+  height: ${PAGE_SIZE}px;
+  border-radius: ${PAGE_SIZE / 2}px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: ${theme.spacing}px;
+  ${
+    isSelected
+      ? `
+      background-color: ${theme.colors.default.hoveredBackground};
+      color: ${theme.colors.default.hoveredTextColor};
+    `
+      : `
+  &:hover {
+    background-color: ${theme.colors.default.background};
+  }
+  `
   }
 }
+`;
+  }}
+`;
 
 function buildStyles(theme: customThemeType) {
   return {

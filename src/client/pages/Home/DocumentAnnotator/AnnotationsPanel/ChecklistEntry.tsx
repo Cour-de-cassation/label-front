@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Checkbox, customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { useChecklistEntryHandler } from './useChecklistEntryHandler';
 import { useViewerScrollerHandler } from '../../../../services/viewerScroller';
@@ -74,7 +74,7 @@ function ChecklistEntry(props: {
 
   return (
     <Div_ChecklistEntry
-      theme={theme}
+      customTheme={theme}
       isSelected={checklistEntryHandler.isSelected(check.message)}
       onClick={selectChecklist}
     >
@@ -96,8 +96,8 @@ function ChecklistEntry(props: {
   );
 }
 
-const Div_ChecklistEntry = styled.div<{ isSelected: boolean }>`
-  ${({ theme, isSelected }: { theme: customThemeType; isSelected: boolean }) => `
+const Div_ChecklistEntry = styled.div<{ customTheme: customThemeType; isSelected: boolean }>`
+  ${({ customTheme: theme, isSelected }) => `
     display: flex;
     padding: 0px ${theme.spacing}px;
     background-color: ${isSelected ? theme.colors.default.background : theme.colors.checklist};

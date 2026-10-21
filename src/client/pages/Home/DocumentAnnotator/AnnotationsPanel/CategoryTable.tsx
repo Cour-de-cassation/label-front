@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { settingsModule } from 'src/core';
 import { customThemeType, useCustomTheme, Accordion, Text, Icon } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../components';

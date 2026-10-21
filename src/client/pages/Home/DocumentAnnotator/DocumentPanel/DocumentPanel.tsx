@@ -24,11 +24,6 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
     documentViewerModeHandler.documentViewerMode.kind === 'occurrence' &&
     documentViewerModeHandler.documentViewerMode.entityId;
 
-  let updateTreatementDurationsInterval: NodeJS.Timeout | null = null;
-
-  // Known bug: updateTreatementDurationsInterval is reset on every render, so the immediate
-  // updateTreatmentDuration call below never runs. Kept as is until the treatment duration ticket is handled.
-  // eslint-disable-next-line react-hooks/immutability
   useEffect(() => {
     function buildUpdateTreatmentUpdateDate(assignationId: string) {
       let lastVerticalPosition = 0;
@@ -49,23 +44,12 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
     if (!assignationId) {
       return;
     }
-    if (!!updateTreatementDurationsInterval) {
-      clearInterval(updateTreatementDurationsInterval);
-      apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', {
-        assignationId,
-      });
-    }
-    // eslint-disable-next-line react-hooks/immutability, react-hooks/exhaustive-deps
-    updateTreatementDurationsInterval = setInterval(
+    const updateTreatementDurationsInterval = setInterval(
       buildUpdateTreatmentUpdateDate(assignationId),
       TIME_THRESHOLD_FOR_UPDATE,
     );
 
-    return () => {
-      if (updateTreatementDurationsInterval) {
-        clearInterval(updateTreatementDurationsInterval);
-      }
-    };
+    return () => clearInterval(updateTreatementDurationsInterval);
   }, [assignationId, occurrenceEntityId, annotatorStateChecksum, viewerScrollerHandler]);
 
   return (

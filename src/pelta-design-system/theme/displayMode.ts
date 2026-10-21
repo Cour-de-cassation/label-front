@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, use } from 'react';
 import { displayModeType } from './types';
 
 export { useDisplayMode, DisplayModeContext };
@@ -12,5 +12,5 @@ const DisplayModeContext = createContext<{
 });
 
 const useDisplayMode = () => {
-  return useContext(DisplayModeContext);
+  return use(DisplayModeContext);
 };

@@ -1,8 +1,8 @@
-import { useContext } from 'react';
+import { use } from 'react';
 import { AnonymizerBuilderContext } from './AnonymizerBuilderContextProvider';
 
 export { useAnonymizerBuilder };
 
 function useAnonymizerBuilder() {
-  return useContext(AnonymizerBuilderContext);
+  return use(AnonymizerBuilderContext);
 }

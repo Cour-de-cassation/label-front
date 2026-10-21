@@ -22,7 +22,7 @@ function PopupHandlerContextProvider(props: { children: ReactNode }): ReactEleme
   };
 
   return (
-    <PopupHandlerContext.Provider value={popupHandler}>
+    <PopupHandlerContext value={popupHandler}>
       {!!popup && (
         <ConfirmationPopup
           text={popup.text}
@@ -37,6 +37,6 @@ function PopupHandlerContextProvider(props: { children: ReactNode }): ReactEleme
         />
       )}
       {props.children}
-    </PopupHandlerContext.Provider>
+    </PopupHandlerContext>
   );
 }

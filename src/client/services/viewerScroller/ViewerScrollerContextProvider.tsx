@@ -20,7 +20,5 @@ function ViewerScrollerContextProvider(props: {
   //TODO remove use memo when compiler is implemented
   const viewerScrollerHandler = useMemo(() => buildViewerScrollerHandler(props.viewerRef), [props.viewerRef]);
 
-  return (
-    <ViewerScrollerContext.Provider value={viewerScrollerHandler}>{props.children}</ViewerScrollerContext.Provider>
-  );
+  return <ViewerScrollerContext value={viewerScrollerHandler}>{props.children}</ViewerScrollerContext>;
 }

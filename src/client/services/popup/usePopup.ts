@@ -1,8 +1,8 @@
-import { useContext } from 'react';
+import { use } from 'react';
 import { PopupHandlerContext } from './PopupHandler';
 
 export { usePopup };
 
 function usePopup() {
-  return useContext(PopupHandlerContext);
+  return use(PopupHandlerContext);
 }

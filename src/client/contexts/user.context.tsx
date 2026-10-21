@@ -1,4 +1,4 @@
-import React, { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react';
+import React, { createContext, FC, ReactNode, use, useEffect, useState } from 'react';
 import { urlHandler } from '../utils';
 import { userType } from 'src/core';
 import { localStorage } from '../services/localStorage';
@@ -59,11 +59,11 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     window.location.replace(urlHandler.getSsoLogoutUrl());
   };
 
-  return <UserContext.Provider value={{ user, loading, onLogout, onLogin }}>{children}</UserContext.Provider>;
+  return <UserContext value={{ user, loading, onLogout, onLogin }}>{children}</UserContext>;
 };
 
 export const useCtxUser = () => {
-  const context = useContext(UserContext);
+  const context = use(UserContext);
   if (!context) {
     throw new Error(`useCtxUser must be used within a UserProvider `);
   }

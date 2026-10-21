@@ -28,6 +28,7 @@ function PaginationFooter(props: {
         >
           <Icon iconName="arrowLeft" />
         </ClickableDiv>
+        {/* TODO: renderContent returns elements without key (page: content.value, blank: its position) */}
         {displayedPages.map(renderContent)}
         <ClickableDiv
           customTheme={theme}
@@ -63,6 +64,7 @@ function PaginationFooter(props: {
   }
 }
 
+// TODO: remove the extra closing brace at the end of the CSS below
 const ClickableDiv = styled.div<{ customTheme: customThemeType; isSelected?: boolean }>`
   ${({ customTheme: theme, isSelected }) => {
     return `

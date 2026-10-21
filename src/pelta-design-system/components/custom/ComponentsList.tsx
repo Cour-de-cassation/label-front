@@ -13,9 +13,11 @@ function ComponentsList(props: {
       {props.components.filter(Boolean).reduce(
         (componentList, component, ind) => [
           ...componentList,
+          // eslint-disable-next-line @eslint-react/no-array-index-key -- components are passed without keys
           <span key={2 * ind} style={style.componentContainer}>
             {component}
           </span>,
+          // eslint-disable-next-line @eslint-react/no-array-index-key -- spacers have no identity
           <span key={2 * ind + 1} style={style.spaceBetweenComponents} />,
         ],
         [] as ReactElement[],

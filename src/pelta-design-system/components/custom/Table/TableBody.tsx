@@ -38,6 +38,7 @@ function TableBody<InputT, orderByPropertyT extends string = string>(props: {
     <tbody>
       {sortedData.map((row, index) => (
         <TableRow
+          // eslint-disable-next-line @eslint-react/no-array-index-key -- index is only a fallback when getRowKey is not provided. The latter should be mandatory
           key={props.getRowKey ? props.getRowKey(row) : index}
           fields={props.fields}
           isHighlighted={!!props.isRowHighlighted && props.isRowHighlighted(row)}

@@ -22,7 +22,7 @@ function Dropdown<T extends string>(props: {
 }): ReactElement {
   const [anchorElement, setAnchorElement] = useState<Element | undefined>(undefined);
   const [selectedValue, setSelectedValue] = useState<T | undefined>(props.defaultValue);
-  const [dropdownPosition, setdDropdownPosition] = useState<'bottom' | 'top'>('bottom');
+  const [dropdownPosition, setDropdownPosition] = useState<'bottom' | 'top'>('bottom');
 
   return (
     <>
@@ -50,7 +50,7 @@ function Dropdown<T extends string>(props: {
 
   function openDropdown(event: MouseEvent) {
     const displayPosition = getDisplayPosition(event.currentTarget);
-    setdDropdownPosition(displayPosition);
+    setDropdownPosition(displayPosition);
     setAnchorElement(event.currentTarget);
 
     function getDisplayPosition(anchorElement: Element | undefined) {

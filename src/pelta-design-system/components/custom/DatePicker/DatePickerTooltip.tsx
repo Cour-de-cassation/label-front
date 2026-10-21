@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { range } from 'lodash';
-import { customThemeType, useCustomTheme, rectPositionType } from '../../../theme';
+import { customThemeType, rectPositionType, useCustomTheme } from '../../../theme';
 import { Icon, Text } from '../../materialUI';
 import { TooltipMenu } from '../TooltipMenu';
 import { getMonthFromDate, getNextMonthDate, getPreviousMonthDate } from './lib';
@@ -32,7 +32,7 @@ function DatePickerTooltip(props: {
   const styles = buildStyles(theme);
   const now = new Date();
   const [currentDate, setCurrentDate] = useState<Date>(
-    props.value || new Date(now.getFullYear(), now.getMonth(), now.getDate()),
+    () => props.value || new Date(now.getFullYear(), now.getMonth(), now.getDate()),
   );
 
   return (
@@ -71,9 +71,11 @@ function DatePickerTooltip(props: {
   function renderCalendar(year: number, month: number) {
     const calendarTable = createCalendarTable(year, month);
     const calendar = calendarTable.map((week, weekIndex) => (
+      // eslint-disable-next-line @eslint-react/no-array-index-key -- weeks have no id, the position in the month identifies them
       <tr key={`${weekIndex}-${week.join(',')}`}>
         {week.map((dayOfMonth, dayIndex) => {
           if (dayOfMonth === undefined) {
+            // eslint-disable-next-line @eslint-react/no-array-index-key -- empty cells only differ by their position
             return <td key={`${dayIndex}-empty`} />;
           }
           const isDateAvailable = props.computeIsDateAvailable({
@@ -82,6 +84,7 @@ function DatePickerTooltip(props: {
             dayOfMonth,
           });
           return (
+            // eslint-disable-next-line @eslint-react/no-array-index-key -- the position in the week identifies the cell
             <td key={`${dayIndex}-${dayOfMonth}`}>
               <div
                 style={{

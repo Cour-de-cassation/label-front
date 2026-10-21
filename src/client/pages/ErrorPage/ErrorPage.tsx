@@ -19,7 +19,7 @@ function ErrorPage(props: { route?: string; errorCode?: number }) {
       <div style={styles.errorPage}>
         <Icon iconName="warning" style={styles.errorIcon} />
         <Text style={styles.errorText}>{wordings.errorPage.title}</Text>
-        {props.errorCode && (
+        {!!props.errorCode && (
           <Text style={styles.errorText} variant="body2">
             {format(wordings.errorPage.errorCode, { code: props.errorCode })}
           </Text>

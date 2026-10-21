@@ -116,6 +116,7 @@ function AnnotationsPanel(props: {
                     <>
                       <Text>{wordings.homePage.additionalTermsToAnnotate}</Text>
                       {computedAdditionalTerms.additionalTermsToAnnotate.map((term, termIndex) => (
+                        // eslint-disable-next-line @eslint-react/no-array-index-key -- terms have no unique id and can be duplicated
                         <Text key={`${termIndex}-${term}`} variant="body2">
                           - {term}
                         </Text>
@@ -127,6 +128,7 @@ function AnnotationsPanel(props: {
                     <>
                       <Text>{wordings.homePage.additionalTermsToUnAnnotate}</Text>
                       {computedAdditionalTerms.additionalTermsToUnAnnotate.map((term, termIndex) => (
+                        // eslint-disable-next-line @eslint-react/no-array-index-key -- terms have no unique id and can be duplicated
                         <Text key={`${termIndex}-${term}`} variant="body2">
                           - {term}
                         </Text>

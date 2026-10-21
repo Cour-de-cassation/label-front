@@ -58,6 +58,7 @@ function ChecklistEntry(props: {
         const category = part.slice(1, -1);
         return (
           <CategoryIcon
+            // eslint-disable-next-line @eslint-react/no-array-index-key -- a category can appear several times in the message
             key={`${partIndex}-${category}`}
             category={category}
             iconSize={CHECKLIST_ICON_SIZE}

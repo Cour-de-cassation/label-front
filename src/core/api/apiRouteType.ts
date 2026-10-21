@@ -28,13 +28,13 @@ type apiRouteOutType<
 type networkType<T> = T extends Date
   ? string
   : T extends string
-  ? T
-  : T extends number
-  ? T
-  : T extends boolean
-  ? T
-  : T extends Array<unknown>
-  ? Array<networkType<T[0]>>
-  : T extends { [key: string]: unknown }
-  ? { [key in keyof T]: networkType<T[key]> }
-  : T;
+    ? T
+    : T extends number
+      ? T
+      : T extends boolean
+        ? T
+        : T extends Array<unknown>
+          ? Array<networkType<T[0]>>
+          : T extends { [key: string]: unknown }
+            ? { [key in keyof T]: networkType<T[key]> }
+            : T;

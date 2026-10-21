@@ -116,14 +116,17 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
 
   function buildFieldCellStyles() {
     const totalWidths = sumBy(props.fields, (field) => field.width);
-    return props.fields.reduce((accumulator, field) => {
-      return {
-        ...accumulator,
-        [field.id]: {
-          width: `${(field.width / totalWidths) * 100}%`,
-        },
-      };
-    }, {} as Record<string, { width: string }>);
+    return props.fields.reduce(
+      (accumulator, field) => {
+        return {
+          ...accumulator,
+          [field.id]: {
+            width: `${(field.width / totalWidths) * 100}%`,
+          },
+        };
+      },
+      {} as Record<string, { width: string }>,
+    );
   }
 
   function buildTableStyle() {

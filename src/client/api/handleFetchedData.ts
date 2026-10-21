@@ -1,9 +1,7 @@
 export { handleFetchedData };
 
 type dataFetchStatus<dataT> =
-  | { kind: 'loading' }
-  | { kind: 'error'; error: 'authentication' | 'unknown' }
-  | { kind: 'data'; data: dataT };
+  { kind: 'loading' } | { kind: 'error'; error: 'authentication' | 'unknown' } | { kind: 'data'; data: dataT };
 
 function handleFetchedData<dataT>(
   fetchInfo: { isLoaded: boolean; statusCode?: number; data?: dataT },

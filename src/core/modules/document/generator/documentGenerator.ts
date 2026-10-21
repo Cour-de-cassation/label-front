@@ -44,7 +44,7 @@ const decisionMetadataGenerator: generatorType<documentType['decisionMetadata']>
     NACCode,
     occultationBlock,
     motivationOccultation,
-    selection,
+    raisonInteretParticulier,
   } = {}) => ({
     additionalTermsToAnnotate: additionalTermsToAnnotate ?? '',
     computedAdditionalTerms: computedAdditionalTerms ?? undefined,
@@ -57,7 +57,7 @@ const decisionMetadataGenerator: generatorType<documentType['decisionMetadata']>
     NACCode: NACCode ?? '',
     occultationBlock: occultationBlock ?? 0,
     motivationOccultation: motivationOccultation ?? undefined,
-    selection: selection ?? false,
+    raisonInteretParticulier: raisonInteretParticulier ?? false,
   }),
 };
 

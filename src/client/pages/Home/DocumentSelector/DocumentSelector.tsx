@@ -24,15 +24,13 @@ function DocumentSelector(props: {
 
   const { displayAlert } = useAlert();
 
-  let autoFreeDocumentsTimeout: NodeJS.Timeout | null = null;
-
   useEffect(() => {
     const timeBeforeFreeingDocuments = documentModule.lib.getMinutesBeforeFreeingPendingDocuments() * 60 * 1000;
-    autoFreeDocumentsTimeout = setTimeout(displayRefreshAlert, timeBeforeFreeingDocuments);
-    return () => {
-      autoFreeDocumentsTimeout && clearTimeout(autoFreeDocumentsTimeout);
-    };
-  }, []);
+    const autoFreeDocumentsTimeout = setTimeout(() => {
+      displayAlert({ text: wordings.business.errors.pendingDocumentsFreed, variant: 'alert', autoHide: false });
+    }, timeBeforeFreeingDocuments);
+    return () => clearTimeout(autoFreeDocumentsTimeout);
+  }, [displayAlert]);
 
   return <div style={styles.container}>{renderPage()}</div>;
 
@@ -66,10 +64,6 @@ function DocumentSelector(props: {
         })}
       </div>
     );
-  }
-
-  function displayRefreshAlert() {
-    displayAlert({ text: wordings.business.errors.pendingDocumentsFreed, variant: 'alert', autoHide: false });
   }
 }
 

@@ -47,11 +47,16 @@ function DropdownButton<T extends string>(props: {
     const textStyle = isItemSelected
       ? { color: theme.colors.line.level1 }
       : props.error
-      ? { color: theme.colors.dropdown.border.error }
-      : { color: theme.colors.line.level2 };
+        ? { color: theme.colors.dropdown.border.error }
+        : { color: theme.colors.line.level2 };
     return icon ? (
       <ComponentsList
-        components={[icon, <Text style={textStyle}>{text}</Text>]}
+        components={[
+          icon,
+          <Text key="text" style={textStyle}>
+            {text}
+          </Text>,
+        ]}
         spaceBetweenComponents={theme.spacing}
       />
     ) : (

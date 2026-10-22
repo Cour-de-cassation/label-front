@@ -1,5 +1,7 @@
 export type { colorType, constantColorType, displayModeType, shadeColorType, positionType, rectPositionType };
 
+// Only used to derive shadeColorType
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const shadeColors = [
   'blue',
   'blueGrey',
@@ -21,6 +23,8 @@ const shadeColors = [
   'yellow',
 ] as const;
 
+// Only used to derive constantColorType
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const constantColors = ['black', 'white'] as const;
 
 type displayModeType = 'lightMode' | 'darkMode';

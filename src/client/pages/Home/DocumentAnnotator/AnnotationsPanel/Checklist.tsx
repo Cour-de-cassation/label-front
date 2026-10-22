@@ -40,6 +40,7 @@ function Checklist(props: { checklist: documentType['checklist']; splittedTextBy
         <div style={styles.accordionContent}>
           {props.checklist &&
             props.checklist.map((item, index) => (
+              // eslint-disable-next-line @eslint-react/no-array-index-key -- checks have no unique id and the list is never reordered
               <div key={index}>
                 <ChecklistEntry check={item} splittedTextByLine={props.splittedTextByLine} settings={settings} />
               </div>

@@ -53,6 +53,7 @@ function UntreatedDocumentsTable(props: {
       <PaginatedTable
         fields={fields}
         data={props.untreatedDocuments}
+        getRowKey={(untreatedDocument) => untreatedDocument.document._id}
         buildOptionItems={buildOptionItems}
         onOrderByPropertyChange={onOrderByPropertyChange}
         onOrderDirectionChange={onOrderDirectionChange}
@@ -218,7 +219,7 @@ function UntreatedDocumentsTable(props: {
           untreatedDocument.document.publicationCategory.length > 0 ? (
             <div style={styles.publicationCategoryBadgesContainer}>
               {untreatedDocument.document.publicationCategory.map((publicationCategoryLetter) => (
-                <div style={styles.publicationCategoryBadgeContainer}>
+                <div key={publicationCategoryLetter} style={styles.publicationCategoryBadgeContainer}>
                   <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
                 </div>
               ))}

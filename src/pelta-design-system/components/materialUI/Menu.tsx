@@ -32,10 +32,10 @@ function Menu<T extends string>(props: {
       sx={menuSx}
       transformOrigin={dropdownMenuConfiguration.transformOrigin}
     >
-      {props.items.map(({ value, element, isDisabled }, ind) => (
+      {props.items.map(({ value, element, isDisabled }) => (
         <MenuItem
           disabled={isDisabled}
-          key={ind}
+          key={value}
           value={value}
           onClick={(event: MouseEvent) => handleSelection(event, value)}
           sx={menuItemSx}

@@ -37,7 +37,7 @@ function DocumentsFilters(props: { filters: Partial<filtersType>; resultsCount: 
       </div>
       <div style={styles.chipsContainer}>
         {filters.map((filter) => (
-          <FilterChip filter={filter} />
+          <FilterChip key={filter.name} filter={filter} />
         ))}
       </div>
     </div>

@@ -36,7 +36,9 @@ function FilterTooltipMenu(props: { filters: filterType[]; onClose: () => void; 
     >
       <div style={styles.container}>
         {props.filters.map((filter) => (
-          <div style={styles.filterContainer}>{renderFilter(filter)}</div>
+          <div key={filter.name} style={styles.filterContainer}>
+            {renderFilter(filter)}
+          </div>
         ))}
       </div>
     </TooltipMenu>

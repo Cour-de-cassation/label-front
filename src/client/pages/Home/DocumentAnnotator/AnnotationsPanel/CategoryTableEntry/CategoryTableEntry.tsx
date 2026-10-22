@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { uniq } from 'lodash';
 import {
   customThemeType,
@@ -56,9 +56,9 @@ function CategoryTableEntry(props: {
   };
   return (
     <Div_CategoryTableEntry key={props.entityId} onClick={selectEntity} styleProps={styleProps}>
-      <Div_EntityText styleProps={styleProps}>
+      <Div_EntityText className="entityText" styleProps={styleProps}>
         {entityAnnotationTexts.map((text, index) => (
-          <div>
+          <div key={text}>
             <Div_AnnotationText styleProps={styleProps}>
               <CategoryTableEntryBracketLink
                 color={computeBracketLinkColor(entityAnnotation.category)}
@@ -73,10 +73,10 @@ function CategoryTableEntry(props: {
           </div>
         ))}
       </Div_EntityText>
-      <Div_Occurences styleProps={styleProps}>
+      <Div_Occurences className="occurences" styleProps={styleProps}>
         <Text inline>{numberOfEntities}</Text>
       </Div_Occurences>
-      <Div_ActionButtons styleProps={styleProps}>
+      <Div_ActionButtons className="actionButtons" styleProps={styleProps}>
         <CategoryTableEntryActionButtons entityAnnotation={entityAnnotation} entityEntryHandler={entityEntryHandler} />
       </Div_ActionButtons>
     </Div_CategoryTableEntry>
@@ -215,15 +215,15 @@ function buildStyledComponents() {
           cursor: pointer;
         }
 
-        &:hover ${Div_EntityText} {
+        &:hover .entityText {
           color: ${styleProps.theme.colors.default.hoveredTextColor};
         }
 
-        &:hover ${Div_Occurences} {
+        &:hover .occurences {
           color: ${styleProps.theme.colors.default.hoveredTextColor};
         }
 
-        &:hover ${Div_ActionButtons} {
+        &:hover .actionButtons {
           display: flex;
           align-items: center;
           margin-right: 10%;

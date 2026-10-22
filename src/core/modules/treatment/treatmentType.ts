@@ -1,12 +1,7 @@
-import { annotationsDiffType } from '../annotationsDiff/annotationsDiffType';
+import { annotationsDiffType } from '../annotationsDiff';
 
 type treatmentSourceType =
-  | 'annotator'
-  | 'admin'
-  | 'NLP'
-  | 'postProcess'
-  | 'supplementaryAnnotations'
-  | 'reimportedTreatment';
+  'annotator' | 'admin' | 'NLP' | 'postProcess' | 'supplementaryAnnotations' | 'reimportedTreatment';
 
 export type treatmentType = {
   _id: string;

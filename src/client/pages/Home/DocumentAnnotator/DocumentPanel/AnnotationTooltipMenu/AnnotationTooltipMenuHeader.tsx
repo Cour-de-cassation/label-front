@@ -44,15 +44,22 @@ function AnnotationTooltipMenuHeader(props: propsType): ReactElement {
     <>
       <Header
         leftHeaderComponents={[
-          <CategoryIcon category={props.annotation.category} iconSize={40} settings={annotatorState.settings} />,
-          <Text inline>
+          <CategoryIcon
+            key="categoryIcon"
+            category={props.annotation.category}
+            iconSize={40}
+            settings={annotatorState.settings}
+          />,
+          <Text key="categoryText" inline>
             {settingsModule.lib.getAnnotationCategoryText(
               props.annotation.category,
               annotatorStateHandler.get().settings,
             )}
           </Text>,
         ]}
-        rightHeaderComponents={[<Text>{`${annotationIndex.index}/${annotationIndex.total}`}</Text>]}
+        rightHeaderComponents={[
+          <Text key="annotationIndex">{`${annotationIndex.index}/${annotationIndex.total}`}</Text>,
+        ]}
         spaceBetweenComponents={theme.spacing}
         style={style.header}
         variant="mainLeft"

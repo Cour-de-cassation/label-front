@@ -32,7 +32,7 @@ function TableHeader<orderByPropertyT extends string = string>(props: {
     <thead>
       <tr style={styles.header}>
         {props.cells.map((cell) => (
-          <td style={props.fieldCellStyles[cell.id]}>
+          <td key={cell.id} style={props.fieldCellStyles[cell.id]}>
             {cell.canBeSorted ? (
               <TableSortLabel
                 direction={props.orderDirection}

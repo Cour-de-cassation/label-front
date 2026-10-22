@@ -30,9 +30,9 @@ function DocumentInspector(props: { settings: settingsType }) {
   useEffect(() => {
     const userRole = user?.role;
     if (userRole === 'scrutator') {
-      displayScrutatorInfo();
+      displayAlert({ variant: 'info', text: wordings.homePage.scrutatorInfo, autoHide: true });
     }
-  }, []);
+  }, [displayAlert, user?.role]);
 
   return (
     <DocumentDataFetcher documentId={params.documentId}>
@@ -76,10 +76,6 @@ function DocumentInspector(props: { settings: settingsType }) {
     return async () => {
       history.goBack();
     };
-  }
-
-  function displayScrutatorInfo() {
-    displayAlert({ variant: 'info', text: wordings.homePage.scrutatorInfo, autoHide: true });
   }
 
   function buildApplyAutoSave(documentId: string) {

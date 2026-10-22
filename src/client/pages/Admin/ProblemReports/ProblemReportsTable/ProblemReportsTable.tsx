@@ -45,6 +45,7 @@ function ProblemReportsTable(props: {
       <AnnotationsDiffDrawer documentInfo={annotationDiffDocumentInfo} close={resetDrawer} />
       <Table
         data={props.problemReportsWithDetails}
+        getRowKey={(problemReportWithDetails) => problemReportWithDetails.problemReport._id}
         isRowHighlighted={isRowHighlighted}
         fields={problemReportsFields}
         buildOptionItems={buildOptionItems}
@@ -189,10 +190,11 @@ function ProblemReportsTable(props: {
             text: wordings.problemReportsPage.table.popupConfirmMessage,
             onCancel: () => {},
             onConfirm: () => {
-              problemReportWithDetails.document &&
+              if (problemReportWithDetails.document) {
                 apiCaller.post<'deleteDocument'>('deleteDocument', {
                   documentId: problemReportWithDetails.document._id,
                 });
+              }
               props.refetch();
             },
           });
@@ -230,8 +232,9 @@ function ProblemReportsTable(props: {
       kind: 'text' as const,
       text: wordings.problemReportsPage.table.optionItems.openDocument,
       onClick: () => {
-        problemReportWithDetails.document &&
+        if (problemReportWithDetails.document) {
           history.push(routes.DOCUMENT.getPath(problemReportWithDetails.document._id));
+        }
         return;
       },
       iconName: 'find' as const,

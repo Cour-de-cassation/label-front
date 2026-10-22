@@ -74,8 +74,8 @@ function DocumentSelectorCard(props: {
                 mustBePublished
                   ? wordings.homePage.mustBePublishedHint
                   : hasParticularInterest
-                  ? wordings.homePage.hasParticularInterestHint
-                  : undefined
+                    ? wordings.homePage.hasParticularInterestHint
+                    : undefined
               }
             />
           </div>

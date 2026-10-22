@@ -29,7 +29,7 @@ function IconDropdown<T extends string>(props: {
           iconName={props.iconName}
           onClick={(event) => {
             onClick(event);
-            props.onClick && props.onClick();
+            props.onClick?.();
           }}
         />
       )}

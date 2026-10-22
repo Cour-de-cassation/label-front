@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { apiRouteOutType, ressourceFilterType, userType } from 'src/core';
-import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
+import { customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { heights, widths } from '../../../styles';
 import { wordings } from '../../../wordings';
 import { StatisticsBox } from './StatisticsBox';
@@ -28,9 +28,9 @@ function Statistics(props: {
     setSearchedDocumentNumber(searchedDocumentNumber);
     return searchedDocumentNumber;
   };
-  const [documentStatistics, setdocumentStatistics] = useState<Array<documentStatsType>>();
+  const [documentStatistics, setDocumentStatistics] = useState<Array<documentStatsType>>();
   const receivedocumentStatistics = (data: Array<documentStatsType>) => {
-    setdocumentStatistics(data);
+    setDocumentStatistics(data);
   };
 
   const titleAlert =
@@ -85,7 +85,7 @@ function Statistics(props: {
               <div style={styles.rowBox}>
                 {documentStatistics?.map((documentStatistic) => {
                   return (
-                    <div>
+                    <div key={documentStatistic._id}>
                       <DocumentStatisticsBox
                         documentStatistic={documentStatistic}
                         width={DOCUMENT_STATISTIC_BOX_WIDTH}

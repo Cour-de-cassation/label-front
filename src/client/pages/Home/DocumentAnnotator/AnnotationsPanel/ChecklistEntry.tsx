@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Checkbox, customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { useChecklistEntryHandler } from './useChecklistEntryHandler';
 import { useViewerScrollerHandler } from '../../../../services/viewerScroller';
@@ -53,11 +53,13 @@ function ChecklistEntry(props: {
 
   function renderShortMessageWithIcons(shortMessage: string) {
     const parts = shortMessage.split(/(\[.*?\])/g);
-    return parts.map((part) => {
+    return parts.map((part, partIndex) => {
       if (part.startsWith('[') && part.endsWith(']')) {
         const category = part.slice(1, -1);
         return (
           <CategoryIcon
+            // eslint-disable-next-line @eslint-react/no-array-index-key -- a category can appear several times in the message
+            key={`${partIndex}-${category}`}
             category={category}
             iconSize={CHECKLIST_ICON_SIZE}
             settings={props.settings}
@@ -72,7 +74,7 @@ function ChecklistEntry(props: {
 
   return (
     <Div_ChecklistEntry
-      theme={theme}
+      customTheme={theme}
       isSelected={checklistEntryHandler.isSelected(check.message)}
       onClick={selectChecklist}
     >
@@ -94,8 +96,8 @@ function ChecklistEntry(props: {
   );
 }
 
-const Div_ChecklistEntry = styled.div<{ isSelected: boolean }>`
-  ${({ theme, isSelected }: { theme: customThemeType; isSelected: boolean }) => `
+const Div_ChecklistEntry = styled.div<{ customTheme: customThemeType; isSelected: boolean }>`
+  ${({ customTheme: theme, isSelected }) => `
     display: flex;
     padding: 0px ${theme.spacing}px;
     background-color: ${isSelected ? theme.colors.default.background : theme.colors.checklist};

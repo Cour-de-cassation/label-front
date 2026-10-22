@@ -149,7 +149,7 @@ function buildJurisdictionFilter({
 }) {
   return {
     kind: 'dropdown' as const,
-    name: 'value',
+    name: 'jurisdiction',
     label: wordings.business.filters.fields.jurisdiction,
     possibleValues,
     value,
@@ -168,7 +168,7 @@ function buildUserNameFilter({
 }) {
   return {
     kind: 'dropdown' as const,
-    name: 'value',
+    name: 'userName',
     label: wordings.business.filters.fields.userName,
     possibleValues,
     value,
@@ -190,7 +190,7 @@ function buildTreatmentDateFilter({
 }) {
   return {
     kind: 'dateInterval' as const,
-    name: 'dateInterval',
+    name: 'treatmentDate',
     extremumAvailableDates: {
       min: extremumValues.min,
       max: extremumValues.max,
@@ -219,7 +219,7 @@ function buildDocumentCreationDateFilter({
 }) {
   return {
     kind: 'dateInterval' as const,
-    name: 'dateInterval',
+    name: 'documentCreationDate',
     extremumAvailableDates: {
       min: extremumValues.min,
       max: extremumValues.max,

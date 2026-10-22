@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { annotationType, documentType, settingsType, settingsModule, documentModule, assignationType } from 'src/core';
+import { annotationType, assignationType, documentModule, documentType, settingsModule, settingsType } from 'src/core';
 import { apiCaller } from '../../api';
 import { MainHeader } from '../../components';
 import { buildAnnotationsCommitter } from '../../services/annotatorState';
@@ -28,7 +28,7 @@ function DocumentSwitcher(props: {
   fetchNewDocumentsForUser: () => void;
   settings: settingsType;
 }) {
-  const [documentState, setDocumentState] = useState<documentStateType>(computeInitialDocumentState());
+  const [documentState, setDocumentState] = useState<documentStateType>(() => computeInitialDocumentState());
   const styles = buildStyles();
 
   return <div style={styles.documentSwitcher}>{renderPage()}</div>;

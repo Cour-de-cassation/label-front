@@ -1,4 +1,4 @@
-import { apiSchemaType, apiRouteInType, apiRouteOutType, networkType } from 'src/core/api';
+import { apiRouteInType, apiRouteOutType, apiSchemaType, networkType } from 'src/core/api';
 import { urlHandler } from '../utils';
 import { jwtTokenHandler } from '../services/jwtToken';
 
@@ -80,20 +80,17 @@ function buildUrlWithParams(url: string, params?: { [key: string]: unknown }) {
 }
 
 async function computeDataFromResponse(response: Response): Promise<unknown> {
-  /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-  /* eslint-disable @typescript-eslint/no-unsafe-return */
   if (![200, 201].includes(response.status)) {
     throw new Error(`Unknown error : ${response.status}`);
   }
   try {
     const textData = await response.text();
     try {
-      const data: any = JSON.parse(textData);
-      return data;
-    } catch (_) {
+      return JSON.parse(textData);
+    } catch {
       return textData;
     }
-  } catch (error) {
+  } catch {
     throw new Error(`Unknown error : ${response.status}`);
   }
 }

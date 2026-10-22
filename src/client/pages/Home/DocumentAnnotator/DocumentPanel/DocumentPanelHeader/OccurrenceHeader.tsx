@@ -28,7 +28,7 @@ function OccurrenceHeader(props: { entityId: string; category: string }) {
   return (
     <Header
       leftHeaderComponents={[
-        <div style={styles.leftHeader}>
+        <div key="leftHeader" style={styles.leftHeader}>
           <div style={styles.categoryIconContainer}>
             <CategoryIcon category={props.category} iconSize={CATEGORY_ICON_SIZE} settings={settings} />
           </div>
@@ -40,7 +40,9 @@ function OccurrenceHeader(props: { entityId: string; category: string }) {
           </div>
         </div>,
       ]}
-      rightHeaderComponents={[<IconButton iconName="close" hint={wordings.homePage.close} onClick={resetViewerMode} />]}
+      rightHeaderComponents={[
+        <IconButton key="closeButton" iconName="close" hint={wordings.homePage.close} onClick={resetViewerMode} />,
+      ]}
       spaceBetweenComponents={0}
       variant="mainLeft"
       style={styles.header}

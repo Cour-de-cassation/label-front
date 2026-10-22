@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { optionItemType, Table, tableRowFieldType } from '../Table';
+import React, { useState } from 'react';
+import { optionItemType, orderDirectionType, Table, tableRowFieldType } from '../Table';
 import { footerCellType } from '../Table/TableFooter';
-import { orderDirectionType } from '../Table/TableHeader';
 import { computeNumberOfPages, computePagination } from './lib';
 import { PaginationFooter } from './PaginationFooter';
 
@@ -14,6 +13,7 @@ function PaginatedTable<InputT, orderByPropertyT extends string = string>(props:
   defaultOrderDirection?: orderDirectionType;
   footer?: Array<footerCellType>;
   data: InputT[];
+  getRowKey?: (row: InputT) => string;
   onOrderByPropertyChange?: (newOrderByProperty: orderByPropertyT) => void;
   onOrderDirectionChange?: (newOrderDirection: orderDirectionType) => void;
   buildOptionItems?: (data: InputT) => Array<optionItemType>;
@@ -21,15 +21,18 @@ function PaginatedTable<InputT, orderByPropertyT extends string = string>(props:
 }) {
   const [currentPage, setCurrentPage] = useState(0);
   const numberOfPages = computeNumberOfPages(props.data.length, ROWS_PER_PAGE);
-  const pagination = computePagination(ROWS_PER_PAGE, currentPage);
-  useEffect(() => {
+  const [previousNumberOfPages, setPreviousNumberOfPages] = useState(numberOfPages);
+  if (numberOfPages !== previousNumberOfPages) {
+    setPreviousNumberOfPages(numberOfPages);
     setCurrentPage(0);
-  }, [numberOfPages]);
+  }
+  const pagination = computePagination(ROWS_PER_PAGE, currentPage);
 
   return (
     <>
       <Table
         data={props.data}
+        getRowKey={props.getRowKey}
         defaultOrderByProperty={props.defaultOrderByProperty}
         defaultOrderDirection={props.defaultOrderDirection}
         fields={props.fields}

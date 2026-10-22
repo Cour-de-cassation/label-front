@@ -17,7 +17,7 @@ function AnnotationsDiffDetails(props: {
     <div style={styles.container}>
       {sortedAnnotationsDiffDetails.map(({ text, annotationAfter, annotationBefore, textStart }) => {
         return (
-          <div style={styles.annotationsDiffDetail}>
+          <div key={`${annotationBefore?.start}-${annotationAfter?.start}`} style={styles.annotationsDiffDetail}>
             <div style={styles.annotationsDiffDetailBefore}>
               {renderAnnotationDiffDetail(text, textStart, annotationBefore)}
             </div>

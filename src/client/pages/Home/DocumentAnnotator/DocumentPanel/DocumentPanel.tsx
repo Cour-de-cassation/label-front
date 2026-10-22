@@ -20,32 +20,37 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
   const annotatorStateChecksum = annotatorStateHandler.getChecksum();
   const documentViewerModeHandler = useDocumentViewerModeHandler();
   const styles = buildStyles(theme);
-
-  let updateTreatementDurationsInterval: NodeJS.Timeout | null = null;
+  const occurrenceEntityId =
+    documentViewerModeHandler.documentViewerMode.kind === 'occurrence' &&
+    documentViewerModeHandler.documentViewerMode.entityId;
 
   useEffect(() => {
+    function buildUpdateTreatmentUpdateDate(assignationId: string) {
+      let lastVerticalPosition = 0;
+      return async () => {
+        const currentVerticalPosition = viewerScrollerHandler.getCurrentVerticalPosition();
+        if (lastVerticalPosition !== currentVerticalPosition) {
+          await apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', {
+            assignationId,
+          });
+        } else {
+          await apiCaller.post<'resetTreatmentLastUpdateDate'>('resetTreatmentLastUpdateDate', {
+            assignationId,
+          });
+        }
+        lastVerticalPosition = currentVerticalPosition;
+      };
+    }
     if (!assignationId) {
       return;
     }
-    if (!!updateTreatementDurationsInterval) {
-      clearInterval(updateTreatementDurationsInterval);
-      apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', {
-        assignationId,
-      });
-    }
-    updateTreatementDurationsInterval = setInterval(
+    const updateTreatementDurationsInterval = setInterval(
       buildUpdateTreatmentUpdateDate(assignationId),
       TIME_THRESHOLD_FOR_UPDATE,
     );
 
-    return () => {
-      updateTreatementDurationsInterval && clearInterval(updateTreatementDurationsInterval);
-    };
-  }, [
-    documentViewerModeHandler.documentViewerMode.kind === 'occurrence' &&
-      documentViewerModeHandler.documentViewerMode.entityId,
-    annotatorStateChecksum,
-  ]);
+    return () => clearInterval(updateTreatementDurationsInterval);
+  }, [assignationId, occurrenceEntityId, annotatorStateChecksum, viewerScrollerHandler]);
 
   return (
     <div style={styles.panel}>
@@ -53,23 +58,6 @@ function DocumentPanel(props: { splittedTextByLine: splittedTextByLineType }): R
       <DocumentViewer splittedTextByLine={props.splittedTextByLine} />
     </div>
   );
-
-  function buildUpdateTreatmentUpdateDate(assignationId: string) {
-    let lastVerticalPosition = 0;
-    return async () => {
-      const currentVerticalPosition = viewerScrollerHandler.getCurrentVerticalPosition();
-      if (lastVerticalPosition !== currentVerticalPosition) {
-        await apiCaller.post<'updateTreatmentDuration'>('updateTreatmentDuration', {
-          assignationId,
-        });
-      } else {
-        await apiCaller.post<'resetTreatmentLastUpdateDate'>('resetTreatmentLastUpdateDate', {
-          assignationId,
-        });
-      }
-      lastVerticalPosition = currentVerticalPosition;
-    };
-  }
 }
 
 function buildStyles(theme: customThemeType) {

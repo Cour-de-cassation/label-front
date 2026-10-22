@@ -37,6 +37,7 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
   isRowHighlighted?: (row: InputT) => boolean;
   isRowMinored?: (row: InputT) => boolean;
   data: InputT[];
+  getRowKey?: (row: InputT) => string;
   buildOptionItems?: (data: InputT) => Array<optionItemType>;
   onOrderByPropertyChange?: (newOrderByProperty: orderByPropertyT) => void;
   onOrderDirectionChange?: (newOrderDirection: orderDirectionType) => void;
@@ -80,18 +81,19 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
 
   function onOrderByPropertyChange(newOrderByProperty: orderByPropertyT) {
     setOrderByProperty(newOrderByProperty);
-    props.onOrderByPropertyChange && props.onOrderByPropertyChange(newOrderByProperty);
+    props.onOrderByPropertyChange?.(newOrderByProperty);
   }
 
   function onOrderDirectionChange(newOrderDirection: orderDirectionType) {
     setOrderDirection(newOrderDirection);
-    props.onOrderDirectionChange && props.onOrderDirectionChange(newOrderDirection);
+    props.onOrderDirectionChange?.(newOrderDirection);
   }
 
   function renderBody() {
     return (
       <TableBody
         data={props.data}
+        getRowKey={props.getRowKey}
         fields={props.fields}
         isRowHighlighted={props.isRowHighlighted}
         isRowMinored={props.isRowMinored}
@@ -114,15 +116,17 @@ function Table<InputT, orderByPropertyT extends string = string>(props: {
 
   function buildFieldCellStyles() {
     const totalWidths = sumBy(props.fields, (field) => field.width);
-    const styles = props.fields.reduce((accumulator, field) => {
-      return {
-        ...accumulator,
-        [field.id]: {
-          width: `${(field.width / totalWidths) * 100}%`,
-        },
-      };
-    }, {} as Record<string, { width: string }>);
-    return styles;
+    return props.fields.reduce(
+      (accumulator, field) => {
+        return {
+          ...accumulator,
+          [field.id]: {
+            width: `${(field.width / totalWidths) * 100}%`,
+          },
+        };
+      },
+      {} as Record<string, { width: string }>,
+    );
   }
 
   function buildTableStyle() {

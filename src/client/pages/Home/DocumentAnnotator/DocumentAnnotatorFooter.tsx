@@ -36,7 +36,7 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
       <div style={styles.leftContainer}>
         <ComponentsList
           components={[
-            <div style={styles.resetButtonContainer}>
+            <div key="resetButton" style={styles.resetButtonContainer}>
               <ButtonWithIcon
                 color="default"
                 iconName="reset"
@@ -45,12 +45,14 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
               />
             </div>,
             <IconButton
+              key="undoButton"
               disabled={!canRevertLastAction()}
               hint={wordings.homePage.undo}
               iconName="undo"
               onClick={revertLastAction}
             />,
             <IconButton
+              key="redoButton"
               disabled={!canRestoreLastAction()}
               hint={wordings.homePage.redo}
               iconName="redo"
@@ -61,8 +63,9 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
         />
         <ComponentsList
           components={[
-            <Text>{wordings.homePage.anonymisedView}</Text>,
+            <Text key="anonymisedViewText">{wordings.homePage.anonymisedView}</Text>,
             <SwitchButton
+              key="anonymisedViewSwitch"
               checked={documentViewerModeHandler.isAnonymizedView()}
               color="primary"
               onChange={documentViewerModeHandler.switchAnonymizedView}
@@ -100,11 +103,13 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
 
     return [
       <ReportProblemButton
+        key="reportProblemButton"
         onStopAnnotatingDocument={onStopAnnotatingDocument ? () => onStopAnnotatingDocument() : undefined}
       />,
-      <CopyAnonymizedTextButton />,
+      <CopyAnonymizedTextButton key="copyAnonymizedTextButton" />,
       document.status !== 'done' ? (
         <ButtonWithIcon
+          key="validateButton"
           isLoading={isValidating}
           color="primary"
           iconName="send"
@@ -123,7 +128,7 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
         route: document.route,
       });
       await setDocumentStatus(document._id, nextDocumentStatus);
-      props.onStopAnnotatingDocument && (await props.onStopAnnotatingDocument());
+      await props.onStopAnnotatingDocument?.();
     } finally {
       setIsValidating(false);
     }

@@ -24,7 +24,7 @@ function SummaryBox(props: { summary: summaryType; width: number }) {
     <div style={styles.container}>
       <div style={styles.rowsContainer}>
         {summaryRows.map((summaryRow) => (
-          <div style={styles.rowContainer}>
+          <div key={summaryRow.label} style={styles.rowContainer}>
             <Text>{summaryRow.label}</Text>
             <Text>{summaryRow.value}</Text>
           </div>

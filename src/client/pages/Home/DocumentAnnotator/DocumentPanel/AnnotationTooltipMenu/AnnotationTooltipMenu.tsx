@@ -59,10 +59,18 @@ function AnnotationTooltipMenu(props: {
       <div style={style.annotationButtonsContainer}>
         <ComponentsList
           components={[
-            <ChangeAnnotationCategoryDropdown annotation={props.annotation} origin="document" />,
-            <LinkAnnotationDropdown annotation={props.annotation} origin="document" />,
-            <UnlinkAnnotationDropdown annotation={props.annotation} origin="document" />,
-            <DeleteAnnotationDropdown annotation={props.annotation} onClose={props.onClose} />,
+            <ChangeAnnotationCategoryDropdown
+              key="changeAnnotationCategoryDropdown"
+              annotation={props.annotation}
+              origin="document"
+            />,
+            <LinkAnnotationDropdown key="linkAnnotationDropdown" annotation={props.annotation} origin="document" />,
+            <UnlinkAnnotationDropdown key="unlinkAnnotationDropdown" annotation={props.annotation} origin="document" />,
+            <DeleteAnnotationDropdown
+              key="deleteAnnotationDropdown"
+              annotation={props.annotation}
+              onClose={props.onClose}
+            />,
           ]}
           spaceBetweenComponents={theme.spacing * 2}
         />

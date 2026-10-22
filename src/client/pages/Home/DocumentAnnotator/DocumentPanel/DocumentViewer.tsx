@@ -23,13 +23,14 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
   const anonymizerBuilder = useAnonymizerBuilder();
   const anonymizer = anonymizerBuilder.get();
   const { document } = annotatorStateHandler.get();
+  const occurrenceEntityId = documentViewerMode.kind === 'occurrence' ? documentViewerMode.entityId : undefined;
   useEffect(() => {
     if (documentViewerMode.kind === 'annotation') {
       viewerScrollerHandler.scrollToStoredVerticalPosition();
     } else {
       viewerScrollerHandler.scrollToTop();
     }
-  }, [documentViewerMode.kind, documentViewerMode.kind === 'occurrence' ? documentViewerMode.entityId : undefined]);
+  }, [documentViewerMode.kind, occurrenceEntityId, viewerScrollerHandler]);
 
   const viewerRef = viewerScrollerHandler.getViewerRef();
 
@@ -39,20 +40,18 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
     if (line === undefined) return;
     if (!document.decisionMetadata.motivationOccultation) return;
 
-    setSelectedLines((prevSelectedLines) => {
-      if (prevSelectedLines.includes(line)) {
-        return prevSelectedLines.filter((selectedLine) => selectedLine !== line);
-      } else if (prevSelectedLines.length < 2) {
-        return [...prevSelectedLines, line].sort((a, b) => a - b);
-      } else {
-        return [line];
-      }
-    });
-  };
+    let newSelectedLines: number[];
+    if (selectedLines.includes(line)) {
+      newSelectedLines = selectedLines.filter((selectedLine) => selectedLine !== line);
+    } else if (selectedLines.length < 2) {
+      newSelectedLines = [...selectedLines, line].sort((a, b) => a - b);
+    } else {
+      newSelectedLines = [line];
+    }
+    setSelectedLines(newSelectedLines);
 
-  useEffect(() => {
-    if (selectedLines.length === 2) {
-      const textBetweenLines = getTextBetweenLines(selectedLines[0], selectedLines[1]);
+    if (newSelectedLines.length === 2) {
+      const textBetweenLines = getTextBetweenLines(newSelectedLines[0], newSelectedLines[1]);
       if (textBetweenLines.index > -1 && textBetweenLines.text) {
         const category = settingsModule.lib.motivationCategoryHandler.getCategoryName();
 
@@ -73,7 +72,7 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
         setSelectedLines([]);
       }
     }
-  }, [selectedLines]);
+  };
 
   const getTextBetweenLines = (startLine: number, endLine: number) => {
     const lines = props.splittedTextByLine.filter((line) => line.line >= startLine && line.line <= endLine);
@@ -132,7 +131,6 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
     documentViewerModeHandler.isAnonymizedView(),
   );
   const displayedText = computeDisplayedText();
-  let expectedLine = 1;
 
   return (
     <>
@@ -143,16 +141,16 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
       >
         <table style={styles.table}>
           <tbody>
-            {displayedText.map((splittedLine) => {
+            {displayedText.map((splittedLine, index) => {
+              const expectedLine = index === 0 ? 1 : displayedText[index - 1].line + 1;
               const isHighlighted =
                 selectedLines.includes(splittedLine.line) ||
                 (selectedLines.length === 2 &&
                   splittedLine.line > selectedLines[0] &&
                   splittedLine.line < selectedLines[1]);
               if (splittedLine.line != expectedLine) {
-                expectedLine = splittedLine.line + 1;
                 return (
-                  <>
+                  <React.Fragment key={splittedLine.line}>
                     <DocumentLine
                       key={splittedLine.line + 'p'}
                       line={undefined}
@@ -169,10 +167,9 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
                       onLineClick={handleLineClick}
                       isHighlighted={isHighlighted}
                     />
-                  </>
+                  </React.Fragment>
                 );
               }
-              expectedLine = splittedLine.line + 1;
               return (
                 <DocumentLine
                   key={splittedLine.line}

@@ -41,8 +41,8 @@ function getDisplayPosition(originPosition: positionType, width: number): displa
     originPosition.x - width / 2 < EDGE_OFFSET
       ? 'left'
       : originPosition.x + width / 2 > windowSize.width - EDGE_OFFSET
-      ? 'right'
-      : 'middle';
+        ? 'right'
+        : 'middle';
   return {
     vertical,
     horizontal,

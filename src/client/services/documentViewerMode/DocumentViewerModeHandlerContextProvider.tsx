@@ -14,8 +14,8 @@ const DocumentViewerModeHandlerContext = createContext<documentViewerModeHandler
 });
 
 function DocumentViewerModeHandlerContextProvider(props: { children: ReactElement }): ReactElement {
-  const [documentViewerMode, setViewerMode] = useState<viewerModeType>(DEFAULT_VIEWER_MODE);
-  const documentViewerModeHandler = buildDocumentViewerModeHandler(documentViewerMode, setViewerMode);
+  const [documentViewerMode, setDocumentViewerMode] = useState<viewerModeType>(DEFAULT_VIEWER_MODE);
+  const documentViewerModeHandler = buildDocumentViewerModeHandler(documentViewerMode, setDocumentViewerMode);
 
   return (
     <DocumentViewerModeHandlerContext.Provider value={documentViewerModeHandler}>

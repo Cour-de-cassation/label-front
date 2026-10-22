@@ -25,7 +25,12 @@ function ToBeConfirmedDocumentsTable(props: {
 
   return (
     <div style={styles.container}>
-      <PaginatedTable buildOptionItems={buildOptionItems} fields={fields} data={props.toBeConfirmedDocuments} />
+      <PaginatedTable
+        buildOptionItems={buildOptionItems}
+        fields={fields}
+        data={props.toBeConfirmedDocuments}
+        getRowKey={(toBeConfirmedDocument) => toBeConfirmedDocument.document._id}
+      />
     </div>
   );
 
@@ -82,7 +87,7 @@ function ToBeConfirmedDocumentsTable(props: {
           toBeConfirmedDocument.document.publicationCategory.length > 0 ? (
             <div style={styles.publicationCategoryBadgesContainer}>
               {toBeConfirmedDocument.document.publicationCategory.map((publicationCategoryLetter) => (
-                <div style={styles.publicationCategoryBadgeContainer}>
+                <div key={publicationCategoryLetter} style={styles.publicationCategoryBadgeContainer}>
                   <PublicationCategoryBadge publicationCategoryLetter={publicationCategoryLetter} />
                 </div>
               ))}

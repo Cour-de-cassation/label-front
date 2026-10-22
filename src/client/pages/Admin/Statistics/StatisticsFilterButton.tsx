@@ -22,7 +22,7 @@ function StatisticsFilterButton(props: {
       <FilterButton filters={filters} isLoading={props.isLoading} />
       <div style={styles.chipsContainer}>
         {filters.map((filter) => (
-          <FilterChip filter={filter} />
+          <FilterChip key={filter.name} filter={filter} />
         ))}
       </div>
     </div>

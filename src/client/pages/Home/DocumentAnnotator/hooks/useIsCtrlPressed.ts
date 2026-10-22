@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export { useIsCtrlPressed };
 
-const BROWSER_SHORTCUT_KEYS = new Set(['f', 'p', 's', 'g', 'r', 'w']);
+const BROWSER_SHORTCUT_KEYS = new Set(['f', 'p', 's', 'g', 'r', 'w', 'z', 'y']);
 
 function useIsCtrlPressed(): boolean {
   const [isCtrlPressed, setIsCtrlPressed] = useState(false);
@@ -10,8 +10,8 @@ function useIsCtrlPressed(): boolean {
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       const isCtrlOrMetaPressed = event.ctrlKey || event.metaKey;
-      const isBrowserShortcut = isCtrlOrMetaPressed && BROWSER_SHORTCUT_KEYS.has(event.key.toLowerCase());
-      setIsCtrlPressed(isCtrlOrMetaPressed && !isBrowserShortcut);
+      const isBrowserShortcutLetter = BROWSER_SHORTCUT_KEYS.has(event.key.toLowerCase());
+      setIsCtrlPressed(isCtrlOrMetaPressed && !isBrowserShortcutLetter);
     }
 
     function handleKeyUp(event: KeyboardEvent) {

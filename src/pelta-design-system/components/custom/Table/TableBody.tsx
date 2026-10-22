@@ -15,7 +15,7 @@ type tableRowFieldType<InputT, orderByPropertyT = string> = {
   cellStyle?: CSSProperties;
   extractor: (data: InputT) => string | number;
   getSortingValue?: (data: InputT) => number;
-  render?: (data: InputT) => JSX.Element | string | number | undefined;
+  render?: (data: InputT) => React.JSX.Element | string | number | undefined;
   width: number;
 };
 

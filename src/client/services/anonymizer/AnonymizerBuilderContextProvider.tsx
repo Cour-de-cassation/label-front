@@ -25,5 +25,5 @@ function AnonymizerBuilderContextProvider({
     document,
   });
 
-  return <AnonymizerBuilderContext.Provider value={anonymizerBuilder}>{children}</AnonymizerBuilderContext.Provider>;
+  return <AnonymizerBuilderContext value={anonymizerBuilder}>{children}</AnonymizerBuilderContext>;
 }

@@ -36,9 +36,5 @@ function AnnotatorStateHandlerContextProvider(props: {
     setAnnotatorState,
     resetAnnotatorState: () => setAnnotatorState(props.initialAnnotatorState),
   });
-  return (
-    <AnnotatorStateHandlerContext.Provider value={annotatorStateHandler}>
-      {props.children}
-    </AnnotatorStateHandlerContext.Provider>
-  );
+  return <AnnotatorStateHandlerContext value={annotatorStateHandler}>{props.children}</AnnotatorStateHandlerContext>;
 }

@@ -1,8 +1,8 @@
-import { useContext } from 'react';
+import { use } from 'react';
 import { AlertHandlerContext } from './AlertHandler';
 
 export { useAlert };
 
 function useAlert() {
-  return useContext(AlertHandlerContext);
+  return use(AlertHandlerContext);
 }

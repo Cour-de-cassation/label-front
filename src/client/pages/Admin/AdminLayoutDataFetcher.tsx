@@ -1,4 +1,4 @@
-import React, { ReactElement, createContext, useContext } from 'react';
+import React, { createContext, ReactElement, use } from 'react';
 import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../api';
 import { DataFetcher } from '../DataFetcher';
@@ -13,7 +13,7 @@ type badgeCountsType = apiRouteOutType<'get', 'adminBadgeCounts'>;
 const AdminBadgeCountsRefetchContext = createContext<() => void>(() => undefined);
 
 function useAdminBadgeCountsRefetch() {
-  return useContext(AdminBadgeCountsRefetchContext);
+  return use(AdminBadgeCountsRefetchContext);
 }
 
 function AdminLayoutDataFetcher(props: { header: { title: string; subtitle: string }; children: ReactElement }) {
@@ -28,7 +28,7 @@ function AdminLayoutDataFetcher(props: { header: { title: string; subtitle: stri
   return (
     <DataFetcher
       buildComponentWithData={(badgeCounts: badgeCountsType) => (
-        <AdminBadgeCountsRefetchContext.Provider value={badgeCountsFetchInfo.refetch}>
+        <AdminBadgeCountsRefetchContext value={badgeCountsFetchInfo.refetch}>
           <AdminPage
             userRole={userRole}
             header={props.header}
@@ -37,7 +37,7 @@ function AdminLayoutDataFetcher(props: { header: { title: string; subtitle: stri
           >
             {props.children}
           </AdminPage>
-        </AdminBadgeCountsRefetchContext.Provider>
+        </AdminBadgeCountsRefetchContext>
       )}
       fetchInfo={badgeCountsFetchInfo}
       route={'adminBadgeCounts'}

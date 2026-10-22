@@ -22,7 +22,7 @@ function AlertHandlerContextProvider(props: { children: ReactNode }): ReactEleme
   };
 
   return (
-    <AlertHandlerContext.Provider value={alertHandler}>
+    <AlertHandlerContext value={alertHandler}>
       {!!alert && (
         <Snackbar
           variant={alert.variant}
@@ -33,6 +33,6 @@ function AlertHandlerContextProvider(props: { children: ReactNode }): ReactEleme
         />
       )}
       {props.children}
-    </AlertHandlerContext.Provider>
+    </AlertHandlerContext>
   );
 }

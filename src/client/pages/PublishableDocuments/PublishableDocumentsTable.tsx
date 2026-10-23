@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { Text } from 'src/pelta-design-system';
 import { apiRouteOutType, timeOperator } from 'src/core';
 import { orderDirectionType, PaginatedTable, tableRowFieldType } from 'src/pelta-design-system';
@@ -14,7 +14,7 @@ function PublishableDocumentsTable(props: {
   publishableDocuments: apiRouteOutType<'get', 'publishableDocuments'>;
   refetch: () => void;
 }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const fields = buildPublishableDocumentsFields();
   const styles = buildStyles();
   const numberConfirmationDecision = props.publishableDocuments.filter(
@@ -59,7 +59,7 @@ function PublishableDocumentsTable(props: {
       kind: 'text' as const,
       text: wordings.publishableDocumentsPage.table.optionItems.openAnonymizedDocument,
       onClick: () => {
-        history.push(routes.ANONYMIZED_DOCUMENT.getPath(publishableDocument._id));
+        navigate(routes.ANONYMIZED_DOCUMENT.getPath(publishableDocument._id));
         return;
       },
     };

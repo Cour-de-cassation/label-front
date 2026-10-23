@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { customThemeType, useCustomTheme, ButtonWithIcon, Icon, Text } from 'src/pelta-design-system';
 import { wordings } from '../../wordings';
 import format from 'string-template';
@@ -11,7 +11,7 @@ export { ErrorPage };
 function ErrorPage(props: { route?: string; errorCode?: number }) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
-  const history = useHistory();
+  const navigate = useNavigate();
   const { onLogout } = useCtxUser();
 
   return (
@@ -45,7 +45,7 @@ function ErrorPage(props: { route?: string; errorCode?: number }) {
   }
 
   function reload() {
-    history.go(0);
+    navigate(0);
   }
 
   function buildStyles(theme: customThemeType) {

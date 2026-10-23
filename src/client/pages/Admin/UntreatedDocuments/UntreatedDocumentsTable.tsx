@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { apiRouteOutType, documentType, timeOperator, userType } from 'src/core';
 import {
   customThemeType,
@@ -26,7 +26,7 @@ function UntreatedDocumentsTable(props: {
   users: Array<Pick<userType, '_id' | 'name'>>;
   untreatedDocuments: apiRouteOutType<'get', 'untreatedDocuments'>;
 }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const theme = useCustomTheme();
   const { displayAlert } = useAlert();
   const [documentIdToUpdateStatus, setDocumentIdToUpdateStatus] = useState<documentType['_id'] | undefined>(undefined);
@@ -79,7 +79,7 @@ function UntreatedDocumentsTable(props: {
       kind: 'text' as const,
       text: wordings.untreatedDocumentsPage.table.optionItems.openAnonymizedDocument,
       onClick: () => {
-        history.push(routes.ANONYMIZED_DOCUMENT.getPath(untreatedDocument.document._id));
+        navigate(routes.ANONYMIZED_DOCUMENT.getPath(untreatedDocument.document._id));
         return;
       },
       iconName: 'eye' as const,

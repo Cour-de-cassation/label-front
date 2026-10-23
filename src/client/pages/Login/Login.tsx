@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { urlHandler } from '../../utils';
 
 export { Login };
@@ -14,16 +14,16 @@ const DEV_USERS = [
 ];
 
 const Login: FunctionComponent = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = new URLSearchParams(window.location.search).get('token');
     if (token) {
-      history.push('/');
+      navigate('/');
     } else if (!isDev) {
       window.location.href = urlHandler.getSsoLoginUrl();
     }
-  }, [history]);
+  }, [navigate]);
 
   if (!isDev) return <p>Redirection vers SSO...</p>;
 

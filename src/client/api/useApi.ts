@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 
 export { useApi };
 
@@ -12,7 +12,7 @@ function useApi<dataT, paramsT>(
   const [refetchFlag, setRefetchFlag] = useState<boolean>(false);
   const [params, setParams] = useState<paramsT>(initialParams);
 
-  useEffect(() => {
+  const fetchData = useEffectEvent((params: paramsT) => {
     callApi(params).then(
       ({ data, statusCode }) => {
         setData(data);
@@ -31,9 +31,10 @@ function useApi<dataT, paramsT>(
         }
       },
     );
-    // callApi is recreated on every render by the callers: adding it would refetch in a loop.
-    // TODO: use useEffectEvent once on React 19.2+
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
+
+  useEffect(() => {
+    fetchData(params);
   }, [refetchFlag, params]);
 
   return { data, params, isLoaded, refetch, statusCode };

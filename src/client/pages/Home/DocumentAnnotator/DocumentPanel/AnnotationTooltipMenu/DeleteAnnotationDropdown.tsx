@@ -27,9 +27,8 @@ function DeleteAnnotationDropdown(props: {
 
   if (linkedAnnotations.length <= 1) {
     return renderIconButton();
-  } else {
-    return renderIconDropdown();
   }
+  return renderIconDropdown();
 
   function renderIconDropdown() {
     const items = buildDropdownItems();

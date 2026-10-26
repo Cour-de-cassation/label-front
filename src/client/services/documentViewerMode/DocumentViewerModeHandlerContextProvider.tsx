@@ -18,8 +18,8 @@ function DocumentViewerModeHandlerContextProvider(props: { children: ReactElemen
   const documentViewerModeHandler = buildDocumentViewerModeHandler(documentViewerMode, setDocumentViewerMode);
 
   return (
-    <DocumentViewerModeHandlerContext.Provider value={documentViewerModeHandler}>
+    <DocumentViewerModeHandlerContext value={documentViewerModeHandler}>
       {props.children}
-    </DocumentViewerModeHandlerContext.Provider>
+    </DocumentViewerModeHandlerContext>
   );
 }

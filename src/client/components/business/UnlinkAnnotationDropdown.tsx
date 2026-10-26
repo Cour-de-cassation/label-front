@@ -24,9 +24,8 @@ function UnlinkAnnotationDropdown(props: {
 
   if (linkedAnnotationRepresentatives.length <= 2) {
     return renderIconButton();
-  } else {
-    return renderIconDropdown();
   }
+  return renderIconDropdown();
 
   function renderIconDropdown() {
     return (

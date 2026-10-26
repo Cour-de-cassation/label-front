@@ -20,9 +20,8 @@ function CategoryTableEntryDeleteAnnotationDropdown(props: { buttonSize: number;
 
   if (linkedAnnotationRepresentatives.length <= 1) {
     return renderIconButton();
-  } else {
-    return renderIconDropdown();
   }
+  return renderIconDropdown();
 
   function renderIconDropdown() {
     return (

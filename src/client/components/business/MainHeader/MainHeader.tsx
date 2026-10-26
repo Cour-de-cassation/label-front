@@ -9,7 +9,7 @@ import { useCtxUser } from '../../../contexts/user.context';
 export { MainHeader };
 
 function MainHeader(props: {
-  subtitle?: JSX.Element;
+  subtitle?: React.JSX.Element;
   title?: string;
   onBackButtonPress?: () => void;
   updateAdminMenu?: () => void;

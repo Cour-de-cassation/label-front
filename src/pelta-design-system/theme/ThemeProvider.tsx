@@ -21,11 +21,11 @@ function ThemeProvider(props: { defaultDisplayMode?: displayModeType; children: 
   const style = buildStyle();
 
   return (
-    <DisplayModeContext.Provider value={displayModeContext}>
+    <DisplayModeContext value={displayModeContext}>
       <MuiThemeProvider theme={theme}>
         <div style={style}>{props.children}</div>
       </MuiThemeProvider>
-    </DisplayModeContext.Provider>
+    </DisplayModeContext>
   );
 
   function setAndStoreDisplayMode(displayMode: displayModeType) {

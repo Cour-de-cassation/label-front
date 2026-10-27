@@ -1,4 +1,4 @@
-export type userRoleType = 'admin' | 'annotator' | 'publicator' | 'scrutator';
+type userRoleType = 'admin' | 'annotator' | 'publicator' | 'scrutator';
 export type userType = {
   _id: string;
   email: string;

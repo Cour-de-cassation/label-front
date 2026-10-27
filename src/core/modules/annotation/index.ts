@@ -11,7 +11,7 @@ import {
   stringify,
 } from './lib';
 
-export { annotationModule, buildAnnotation };
+export { annotationModule };
 
 export type { annotationType };
 

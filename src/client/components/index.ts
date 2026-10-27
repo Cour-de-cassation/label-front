@@ -2,12 +2,10 @@ import {
   AdminMenu,
   CategoryIcon,
   ChangeAnnotationCategoryDropdown,
-  DocumentNumberTextInput,
   DocumentReviewStatusIcon,
   DocumentStatusIcon,
   DocumentsTableHeader,
   FilterButton,
-  filterType,
   FilterChip,
   LinkAnnotationDropdown,
   MainHeader,
@@ -20,7 +18,6 @@ export {
   AdminMenu,
   CategoryIcon,
   ChangeAnnotationCategoryDropdown,
-  DocumentNumberTextInput,
   DocumentReviewStatusIcon,
   DocumentStatusIcon,
   DocumentsTableHeader,
@@ -32,5 +29,3 @@ export {
   PublicationCategoryBadge,
   UnlinkAnnotationDropdown,
 };
-
-export type { filterType };

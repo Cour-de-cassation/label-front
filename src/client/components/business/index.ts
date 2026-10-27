@@ -1,11 +1,10 @@
 import { AdminMenu } from './AdminMenu';
 import { CategoryIcon } from './CategoryIcon';
-import { DocumentNumberTextInput } from './DocumentNumberTextInput';
 import { DocumentReviewStatusIcon } from './DocumentReviewStatusIcon';
 import { DocumentStatusIcon } from './DocumentStatusIcon';
 import { DocumentsTableHeader } from './DocumentsTableHeader';
 import { ChangeAnnotationCategoryDropdown } from './ChangeAnnotationCategoryDropdown';
-import { FilterButton, filterType } from './FilterButton';
+import { FilterButton } from './FilterButton';
 import { FilterChip } from './FilterChip';
 import { LinkAnnotationDropdown } from './LinkAnnotationDropdown';
 import { MainHeader } from './MainHeader';
@@ -18,7 +17,6 @@ export {
   CategoryIcon,
   ChangeAnnotationCategoryDropdown,
   DocumentsTableHeader,
-  DocumentNumberTextInput,
   DocumentReviewStatusIcon,
   DocumentStatusIcon,
   FilterButton,
@@ -29,5 +27,3 @@ export {
   PublicationCategoryBadge,
   UnlinkAnnotationDropdown,
 };
-
-export type { filterType };

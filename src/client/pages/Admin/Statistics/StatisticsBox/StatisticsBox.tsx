@@ -6,8 +6,6 @@ import { ComputationToggle, computationType } from './ComputationToggle';
 
 export { StatisticsBox };
 
-export type { aggregatedStatisticType };
-
 const ROW_HEIGHT = 30;
 
 type aggregatedStatisticType = {

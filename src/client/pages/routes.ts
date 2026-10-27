@@ -1,8 +1,6 @@
 export { defaultRoutes, routes };
 
 const routes = {
-  ADMIN: { getPath: () => '/label/admin' },
-  ADMIN_MAIN: { getPath: () => '/label/admin/main/' },
   ANNOTATION: { getPath: () => '/label/annotation' },
   ANONYMIZED_DOCUMENT: {
     getPath: (documentId?: string) => `/label/anonymized-document/${documentId || ':documentId'}`,

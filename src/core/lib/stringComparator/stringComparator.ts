@@ -1,6 +1,5 @@
 import { computeLevenshteinDistance } from './computeLevenshteinDistance';
 import { normalizeString } from './normalizeString';
-import { compareNormalizedStrings } from './compareNormalizedStrings';
 
 export { stringComparator };
 
@@ -18,7 +17,6 @@ const stringComparator = {
   },
 
   normalizeString,
-  compareNormalizedStrings,
 
   similar(str1: string, str2: string, threshold: number): boolean {
     const normalizedStr1 = normalizeString(str1);

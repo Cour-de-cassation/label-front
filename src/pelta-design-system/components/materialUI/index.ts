@@ -7,7 +7,6 @@ import { MenuBar } from './MenuBar';
 import { RadioButton } from './RadioButton';
 import { RichTextInput } from './RichTextInput';
 import { Snackbar, snackbarVariantType } from './Snackbar';
-import { SvgImage } from './SvgImage';
 import { SwitchButton } from './SwitchButton';
 import { TableSortLabel } from './TableSortLabel';
 import { Text } from './Text';
@@ -23,7 +22,6 @@ export {
   RadioButton,
   RichTextInput,
   Snackbar,
-  SvgImage,
   SwitchButton,
   TableSortLabel,
   Text,

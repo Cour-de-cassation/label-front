@@ -5,10 +5,9 @@ import { DocumentReviewStatusIcon } from './DocumentReviewStatusIcon';
 import { DocumentStatusIcon } from './DocumentStatusIcon';
 import { DocumentsTableHeader } from './DocumentsTableHeader';
 import { ChangeAnnotationCategoryDropdown } from './ChangeAnnotationCategoryDropdown';
-import { FilterButton, filterType, DocumentFilterButton } from './FilterButton';
+import { FilterButton, filterType } from './FilterButton';
 import { FilterChip } from './FilterChip';
 import { LinkAnnotationDropdown } from './LinkAnnotationDropdown';
-import { Logo } from './Logo';
 import { MainHeader } from './MainHeader';
 import { ProblemReportIcon } from './ProblemReportIcon';
 import { PublicationCategoryBadge } from './PublicationCategoryBadge';
@@ -18,7 +17,6 @@ export {
   AdminMenu,
   CategoryIcon,
   ChangeAnnotationCategoryDropdown,
-  DocumentFilterButton,
   DocumentsTableHeader,
   DocumentNumberTextInput,
   DocumentReviewStatusIcon,
@@ -26,7 +24,6 @@ export {
   FilterButton,
   FilterChip,
   LinkAnnotationDropdown,
-  Logo,
   MainHeader,
   ProblemReportIcon,
   PublicationCategoryBadge,

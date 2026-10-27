@@ -1,14 +1,6 @@
 import { annotationsDiffType } from './annotationsDiffType';
 import { annotationsDiffGenerator } from './generator';
-import {
-  applyToAnnotations,
-  assertAnnotationsDiffAreConsistent,
-  buildAnnotationsDiff,
-  computeAnnotationsDiff,
-  computeDetailsFromAnnotationsDiff,
-  inverse,
-  squash,
-} from './lib';
+import { applyToAnnotations, buildAnnotationsDiff, computeAnnotationsDiff, inverse, squash } from './lib';
 
 export { annotationsDiffModule };
 
@@ -18,10 +10,8 @@ const annotationsDiffModule = {
   generator: annotationsDiffGenerator,
   lib: {
     applyToAnnotations,
-    assertAnnotationsDiffAreConsistent,
     buildAnnotationsDiff,
     computeAnnotationsDiff,
-    computeDetailsFromAnnotationsDiff,
     inverse,
     squash,
   },

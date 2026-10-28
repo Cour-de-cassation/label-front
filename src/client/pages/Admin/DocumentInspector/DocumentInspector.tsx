@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import { annotationsDiffType, documentType, settingsModule, settingsType } from 'src/core';
 import { apiCaller } from '../../../api';
 import { MainHeader } from '../../../components';
@@ -17,13 +17,9 @@ import { useCtxUser } from '../../../contexts/user.context';
 
 export { DocumentInspector };
 
-type DocumentInspectorParamsType = {
-  documentId: string;
-};
-
 function DocumentInspector(props: { settings: settingsType }) {
-  const params = useParams<DocumentInspectorParamsType>();
-  const history = useHistory();
+  const { documentId = '' } = useParams<'documentId'>();
+  const navigate = useNavigate();
   const { displayAlert } = useAlert();
   const { user } = useCtxUser();
 
@@ -35,9 +31,9 @@ function DocumentInspector(props: { settings: settingsType }) {
   }, [displayAlert, user?.role]);
 
   return (
-    <DocumentDataFetcher documentId={params.documentId}>
+    <DocumentDataFetcher documentId={documentId}>
       {({ document }) => (
-        <AnnotationsDataFetcher documentId={params.documentId}>
+        <AnnotationsDataFetcher documentId={documentId}>
           {({ annotations }) => {
             const settingsForDocument = settingsModule.lib.computeFilteredSettings(
               props.settings,
@@ -58,7 +54,7 @@ function DocumentInspector(props: { settings: settingsType }) {
                   settings: settingsForDocument,
                 }}
               >
-                <MainHeader title={document.title} onBackButtonPress={history.goBack} />
+                <MainHeader title={document.title} onBackButtonPress={() => navigate(-1)} />
                 <DocumentAnnotator onStopAnnotatingDocument={buildOnStopAnnotatingDocument(document)} />
               </AnnotatorStateHandlerContextProvider>
             );
@@ -74,7 +70,7 @@ function DocumentInspector(props: { settings: settingsType }) {
     }
 
     return async () => {
-      history.goBack();
+      navigate(-1);
     };
   }
 

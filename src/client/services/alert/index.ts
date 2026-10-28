@@ -1,3 +1,3 @@
-export { AlertHandlerContextProvider, AlertHandlerContext } from './AlertHandler';
+export { AlertHandlerContextProvider } from './AlertHandler';
 
 export { useAlert } from './useAlert';

@@ -3,19 +3,15 @@ import { annotationGenerator } from './generator';
 import {
   annotationLinker,
   annotationUpdater,
-  areAnnotationsIncluded,
   areOverlapping,
   buildAnnotation,
   comparator,
-  computeNearbyText,
   entityIdHandler,
-  removeOverlappingAnnotations,
-  isAnnotationTextInAnnotations,
   sortAnnotations,
   stringify,
 } from './lib';
 
-export { annotationModule, buildAnnotation };
+export { annotationModule };
 
 export type { annotationType };
 
@@ -24,14 +20,10 @@ const annotationModule = {
   lib: {
     annotationLinker,
     annotationUpdater,
-    areAnnotationsIncluded,
     areOverlapping,
     buildAnnotation,
     comparator,
-    computeNearbyText,
     entityIdHandler,
-    removeOverlappingAnnotations,
-    isAnnotationTextInAnnotations,
     sortAnnotations,
     stringify,
   },

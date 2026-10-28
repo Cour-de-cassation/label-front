@@ -409,10 +409,3 @@ export type apiSchemaType = {
 };
 
 export type apiSchemaMethodNameType = keyof apiSchemaType;
-
-export type apiSchemaMethodType = { [key: string]: apiSchemaEntryType };
-
-export type apiSchemaEntryType = {
-  in?: ApiSchema[keyof ApiSchema][keyof ApiSchema[keyof ApiSchema]]['in'];
-  out: ApiSchema[keyof ApiSchema][keyof ApiSchema[keyof ApiSchema]]['out'];
-};

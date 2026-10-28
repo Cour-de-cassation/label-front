@@ -14,8 +14,6 @@ const annotationHandler = {
   deleteByEntityId,
   getAnnotationIndex,
   updateManyCategory,
-  updateOneCategory,
-  updateOneText,
 };
 
 function create(
@@ -127,46 +125,6 @@ function updateManyCategory(
   );
 
   return autoLinker.autoLink(updatedAnnotations, newAnnotations, settings);
-}
-
-function updateOneCategory(
-  annotations: annotationType[],
-  text: string,
-  start: number,
-  category: string,
-  settings: settingsType,
-): annotationType[] {
-  let updateAnnotation: annotationType | undefined;
-  const newAnnotations = annotations.map((annotation) => {
-    if (annotation.text === text && annotation.start === start) {
-      updateAnnotation = annotation;
-      return annotationModule.lib.annotationUpdater.updateAnnotationCategory(annotation, category);
-    } else {
-      return annotation;
-    }
-  });
-
-  return updateAnnotation ? autoLinker.autoLink([updateAnnotation], newAnnotations, settings) : newAnnotations;
-}
-
-function updateOneText(
-  annotations: annotationType[],
-  oldText: string,
-  start: number,
-  newText: string,
-  settings: settingsType,
-): annotationType[] {
-  let updateAnnotation: annotationType | undefined;
-  const newAnnotations = annotations.map((annotation) => {
-    if (annotation.text === oldText && annotation.start === start) {
-      updateAnnotation = annotation;
-      return annotationModule.lib.annotationUpdater.updateAnnotationText(annotation, newText, start);
-    } else {
-      return annotation;
-    }
-  });
-
-  return updateAnnotation ? autoLinker.autoLink([updateAnnotation], newAnnotations, settings) : newAnnotations;
 }
 
 function getAnnotationIndex(annotations: annotationType[], annotation: annotationType) {

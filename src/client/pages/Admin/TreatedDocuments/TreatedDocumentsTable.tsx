@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { apiRouteOutType, documentType, documentModule } from 'src/core';
 import { apiCaller } from '../../../api';
 import { PaginatedTable, tableRowFieldType, ConfirmationPopup, orderDirectionType } from 'src/pelta-design-system';
@@ -22,7 +22,7 @@ function TreatedDocumentsTable(props: {
   refetch: () => void;
   treatedDocuments: apiRouteOutType<'get', 'treatedDocuments'>;
 }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [documentIdToReset, setDocumentIdToReset] = useState<documentType['_id'] | undefined>(undefined);
   const { displayAlert } = useAlert();
   const [annotationDiffDocumentInfo, setAnnotationDiffDocumentInfo] = useState<
@@ -101,7 +101,7 @@ function TreatedDocumentsTable(props: {
     const openDocumentOption = {
       kind: 'text' as const,
       text: wordings.treatedDocumentsPage.table.optionItems.openDocument,
-      onClick: () => history.push(routes.DOCUMENT.getPath(treatmentWithDetails.document._id)),
+      onClick: () => navigate(routes.DOCUMENT.getPath(treatmentWithDetails.document._id)),
       iconName: 'find' as const,
     };
 

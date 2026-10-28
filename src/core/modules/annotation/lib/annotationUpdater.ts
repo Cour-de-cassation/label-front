@@ -4,9 +4,7 @@ import { entityIdHandler } from './entityIdHandler';
 export { annotationUpdater };
 
 const annotationUpdater = {
-  updateAnnotationCategory,
   updateAnnotationsCategory,
-  updateAnnotationText,
 };
 
 function updateAnnotationsCategory(
@@ -30,19 +28,4 @@ function updateAnnotationsCategory(
     }),
     updatedAnnotations,
   };
-}
-
-function updateAnnotationCategory(annotation: annotationType, newCategory: string): annotationType {
-  return entityIdHandler.syncEntityId({
-    ...annotation,
-    category: newCategory,
-  });
-}
-
-function updateAnnotationText(annotation: annotationType, newText: string, newStart: number): annotationType {
-  return entityIdHandler.syncEntityId({
-    ...annotation,
-    start: newStart,
-    text: newText,
-  });
 }

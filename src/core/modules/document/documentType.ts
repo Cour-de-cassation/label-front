@@ -2,7 +2,7 @@ export type documentRouteType = 'automatic' | 'exhaustive' | 'confirmation' | 'r
 export type documentImporterType = 'recent' | 'manual' | 'default';
 export type documentStatusType = 'done' | 'free' | 'pending' | 'locked' | 'saved' | 'toBeConfirmed';
 
-export type checklistEntityType = {
+type checklistEntityType = {
   text: string;
   start: number;
   category: string;
@@ -24,7 +24,7 @@ export type checklistItemType = {
   metadata_text: string[];
 };
 
-export type decisionMetadataType = {
+type decisionMetadataType = {
   appealNumber: string;
   additionalTermsToAnnotate: string;
   computedAdditionalTerms?: {
@@ -42,7 +42,7 @@ export type decisionMetadataType = {
   raisonInteretParticulier?: boolean;
 };
 
-export type reviewStatusType = {
+type reviewStatusType = {
   viewerNames: string[];
   hasBeenAmended: boolean;
 };

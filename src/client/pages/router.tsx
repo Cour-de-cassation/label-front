@@ -1,5 +1,5 @@
-import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, RouteProps } from 'react-router-dom';
+import React, { ReactElement, ReactNode } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { localStorage } from '../services/localStorage';
 import { wordings } from '../wordings';
 import { AdminLayoutDataFetcher, useAdminBadgeCountsRefetch } from './Admin/AdminLayoutDataFetcher';
@@ -32,142 +32,198 @@ export { Router };
 function Router() {
   return (
     <BrowserRouter>
-      <Switch>
-        <UnauthenticatedRoute path={routes.LOGIN.getPath()}>
-          <Login />
-        </UnauthenticatedRoute>
-        <AuthenticatedRoute path={routes.ADMIN.getPath()}>
-          <AuthenticatedRoute path={routes.DOCUMENT.getPath()}>
-            <SettingsDataFetcher>{({ settings }) => <DocumentInspector settings={settings} />}</SettingsDataFetcher>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={routes.SUMMARY.getPath()}>
-            <AdminLayoutDataFetcher header={wordings.summaryPage.header}>
-              <SummaryDataFetcher>
-                {({ summary, refetch, isLoading }) => (
-                  <Summary summary={summary} refetch={refetch} isLoading={isLoading} />
-                )}
-              </SummaryDataFetcher>
-            </AdminLayoutDataFetcher>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={routes.STATISTICS.getPath()}>
-            <AdminLayoutDataFetcher header={wordings.statisticsPage.header}>
-              <WorkingUsersDataFetcher>
-                {({ workingUsers }) => (
-                  <StatisticsDataFetcher>
-                    {({ availableStatisticFilters, aggregatedStatistics, refetch, isLoading, ressourceFilter }) => (
-                      <Statistics
-                        ressourceFilter={ressourceFilter}
-                        refetch={refetch}
-                        isLoading={isLoading}
-                        aggregatedStatistics={aggregatedStatistics}
-                        availableStatisticFilters={availableStatisticFilters}
-                        users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
-                      />
-                    )}
-                  </StatisticsDataFetcher>
-                )}
-              </WorkingUsersDataFetcher>
-            </AdminLayoutDataFetcher>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={routes.PROBLEM_REPORTS.getPath()}>
-            <AdminLayoutDataFetcher header={wordings.problemReportsPage.header}>
-              <ProblemReportsDataFetcher>
-                {({ problemReportsWithDetails, refetch, isLoading }) => (
-                  <BadgeRefreshingChild refetch={refetch}>
-                    {(combinedRefetch) => (
-                      <ProblemReports
-                        refetch={combinedRefetch}
-                        problemReportsWithDetails={problemReportsWithDetails}
-                        isLoading={isLoading}
-                      />
-                    )}
-                  </BadgeRefreshingChild>
-                )}
-              </ProblemReportsDataFetcher>
-            </AdminLayoutDataFetcher>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={routes.PRE_ASSIGN_DOCUMENTS.getPath()}>
-            <AdminLayoutDataFetcher header={wordings.preAssignDocumentsPage.header}>
-              <WorkingUsersDataFetcher>
-                {({ workingUsers }) => (
-                  <PreAssignDocumentsDataFetcher>
-                    {({ preAssignations, isLoading, refetch }) => (
-                      <PreAssignDocuments
-                        users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
-                        refetch={refetch}
-                        preAssignations={preAssignations}
-                        isLoading={isLoading}
-                      />
-                    )}
-                  </PreAssignDocumentsDataFetcher>
-                )}
-              </WorkingUsersDataFetcher>
-            </AdminLayoutDataFetcher>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={routes.TO_BE_CONFIRMED_DOCUMENTS.getPath()}>
-            <AdminLayoutDataFetcher header={wordings.toBeConfirmedDocumentsPage.header}>
-              <WorkingUsersDataFetcher>
-                {({ workingUsers }) => (
-                  <ToBeConfirmedDocumentsDataFetcher>
-                    {({ toBeConfirmedDocuments, refetch, isLoading }) => (
-                      <BadgeRefreshingChild refetch={refetch}>
-                        {(combinedRefetch) => (
-                          <ToBeConfirmedDocuments
-                            users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
-                            toBeConfirmedDocuments={toBeConfirmedDocuments}
-                            refetch={combinedRefetch}
-                            isLoading={isLoading}
-                          />
-                        )}
-                      </BadgeRefreshingChild>
-                    )}
-                  </ToBeConfirmedDocumentsDataFetcher>
-                )}
-              </WorkingUsersDataFetcher>
-            </AdminLayoutDataFetcher>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={routes.TREATED_DOCUMENTS.getPath()}>
-            <AdminLayoutDataFetcher header={wordings.treatedDocumentsPage.header}>
-              <TreatedDocumentsDataFetcher>
-                {({ treatedDocuments, refetch, isLoading }) => (
-                  <TreatedDocuments treatedDocuments={treatedDocuments} refetch={refetch} isLoading={isLoading} />
-                )}
-              </TreatedDocumentsDataFetcher>
-            </AdminLayoutDataFetcher>
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={routes.UNTREATED_DOCUMENT.getPath()}>
-            <AdminLayoutDataFetcher header={wordings.untreatedDocumentsPage.header}>
-              <WorkingUsersDataFetcher>
-                {({ workingUsers }) => (
-                  <UntreatedDocumentsDataFetcher>
-                    {({ untreatedDocuments, refetch, isLoading }) => (
-                      <UntreatedDocuments
-                        users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
-                        untreatedDocuments={untreatedDocuments}
-                        refetch={refetch}
-                        isLoading={isLoading}
-                      />
-                    )}
-                  </UntreatedDocumentsDataFetcher>
-                )}
-              </WorkingUsersDataFetcher>
-            </AdminLayoutDataFetcher>
-          </AuthenticatedRoute>
-        </AuthenticatedRoute>
-        <Route path={routes.ANONYMIZED_DOCUMENT.getPath()}>
-          <AnonymizedDocument />
-        </Route>
-        <AuthenticatedRoute path={routes.PUBLISHABLE_DOCUMENTS.getPath()}>
-          <PublishableDocuments />
-        </AuthenticatedRoute>
-        <AuthenticatedRoute path={routes.ANNOTATION.getPath()}>
-          <SettingsDataFetcher>{({ settings }) => <Home settings={settings} />}</SettingsDataFetcher>
-        </AuthenticatedRoute>
-        <AuthenticatedRoute path={routes.DEFAULT.getPath()}>
-          <HomeRoute />
-        </AuthenticatedRoute>
-        <Redirect path="/" to={{ pathname: routes.DEFAULT.getPath() }} />
-      </Switch>
+      <Routes>
+        <Route
+          path={routes.LOGIN.getPath()}
+          element={
+            <UnauthenticatedRoute>
+              <Login />
+            </UnauthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.DOCUMENT.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <SettingsDataFetcher>{({ settings }) => <DocumentInspector settings={settings} />}</SettingsDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.SUMMARY.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <AdminLayoutDataFetcher header={wordings.summaryPage.header}>
+                <SummaryDataFetcher>
+                  {({ summary, refetch, isLoading }) => (
+                    <Summary summary={summary} refetch={refetch} isLoading={isLoading} />
+                  )}
+                </SummaryDataFetcher>
+              </AdminLayoutDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.STATISTICS.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <AdminLayoutDataFetcher header={wordings.statisticsPage.header}>
+                <WorkingUsersDataFetcher>
+                  {({ workingUsers }) => (
+                    <StatisticsDataFetcher>
+                      {({ availableStatisticFilters, aggregatedStatistics, refetch, isLoading, ressourceFilter }) => (
+                        <Statistics
+                          ressourceFilter={ressourceFilter}
+                          refetch={refetch}
+                          isLoading={isLoading}
+                          aggregatedStatistics={aggregatedStatistics}
+                          availableStatisticFilters={availableStatisticFilters}
+                          users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
+                        />
+                      )}
+                    </StatisticsDataFetcher>
+                  )}
+                </WorkingUsersDataFetcher>
+              </AdminLayoutDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.PROBLEM_REPORTS.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <AdminLayoutDataFetcher header={wordings.problemReportsPage.header}>
+                <ProblemReportsDataFetcher>
+                  {({ problemReportsWithDetails, refetch, isLoading }) => (
+                    <BadgeRefreshingChild refetch={refetch}>
+                      {(combinedRefetch) => (
+                        <ProblemReports
+                          refetch={combinedRefetch}
+                          problemReportsWithDetails={problemReportsWithDetails}
+                          isLoading={isLoading}
+                        />
+                      )}
+                    </BadgeRefreshingChild>
+                  )}
+                </ProblemReportsDataFetcher>
+              </AdminLayoutDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.PRE_ASSIGN_DOCUMENTS.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <AdminLayoutDataFetcher header={wordings.preAssignDocumentsPage.header}>
+                <WorkingUsersDataFetcher>
+                  {({ workingUsers }) => (
+                    <PreAssignDocumentsDataFetcher>
+                      {({ preAssignations, isLoading, refetch }) => (
+                        <PreAssignDocuments
+                          users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
+                          refetch={refetch}
+                          preAssignations={preAssignations}
+                          isLoading={isLoading}
+                        />
+                      )}
+                    </PreAssignDocumentsDataFetcher>
+                  )}
+                </WorkingUsersDataFetcher>
+              </AdminLayoutDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.TO_BE_CONFIRMED_DOCUMENTS.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <AdminLayoutDataFetcher header={wordings.toBeConfirmedDocumentsPage.header}>
+                <WorkingUsersDataFetcher>
+                  {({ workingUsers }) => (
+                    <ToBeConfirmedDocumentsDataFetcher>
+                      {({ toBeConfirmedDocuments, refetch, isLoading }) => (
+                        <BadgeRefreshingChild refetch={refetch}>
+                          {(combinedRefetch) => (
+                            <ToBeConfirmedDocuments
+                              users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
+                              toBeConfirmedDocuments={toBeConfirmedDocuments}
+                              refetch={combinedRefetch}
+                              isLoading={isLoading}
+                            />
+                          )}
+                        </BadgeRefreshingChild>
+                      )}
+                    </ToBeConfirmedDocumentsDataFetcher>
+                  )}
+                </WorkingUsersDataFetcher>
+              </AdminLayoutDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.TREATED_DOCUMENTS.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <AdminLayoutDataFetcher header={wordings.treatedDocumentsPage.header}>
+                <TreatedDocumentsDataFetcher>
+                  {({ treatedDocuments, refetch, isLoading }) => (
+                    <TreatedDocuments treatedDocuments={treatedDocuments} refetch={refetch} isLoading={isLoading} />
+                  )}
+                </TreatedDocumentsDataFetcher>
+              </AdminLayoutDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.UNTREATED_DOCUMENT.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <AdminLayoutDataFetcher header={wordings.untreatedDocumentsPage.header}>
+                <WorkingUsersDataFetcher>
+                  {({ workingUsers }) => (
+                    <UntreatedDocumentsDataFetcher>
+                      {({ untreatedDocuments, refetch, isLoading }) => (
+                        <UntreatedDocuments
+                          users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
+                          untreatedDocuments={untreatedDocuments}
+                          refetch={refetch}
+                          isLoading={isLoading}
+                        />
+                      )}
+                    </UntreatedDocumentsDataFetcher>
+                  )}
+                </WorkingUsersDataFetcher>
+              </AdminLayoutDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route path={routes.ANONYMIZED_DOCUMENT.getPath()} element={<AnonymizedDocument />} />
+        <Route
+          path={routes.PUBLISHABLE_DOCUMENTS.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <PublishableDocuments />
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.ANNOTATION.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <SettingsDataFetcher>{({ settings }) => <Home settings={settings} />}</SettingsDataFetcher>
+            </AuthenticatedRoute>
+          }
+        />
+        <Route
+          path={routes.DEFAULT.getPath()}
+          element={
+            <AuthenticatedRoute>
+              <HomeRoute />
+            </AuthenticatedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to={routes.DEFAULT.getPath()} replace />} />
+      </Routes>
     </BrowserRouter>
   );
 }
@@ -181,51 +237,23 @@ function BadgeRefreshingChild(props: { refetch: () => void; children: (combinedR
   return props.children(combinedRefetch);
 }
 
-type GuardedRouteProps = Omit<RouteProps, 'children'> & { children?: ReactNode };
+type GuardedRouteProps = { children: ReactNode };
 
-const AuthenticatedRoute: FunctionComponent<GuardedRouteProps> = ({ children, ...rest }: GuardedRouteProps) => {
+const AuthenticatedRoute = ({ children }: GuardedRouteProps) => {
   const { user, loading } = useCtxUser();
   if (loading) {
     return <div>Loading...</div>;
   }
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        user ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: routes.LOGIN.getPath(),
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
+  return user ? children : <Navigate to={routes.LOGIN.getPath()} replace />;
 };
 
-const HomeRoute: FunctionComponent<RouteProps> = ({ ...props }: RouteProps) => {
+const HomeRoute = () => {
   const { user, loading } = useCtxUser();
 
   if (loading) {
     return <div>Loading...</div>;
   }
-  return (
-    <Route
-      {...props}
-      render={({ location }) => (
-        <Redirect
-          to={{
-            pathname: getRedirectionRoute(user),
-            state: { from: location },
-          }}
-        />
-      )}
-    />
-  );
+  return <Navigate to={getRedirectionRoute(user)} replace />;
 };
 
 function getRedirectionRoute(user: CurrentUser | null) {
@@ -245,26 +273,10 @@ function getRedirectionRoute(user: CurrentUser | null) {
   return defaultRoutes[userRole as 'annotator' | 'scrutator' | 'admin'];
 }
 
-const UnauthenticatedRoute: FunctionComponent<GuardedRouteProps> = ({ children, ...rest }: GuardedRouteProps) => {
+const UnauthenticatedRoute = ({ children }: GuardedRouteProps) => {
   const { user, loading } = useCtxUser();
   if (loading) {
     return <div>Loading...</div>;
   }
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        !user ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: routes.DEFAULT.getPath(),
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
+  return !user ? children : <Navigate to={routes.DEFAULT.getPath()} replace />;
 };

@@ -196,38 +196,6 @@ describe('annotationHandler', () => {
     });
   });
 
-  describe('updateOneCategory', () => {
-    it('should update the given annotation with the given category', () => {
-      const newCategory = 'ANOTHER_CATEGORY';
-      const annotations = [{ category: 'CATEGORY' }, { category: 'CATEGORY2' }].map(generateFetchedAnnotation);
-
-      const updatedAnnotations = annotationHandler.updateOneCategory(
-        annotations,
-        annotations[0].text,
-        annotations[0].start,
-        newCategory,
-        settings,
-      );
-
-      expect(updatedAnnotations[0].category).toEqual(newCategory);
-    });
-    it('should update the entityId if needed', () => {
-      const newCategory = 'ANOTHER_CATEGORY';
-      const text = 'TEXT';
-      const annotations = [{ category: 'CATEGORY', text }, { category: 'CATEGORY2' }].map(generateFetchedAnnotation);
-
-      const updatedAnnotations = annotationHandler.updateOneCategory(
-        annotations,
-        annotations[0].text,
-        annotations[0].start,
-        newCategory,
-        settings,
-      );
-
-      expect(updatedAnnotations[0].entityId).toEqual(annotationModule.lib.entityIdHandler.compute(newCategory, text));
-    });
-  });
-
   describe('getAnnotationIndex', () => {
     it('should return the index and the total of the annotation of a same entity', () => {
       const annotations = [

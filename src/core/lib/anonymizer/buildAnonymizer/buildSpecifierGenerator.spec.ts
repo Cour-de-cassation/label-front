@@ -1,4 +1,4 @@
-import { buildAnnotation } from '../../../modules/annotation';
+import { buildAnnotation } from '../../../modules/annotation/lib/buildAnnotation';
 import { buildSpecifierGenerator } from './buildSpecifierGenerator';
 
 describe('buildSpecifierGenerator', () => {

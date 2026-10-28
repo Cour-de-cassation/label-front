@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import format from 'string-template';
 import { optionItemType, Table, tableRowFieldType } from 'src/pelta-design-system';
 import { apiRouteOutType, documentModule, timeOperator } from 'src/core';
-import { apiCaller } from '../../../../api';
-import { DocumentStatusIcon, ProblemReportIcon } from '../../../../components';
-import { useAlert } from '../../../../services/alert';
-import { usePopup } from '../../../../services/popup';
-import { localStorage } from '../../../../services/localStorage';
-import { sendMail } from '../../../../services/sendMail';
-import { wordings } from '../../../../wordings';
+import { apiCaller } from 'src/client/api';
+import { DocumentStatusIcon, ProblemReportIcon } from 'src/client/components';
+import { useAlert } from 'src/client/services/alert';
+import { usePopup } from 'src/client/services/popup';
+import { localStorage } from 'src/client/services/localStorage';
+import { sendMail } from 'src/client/services/sendMail';
+import { wordings } from 'src/client/wordings';
 import { routes } from '../../../routes';
-import { useCtxUser } from '../../../../contexts/user.context';
+import { useCtxUser } from 'src/client/contexts/user.context';
 import { annotationDiffDocumentInfoType, AnnotationsDiffDrawer } from '../../TreatedDocuments/AnnotationsDiffDrawer';
 
 export { ProblemReportsTable };
@@ -24,7 +24,7 @@ function ProblemReportsTable(props: {
   refetch: () => void;
   problemReportsWithDetails: apiRouteOutType<'get', 'problemReportsWithDetails'>;
 }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { displayAlert } = useAlert();
   const { displayPopup } = usePopup();
   const [annotationDiffDocumentInfo, setAnnotationDiffDocumentInfo] = useState<
@@ -233,7 +233,7 @@ function ProblemReportsTable(props: {
       text: wordings.problemReportsPage.table.optionItems.openDocument,
       onClick: () => {
         if (problemReportWithDetails.document) {
-          history.push(routes.DOCUMENT.getPath(problemReportWithDetails.document._id));
+          navigate(routes.DOCUMENT.getPath(problemReportWithDetails.document._id));
         }
         return;
       },

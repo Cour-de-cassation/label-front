@@ -1,7 +1,6 @@
 import { FilterButton } from './FilterButton';
-import { DocumentFilterButton } from './DocumentFilterButton';
 import { filterType } from './filterType';
 
-export { FilterButton, DocumentFilterButton };
+export { FilterButton };
 
 export type { filterType };

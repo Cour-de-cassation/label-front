@@ -4,8 +4,6 @@ import { wordings } from '../../../../wordings';
 
 export { SummaryBox };
 
-export type { summaryType };
-
 const ROW_HEIGHT = 30;
 
 type summaryType = {

@@ -7,12 +7,7 @@ export { autoLinker };
 
 const autoLinker = {
   autoLink,
-  autoLinkAll,
 };
-
-function autoLinkAll(annotations: annotationType[], settings: settingsType): annotationType[] {
-  return autoLink(annotations, annotations, settings);
-}
 
 function autoLink(
   annotationsToLink: annotationType[],

@@ -1,7 +1,6 @@
 import { annotationModule } from '../../../modules/annotation';
 import { settingsModule } from '../../../modules/settings';
 import { buildEntityIdMapper } from './buildEntityIdMapper';
-import { isCapitalLetterCharCode } from './isCapitalLetterCharCode';
 
 describe('buildEntityIdMapper', () => {
   const settings = settingsModule.lib.buildSettings({
@@ -46,9 +45,9 @@ describe('buildEntityIdMapper', () => {
   it('should build an entityId mapper', () => {
     const entityIdMapper = buildEntityIdMapper(settings, annotations, seed);
 
-    expect(isCapitalLetterCharCode(entityIdMapper[annotations[3].entityId].charCodeAt(1))).toBeTruthy();
-    expect(isCapitalLetterCharCode(entityIdMapper[annotations[0].entityId].charCodeAt(1))).toBeTruthy();
-    expect(isCapitalLetterCharCode(entityIdMapper[annotations[2].entityId].charCodeAt(1))).toBeTruthy();
+    expect(entityIdMapper[annotations[3].entityId].charAt(1)).toMatch(/^[A-Z]$/);
+    expect(entityIdMapper[annotations[0].entityId].charAt(1)).toMatch(/^[A-Z]$/);
+    expect(entityIdMapper[annotations[2].entityId].charAt(1)).toMatch(/^[A-Z]$/);
     expect(entityIdMapper[annotations[3].entityId]).not.toBe(entityIdMapper[annotations[0].entityId]);
     expect(entityIdMapper[annotations[3].entityId]).not.toBe(entityIdMapper[annotations[2].entityId]);
     expect(entityIdMapper[annotations[2].entityId]).not.toBe(entityIdMapper[annotations[0].entityId]);

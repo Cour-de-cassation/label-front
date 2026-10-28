@@ -34,29 +34,4 @@ describe('annotationOverlapDetector', () => {
       ).toBeFalsy();
     });
   });
-
-  describe('findOverlappingAnnotation', () => {
-    it('should return the overlapping annotation if relevant', () => {
-      const annotations = [{ text: 'MACHIN', start: 10 }].map(annotationModule.generator.generate);
-      const annotationStart = 13;
-      const annotationText = 'TRUC';
-
-      expect(annotationOverlapDetector.findOverlappingAnnotation(annotations, annotationStart, annotationText)).toEqual(
-        annotations[0],
-      );
-    });
-
-    it('should return undefined if not relevant', () => {
-      const annotations = [
-        { text: 'MACHIN', start: 10 },
-        { text: 'CHOSE', start: 30 },
-      ].map(annotationModule.generator.generate);
-      const annotationStart = 20;
-      const annotationText = 'TRUC';
-
-      expect(annotationOverlapDetector.findOverlappingAnnotation(annotations, annotationStart, annotationText)).toEqual(
-        undefined,
-      );
-    });
-  });
 });

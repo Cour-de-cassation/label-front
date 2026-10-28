@@ -44,14 +44,14 @@ describe('autoLinker', () => {
     });
   });
 
-  describe('autoLinkAll', () => {
+  describe('autoLink with all annotations', () => {
     it('should not link annotations of different category', () => {
       const annotations = [
         { category: 'CATEGORY', text: 'annotation' },
         { category: 'ANOTHER_CATEGORY', text: 'ANNOTATION' },
       ].map(annotationModule.generator.generate);
 
-      const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+      const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
       expect(linkedAnnotations).toEqual(annotations);
     });
@@ -64,7 +64,7 @@ describe('autoLinker', () => {
           { category: 'ANOTHER_CATEGORY', text: 'another_annotation' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
       });
@@ -87,7 +87,7 @@ describe('autoLinker', () => {
           }),
         );
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations[0].entityId).not.toBe(linkedAnnotations[1].entityId);
         expect(linkedAnnotations[0].entityId).not.toBe(linkedAnnotations[2].entityId);
@@ -102,7 +102,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'annotation' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
       });
@@ -112,7 +112,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'annotation' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
       });
@@ -122,7 +122,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'annotation' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotations);
       });
@@ -135,7 +135,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'Pond' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
       });
@@ -145,7 +145,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'POND' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
       });
@@ -155,7 +155,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'Pomd' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotations);
       });
@@ -165,7 +165,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'Dupond' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
       });
@@ -175,7 +175,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'DUPOND' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
       });
@@ -185,7 +185,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'Dubomb' },
         ].map(annotationModule.generator.generate);
 
-        const linkedAnnotations = autoLinker.autoLinkAll(annotations, settings);
+        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotations);
       });

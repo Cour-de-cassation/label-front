@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { apiRouteOutType, timeOperator, userType } from 'src/core';
 import { customThemeType, useCustomTheme, PaginatedTable, tableRowFieldType } from 'src/pelta-design-system';
 import { DocumentReviewStatusIcon, PublicationCategoryBadge } from '../../../components';
@@ -18,7 +18,7 @@ function ToBeConfirmedDocumentsTable(props: {
   toBeConfirmedDocuments: apiRouteOutType<'get', 'toBeConfirmedDocuments'>;
 }) {
   const theme = useCustomTheme();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const styles = buildStyles(theme);
   const fields = buildToBeConfirmedDocumentsFields();
@@ -38,7 +38,7 @@ function ToBeConfirmedDocumentsTable(props: {
     const openDocumentOption = {
       kind: 'text' as const,
       text: wordings.toBeConfirmedDocumentsPage.table.optionItems.openDocument,
-      onClick: () => history.push(routes.DOCUMENT.getPath(toBeConfirmedDocument.document._id)),
+      onClick: () => navigate(routes.DOCUMENT.getPath(toBeConfirmedDocument.document._id)),
       iconName: 'find' as const,
     };
 

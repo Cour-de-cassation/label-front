@@ -10,18 +10,11 @@ import {
   getCategories,
   motivationCategoryHandler,
 } from './lib';
-import {
-  colorType,
-  constantColorType,
-  displayModeType,
-  settingsType,
-  shadeColorType,
-  categoryIconNameType,
-} from './settingsType';
+import { displayModeType, settingsType } from './settingsType';
 
 export { settingsModule };
 
-export type { colorType, constantColorType, displayModeType, settingsType, shadeColorType, categoryIconNameType };
+export type { displayModeType, settingsType };
 
 const settingsModule = {
   lib: {

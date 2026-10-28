@@ -1,12 +1,4 @@
 import { apiRouteInType, apiRouteOutType, networkType } from './apiRouteType';
-import { apiSchemaType, apiSchemaMethodNameType, apiSchemaMethodType, apiSchemaEntryType } from './apiSchema';
+import { apiSchemaType } from './apiSchema';
 
-export type {
-  apiSchemaType,
-  apiSchemaMethodNameType,
-  apiSchemaMethodType,
-  apiSchemaEntryType,
-  apiRouteInType,
-  apiRouteOutType,
-  networkType,
-};
+export type { apiSchemaType, apiRouteInType, apiRouteOutType, networkType };

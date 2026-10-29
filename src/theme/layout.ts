@@ -1,0 +1,54 @@
+export { heights, widths };
+
+const heights = buildHeights();
+
+const widths = buildWidths();
+
+function buildHeights() {
+  const HEADER_HEIGHT = '72px';
+  const ADMIN_PANEL_HEIGHT = `calc(100vh - ${HEADER_HEIGHT})`;
+  const ANNOTATOR_PANEL_HEADER_HEIGHT = '72px';
+  const ANNOTATOR_PANEL_FOOTER_HEIGHT = '72px';
+  const ANNOTATOR_PANEL_HEIGHT = `calc(100vh - ${HEADER_HEIGHT} - ${ANNOTATOR_PANEL_FOOTER_HEIGHT} - ${ANNOTATOR_PANEL_HEADER_HEIGHT})`;
+  const ADMIN_TREATMENTS_TABLE_HEADER_HEIGHT = '140px';
+  const ADMIN_TREATMENTS_TABLE_HEIGHT = `calc(100vh - ${HEADER_HEIGHT} - ${ADMIN_TREATMENTS_TABLE_HEADER_HEIGHT})`;
+  const PUBLISHABLE_DOCUMENTS_TABLE_HEADER_HEIGHT = '72px';
+  const PUBLISHABLE_DOCUMENTS_TABLE_HEIGHT = `calc(100vh - ${HEADER_HEIGHT} - ${PUBLISHABLE_DOCUMENTS_TABLE_HEADER_HEIGHT})`;
+  const PUBLISHABLE_DOCUMENTS_HEIGHT = `calc(100vh - ${HEADER_HEIGHT})`;
+  const STATISTICS_HEADER_HEIGHT = '72px';
+  const STATISTICS_BODY_HEIGHT = `calc(100vh - ${HEADER_HEIGHT} - ${STATISTICS_HEADER_HEIGHT})`;
+  const ANONYMIZED_DOCUMENT_HEADER_HEIGHT = '72px';
+  const ANONYMIZED_DOCUMENT_FOOTER_HEIGHT = '72px';
+  const ANONYMIZED_DOCUMENT_HEIGHT = `calc(100vh - ${HEADER_HEIGHT} - ${ANONYMIZED_DOCUMENT_HEADER_HEIGHT} - ${ANONYMIZED_DOCUMENT_FOOTER_HEIGHT})`;
+
+  return {
+    header: HEADER_HEIGHT,
+    annotatorPanelHeader: ANNOTATOR_PANEL_HEADER_HEIGHT,
+    annotatorPanel: ANNOTATOR_PANEL_HEIGHT,
+    annotatorPanelFooter: ANNOTATOR_PANEL_FOOTER_HEIGHT,
+    anonymizedDocumentHeader: ANONYMIZED_DOCUMENT_HEADER_HEIGHT,
+    anonymizedDocument: ANONYMIZED_DOCUMENT_HEIGHT,
+    anonymizedDocumentFooter: ANONYMIZED_DOCUMENT_FOOTER_HEIGHT,
+    adminPanel: ADMIN_PANEL_HEIGHT,
+    adminTreatmentsTableHeader: ADMIN_TREATMENTS_TABLE_HEADER_HEIGHT,
+    adminTreatmentsTable: ADMIN_TREATMENTS_TABLE_HEIGHT,
+    publishableDocuments: PUBLISHABLE_DOCUMENTS_HEIGHT,
+    publishableDocumentsTableHeader: PUBLISHABLE_DOCUMENTS_TABLE_HEADER_HEIGHT,
+    publishableDocumentsTable: PUBLISHABLE_DOCUMENTS_TABLE_HEIGHT,
+    statisticsHeaderHeight: STATISTICS_HEADER_HEIGHT,
+    statisticsBodyHeight: STATISTICS_BODY_HEIGHT,
+  };
+}
+
+function buildWidths() {
+  const ANNOTATIONS_PANEL_WIDTH = '37vw';
+  const DOCUMENT_PANEL_WIDTH = `calc(100vw - ${ANNOTATIONS_PANEL_WIDTH} )`;
+  const ADMIN_MENU_WIDTH = '65px';
+  const ADMIN_CONTENT_WIDTH = `calc(100vw - ${ADMIN_MENU_WIDTH})`;
+  return {
+    annotationsPanel: ANNOTATIONS_PANEL_WIDTH,
+    documentPanel: DOCUMENT_PANEL_WIDTH,
+    adminMenu: ADMIN_MENU_WIDTH,
+    adminContent: ADMIN_CONTENT_WIDTH,
+  };
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Icon, Text } from '../../materialUI';
-import { customThemeType, useCustomTheme } from '../../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 import { computeDisplayedPages } from './lib';
 
 export { PaginationFooter };

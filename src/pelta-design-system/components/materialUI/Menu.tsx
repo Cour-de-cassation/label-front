@@ -1,6 +1,6 @@
 import React, { MouseEvent, ReactElement, ReactNode } from 'react';
 import { Menu as MUMenu, MenuItem } from '@mui/material';
-import { customThemeType, useCustomTheme } from '../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 
 export { Menu };
 

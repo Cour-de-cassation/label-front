@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState } from 'react';
-import { customThemeType, useCustomTheme } from '../../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 import { Icon, Text } from '../../materialUI';
 import { OptionButton } from './OptionButton';
 import { optionItemType, tableRowFieldType } from './Table';

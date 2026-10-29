@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import { Drawer as MuiDrawer } from '@mui/material';
-import { customThemeType, heights, useCustomTheme } from '../../theme';
+import { customThemeType, heights, useCustomTheme } from 'src/theme';
 import { IconButton, Text } from '..';
 import { zIndices } from './constants';
-import { wordings } from 'src/client/wordings';
+import { wordings } from 'src/wordings';
 
 export { Drawer };
 

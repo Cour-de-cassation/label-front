@@ -1,5 +1,5 @@
 import React, { ChangeEvent, ReactElement } from 'react';
-import { customThemeType, typography, useCustomTheme } from '../../theme';
+import { customThemeType, typography, useCustomTheme } from 'src/theme';
 
 export { TextInput };
 

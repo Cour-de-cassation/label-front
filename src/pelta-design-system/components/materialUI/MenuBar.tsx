@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { AppBar, PropTypes } from '@mui/material';
 import { zIndices } from './constants';
-import { customThemeType, useCustomTheme } from '../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 
 export { MenuBar };
 

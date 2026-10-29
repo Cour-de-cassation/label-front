@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ReactElement } from 'react';
 import { Switch as MUSwitch } from '@mui/material';
-import { customThemeType, useCustomTheme } from '../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 
 export { SwitchButton };
 

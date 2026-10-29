@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { useCustomTheme, rectPositionType } from '../../theme';
+import { useCustomTheme, rectPositionType } from 'src/theme';
 import { zIndices } from '../materialUI/constants';
 
 export { TooltipMenu };

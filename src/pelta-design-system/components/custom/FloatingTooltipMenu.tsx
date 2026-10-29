@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { positionType } from '../../theme';
+import { positionType } from 'src/theme';
 import { TooltipMenu } from './TooltipMenu';
 
 export { FloatingTooltipMenu };

@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { displayModeType } from './legacy/types';
-import { buildMuiTheme } from './buildMuiTheme';
+import { buildMuiTheme } from './theme';
 import { DisplayModeContext } from './displayMode';
 
 export { ThemeProvider };

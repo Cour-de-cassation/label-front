@@ -4,7 +4,7 @@ import { typography } from './typography';
 import { displayModeType } from './types';
 import { boxShadow } from './boxShadow';
 
-export { buildCustomTheme, commonTheme, useCustomTheme };
+export { commonTheme, useCustomTheme };
 
 export type { customThemeType };
 

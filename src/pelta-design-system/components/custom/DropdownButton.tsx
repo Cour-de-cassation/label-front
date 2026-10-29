@@ -1,5 +1,5 @@
 import React, { MouseEvent, ReactElement } from 'react';
-import { useCustomTheme, customThemeType } from '../../theme';
+import { useCustomTheme, customThemeType } from 'src/theme';
 import { Icon, Text } from '../materialUI';
 import { Button } from './Button';
 import { ComponentsList } from './ComponentsList';

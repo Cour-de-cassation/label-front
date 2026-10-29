@@ -1,9 +1,9 @@
 import React from 'react';
-import { customThemeType, useCustomTheme } from '../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 import { Text } from '../materialUI';
 import { ButtonWithIcon } from './ButtonWithIcon';
 import { PopUp } from './PopUp';
-import { wordings } from 'src/client/wordings';
+import { wordings } from 'src/wordings';
 
 export { ConfirmationPopup };
 

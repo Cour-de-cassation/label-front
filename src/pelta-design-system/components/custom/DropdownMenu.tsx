@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { useCustomTheme } from '../../theme';
+import { useCustomTheme } from 'src/theme';
 import { Menu, Text } from '../materialUI';
 import { ComponentsList } from './ComponentsList';
 

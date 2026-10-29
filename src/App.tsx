@@ -1,0 +1,20 @@
+import React from 'react';
+import { ThemeProvider } from 'src/pelta-design-system';
+import { Router } from './router/router';
+import { AlertHandlerContextProvider } from './services/alert';
+import { PopupHandlerContextProvider } from './services/popup';
+import { UserProvider } from './contexts/user.context';
+
+const App = () => (
+  <ThemeProvider>
+    <AlertHandlerContextProvider>
+      <PopupHandlerContextProvider>
+        <UserProvider>
+          <Router />
+        </UserProvider>
+      </PopupHandlerContextProvider>
+    </AlertHandlerContextProvider>
+  </ThemeProvider>
+);
+
+export default App;

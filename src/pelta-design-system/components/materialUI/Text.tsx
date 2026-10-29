@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode, CSSProperties } from 'react';
-import { customThemeType, typography, typographyType, useCustomTheme } from '../../theme';
+import { customThemeType, typography, typographyType, useCustomTheme } from 'src/theme';
 
 export { Text };
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { range } from 'lodash';
-import { customThemeType, rectPositionType, useCustomTheme } from '../../../theme';
+import { customThemeType, rectPositionType, useCustomTheme } from 'src/theme';
 import { Icon, Text } from '../../materialUI';
 import { TooltipMenu } from '../TooltipMenu';
 import { getMonthFromDate, getNextMonthDate, getPreviousMonthDate } from './lib';
 import { createCalendarTable } from './lib/createCalendarTable';
-import { wordings } from 'src/client/wordings';
+import { wordings } from 'src/wordings';
 
 export { DatePickerTooltip };
 

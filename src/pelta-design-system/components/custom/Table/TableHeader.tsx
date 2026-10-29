@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { customThemeType, useCustomTheme } from '../../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 import { TableSortLabel, Text, Tooltip } from '../../materialUI';
 
 export { TableHeader, DEFAULT_ORDER_DIRECTION };

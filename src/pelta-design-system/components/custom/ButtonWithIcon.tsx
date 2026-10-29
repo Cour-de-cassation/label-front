@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, MouseEvent } from 'react';
 import { iconNameType, Icon, Text } from '../materialUI';
-import { customThemeType, useCustomTheme } from '../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 import { Button, buttonColorType } from './Button';
 import { Loader } from './Loader';
 

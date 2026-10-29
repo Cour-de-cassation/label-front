@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton } from './IconButton';
 import { Loader } from './Loader';
-import { wordings } from 'src/client/wordings';
+import { wordings } from 'src/wordings';
 
 const REFRESH_BUTTON_SIZE = 40;
 

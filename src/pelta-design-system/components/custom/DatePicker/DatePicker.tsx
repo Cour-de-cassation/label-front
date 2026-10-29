@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
-import { rectPositionType } from '../../../theme';
+import { rectPositionType } from 'src/theme';
 import { DropdownButton } from '../DropdownButton';
 import { DatePickerTooltip, dateType } from './DatePickerTooltip';
 import { convertTimestampToReadableDate } from './lib';

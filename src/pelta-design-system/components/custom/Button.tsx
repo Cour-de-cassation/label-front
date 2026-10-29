@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, ReactNode, MouseEvent, useState } from 'react';
 import { Tooltip } from '../materialUI';
-import { customThemeType, useCustomTheme } from '../../theme';
+import { customThemeType, useCustomTheme } from 'src/theme';
 
 export { Button };
 

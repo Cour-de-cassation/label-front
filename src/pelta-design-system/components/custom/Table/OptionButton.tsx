@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { IconDropdown } from '../IconDropdown';
-import { wordings } from 'src/client/wordings';
+import { wordings } from 'src/wordings';
 
 export { OptionButton };
 

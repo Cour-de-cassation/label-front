@@ -12,6 +12,7 @@ type MainHeaderProps = {
 
 export function MainHeader({ setSlotElement }: MainHeaderProps) {
   const { user, loading } = useCtxUser();
+  console.log(user);
   if (loading) {
     return <div>Loading...</div>;
   }

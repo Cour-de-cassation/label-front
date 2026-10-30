@@ -7,7 +7,7 @@ body {
   font-family: 'Luciole';
   src:
     local('Luciole'),
-    url('./theme/fonts/Luciole/Luciole-Regular.ttf') format('truetype');
+    url('./theme/fonts/Luciole/Luciole-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -15,5 +15,5 @@ body {
   font-family: 'Luciole-Bold';
   src:
     local('Luciole-Bold'),
-    url('./theme/fonts/Luciole/Luciole-Bold.ttf') format('truetype');
+    url('./theme/fonts/Luciole/Luciole-Bold.woff2') format('woff2');
 }

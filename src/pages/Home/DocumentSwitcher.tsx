@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { annotationType, assignationType, documentModule, documentType, settingsModule, settingsType } from 'src/core';
 import { apiCaller } from '../../api';
-import { MainHeader } from '../../components';
 import { buildAnnotationsCommitter } from '../../services/annotatorState';
+import { heights } from '../../theme/layout';
 import { DocumentSelector } from './DocumentSelector';
 import { HomeDocumentAnnotator } from './HomeDocumentAnnotator';
 
@@ -54,10 +54,7 @@ function DocumentSwitcher(props: {
         );
       case 'selecting':
         return (
-          <>
-            <MainHeader />
-            <DocumentSelector choices={props.choices} onSelectDocument={onSelectDocument} settings={props.settings} />
-          </>
+          <DocumentSelector choices={props.choices} onSelectDocument={onSelectDocument} settings={props.settings} />
         );
     }
   }
@@ -67,7 +64,7 @@ function DocumentSwitcher(props: {
       documentSwitcher: {
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
+        height: `calc(100vh - ${heights.header})`,
         width: '100vw',
       },
     } as const;

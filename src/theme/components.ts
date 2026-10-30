@@ -1,16 +1,23 @@
 import { Components, Theme } from '@mui/material';
-import { commonTheme } from './legacy/theme';
-
-const { boxShadow, shape } = commonTheme;
+import { borderRadius, boxShadow } from './constants';
 
 export const components: Components<Theme> = {
   MuiPaper: {
     styleOverrides: { root: { backgroundImage: 'none' } },
   },
+  MuiAppBar: {
+    defaultProps: { elevation: 0 },
+    styleOverrides: {
+      root: ({ theme }) => ({
+        zIndex: theme.zIndex.appBar,
+        variants: [{ props: ({ elevation }) => !!elevation, style: { boxShadow: boxShadow.major.out } }],
+      }),
+    },
+  },
   MuiButton: {
     defaultProps: { disableElevation: true },
     styleOverrides: {
-      root: ({ theme }) => ({ borderRadius: shape.borderRadius.m, padding: theme.spacing(1, 2) }),
+      root: ({ theme }) => ({ borderRadius: borderRadius.button, padding: theme.spacing(1, 2) }),
       contained: ({ theme, ownerState }) =>
         ownerState.color && ownerState.color !== 'inherit'
           ? { '&:hover': { color: theme.palette.getContrastText(theme.palette[ownerState.color].dark) } }

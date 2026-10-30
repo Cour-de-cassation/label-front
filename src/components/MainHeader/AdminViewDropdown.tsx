@@ -7,7 +7,7 @@ import { wordings } from '../../wordings';
 
 export { AdminViewDropdown };
 
-function AdminViewDropdown(props: { updateAdminMenu?: () => void }) {
+function AdminViewDropdown() {
   const navigate = useNavigate();
   const defaultAdminView = localStorage.adminViewHandler.get() || 'admin';
   return (
@@ -25,6 +25,5 @@ function AdminViewDropdown(props: { updateAdminMenu?: () => void }) {
   function onChangeAdminView(adminView: (typeof adminViews)[number]) {
     localStorage.adminViewHandler.set(adminView);
     navigate(defaultRoutes[adminView]);
-    if (props.updateAdminMenu) props.updateAdminMenu();
   }
 }

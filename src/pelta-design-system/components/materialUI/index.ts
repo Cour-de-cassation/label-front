@@ -3,7 +3,6 @@ import { Checkbox } from './Checkbox';
 import { Drawer } from './Drawer';
 import { Icon, iconNameType } from './Icon';
 import { Menu } from './Menu';
-import { MenuBar } from './MenuBar';
 import { RadioButton } from './RadioButton';
 import { RichTextInput } from './RichTextInput';
 import { Snackbar, snackbarVariantType } from './Snackbar';
@@ -18,7 +17,6 @@ export {
   Drawer,
   Icon,
   Menu,
-  MenuBar,
   RadioButton,
   RichTextInput,
   Snackbar,

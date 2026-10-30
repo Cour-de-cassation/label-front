@@ -1,4 +1,4 @@
-import React, { ReactElement, CSSProperties } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { ComponentsList } from './ComponentsList';
 
 export { Header };

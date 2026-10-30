@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { ButtonWithIcon, customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
-import { MainHeader } from '../../components';
+import { IconButton, Tooltip } from '@mui/material';
+import { ChevronLeftRounded } from '@mui/icons-material';
+import { MainHeaderSlot } from '../../components/MainHeader/MainHeaderSlot';
 import { lineSplitter } from '../../services/lineSplitter';
 import { heights } from '../../theme/layout';
 import { wordings } from '../../wordings';
@@ -21,7 +23,13 @@ function AnonymizedDocument() {
 
   return (
     <>
-      <MainHeader onBackButtonPress={() => navigate(-1)} />
+      <MainHeaderSlot>
+        <Tooltip arrow title={wordings.shared.back}>
+          <IconButton color="neutral" onClick={() => navigate(-1)}>
+            <ChevronLeftRounded />
+          </IconButton>
+        </Tooltip>
+      </MainHeaderSlot>
       <AnonymizedDocumentTextDataFetcher documentId={documentId}>
         {({ anonymizedDocumentText }) => {
           const splittedTextByLine = lineSplitter.splitTextAccordingToNewLine(anonymizedDocumentText);

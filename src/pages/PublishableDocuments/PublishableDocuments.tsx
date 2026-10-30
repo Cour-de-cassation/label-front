@@ -1,6 +1,7 @@
 import React from 'react';
 import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
-import { MainHeader } from '../../components';
+import { Typography } from '@mui/material';
+import { MainHeaderSlot } from '../../components/MainHeader/MainHeaderSlot';
 import { heights } from '../../theme/layout';
 import { wordings } from '../../wordings';
 import { PublishableDocumentsDataFetcher } from './PublishableDocumentsDataFetcher';
@@ -16,9 +17,9 @@ function PublishableDocuments() {
 
   return (
     <>
-      <div style={styles.header}>
-        <MainHeader title={wordings.publishableDocumentsPage.title} />
-      </div>
+      <MainHeaderSlot>
+        <Typography>{wordings.publishableDocumentsPage.title}</Typography>
+      </MainHeaderSlot>
       <div style={styles.contentContainer}>
         <PublishableDocumentsDataFetcher>
           {({ publishableDocuments, refetch }) => (
@@ -39,9 +40,6 @@ function PublishableDocuments() {
 
 function buildStyles(theme: customThemeType) {
   return {
-    header: {
-      height: heights.header,
-    },
     contentContainer: {
       display: 'flex',
       width: `${TABLE_WIDTH}px`,

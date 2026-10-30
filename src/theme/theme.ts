@@ -8,6 +8,7 @@ export function buildMuiTheme(displayMode: displayModeType) {
   return createTheme({
     shape: { borderRadius: 8 },
     spacing: 8,
+    zIndex: { appBar: 20, drawer: 10 },
     palette: buildPalette(displayMode),
     typography,
     components,

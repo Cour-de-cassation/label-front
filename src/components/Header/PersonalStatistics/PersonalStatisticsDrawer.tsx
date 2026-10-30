@@ -1,7 +1,7 @@
 import React from 'react';
 import { Drawer } from 'src/pelta-design-system';
-import { wordings } from '../../wordings';
-import { PersonalStatisticsSection } from './PersonalStatisticsSection';
+import { wordings } from '../../../wordings';
+import { DrawerSection } from '../DrawerSection';
 import { TreatedDocumentsPersonalStatisticsTable } from './TreatedDocumentsPersonalStatisticsTable';
 import { PersonalStatisticsDataFetcher } from './PersonalStatisticsDataFetcher';
 
@@ -14,7 +14,7 @@ function PersonalStatisticsDrawer(props: { close: () => void; isOpen: boolean })
     <>
       <Drawer onClose={props.close} title={wordings.shared.personalStatisticsDrawer.title} isOpen={props.isOpen}>
         <div style={styles.drawer}>
-          <PersonalStatisticsSection
+          <DrawerSection
             content={
               <div style={styles.accountSectionContent}>
                 <div style={styles.accountInfoContainer}>

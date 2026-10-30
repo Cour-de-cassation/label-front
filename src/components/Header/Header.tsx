@@ -2,8 +2,8 @@ import React from 'react';
 import { AppBar, Box, Toolbar } from '@mui/material';
 import { heights } from 'src/theme/layout';
 import { HeaderSelectView } from './HeaderSelectView';
-import { PersonalStatisticsButton } from './PersonalStatisticsButton';
-import { SettingsButton } from './SettingsButton';
+import { PersonalStatisticsButton } from './PersonalStatistics/PersonalStatisticsButton';
+import { SettingsButton } from './Settings/SettingsButton';
 import { useCtxUser } from '../../contexts/user.context';
 
 type HeaderProps = {

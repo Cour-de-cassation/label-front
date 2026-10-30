@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDisplayMode, ButtonWithIcon, Drawer, RadioButton, Text } from 'src/pelta-design-system';
-import { wordings } from '../../wordings';
-import { SettingsSection } from './SettingsSection';
-import { useCtxUser } from '../../contexts/user.context';
+import { wordings } from '../../../wordings';
+import { DrawerSection } from '../DrawerSection';
+import { useCtxUser } from '../../../contexts/user.context';
 
 export { SettingsDrawer };
 
@@ -20,7 +20,7 @@ function SettingsDrawer(props: { close: () => void; isOpen: boolean }) {
   return (
     <Drawer onClose={props.close} title={wordings.shared.settingsDrawer.title} isOpen={props.isOpen}>
       <div style={styles.drawer}>
-        <SettingsSection
+        <DrawerSection
           content={
             <div style={styles.accountSectionContent}>
               <div style={styles.accountInfoContainer}>
@@ -34,7 +34,7 @@ function SettingsDrawer(props: { close: () => void; isOpen: boolean }) {
           }
           title={wordings.business.account}
         />
-        <SettingsSection
+        <DrawerSection
           content={
             <>
               <RadioButton

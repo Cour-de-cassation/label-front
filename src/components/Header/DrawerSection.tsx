@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { useCustomTheme, customThemeType, Text } from 'src/pelta-design-system';
 
-export { PersonalStatisticsSection };
+export { DrawerSection };
 
-function PersonalStatisticsSection(props: { content: ReactElement; title: string }) {
+function DrawerSection(props: { content: ReactElement; title: string }) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
 

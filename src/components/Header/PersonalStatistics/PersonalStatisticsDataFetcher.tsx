@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { apiRouteOutType } from 'src/core';
-import { useApi, apiCaller } from '../../api';
-import { DataFetcher } from '../../pages/DataFetcher';
+import { useApi, apiCaller } from '../../../api';
+import { DataFetcher } from '../../../pages/DataFetcher';
 
 export { PersonalStatisticsDataFetcher };
 

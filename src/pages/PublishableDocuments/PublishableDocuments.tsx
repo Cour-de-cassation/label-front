@@ -1,7 +1,7 @@
 import React from 'react';
 import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { Typography } from '@mui/material';
-import { MainHeaderSlot } from '../../components/MainHeader/MainHeaderSlot';
+import { HeaderSlot } from '../../components/Header/HeaderSlot';
 import { heights } from '../../theme/layout';
 import { wordings } from '../../wordings';
 import { PublishableDocumentsDataFetcher } from './PublishableDocumentsDataFetcher';
@@ -17,9 +17,9 @@ function PublishableDocuments() {
 
   return (
     <>
-      <MainHeaderSlot>
+      <HeaderSlot>
         <Typography>{wordings.publishableDocumentsPage.title}</Typography>
-      </MainHeaderSlot>
+      </HeaderSlot>
       <div style={styles.contentContainer}>
         <PublishableDocumentsDataFetcher>
           {({ publishableDocuments, refetch }) => (

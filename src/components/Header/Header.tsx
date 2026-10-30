@@ -1,18 +1,17 @@
 import React from 'react';
 import { AppBar, Box, Toolbar } from '@mui/material';
 import { heights } from 'src/theme/layout';
-import { AdminViewDropdown } from './AdminViewDropdown';
+import { HeaderSelectView } from './HeaderSelectView';
 import { PersonalStatisticsButton } from './PersonalStatisticsButton';
 import { SettingsButton } from './SettingsButton';
 import { useCtxUser } from '../../contexts/user.context';
 
-type MainHeaderProps = {
+type HeaderProps = {
   setSlotElement: (element: HTMLElement | null) => void;
 };
 
-export function MainHeader({ setSlotElement }: MainHeaderProps) {
+export function Header({ setSlotElement }: HeaderProps) {
   const { user, loading } = useCtxUser();
-  console.log(user);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -32,7 +31,7 @@ export function MainHeader({ setSlotElement }: MainHeaderProps) {
             maxWidth: 350,
           }}
         >
-          {user?.role === 'admin' && <AdminViewDropdown />}
+          {user?.role === 'admin' && <HeaderSelectView />}
           <PersonalStatisticsButton />
           <SettingsButton />
         </Box>

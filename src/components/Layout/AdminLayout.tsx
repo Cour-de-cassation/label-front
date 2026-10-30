@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../api';
 import { AdminMenu, adminMenuItems } from '../AdminMenu/AdminMenu';
-import { MainHeaderSlot } from '../MainHeader/MainHeaderSlot';
+import { HeaderSlot } from '../Header/HeaderSlot';
 import { CurrentUser, useCtxUser } from '../../contexts/user.context';
 import { localStorage } from '../../services/localStorage';
 import { heights } from '../../theme/layout';
@@ -39,12 +39,12 @@ export function AdminLayout() {
   return (
     <>
       {currentHeader && (
-        <MainHeaderSlot>
+        <HeaderSlot>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant="h3">{currentHeader.title}</Typography>
             <Typography>{currentHeader.subtitle}</Typography>
           </Box>
-        </MainHeaderSlot>
+        </HeaderSlot>
       )}
       <DataFetcher
         buildComponentWithData={(badgeCounts: badgeCountsType) => (

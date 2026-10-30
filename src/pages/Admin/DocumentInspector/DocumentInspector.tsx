@@ -4,7 +4,7 @@ import { annotationsDiffType, documentType, settingsModule, settingsType } from 
 import { apiCaller } from '../../../api';
 import { IconButton, Tooltip, Typography } from '@mui/material';
 import { ChevronLeftRounded } from '@mui/icons-material';
-import { MainHeaderSlot } from '../../../components/MainHeader/MainHeaderSlot';
+import { HeaderSlot } from '../../../components/Header/HeaderSlot';
 import {
   AnnotatorStateHandlerContextProvider,
   buildAnnotationsCommitter,
@@ -56,14 +56,14 @@ function DocumentInspector(props: { settings: settingsType }) {
                   settings: settingsForDocument,
                 }}
               >
-                <MainHeaderSlot>
+                <HeaderSlot>
                   <Tooltip arrow title={wordings.shared.back}>
                     <IconButton color="neutral" onClick={() => navigate(-1)}>
                       <ChevronLeftRounded />
                     </IconButton>
                   </Tooltip>
                   <Typography>{document.title}</Typography>
-                </MainHeaderSlot>
+                </HeaderSlot>
                 <DocumentAnnotator onStopAnnotatingDocument={buildOnStopAnnotatingDocument(document)} />
               </AnnotatorStateHandlerContextProvider>
             );

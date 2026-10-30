@@ -10,7 +10,7 @@ import {
 import { customThemeType, useCustomTheme, Text, CircleIcon } from 'src/pelta-design-system';
 import { apiCaller } from '../../api';
 import { Box, Typography } from '@mui/material';
-import { MainHeaderSlot } from '../../components/MainHeader/MainHeaderSlot';
+import { HeaderSlot } from '../../components/Header/HeaderSlot';
 import {
   annotationsCommitterType,
   AnnotatorStateHandlerContextProvider,
@@ -67,7 +67,7 @@ function HomeDocumentAnnotator(props: {
         settings: props.settings,
       }}
     >
-      <MainHeaderSlot>
+      <HeaderSlot>
         {subtitle ? (
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant="h3">{props.document.title}</Typography>
@@ -76,7 +76,7 @@ function HomeDocumentAnnotator(props: {
         ) : (
           <Typography>{props.document.title}</Typography>
         )}
-      </MainHeaderSlot>
+      </HeaderSlot>
       <DocumentAnnotator
         onStopAnnotatingDocument={() => onStopAnnotatingDocument({ assignationId: props.assignationId })}
       />

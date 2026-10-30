@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router';
-import { MainHeader } from '../MainHeader/MainHeader';
-import { MainHeaderSlotContext } from '../MainHeader/MainHeaderSlot';
+import { Header } from '../Header/Header';
+import { HeaderSlotContext } from '../Header/HeaderSlot';
 
 export function MainLayout() {
   const [headerSlotElement, setHeaderSlotElement] = useState<HTMLElement | null>(null);
 
   return (
-    <MainHeaderSlotContext value={headerSlotElement}>
-      <MainHeader setSlotElement={setHeaderSlotElement} />
+    <HeaderSlotContext value={headerSlotElement}>
+      <Header setSlotElement={setHeaderSlotElement} />
       <Outlet />
-    </MainHeaderSlotContext>
+    </HeaderSlotContext>
   );
 }

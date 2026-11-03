@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { IconButton } from 'src/pelta-design-system';
+import { IconButton, Tooltip } from '@mui/material';
+import { SettingsRounded } from '@mui/icons-material';
 import { wordings } from '../../../wordings';
 import { SettingsDrawer } from './SettingsDrawer';
 
@@ -8,13 +9,6 @@ export { SettingsButton };
 function SettingsButton() {
   const [isSettingsDrawerOpen, setIsSettingsDrawerOpen] = useState(false);
 
-  return (
-    <>
-      <IconButton iconName="settings" onClick={toggleDrawer} hint={wordings.shared.settingsDrawer.title} />
-      <SettingsDrawer isOpen={isSettingsDrawerOpen} close={closeDrawer} />
-    </>
-  );
-
   function toggleDrawer() {
     setIsSettingsDrawerOpen(!isSettingsDrawerOpen);
   }
@@ -22,4 +16,15 @@ function SettingsButton() {
   function closeDrawer() {
     setIsSettingsDrawerOpen(false);
   }
+
+  return (
+    <>
+      <Tooltip arrow title={wordings.shared.settingsDrawer.title}>
+        <IconButton color="neutral" onClick={toggleDrawer}>
+          <SettingsRounded />
+        </IconButton>
+      </Tooltip>
+      <SettingsDrawer isOpen={isSettingsDrawerOpen} close={closeDrawer} />
+    </>
+  );
 }

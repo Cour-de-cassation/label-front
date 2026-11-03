@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { IconButton } from 'src/pelta-design-system';
+import { IconButton, Tooltip } from '@mui/material';
+import { BarChart } from '@mui/icons-material';
 import { wordings } from '../../../wordings';
 import { PersonalStatisticsDrawer } from './PersonalStatisticsDrawer';
 
@@ -8,13 +9,6 @@ export { PersonalStatisticsButton };
 function PersonalStatisticsButton() {
   const [isPersonalStatisticsDrawerOpen, setIsPersonalStatisticsDrawerOpen] = useState(false);
 
-  return (
-    <>
-      <IconButton iconName="statistics" onClick={toggleDrawer} hint={wordings.shared.personalStatisticsDrawer.title} />
-      <PersonalStatisticsDrawer isOpen={isPersonalStatisticsDrawerOpen} close={closeDrawer} />
-    </>
-  );
-
   function toggleDrawer() {
     setIsPersonalStatisticsDrawerOpen(!isPersonalStatisticsDrawerOpen);
   }
@@ -22,4 +16,15 @@ function PersonalStatisticsButton() {
   function closeDrawer() {
     setIsPersonalStatisticsDrawerOpen(false);
   }
+
+  return (
+    <>
+      <Tooltip arrow title={wordings.shared.personalStatisticsDrawer.title}>
+        <IconButton color="neutral" onClick={toggleDrawer}>
+          <BarChart />
+        </IconButton>
+      </Tooltip>
+      <PersonalStatisticsDrawer isOpen={isPersonalStatisticsDrawerOpen} close={closeDrawer} />
+    </>
+  );
 }

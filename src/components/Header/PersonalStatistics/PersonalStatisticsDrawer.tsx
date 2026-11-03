@@ -4,7 +4,6 @@ import { CloseRounded } from '@mui/icons-material';
 import { heights } from 'src/theme/layout';
 import { wordings } from '../../../wordings';
 import { TreatedDocumentsPersonalStatisticsTable } from './TreatedDocumentsPersonalStatisticsTable';
-import { PersonalStatisticsDataFetcher } from './PersonalStatisticsDataFetcher';
 
 type PersonalStatisticsDrawerProps = {
   close: () => void;
@@ -43,11 +42,7 @@ export function PersonalStatisticsDrawer({ close, isOpen }: PersonalStatisticsDr
             {wordings.statisticsPage.treatedDecisions}
           </Typography>
           <Box sx={{ pl: 5 }}>
-            <PersonalStatisticsDataFetcher>
-              {({ personalStatistics, refetch }) => (
-                <TreatedDocumentsPersonalStatisticsTable refetch={refetch} personalStatistics={personalStatistics} />
-              )}
-            </PersonalStatisticsDataFetcher>
+            <TreatedDocumentsPersonalStatisticsTable />
           </Box>
         </Box>
       </Box>

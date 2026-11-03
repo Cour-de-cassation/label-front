@@ -2,29 +2,33 @@ import React from 'react';
 import dateFormat from 'dateformat';
 import { Table, tableRowFieldType } from 'src/pelta-design-system';
 import { apiRouteOutType } from 'src/core';
+import { apiCaller, useApi } from '../../../api';
+import { DataFetcher } from '../../../pages/DataFetcher';
 import { wordings } from '../../../wordings';
 
-export { TreatedDocumentsPersonalStatisticsTable };
+type PersonalStatistics = apiRouteOutType<'get', 'personalStatistics'>;
 
 const PERSONAL_STATISTICS_TEXT_CELL_MAX_WIDTH = 400;
 
-function TreatedDocumentsPersonalStatisticsTable(props: {
-  refetch: () => void;
-  personalStatistics: apiRouteOutType<'get', 'personalStatistics'>;
-}) {
+export function TreatedDocumentsPersonalStatisticsTable() {
+  const personalStatisticsInfo = useApi(() => apiCaller.get<'personalStatistics'>('personalStatistics'), {});
   const treatedDocumentsPersonalStatisticsFields = buildtreatedDocumentsPersonalStatisticsFields();
 
   return (
-    <Table
-      data={props.personalStatistics}
-      getRowKey={(personalStatistic) => String(personalStatistic.day)}
-      fields={treatedDocumentsPersonalStatisticsFields}
+    <DataFetcher
+      buildComponentWithData={(personalStatistics: PersonalStatistics) => (
+        <Table
+          data={personalStatistics}
+          getRowKey={(personalStatistic) => String(personalStatistic.day)}
+          fields={treatedDocumentsPersonalStatisticsFields}
+        />
+      )}
+      fetchInfo={personalStatisticsInfo}
+      route="personalStatistics"
     />
   );
 
-  function buildtreatedDocumentsPersonalStatisticsFields(): Array<
-    tableRowFieldType<apiRouteOutType<'get', 'personalStatistics'>[number]>
-  > {
+  function buildtreatedDocumentsPersonalStatisticsFields(): Array<tableRowFieldType<PersonalStatistics[number]>> {
     return [
       {
         id: 'day',

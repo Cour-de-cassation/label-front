@@ -3,7 +3,7 @@ import { Box, Drawer, IconButton, Tooltip, Typography } from '@mui/material';
 import { CloseRounded } from '@mui/icons-material';
 import { heights } from 'src/theme/layout';
 import { wordings } from '../../../wordings';
-import { TreatedDocumentsPersonalStatisticsTable } from './TreatedDocumentsPersonalStatisticsTable';
+import { PersonalStatisticsTable } from './PersonalStatisticsTable';
 
 type PersonalStatisticsDrawerProps = {
   close: () => void;
@@ -41,8 +41,8 @@ export function PersonalStatisticsDrawer({ close, isOpen }: PersonalStatisticsDr
           <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 3 }}>
             {wordings.statisticsPage.treatedDecisions}
           </Typography>
-          <Box sx={{ pl: 5 }}>
-            <TreatedDocumentsPersonalStatisticsTable />
+          <Box>
+            <PersonalStatisticsTable />
           </Box>
         </Box>
       </Box>

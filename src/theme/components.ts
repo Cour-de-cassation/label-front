@@ -46,6 +46,9 @@ export const components: Components<Theme> = {
   MuiDrawer: {
     styleOverrides: { paper: { boxShadow: boxShadow.minor.out } },
   },
+  MuiTableCell: {
+    styleOverrides: { root: ({ theme }) => theme.typography.body1 },
+  },
   MuiTooltip: {
     styleOverrides: { tooltip: { fontSize: 16 } },
   },

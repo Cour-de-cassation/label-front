@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router';
 import { Box, Typography } from '@mui/material';
 import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../api';
-import { AdminMenu, adminMenuItems } from '../AdminMenu/AdminMenu';
+import { AdminMenu, adminMenuPages } from '../AdminMenu/AdminMenu';
 import { HeaderSlot } from '../Header/HeaderSlot';
 import { CurrentUser, useCtxUser } from '../../contexts/user.context';
 import { localStorage } from '../../services/localStorage';
@@ -34,7 +34,7 @@ export function AdminLayout() {
     return <></>;
   }
 
-  const currentHeader = adminMenuItems.find((item) => item.pathname === pathname)?.header;
+  const currentHeader = adminMenuPages.find((page) => page.pathname === pathname)?.header;
 
   return (
     <>

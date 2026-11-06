@@ -7,7 +7,6 @@ import { AdminMenu, adminMenuPages } from '../AdminMenu/AdminMenu';
 import { HeaderSlot } from '../Header/HeaderSlot';
 import { CurrentUser, useCtxUser } from '../../contexts/user.context';
 import { localStorage } from '../../services/localStorage';
-import { heights } from '../../theme/layout';
 import { DataFetcher } from '../../pages/DataFetcher';
 
 type badgeCountsType = apiRouteOutType<'get', 'adminBadgeCounts'>;
@@ -49,7 +48,7 @@ export function AdminLayout() {
       <DataFetcher
         buildComponentWithData={(badgeCounts: badgeCountsType) => (
           <AdminBadgeCountsRefetchContext value={badgeCountsFetchInfo.refetch}>
-            <Box sx={{ display: 'flex', width: '100vw', height: heights.adminPanel }}>
+            <Box sx={{ display: 'flex', flex: 1 }}>
               <AdminMenu
                 unreadProblemReportsCount={badgeCounts.unreadProblemReportsCount}
                 toBeConfirmedDocumentsCount={badgeCounts.toBeConfirmedDocumentsCount}

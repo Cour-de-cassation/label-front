@@ -13,7 +13,7 @@ import {
 } from '@mui/icons-material';
 import { apiRouteOutType } from 'src/core';
 import { routes } from 'src/router/routes';
-import { heights, widths } from 'src/theme/layout';
+import { widths } from 'src/theme/layout';
 import { wordings } from 'src/wordings';
 
 type AdminMenuProps = {
@@ -70,7 +70,6 @@ const menuSx: SxProps<Theme> = {
   gap: '15px',
   flexShrink: 0,
   width: widths.adminMenu,
-  height: heights.adminPanel,
   pt: '20px',
   bgcolor: 'neutral.main',
 };

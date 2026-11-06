@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, CircularProgress, IconButton, SxProps, Theme, Tooltip, Typography } from '@mui/material';
+import { Box, CircularProgress, IconButton, Stack, SxProps, Theme, Tooltip, Typography } from '@mui/material';
 import { LoopRounded } from '@mui/icons-material';
 import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from 'src/api';
@@ -36,13 +36,13 @@ export function Summary() {
   return (
     <DataFetcher
       buildComponentWithData={(summary: SummaryData) => (
-        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, pl: 3, pr: 2 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
           <Box
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
-              p: 2,
+              m: 2,
             }}
           >
             {summaryInfo.isLoaded ? (
@@ -64,20 +64,22 @@ export function Summary() {
               flex: 1,
             }}
           >
-            <Typography variant="h1" sx={{ fontSize: 50, pb: 7 }}>
+            <Typography variant="h1" sx={{ fontSize: 50, mb: 7 }}>
               {wordings.summaryPage.welcomeMessage}
             </Typography>
-            <Box sx={{ width: 350, p: 4, borderRadius: 2, boxShadow: boxShadow.minor.out }}>
+            <Stack spacing={2} sx={{ width: 350, p: 4, borderRadius: 2, boxShadow: boxShadow.minor.out }}>
               {SUMMARY_FIELDS.map((field) => (
-                <Box
+                <Stack
                   key={field}
-                  sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 30 }}
+                  direction="row"
+                  spacing={2}
+                  sx={{ justifyContent: 'space-between', alignItems: 'center' }}
                 >
                   <Typography>{wordings.summaryPage.box.fields[field]}</Typography>
                   <Typography>{summary[field]}</Typography>
-                </Box>
+                </Stack>
               ))}
-            </Box>
+            </Stack>
           </Box>
         </Box>
       )}

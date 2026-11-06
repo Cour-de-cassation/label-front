@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, CircularProgress, IconButton, Stack, SxProps, Theme, Tooltip, Typography } from '@mui/material';
-import { LoopRounded } from '@mui/icons-material';
+import { Box, Stack, Typography } from '@mui/material';
 import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from 'src/api';
+import { RefreshButton } from 'src/components/RefreshButton';
 import { DataFetcher } from 'src/pages/DataFetcher';
 import { boxShadow } from 'src/theme/constants';
 import { wordings } from 'src/wordings';
@@ -16,19 +16,6 @@ const SUMMARY_FIELDS = [
   'doneDocuments',
   'lockedDocuments',
 ] as const satisfies Array<keyof SummaryData>;
-
-const REFRESH_BUTTON_SIZE = 40;
-
-const refreshButtonSx: SxProps<Theme> = (theme) => ({
-  width: REFRESH_BUTTON_SIZE,
-  height: REFRESH_BUTTON_SIZE,
-  bgcolor: 'primary.main',
-  color: 'primary.contrastText',
-  '&:hover': {
-    bgcolor: 'primary.dark',
-    color: theme.palette.getContrastText(theme.palette.primary.dark),
-  },
-});
 
 export function Summary() {
   const summaryInfo = useApi(() => apiCaller.get<'summary'>('summary'), {});
@@ -46,15 +33,7 @@ export function Summary() {
               pr: 4,
             }}
           >
-            {summaryInfo.isLoaded ? (
-              <Tooltip arrow title={wordings.shared.refresh}>
-                <IconButton onClick={summaryInfo.refetch} sx={refreshButtonSx}>
-                  <LoopRounded />
-                </IconButton>
-              </Tooltip>
-            ) : (
-              <CircularProgress size={REFRESH_BUTTON_SIZE} />
-            )}
+            <RefreshButton onClick={summaryInfo.refetch} isLoading={!summaryInfo.isLoaded} />
           </Box>
           <Box
             sx={{

@@ -42,7 +42,8 @@ export function Summary() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
-              m: 2,
+              pt: 5,
+              pr: 4,
             }}
           >
             {summaryInfo.isLoaded ? (

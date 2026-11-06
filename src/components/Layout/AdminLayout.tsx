@@ -48,7 +48,7 @@ export function AdminLayout() {
       <DataFetcher
         buildComponentWithData={(badgeCounts: badgeCountsType) => (
           <AdminBadgeCountsRefetchContext value={badgeCountsFetchInfo.refetch}>
-            <Box sx={{ display: 'flex', flex: 1 }}>
+            <Box sx={{ display: 'flex', flex: 1, minWidth: 0 }}>
               <AdminMenu
                 unreadProblemReportsCount={badgeCounts.unreadProblemReportsCount}
                 toBeConfirmedDocumentsCount={badgeCounts.toBeConfirmedDocumentsCount}

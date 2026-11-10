@@ -1,4 +1,4 @@
-import { buildAnonymizer } from 'src/core';
+import { buildAnonymizer } from 'src/services/anonymizer/buildAnonymizer/buildAnonymizer';
 import { annotationType } from 'src/types/annotation';
 import { documentType } from 'src/types/document';
 import { settingsType } from 'src/types/settings';

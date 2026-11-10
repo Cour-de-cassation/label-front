@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
-import { annotationHandler, settingsModule } from 'src/core';
+import { settingsModule } from 'src/core';
+import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { annotationType } from 'src/types/annotation';
 import { customThemeType, useCustomTheme, Header, Text } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../../components';

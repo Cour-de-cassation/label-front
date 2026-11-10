@@ -1,5 +1,5 @@
 import { range } from 'lodash';
-import { textSplitter, textChunkType, annotationChunkType, textChunkContentType } from 'src/core';
+import { textSplitter, textChunkType, annotationChunkType, textChunkContentType } from 'src/utils/textSplitter';
 import { annotationType } from 'src/types/annotation';
 import { lineSplitter } from '../../../../services/lineSplitter';
 

@@ -9,7 +9,9 @@ import {
   Text,
   useCustomTheme,
 } from 'src/pelta-design-system';
-import { annotationHandler, annotationTextDetector, settingsModule } from 'src/core';
+import { settingsModule } from 'src/core';
+import { annotationHandler } from 'src/utils/annotation/annotationHandler';
+import { annotationTextDetector } from 'src/utils/annotation/annotationTextDetector';
 import { CategoryIcon } from '../../../../../components';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';

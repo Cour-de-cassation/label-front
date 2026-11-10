@@ -1,5 +1,5 @@
 import React from 'react';
-import { annotationChunkType, textChunkType } from 'src/core';
+import { annotationChunkType, textChunkType } from 'src/utils/textSplitter';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { splittedTextByLineType } from '../lib';
 import { useDocumentViewerModeHandler } from '../../../../services/documentViewerMode';

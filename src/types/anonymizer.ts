@@ -1,4 +1,4 @@
-import { anonymizerType } from 'src/core';
+import { anonymizerType } from 'src/services/anonymizer/buildAnonymizer/buildAnonymizer';
 import { documentType } from 'src/types/document';
 
 export type { clientAnonymizerType };

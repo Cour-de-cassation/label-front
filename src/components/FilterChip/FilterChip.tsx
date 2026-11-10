@@ -1,7 +1,7 @@
 import React from 'react';
 import format from 'string-template';
 import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
-import { timeOperator } from 'src/core';
+import { timeOperator } from 'src/utils/timeOperator';
 import { wordings } from '../../wordings';
 import { filterType } from '../FilterButton';
 import { areSameDay } from './lib';

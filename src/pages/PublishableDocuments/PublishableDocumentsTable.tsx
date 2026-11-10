@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { Text } from 'src/pelta-design-system';
-import { timeOperator } from 'src/core';
+import { timeOperator } from 'src/utils/timeOperator';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { orderDirectionType, PaginatedTable, tableRowFieldType } from 'src/pelta-design-system';
 import { localStorage, publishableDocumentOrderByProperties } from '../../services/localStorage';

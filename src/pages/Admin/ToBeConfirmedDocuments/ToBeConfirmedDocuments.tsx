@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { flatten, uniq } from 'lodash';
-import { keysOf } from 'src/core';
+import { keysOf } from 'src/utils/keysOf';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { userType } from 'src/types/user';
 import { documentType } from 'src/types/document';

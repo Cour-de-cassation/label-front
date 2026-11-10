@@ -1,5 +1,7 @@
 import { checklistGenerator, decisionMetadataGenerator, documentGenerator } from './generator/documentGenerator';
-import { getNextStatus, getMinutesBeforeFreeingPendingDocuments, publicationHandler } from './lib';
+import { getNextStatus } from 'src/utils/document/getNextStatus';
+import { getMinutesBeforeFreeingPendingDocuments } from 'src/pages/Home/DocumentSelector/getMinutesBeforeFreeingPendingDocuments';
+import { publicationHandler } from 'src/utils/document/publicationHandler';
 
 export { documentModule };
 

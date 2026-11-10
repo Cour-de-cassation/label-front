@@ -130,10 +130,6 @@ export type ApiSchema = {
       }[];
     };
 
-    health: {
-      out: boolean;
-    };
-
     problemReportsWithDetails: {
       out: {
         problemReport: problemReportType;
@@ -280,15 +276,6 @@ export type ApiSchema = {
       out: documentType;
     };
 
-    createUser: {
-      in: {
-        name: string;
-        email: string;
-        role: userType['role'];
-      };
-      out: string;
-    };
-
     deleteProblemReport: {
       in: {
         problemReportId: string;
@@ -335,28 +322,11 @@ export type ApiSchema = {
       out: void;
     };
 
-    updateAssignationDocumentStatus: {
-      in: {
-        assignationId: string;
-        status: documentStatusType;
-      };
-      out: documentType;
-    };
-
     updateDocumentStatus: {
       in: {
         documentId: string;
         status: documentStatusType;
       };
-      out: documentType;
-    };
-
-    updateDocumentRoute: {
-      in: {
-        documentId: string;
-        route: documentRouteType;
-      };
-
       out: documentType;
     };
 

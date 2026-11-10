@@ -8,17 +8,7 @@ const PRIORITIZED_NAC_CODES = ['97H'];
 
 const publicationHandler = {
   mustBePublished,
-  getPublishedPublicationCategory,
-  getPrioritizedNACCodes,
 };
-
-function getPublishedPublicationCategory() {
-  return PUBLISHED_PUBLICATION_CATEGORY_LETTERS;
-}
-
-function getPrioritizedNACCodes() {
-  return PRIORITIZED_NAC_CODES;
-}
 
 function mustBePublished(
   publicationCategory: documentType['publicationCategory'],

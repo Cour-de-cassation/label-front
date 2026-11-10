@@ -8,7 +8,6 @@ import {
   comparator,
   entityIdHandler,
   sortAnnotations,
-  stringify,
 } from './lib';
 
 export { annotationModule };
@@ -25,6 +24,5 @@ const annotationModule = {
     comparator,
     entityIdHandler,
     sortAnnotations,
-    stringify,
   },
 };

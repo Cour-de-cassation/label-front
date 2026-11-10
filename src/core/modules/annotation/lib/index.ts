@@ -5,7 +5,6 @@ import { buildAnnotation } from './buildAnnotation';
 import { comparator } from './comparator';
 import { entityIdHandler } from './entityIdHandler';
 import { sortAnnotations } from './sortAnnotations';
-import { stringify } from './stringify';
 
 export {
   annotationLinker,
@@ -15,5 +14,4 @@ export {
   comparator,
   entityIdHandler,
   sortAnnotations,
-  stringify,
 };

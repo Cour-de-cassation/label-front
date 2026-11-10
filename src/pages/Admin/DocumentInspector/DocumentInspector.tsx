@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { annotationsDiffType, documentType, settingsModule, settingsType } from 'src/core';
+import { settingsModule } from 'src/core';
+import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import { apiCaller } from '../../../api';
-import { MainHeader } from '../../../components';
+import { IconButton, Tooltip, Typography } from '@mui/material';
+import { ChevronLeftRounded } from '@mui/icons-material';
+import { HeaderSlot } from '../../../components/Header/HeaderSlot';
 import {
   AnnotatorStateHandlerContextProvider,
   buildAnnotationsCommitter,
@@ -54,7 +59,14 @@ function DocumentInspector(props: { settings: settingsType }) {
                   settings: settingsForDocument,
                 }}
               >
-                <MainHeader title={document.title} onBackButtonPress={() => navigate(-1)} />
+                <HeaderSlot>
+                  <Tooltip arrow title={wordings.shared.back}>
+                    <IconButton color="neutral" onClick={() => navigate(-1)}>
+                      <ChevronLeftRounded />
+                    </IconButton>
+                  </Tooltip>
+                  <Typography>{document.title}</Typography>
+                </HeaderSlot>
                 <DocumentAnnotator onStopAnnotatingDocument={buildOnStopAnnotatingDocument(document)} />
               </AnnotatorStateHandlerContextProvider>
             );

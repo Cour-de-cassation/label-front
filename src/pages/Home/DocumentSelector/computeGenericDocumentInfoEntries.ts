@@ -1,5 +1,6 @@
 import { uniq } from 'lodash';
-import { annotationType, annotationLinkHandler } from 'src/core';
+import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
+import { annotationType } from 'src/types/annotation';
 
 export { computeGenericDocumentInfoEntries };
 

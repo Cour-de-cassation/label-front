@@ -1,6 +1,6 @@
 import React, { createContext, FC, ReactNode, use, useEffect, useState } from 'react';
 import { urlHandler } from '../utils';
-import { userType } from 'src/core';
+import { userType } from 'src/types/user';
 import { localStorage } from '../services/localStorage';
 import { jwtTokenHandler } from '../services/jwtToken';
 

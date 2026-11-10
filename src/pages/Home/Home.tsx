@@ -1,5 +1,5 @@
 import React from 'react';
-import { settingsType } from 'src/core';
+import { settingsType } from 'src/types/settings';
 import { DocumentsDataFetcher } from './DocumentsDataFetcher';
 import { DocumentSwitcher } from './DocumentSwitcher';
 

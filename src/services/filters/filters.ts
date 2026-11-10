@@ -1,4 +1,5 @@
-import { documentType, userType } from 'src/core';
+import { documentType } from 'src/types/document';
+import { userType } from 'src/types/user';
 import format from 'string-template';
 import { wordings } from '../../wordings';
 import { documentReviewFilterStatuses } from './documentReviewFilterStatuses';

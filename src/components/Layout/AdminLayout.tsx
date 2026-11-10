@@ -1,0 +1,79 @@
+import React, { createContext, use, useState } from 'react';
+import { Outlet, useLocation } from 'react-router';
+import { Box, Typography } from '@mui/material';
+import { apiRouteOutType } from 'src/api/apiRouteType';
+import { apiCaller, useApi } from '../../api';
+import { AdminMenu, adminMenuPages } from '../AdminMenu/AdminMenu';
+import { HeaderSlot } from '../Header/HeaderSlot';
+import { CurrentUser, useCtxUser } from '../../contexts/user.context';
+import { localStorage } from '../../services/localStorage';
+import { DataFetcher } from '../../pages/DataFetcher';
+
+type badgeCountsType = apiRouteOutType<'get', 'adminBadgeCounts'>;
+
+const AdminBadgeCountsRefetchContext = createContext<() => void>(() => undefined);
+
+export function useAdminBadgeCountsRefetch() {
+  return use(AdminBadgeCountsRefetchContext);
+}
+
+export function AdminLayout() {
+  const { user } = useCtxUser();
+  const { pathname } = useLocation();
+  const badgeCountsFetchInfo = useApi(fetchAdminBadgeCounts, {});
+  const [badgeCountsPathname, setBadgeCountsPathname] = useState(pathname);
+
+  if (pathname !== badgeCountsPathname) {
+    setBadgeCountsPathname(pathname);
+    badgeCountsFetchInfo.refetch();
+  }
+
+  const userRole = getUserRole(user);
+  if (userRole !== 'admin' && userRole !== 'scrutator') {
+    return <></>;
+  }
+
+  const currentHeader = adminMenuPages.find((page) => page.pathname === pathname)?.header;
+
+  return (
+    <>
+      {currentHeader && (
+        <HeaderSlot>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography variant="h3">{currentHeader.title}</Typography>
+            <Typography>{currentHeader.subtitle}</Typography>
+          </Box>
+        </HeaderSlot>
+      )}
+      <DataFetcher
+        buildComponentWithData={(badgeCounts: badgeCountsType) => (
+          <AdminBadgeCountsRefetchContext value={badgeCountsFetchInfo.refetch}>
+            <Box sx={{ display: 'flex', flex: 1, minWidth: 0 }}>
+              <AdminMenu
+                unreadProblemReportsCount={badgeCounts.unreadProblemReportsCount}
+                toBeConfirmedDocumentsCount={badgeCounts.toBeConfirmedDocumentsCount}
+              />
+              <Outlet />
+            </Box>
+          </AdminBadgeCountsRefetchContext>
+        )}
+        fetchInfo={badgeCountsFetchInfo}
+        route={'adminBadgeCounts'}
+      />
+    </>
+  );
+}
+
+async function fetchAdminBadgeCounts() {
+  const { data, statusCode } = await apiCaller.get('adminBadgeCounts');
+  return { data, statusCode };
+}
+
+function getUserRole(user: CurrentUser | null): 'admin' | 'scrutator' | undefined {
+  const stored = localStorage.adminViewHandler.get();
+  const role = stored || user?.role;
+  if (role === 'admin' || role === 'scrutator') {
+    return role;
+  }
+  return undefined;
+}

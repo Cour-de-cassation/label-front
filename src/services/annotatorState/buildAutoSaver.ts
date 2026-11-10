@@ -1,4 +1,5 @@
-import { annotationsDiffModule, annotationsDiffType } from 'src/core';
+import { annotationsDiffModule } from 'src/core';
+import { annotationsDiffType } from 'src/types/annotationsDiff';
 
 export { buildAutoSaver };
 

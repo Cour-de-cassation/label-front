@@ -1,4 +1,5 @@
-import { annotationModule, annotationLinkHandler } from 'src/core';
+import { annotationModule } from 'src/core';
+import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { computeGenericDocumentInfoEntries } from './computeGenericDocumentInfoEntries';
 
 describe('computeGenericDocumentInfoEntries', () => {

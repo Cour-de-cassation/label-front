@@ -1,9 +1,9 @@
 import React from 'react';
-import { annotationChunkType, textChunkType } from 'src/core';
+import { annotationChunkType, textChunkType } from 'src/utils/textSplitter';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { splittedTextByLineType } from '../lib';
 import { useDocumentViewerModeHandler } from '../../../../services/documentViewerMode';
-import { clientAnonymizerType } from '../../../../types';
+import { clientAnonymizerType } from 'src/types/anonymizer';
 import { DocumentText } from './DocumentText';
 import { DocumentAnnotationText } from './DocumentAnnotationText';
 

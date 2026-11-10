@@ -1,4 +1,4 @@
-import { dateType, timeOperator } from 'src/core';
+import { dateType, timeOperator } from 'src/utils/timeOperator';
 
 export { buildComputeIsDateAvailable };
 

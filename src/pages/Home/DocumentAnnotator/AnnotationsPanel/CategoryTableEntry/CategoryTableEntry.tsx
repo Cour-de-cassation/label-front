@@ -10,7 +10,9 @@ import {
   Text,
 } from 'src/pelta-design-system';
 import { CategoryTableEntryBracketLink } from './CategoryTableEntryBracketLink';
-import { displayModeType, annotationType, settingsModule } from 'src/core';
+import { settingsModule } from 'src/core';
+import { displayModeType } from 'src/types/settings';
+import { annotationType } from 'src/types/annotation';
 import { annotatorStateHandlerType, useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { useViewerScrollerHandler } from '../../../../../services/viewerScroller';
 import { splittedTextByLineType } from '../../lib';

@@ -6,13 +6,13 @@ import {
   ComponentsList,
   positionType,
 } from 'src/pelta-design-system';
-import { annotationType } from 'src/core';
+import { annotationType } from 'src/types/annotation';
 import {
   ChangeAnnotationCategoryDropdown,
   LinkAnnotationDropdown,
   UnlinkAnnotationDropdown,
 } from '../../../../../components';
-import { clientAnonymizerType } from '../../../../../types';
+import { clientAnonymizerType } from 'src/types/anonymizer';
 import { AnnotationTooltipMenuHeader } from './AnnotationTooltipMenuHeader';
 import { DeleteAnnotationDropdown } from './DeleteAnnotationDropdown';
 

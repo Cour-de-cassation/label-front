@@ -1,0 +1,29 @@
+import { documentImporterType, documentRouteType, checklistItemType } from 'src/types/document';
+
+export type statisticType = {
+  _id: string;
+  annotationsCount: number;
+  appealNumber?: string;
+  documentNumber: number;
+  decisionDate?: number;
+  documentExternalId: string;
+  chamberName?: string;
+  importer: documentImporterType;
+  jurisdiction: string;
+  linkedEntitiesCount: number;
+  publicationCategory: string[];
+  NACCode?: string;
+  route: documentRouteType;
+  source: string;
+  surAnnotationsCount: number;
+  subAnnotationsSensitiveCount: number;
+  subAnnotationsNonSensitiveCount: number;
+  treatmentDate: number;
+  treatmentsSummary: {
+    userId: string;
+    treatmentDuration: number;
+  }[];
+  wordsCount: number;
+  checklist: checklistItemType[];
+  comment?: string;
+};

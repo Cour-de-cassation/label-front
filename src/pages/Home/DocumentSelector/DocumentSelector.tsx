@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
-import { annotationType, documentType, documentModule, settingsModule, settingsType, assignationType } from 'src/core';
+import { documentModule, settingsModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
+import { assignationType } from 'src/types/assignation';
 import { Text } from 'src/pelta-design-system';
 import { wordings } from '../../../wordings';
 import { DocumentSelectorCard } from './DocumentSelectorCard';

@@ -1,7 +1,8 @@
 import React from 'react';
 import { uniq } from 'lodash';
 import { customThemeType, useCustomTheme, Header, IconButton, Text } from 'src/pelta-design-system';
-import { annotationLinkHandler, settingsModule } from 'src/core';
+import { settingsModule } from 'src/core';
+import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { CategoryIcon } from '../../../../../components';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { useDocumentViewerModeHandler } from '../../../../../services/documentViewerMode';

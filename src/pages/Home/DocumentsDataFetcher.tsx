@@ -1,5 +1,7 @@
 import React, { ReactElement } from 'react';
-import { annotationType, assignationType, documentType } from 'src/core';
+import { annotationType } from 'src/types/annotation';
+import { assignationType } from 'src/types/assignation';
+import { documentType } from 'src/types/document';
 import { apiCaller, useApi } from '../../api';
 import { DataFetcher } from '../DataFetcher';
 

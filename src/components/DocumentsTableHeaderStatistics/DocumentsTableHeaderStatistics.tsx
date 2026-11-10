@@ -3,7 +3,10 @@ import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { heights } from '../../theme/layout';
 import { DocumentNumberTextInput } from '../DocumentNumberTextInput';
 import { StatisticsFilterButton } from '../../pages/Admin/Statistics/StatisticsFilterButton';
-import { apiRouteOutType, documentType, ressourceFilterType, userType } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
+import { documentType } from 'src/types/document';
+import { ressourceFilterType } from 'src/types/ressourceFilter';
+import { userType } from 'src/types/user';
 import { apiCaller } from '../../api';
 import { documentStatsType } from '../../pages/Admin/Statistics/StatisticsBox/DocumentStatisticsBox';
 

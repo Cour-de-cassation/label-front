@@ -1,5 +1,5 @@
 import React from 'react';
-import { problemReportType } from 'src/core';
+import { problemReportType } from 'src/types/problemReport';
 import { useCustomTheme, CircleIcon, iconNameType } from 'src/pelta-design-system';
 import { wordings } from '../wordings';
 

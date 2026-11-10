@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { apiRouteOutType, timeOperator, userType } from 'src/core';
+import { timeOperator } from 'src/utils/timeOperator';
+import { apiRouteOutType } from 'src/api/apiRouteType';
+import { userType } from 'src/types/user';
 import { customThemeType, useCustomTheme, PaginatedTable, tableRowFieldType } from 'src/pelta-design-system';
 import { DocumentReviewStatusIcon, PublicationCategoryBadge } from '../../../components';
 import { wordings } from '../../../wordings';

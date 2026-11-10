@@ -1,4 +1,4 @@
-import { documentType } from '../documentType';
+import { documentType } from 'src/types/document';
 
 export { getNextStatus };
 

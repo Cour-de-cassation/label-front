@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 import { Checkbox, customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { useChecklistEntryHandler } from './useChecklistEntryHandler';
 import { useViewerScrollerHandler } from '../../../../services/viewerScroller';
-import { documentType, settingsType } from 'src/core';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import { splittedTextByLineType } from '../lib';
 import { CategoryIcon } from '../../../../components';
 

@@ -1,4 +1,4 @@
-import { annotationType } from '../../../modules';
+import { annotationType } from 'src/types/annotation';
 
 export type { formatSpecifierType, specifierGeneratorType, specifierType };
 

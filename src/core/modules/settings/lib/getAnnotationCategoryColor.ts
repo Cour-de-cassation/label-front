@@ -1,4 +1,4 @@
-import { displayModeType, settingsType } from '../settingsType';
+import { displayModeType, settingsType } from 'src/types/settings';
 
 export { getAnnotationCategoryColor };
 

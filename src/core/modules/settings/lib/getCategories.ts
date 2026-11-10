@@ -1,4 +1,4 @@
-import { categorySettingType, settingsType } from '../settingsType';
+import { categorySettingType, settingsType } from 'src/types/settings';
 
 export { getCategories };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { timeOperator } from 'src/core';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
-import { statisticType } from 'src/core';
+import { statisticType } from 'src/types/statistic';
 import { wordings } from '../../../../wordings';
 
 export { DocumentStatisticsBox };

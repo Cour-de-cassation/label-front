@@ -1,4 +1,4 @@
-import { annotationType } from '../annotationType';
+import { annotationType } from 'src/types/annotation';
 import { entityIdHandler } from './entityIdHandler';
 
 export { annotationLinker };

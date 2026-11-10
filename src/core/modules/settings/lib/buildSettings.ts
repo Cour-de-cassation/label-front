@@ -8,7 +8,7 @@ import {
   settingsType,
   shadeColors,
   shadeColorType,
-} from '../settingsType';
+} from 'src/types/settings';
 
 export { buildSettings };
 

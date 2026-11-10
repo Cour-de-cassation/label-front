@@ -1,5 +1,6 @@
-import { settingsType } from '../../modules/settings';
-import { annotationModule, annotationType } from '../../modules/annotation';
+import { settingsType } from 'src/types/settings';
+import { annotationModule } from '../../modules/annotation';
+import { annotationType } from 'src/types/annotation';
 import { annotationLinkHandler } from '../annotationLinkHandler';
 import { autoLinker } from '../autoLink';
 

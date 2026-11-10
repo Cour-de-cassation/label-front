@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { uniq, flatten } from 'lodash';
-import { apiRouteOutType, keysOf, userType, documentType } from 'src/core';
+import { keysOf } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
+import { userType } from 'src/types/user';
+import { documentType } from 'src/types/document';
 import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { DocumentsTableHeader } from '../../../components';
 import { localStorage, untreatedDocumentFilterType } from '../../../services/localStorage';

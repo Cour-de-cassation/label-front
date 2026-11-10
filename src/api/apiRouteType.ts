@@ -1,4 +1,4 @@
-import { ApiSchema, apiSchemaMethodNameType } from './apiSchema';
+import { ApiSchema, apiSchemaMethodNameType } from 'src/api/apiSchema';
 
 export type { apiRouteInType, apiRouteOutType, networkType };
 

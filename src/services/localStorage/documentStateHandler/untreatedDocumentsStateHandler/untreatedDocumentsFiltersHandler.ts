@@ -1,4 +1,4 @@
-import { documentType } from 'src/core';
+import { documentType } from 'src/types/document';
 import { localStorageHandler } from '../../localStorageHandler';
 import { localStorageMappers } from '../../localStorageMappers';
 

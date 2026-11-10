@@ -1,5 +1,5 @@
-import { documentType } from '../../document';
-import { settingsType } from '../settingsType';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import { additionalAnnotationCategoryHandler } from './additionalAnnotationCategoryHandler';
 import { motivationCategoryHandler } from './motivationCategoryHandler';
 

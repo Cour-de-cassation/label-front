@@ -1,9 +1,10 @@
 import React, { MouseEvent, ReactElement, useState } from 'react';
 import { customThemeType, getColor, useCustomTheme, useDisplayMode, positionType } from 'src/pelta-design-system';
-import { annotationType, settingsModule } from 'src/core';
+import { settingsModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 import { useDocumentViewerModeHandler } from '../../../../services/documentViewerMode';
-import { clientAnonymizerType } from '../../../../types';
+import { clientAnonymizerType } from 'src/types/anonymizer';
 import { MouseMoveListener, useMousePosition } from '../../../../utils';
 import { getAnnotationTextDisplayStyle } from './lib';
 import { AnnotationTooltipMenu } from './AnnotationTooltipMenu';

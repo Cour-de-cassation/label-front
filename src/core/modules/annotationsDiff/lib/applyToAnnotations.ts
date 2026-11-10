@@ -1,5 +1,6 @@
-import { annotationModule, annotationType } from '../../annotation';
-import { annotationsDiffType } from '../annotationsDiffType';
+import { annotationModule } from '../../annotation';
+import { annotationType } from 'src/types/annotation';
+import { annotationsDiffType } from 'src/types/annotationsDiff';
 
 export { applyToAnnotations };
 

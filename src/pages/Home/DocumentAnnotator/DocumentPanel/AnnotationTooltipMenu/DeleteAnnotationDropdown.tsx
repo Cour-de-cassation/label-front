@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import format from 'string-template';
-import { annotationHandler, annotationLinkHandler, annotationType, settingsModule } from 'src/core';
+import { annotationHandler, annotationLinkHandler, settingsModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
 import { IconButton, IconDropdown } from 'src/pelta-design-system';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';

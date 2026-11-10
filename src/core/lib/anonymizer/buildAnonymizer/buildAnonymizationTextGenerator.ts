@@ -1,4 +1,4 @@
-import { annotationType } from '../../../modules';
+import { annotationType } from 'src/types/annotation';
 import { parseFormatSpecifiers } from './parseFormatSpecifiers';
 import { specifierGeneratorType, specifierType } from './types';
 

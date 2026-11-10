@@ -1,4 +1,5 @@
-import { annotationModule, annotationType } from '../../modules/annotation';
+import { annotationModule } from '../../modules/annotation';
+import { annotationType } from 'src/types/annotation';
 import { annotationTextDetector } from './annotationTextDetector';
 
 describe('annotationTextDetector', () => {

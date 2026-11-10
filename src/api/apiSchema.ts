@@ -1,14 +1,12 @@
-import {
-  statisticType,
-  documentType,
-  annotationType,
-  problemReportType,
-  userType,
-  preAssignationType,
-  annotationsDiffType,
-} from '../modules';
-import { ressourceFilterType } from './../modules/ressourceFilter/ressourceFilterType';
-import { documentImporterType, documentRouteType, documentStatusType } from '../modules/document/documentType';
+import { statisticType } from 'src/types/statistic';
+import { documentType } from 'src/types/document';
+import { annotationType } from 'src/types/annotation';
+import { problemReportType } from 'src/types/problemReport';
+import { userType } from 'src/types/user';
+import { preAssignationType } from 'src/types/preAssignation';
+import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { ressourceFilterType } from 'src/types/ressourceFilter';
+import { documentImporterType, documentRouteType, documentStatusType } from 'src/types/document';
 
 export type ApiSchema = {
   get: {

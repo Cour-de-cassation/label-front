@@ -1,4 +1,4 @@
-import { colorType, displayModeType } from '../settingsType';
+import { colorType, displayModeType } from 'src/types/settings';
 
 export { motivationCategoryHandler };
 const motivationCategoryHandler = buildMotivationCategoryHandler();

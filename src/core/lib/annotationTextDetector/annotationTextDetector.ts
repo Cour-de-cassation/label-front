@@ -1,4 +1,4 @@
-import { annotationType } from '../../modules/annotation';
+import { annotationType } from 'src/types/annotation';
 import { annotationOverlapDetector } from '../annotationOverlapDetector';
 import { stringComparator } from '../stringComparator';
 

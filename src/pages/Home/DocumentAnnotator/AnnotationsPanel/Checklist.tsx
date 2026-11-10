@@ -4,7 +4,7 @@ import { wordings } from '../../../../wordings';
 import { ChecklistEntry } from './ChecklistEntry';
 import { splittedTextByLineType } from '../lib';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
-import { documentType } from 'src/core';
+import { documentType } from 'src/types/document';
 
 export { Checklist };
 

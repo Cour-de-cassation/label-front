@@ -1,5 +1,6 @@
 import React from 'react';
-import { apiRouteOutType, userType } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
+import { userType } from 'src/types/user';
 import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { RefreshButton } from 'src/components/RefreshButton';
 import { heights, widths } from '../../../theme/layout';

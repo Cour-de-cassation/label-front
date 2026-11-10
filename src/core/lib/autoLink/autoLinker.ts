@@ -1,5 +1,5 @@
-import { settingsType } from '../../modules/settings';
-import { annotationType } from '../../modules/annotation';
+import { settingsType } from 'src/types/settings';
+import { annotationType } from 'src/types/annotation';
 import { annotationLinkHandler } from '../annotationLinkHandler';
 import { stringComparator } from '../stringComparator';
 

@@ -1,5 +1,5 @@
 import { generatorType } from '../../../types';
-import { documentType } from '../documentType';
+import { documentType } from 'src/types/document';
 
 export { documentGenerator, decisionMetadataGenerator, checklistGenerator };
 

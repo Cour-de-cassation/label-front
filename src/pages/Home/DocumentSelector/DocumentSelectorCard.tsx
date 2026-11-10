@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { groupBy, orderBy, sumBy } from 'lodash';
-import { annotationType, assignationType, documentModule, documentType, settingsType, settingsModule } from 'src/core';
+import { documentModule, settingsModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
+import { assignationType } from 'src/types/assignation';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import {
   customThemeType,
   useCustomTheme,

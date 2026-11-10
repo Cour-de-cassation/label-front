@@ -1,4 +1,6 @@
-import { annotationType, annotationsDiffModule, annotationsDiffType } from 'src/core';
+import { annotationsDiffModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
+import { annotationsDiffType } from 'src/types/annotationsDiff';
 
 export { buildAnnotationsCommitter };
 

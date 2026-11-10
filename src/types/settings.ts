@@ -1,4 +1,4 @@
-import { stringComparisonSensitivityType } from '../../lib';
+import { stringComparisonSensitivityType } from 'src/core/lib/stringComparator/stringComparator';
 
 export { categoryIconNames, constantColors, shadeColors };
 

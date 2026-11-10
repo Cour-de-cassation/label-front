@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, tableRowFieldType } from 'src/pelta-design-system';
-import { apiRouteOutType, timeOperator } from 'src/core';
+import { timeOperator } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
 import { apiCaller } from '../../../api';
 import { useAlert } from '../../../services/alert';
 import { wordings } from '../../../wordings';

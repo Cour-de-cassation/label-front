@@ -1,4 +1,4 @@
-import { annotationType } from '../annotationType';
+import { annotationType } from 'src/types/annotation';
 import { normalizeString } from '../../../lib/stringComparator/normalizeString';
 import { motivationCategoryHandler } from '../../settings/lib';
 

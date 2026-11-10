@@ -1,4 +1,4 @@
-import { documentImporterType, documentRouteType, checklistItemType } from '../document/documentType';
+import { documentImporterType, documentRouteType, checklistItemType } from 'src/types/document';
 
 export type statisticType = {
   _id: string;

@@ -1,4 +1,3 @@
-import { annotationType } from './annotationType';
 import { annotationGenerator } from './generator';
 import {
   annotationLinker,
@@ -11,8 +10,6 @@ import {
 } from './lib';
 
 export { annotationModule };
-
-export type { annotationType };
 
 const annotationModule = {
   generator: annotationGenerator,

@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react';
-import { documentType, problemReportType } from 'src/core';
+import { documentType } from 'src/types/document';
+import { problemReportType } from 'src/types/problemReport';
 import {
   customThemeType,
   useCustomTheme,

@@ -1,7 +1,7 @@
 import { useDocumentViewerModeHandler } from '../../../../services/documentViewerMode';
 import { useState } from 'react';
 import { splittedTextByLineType } from '../lib';
-import { documentType } from 'src/core';
+import { documentType } from 'src/types/document';
 
 export { useChecklistEntryHandler };
 

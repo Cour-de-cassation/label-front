@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import { apiRouteOutType } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
 import { apiCaller, useApi } from 'src/api';
 import { RefreshButton } from 'src/components/RefreshButton';
 import { DataFetcher } from 'src/pages/DataFetcher';

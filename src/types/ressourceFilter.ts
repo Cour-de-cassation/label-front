@@ -1,4 +1,4 @@
-import { documentRouteType, documentImporterType } from './../document/documentType';
+import { documentRouteType, documentImporterType } from 'src/types/document';
 
 export type ressourceFilterType = {
   mustHaveSurAnnotations: boolean;

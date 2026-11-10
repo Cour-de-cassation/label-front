@@ -1,5 +1,8 @@
 import React, { createContext, ReactElement, ReactNode } from 'react';
-import { buildAnonymizer, annotationType, documentType, settingsType } from 'src/core';
+import { buildAnonymizer } from 'src/core';
+import { annotationType } from 'src/types/annotation';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import { anonymizerBuilderType, buildAnonymizerBuilder } from './buildAnonymizerBuilder';
 
 export { AnonymizerBuilderContext, AnonymizerBuilderContextProvider };

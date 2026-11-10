@@ -1,4 +1,5 @@
-import { annotationType, documentType } from 'src/core';
+import { annotationType } from 'src/types/annotation';
+import { documentType } from 'src/types/document';
 import { viewerModeType } from './viewerMode';
 
 export { buildDocumentViewerModeHandler };

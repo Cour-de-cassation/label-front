@@ -1,6 +1,6 @@
-import { annotationType } from '../../../modules/annotation';
-import { documentType } from '../../../modules/document';
-import { settingsType } from '../../../modules/settings';
+import { annotationType } from 'src/types/annotation';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import { textSplitter } from '../../textSplitter';
 import { buildEntityIdMapper } from './buildEntityIdMapper';
 import { ANONYMIZATION_DEFAULT_TEXT } from './constants';

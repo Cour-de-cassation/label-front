@@ -1,5 +1,5 @@
 import { groupBy, uniq } from 'lodash';
-import { annotationType } from '../../../modules';
+import { annotationType } from 'src/types/annotation';
 
 export { buildEntityIdOrderMapper };
 

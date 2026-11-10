@@ -1,5 +1,5 @@
 import { countBy } from 'lodash';
-import { annotationType } from '../../../modules';
+import { annotationType } from 'src/types/annotation';
 import { buildAvailableCharacters } from './buildAvailableCharacters';
 import { FORBIDDEN_CHARACTERS } from './buildCharacterList';
 import { convertTextIntoCharCode } from './convertTextIntoCharCode';

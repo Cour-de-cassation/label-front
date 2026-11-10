@@ -1,4 +1,4 @@
-import { settingsType } from '../settingsType';
+import { settingsType } from 'src/types/settings';
 import { buildSettings, partialSettingsType } from './buildSettings';
 
 export { parseFromJson };

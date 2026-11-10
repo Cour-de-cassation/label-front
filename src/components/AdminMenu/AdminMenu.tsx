@@ -1,134 +1,119 @@
 import React from 'react';
-import { customThemeType, heights, useCustomTheme } from 'src/pelta-design-system';
-import { routes } from '../../router/routes';
-import { widths } from '../../theme/layout';
-import { wordings } from '../../wordings';
-import { MenuIcon } from './MenuIcon';
+import { NavLink } from 'react-router';
+import { Badge, Box, ButtonBase, SxProps, Theme, Tooltip } from '@mui/material';
+import {
+  AssignmentIndRounded,
+  BarChart,
+  CheckBoxRounded,
+  DoneAllRounded,
+  HomeRounded,
+  PlaylistPlayRounded,
+  ReportProblemRounded,
+  SvgIconComponent,
+} from '@mui/icons-material';
+import { apiRouteOutType } from 'src/core';
+import { routes } from 'src/router/routes';
+import { widths } from 'src/theme/layout';
+import { wordings } from 'src/wordings';
 
-export { AdminMenu };
-
-const OFFSET_TOP = 15;
-
-function AdminMenu(props: {
+type AdminMenuProps = {
   unreadProblemReportsCount: number;
   toBeConfirmedDocumentsCount: number;
-  userRole: 'admin' | 'scrutator';
-}) {
-  const theme = useCustomTheme();
-  const styles = buildStyles(theme);
+};
 
-  const menuIcons = getMenuIcons({
-    unreadProblemReportsCount: props.unreadProblemReportsCount,
-    toBeConfirmedDocumentsCount: props.toBeConfirmedDocumentsCount,
-  });
+type AdminMenuPage = {
+  pathname: string;
+  header: { title: string; subtitle: string };
+  Icon: SvgIconComponent;
+  badge?: keyof apiRouteOutType<'get', 'adminBadgeCounts'>;
+};
 
+export const adminMenuPages: AdminMenuPage[] = [
+  { pathname: routes.SUMMARY.getPath(), header: wordings.summaryPage.header, Icon: HomeRounded },
+  { pathname: routes.STATISTICS.getPath(), header: wordings.statisticsPage.header, Icon: BarChart },
+  {
+    pathname: routes.UNTREATED_DOCUMENT.getPath(),
+    header: wordings.untreatedDocumentsPage.header,
+    Icon: PlaylistPlayRounded,
+  },
+  {
+    pathname: routes.TO_BE_CONFIRMED_DOCUMENTS.getPath(),
+    header: wordings.toBeConfirmedDocumentsPage.header,
+    Icon: CheckBoxRounded,
+    badge: 'toBeConfirmedDocumentsCount',
+  },
+  {
+    pathname: routes.TREATED_DOCUMENTS.getPath(),
+    header: wordings.treatedDocumentsPage.header,
+    Icon: DoneAllRounded,
+  },
+  {
+    pathname: routes.PROBLEM_REPORTS.getPath(),
+    header: wordings.problemReportsPage.header,
+    Icon: ReportProblemRounded,
+    badge: 'unreadProblemReportsCount',
+  },
+  {
+    pathname: routes.PRE_ASSIGN_DOCUMENTS.getPath(),
+    header: wordings.preAssignDocumentsPage.header,
+    Icon: AssignmentIndRounded,
+  },
+];
+
+const TAB_HEIGHT = 50;
+const CORNER_SIZE = 5;
+
+const menuSx: SxProps<Theme> = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  gap: '15px',
+  flexShrink: 0,
+  width: widths.adminMenu,
+  pt: '20px',
+  bgcolor: 'neutral.main',
+};
+
+const tabSx: SxProps<Theme> = (theme) => ({
+  position: 'relative',
+  width: `calc(${widths.adminMenu} - ${theme.spacing(1)})`,
+  height: TAB_HEIGHT,
+  borderTopLeftRadius: TAB_HEIGHT / 2,
+  borderBottomLeftRadius: TAB_HEIGHT / 2,
+  color: 'text.secondary',
+  '&.active': {
+    color: 'text.primary',
+    bgcolor: 'background.default',
+    '&::before, &::after': {
+      content: '""',
+      position: 'absolute',
+      right: 0,
+      width: CORNER_SIZE,
+      height: CORNER_SIZE,
+    },
+    '&::before': {
+      top: -CORNER_SIZE,
+      background: `radial-gradient(circle at top left, transparent ${CORNER_SIZE}px, ${theme.palette.background.default} ${CORNER_SIZE}px)`,
+    },
+    '&::after': {
+      bottom: -CORNER_SIZE,
+      background: `radial-gradient(circle at bottom left, transparent ${CORNER_SIZE}px, ${theme.palette.background.default} ${CORNER_SIZE}px)`,
+    },
+  },
+});
+
+export function AdminMenu(props: AdminMenuProps) {
   return (
-    <div style={styles.container}>
-      <div style={styles.iconContainer}>{menuIcons[props.userRole]}</div>
-    </div>
+    <Box sx={menuSx}>
+      {adminMenuPages.map(({ pathname, header, Icon, badge }) => (
+        <Tooltip key={pathname} title={header.subtitle} placement="right">
+          <ButtonBase component={NavLink} to={pathname} end replace sx={tabSx}>
+            <Badge badgeContent={badge && props[badge]} color="error">
+              <Icon sx={{ fontSize: 28 }} />
+            </Badge>
+          </ButtonBase>
+        </Tooltip>
+      ))}
+    </Box>
   );
-}
-
-function getMenuIcons({
-  unreadProblemReportsCount,
-  toBeConfirmedDocumentsCount,
-}: {
-  unreadProblemReportsCount: number;
-  toBeConfirmedDocumentsCount: number;
-}) {
-  const SUMMARY_ICON = (
-    <MenuIcon title={wordings.summaryPage.header.subtitle} pathname={routes.SUMMARY.getPath()} iconName="home" />
-  );
-
-  const STATISTICS_ICON = (
-    <MenuIcon
-      title={wordings.statisticsPage.header.subtitle}
-      pathname={routes.STATISTICS.getPath()}
-      iconName="statistics"
-    />
-  );
-
-  const UNTREATED_DOCUMENT_ICON = (
-    <MenuIcon
-      title={wordings.untreatedDocumentsPage.header.subtitle}
-      pathname={routes.UNTREATED_DOCUMENT.getPath()}
-      iconName="playlistPlay"
-    />
-  );
-
-  const TO_BE_CONFIRMED_DOCUMENTS_ICON = (
-    <MenuIcon
-      title={wordings.toBeConfirmedDocumentsPage.header.subtitle}
-      pathname={routes.TO_BE_CONFIRMED_DOCUMENTS.getPath()}
-      alertCount={toBeConfirmedDocumentsCount}
-      iconName="checkBox"
-    />
-  );
-
-  const TREATED_DOCUMENTS_ICON = (
-    <MenuIcon
-      title={wordings.treatedDocumentsPage.header.subtitle}
-      pathname={routes.TREATED_DOCUMENTS.getPath()}
-      iconName="doubleCheck"
-    />
-  );
-
-  const PROBLEM_REPORTS_ICON = (
-    <MenuIcon
-      title={wordings.problemReportsPage.header.subtitle}
-      pathname={routes.PROBLEM_REPORTS.getPath()}
-      alertCount={unreadProblemReportsCount}
-      iconName="warning"
-    />
-  );
-
-  const PRE_ASSIGN_DOCUMENTS_ICON = (
-    <MenuIcon
-      title={wordings.preAssignDocumentsPage.header.subtitle}
-      pathname={routes.PRE_ASSIGN_DOCUMENTS.getPath()}
-      iconName="assignmentInd"
-    />
-  );
-
-  return {
-    admin: [
-      SUMMARY_ICON,
-      STATISTICS_ICON,
-      UNTREATED_DOCUMENT_ICON,
-      TO_BE_CONFIRMED_DOCUMENTS_ICON,
-      TREATED_DOCUMENTS_ICON,
-      PROBLEM_REPORTS_ICON,
-      PRE_ASSIGN_DOCUMENTS_ICON,
-    ],
-    scrutator: [
-      SUMMARY_ICON,
-      STATISTICS_ICON,
-      UNTREATED_DOCUMENT_ICON,
-      TO_BE_CONFIRMED_DOCUMENTS_ICON,
-      TREATED_DOCUMENTS_ICON,
-      PROBLEM_REPORTS_ICON,
-      PRE_ASSIGN_DOCUMENTS_ICON,
-    ],
-  };
-}
-
-function buildStyles(theme: customThemeType) {
-  return {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-end',
-      width: widths.adminMenu,
-      height: heights.adminPanel,
-      backgroundColor: theme.colors.default.background,
-    },
-    iconContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-end',
-      width: widths.adminMenu,
-      paddingTop: OFFSET_TOP,
-      backgroundColor: theme.colors.default.background,
-    },
-  } as const;
 }

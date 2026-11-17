@@ -118,7 +118,7 @@ const fr = {
           title: 'Date import',
           tooltipText: "Date d'import de la décision",
         },
-        treatmentDate: 'Traité le',
+        treatmentDate: 'Traité le:',
         workingUser: { title: 'Agent', tooltipText: 'Agent principal' },
         problemReportType: 'Type',
         problemReportDate: 'Date du signalement',
@@ -315,7 +315,7 @@ const fr = {
       title: 'Administration',
       subtitle: 'Statistiques',
     },
-    treatedDecisions: 'Décisions traitées',
+    treatedDecisions: 'Décisions traitées:',
     agregatedStatisticsHintMessage: 'Veuillez sélectionner un filtre pour afficher les statistiques.',
     specificStatisticsHintMessage:
       "Veuillez chercher par numéro de décision pour afficher les statistiques. Le nom de l'agent ayant traité la décision est conservé 6 mois.",

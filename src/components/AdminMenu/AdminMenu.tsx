@@ -1,115 +1,72 @@
 import React from 'react';
-import { customThemeType, heights, useCustomTheme } from 'src/pelta-design-system';
+import { customThemeType, heights, iconNameType, useCustomTheme } from 'src/pelta-design-system';
 import { routes } from '../../router/routes';
 import { widths } from '../../theme/layout';
 import { wordings } from '../../wordings';
 import { MenuIcon } from './MenuIcon';
 
-export { AdminMenu };
+type AdminMenuProps = { unreadProblemReportsCount: number; toBeConfirmedDocumentsCount: number };
+
+type AdminMenuItem = {
+  pathname: string;
+  header: { title: string; subtitle: string };
+  iconName: iconNameType;
+  badge?: keyof AdminMenuProps;
+};
 
 const OFFSET_TOP = 15;
 
-function AdminMenu(props: {
-  unreadProblemReportsCount: number;
-  toBeConfirmedDocumentsCount: number;
-  userRole: 'admin' | 'scrutator';
-}) {
+export const adminMenuItems: AdminMenuItem[] = [
+  { pathname: routes.SUMMARY.getPath(), header: wordings.summaryPage.header, iconName: 'home' },
+  { pathname: routes.STATISTICS.getPath(), header: wordings.statisticsPage.header, iconName: 'statistics' },
+  {
+    pathname: routes.UNTREATED_DOCUMENT.getPath(),
+    header: wordings.untreatedDocumentsPage.header,
+    iconName: 'playlistPlay',
+  },
+  {
+    pathname: routes.TO_BE_CONFIRMED_DOCUMENTS.getPath(),
+    header: wordings.toBeConfirmedDocumentsPage.header,
+    iconName: 'checkBox',
+    badge: 'toBeConfirmedDocumentsCount',
+  },
+  {
+    pathname: routes.TREATED_DOCUMENTS.getPath(),
+    header: wordings.treatedDocumentsPage.header,
+    iconName: 'doubleCheck',
+  },
+  {
+    pathname: routes.PROBLEM_REPORTS.getPath(),
+    header: wordings.problemReportsPage.header,
+    iconName: 'warning',
+    badge: 'unreadProblemReportsCount',
+  },
+  {
+    pathname: routes.PRE_ASSIGN_DOCUMENTS.getPath(),
+    header: wordings.preAssignDocumentsPage.header,
+    iconName: 'assignmentInd',
+  },
+];
+
+export function AdminMenu(props: AdminMenuProps) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
 
-  const menuIcons = getMenuIcons({
-    unreadProblemReportsCount: props.unreadProblemReportsCount,
-    toBeConfirmedDocumentsCount: props.toBeConfirmedDocumentsCount,
-  });
-
   return (
     <div style={styles.container}>
-      <div style={styles.iconContainer}>{menuIcons[props.userRole]}</div>
+      <div style={styles.iconContainer}>
+        {adminMenuItems.map(({ pathname, header, iconName, badge }) => (
+          <MenuIcon
+            key={pathname}
+            title={header.subtitle}
+            pathname={pathname}
+            iconName={iconName}
+            alertCount={badge && props[badge]}
+          />
+        ))}
+      </div>
     </div>
   );
-}
-
-function getMenuIcons({
-  unreadProblemReportsCount,
-  toBeConfirmedDocumentsCount,
-}: {
-  unreadProblemReportsCount: number;
-  toBeConfirmedDocumentsCount: number;
-}) {
-  const SUMMARY_ICON = (
-    <MenuIcon title={wordings.summaryPage.header.subtitle} pathname={routes.SUMMARY.getPath()} iconName="home" />
-  );
-
-  const STATISTICS_ICON = (
-    <MenuIcon
-      title={wordings.statisticsPage.header.subtitle}
-      pathname={routes.STATISTICS.getPath()}
-      iconName="statistics"
-    />
-  );
-
-  const UNTREATED_DOCUMENT_ICON = (
-    <MenuIcon
-      title={wordings.untreatedDocumentsPage.header.subtitle}
-      pathname={routes.UNTREATED_DOCUMENT.getPath()}
-      iconName="playlistPlay"
-    />
-  );
-
-  const TO_BE_CONFIRMED_DOCUMENTS_ICON = (
-    <MenuIcon
-      title={wordings.toBeConfirmedDocumentsPage.header.subtitle}
-      pathname={routes.TO_BE_CONFIRMED_DOCUMENTS.getPath()}
-      alertCount={toBeConfirmedDocumentsCount}
-      iconName="checkBox"
-    />
-  );
-
-  const TREATED_DOCUMENTS_ICON = (
-    <MenuIcon
-      title={wordings.treatedDocumentsPage.header.subtitle}
-      pathname={routes.TREATED_DOCUMENTS.getPath()}
-      iconName="doubleCheck"
-    />
-  );
-
-  const PROBLEM_REPORTS_ICON = (
-    <MenuIcon
-      title={wordings.problemReportsPage.header.subtitle}
-      pathname={routes.PROBLEM_REPORTS.getPath()}
-      alertCount={unreadProblemReportsCount}
-      iconName="warning"
-    />
-  );
-
-  const PRE_ASSIGN_DOCUMENTS_ICON = (
-    <MenuIcon
-      title={wordings.preAssignDocumentsPage.header.subtitle}
-      pathname={routes.PRE_ASSIGN_DOCUMENTS.getPath()}
-      iconName="assignmentInd"
-    />
-  );
-
-  return {
-    admin: [
-      SUMMARY_ICON,
-      STATISTICS_ICON,
-      UNTREATED_DOCUMENT_ICON,
-      TO_BE_CONFIRMED_DOCUMENTS_ICON,
-      TREATED_DOCUMENTS_ICON,
-      PROBLEM_REPORTS_ICON,
-      PRE_ASSIGN_DOCUMENTS_ICON,
-    ],
-    scrutator: [
-      SUMMARY_ICON,
-      STATISTICS_ICON,
-      UNTREATED_DOCUMENT_ICON,
-      TO_BE_CONFIRMED_DOCUMENTS_ICON,
-      TREATED_DOCUMENTS_ICON,
-      PROBLEM_REPORTS_ICON,
-      PRE_ASSIGN_DOCUMENTS_ICON,
-    ],
-  };
 }
 
 function buildStyles(theme: customThemeType) {

@@ -1,8 +1,8 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { localStorage } from '../services/localStorage';
-import { wordings } from '../wordings';
-import { AdminLayoutDataFetcher, useAdminBadgeCountsRefetch } from '../pages/Admin/AdminLayoutDataFetcher';
+import { AdminLayout, useAdminBadgeCountsRefetch } from '../components/Layout/AdminLayout';
+import { MainLayout } from '../components/Layout/MainLayout';
 import { DocumentInspector } from '../pages/Admin/DocumentInspector';
 import { TreatedDocuments } from '../pages/Admin/TreatedDocuments';
 import { ProblemReports } from '../pages/Admin/ProblemReports';
@@ -42,32 +42,26 @@ function Router() {
           }
         />
         <Route
-          path={routes.DOCUMENT.getPath()}
           element={
             <AuthenticatedRoute>
-              <SettingsDataFetcher>{({ settings }) => <DocumentInspector settings={settings} />}</SettingsDataFetcher>
+              <MainLayout />
             </AuthenticatedRoute>
           }
-        />
-        <Route
-          path={routes.SUMMARY.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <AdminLayoutDataFetcher header={wordings.summaryPage.header}>
+        >
+          <Route element={<AdminLayout />}>
+            <Route
+              path={routes.SUMMARY.getPath()}
+              element={
                 <SummaryDataFetcher>
                   {({ summary, refetch, isLoading }) => (
                     <Summary summary={summary} refetch={refetch} isLoading={isLoading} />
                   )}
                 </SummaryDataFetcher>
-              </AdminLayoutDataFetcher>
-            </AuthenticatedRoute>
-          }
-        />
-        <Route
-          path={routes.STATISTICS.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <AdminLayoutDataFetcher header={wordings.statisticsPage.header}>
+              }
+            />
+            <Route
+              path={routes.STATISTICS.getPath()}
+              element={
                 <WorkingUsersDataFetcher>
                   {({ workingUsers }) => (
                     <StatisticsDataFetcher>
@@ -84,15 +78,11 @@ function Router() {
                     </StatisticsDataFetcher>
                   )}
                 </WorkingUsersDataFetcher>
-              </AdminLayoutDataFetcher>
-            </AuthenticatedRoute>
-          }
-        />
-        <Route
-          path={routes.PROBLEM_REPORTS.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <AdminLayoutDataFetcher header={wordings.problemReportsPage.header}>
+              }
+            />
+            <Route
+              path={routes.PROBLEM_REPORTS.getPath()}
+              element={
                 <ProblemReportsDataFetcher>
                   {({ problemReportsWithDetails, refetch, isLoading }) => (
                     <BadgeRefreshingChild refetch={refetch}>
@@ -106,15 +96,11 @@ function Router() {
                     </BadgeRefreshingChild>
                   )}
                 </ProblemReportsDataFetcher>
-              </AdminLayoutDataFetcher>
-            </AuthenticatedRoute>
-          }
-        />
-        <Route
-          path={routes.PRE_ASSIGN_DOCUMENTS.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <AdminLayoutDataFetcher header={wordings.preAssignDocumentsPage.header}>
+              }
+            />
+            <Route
+              path={routes.PRE_ASSIGN_DOCUMENTS.getPath()}
+              element={
                 <WorkingUsersDataFetcher>
                   {({ workingUsers }) => (
                     <PreAssignDocumentsDataFetcher>
@@ -129,15 +115,11 @@ function Router() {
                     </PreAssignDocumentsDataFetcher>
                   )}
                 </WorkingUsersDataFetcher>
-              </AdminLayoutDataFetcher>
-            </AuthenticatedRoute>
-          }
-        />
-        <Route
-          path={routes.TO_BE_CONFIRMED_DOCUMENTS.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <AdminLayoutDataFetcher header={wordings.toBeConfirmedDocumentsPage.header}>
+              }
+            />
+            <Route
+              path={routes.TO_BE_CONFIRMED_DOCUMENTS.getPath()}
+              element={
                 <WorkingUsersDataFetcher>
                   {({ workingUsers }) => (
                     <ToBeConfirmedDocumentsDataFetcher>
@@ -156,29 +138,21 @@ function Router() {
                     </ToBeConfirmedDocumentsDataFetcher>
                   )}
                 </WorkingUsersDataFetcher>
-              </AdminLayoutDataFetcher>
-            </AuthenticatedRoute>
-          }
-        />
-        <Route
-          path={routes.TREATED_DOCUMENTS.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <AdminLayoutDataFetcher header={wordings.treatedDocumentsPage.header}>
+              }
+            />
+            <Route
+              path={routes.TREATED_DOCUMENTS.getPath()}
+              element={
                 <TreatedDocumentsDataFetcher>
                   {({ treatedDocuments, refetch, isLoading }) => (
                     <TreatedDocuments treatedDocuments={treatedDocuments} refetch={refetch} isLoading={isLoading} />
                   )}
                 </TreatedDocumentsDataFetcher>
-              </AdminLayoutDataFetcher>
-            </AuthenticatedRoute>
-          }
-        />
-        <Route
-          path={routes.UNTREATED_DOCUMENT.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <AdminLayoutDataFetcher header={wordings.untreatedDocumentsPage.header}>
+              }
+            />
+            <Route
+              path={routes.UNTREATED_DOCUMENT.getPath()}
+              element={
                 <WorkingUsersDataFetcher>
                   {({ workingUsers }) => (
                     <UntreatedDocumentsDataFetcher>
@@ -193,27 +167,22 @@ function Router() {
                     </UntreatedDocumentsDataFetcher>
                   )}
                 </WorkingUsersDataFetcher>
-              </AdminLayoutDataFetcher>
-            </AuthenticatedRoute>
-          }
-        />
-        <Route path={routes.ANONYMIZED_DOCUMENT.getPath()} element={<AnonymizedDocument />} />
-        <Route
-          path={routes.PUBLISHABLE_DOCUMENTS.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <PublishableDocuments />
-            </AuthenticatedRoute>
-          }
-        />
-        <Route
-          path={routes.ANNOTATION.getPath()}
-          element={
-            <AuthenticatedRoute>
-              <SettingsDataFetcher>{({ settings }) => <Home settings={settings} />}</SettingsDataFetcher>
-            </AuthenticatedRoute>
-          }
-        />
+              }
+            />
+          </Route>
+          <Route
+            path={routes.DOCUMENT.getPath()}
+            element={
+              <SettingsDataFetcher>{({ settings }) => <DocumentInspector settings={settings} />}</SettingsDataFetcher>
+            }
+          />
+          <Route path={routes.ANONYMIZED_DOCUMENT.getPath()} element={<AnonymizedDocument />} />
+          <Route path={routes.PUBLISHABLE_DOCUMENTS.getPath()} element={<PublishableDocuments />} />
+          <Route
+            path={routes.ANNOTATION.getPath()}
+            element={<SettingsDataFetcher>{({ settings }) => <Home settings={settings} />}</SettingsDataFetcher>}
+          />
+        </Route>
         <Route
           path={routes.DEFAULT.getPath()}
           element={

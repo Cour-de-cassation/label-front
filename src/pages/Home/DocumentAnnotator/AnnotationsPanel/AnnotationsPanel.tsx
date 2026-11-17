@@ -1,5 +1,4 @@
 import React from 'react';
-import { settingsModule } from 'src/core';
 import { documentType } from 'src/types/document';
 import { customThemeType, getColor, Icon, Text, useCustomTheme, useDisplayMode } from 'src/pelta-design-system';
 import { heights } from '../../../../theme/layout';
@@ -9,6 +8,8 @@ import { CategoryTable } from './CategoryTable';
 import { EmptyCategory } from './EmptyCategory';
 import { StrickenCategory } from './StrickenCategory';
 import { Checklist } from './Checklist';
+import { additionalAnnotationCategoryHandler } from 'src/utils/settings/additionalAnnotationCategoryHandler';
+import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
 
 export { AnnotationsPanel };
 
@@ -44,7 +45,7 @@ function AnnotationsPanel(props: {
         )}
         {props.annotationPerCategoryAndEntity.map(({ category, categorySize, categoryAnnotations }) => {
           const isCategoryAdditionalAnnotationCategory =
-            category === settingsModule.lib.additionalAnnotationCategoryHandler.getCategoryName();
+            category === additionalAnnotationCategoryHandler.getCategoryName();
 
           return (
             <div key={category} style={styles.categoryContainer}>
@@ -96,7 +97,7 @@ function AnnotationsPanel(props: {
       return (
         <div style={styles.additionalAnnotationTermsContainer}>
           <div style={styles.additionalAnnotationTermsLeftContainer}>
-            <Icon iconName={settingsModule.lib.additionalAnnotationCategoryHandler.getCategoryIconName()} />
+            <Icon iconName={additionalAnnotationCategoryHandler.getCategoryIconName()} />
           </div>
           <div style={styles.additionalAnnotationTermsRightContainer}>
             {(additionalTermsParsingFailed ||
@@ -157,7 +158,7 @@ function AnnotationsPanel(props: {
     return (
       <div style={styles.partiallyPublicContainer}>
         <div style={styles.partiallyPublicLeftContainer}>
-          <Icon iconName={settingsModule.lib.motivationCategoryHandler.getCategoryIconName()} />
+          <Icon iconName={motivationCategoryHandler.getCategoryIconName()} />
         </div>
         <div style={styles.partiallyPublicRightContainer}>
           <Text>{wordings.homePage.motivationOccultation}</Text>
@@ -203,7 +204,7 @@ function AnnotationsPanel(props: {
         flex: 1,
         justifyContent: 'space-between',
         borderRadius: theme.shape.borderRadius.l,
-        backgroundColor: getColor(settingsModule.lib.motivationCategoryHandler.getCategoryColor(displayMode)),
+        backgroundColor: getColor(motivationCategoryHandler.getCategoryColor(displayMode)),
       },
       partiallyPublicLeftContainer: {
         marginRight: theme.spacing * 3,
@@ -220,7 +221,7 @@ function AnnotationsPanel(props: {
         flex: 1,
         justifyContent: 'space-between',
         borderRadius: theme.shape.borderRadius.l,
-        backgroundColor: getColor(settingsModule.lib.additionalAnnotationCategoryHandler.getCategoryColor(displayMode)),
+        backgroundColor: getColor(additionalAnnotationCategoryHandler.getCategoryColor(displayMode)),
       },
       additionalAnnotationTermsLeftContainer: {
         marginRight: theme.spacing * 3,

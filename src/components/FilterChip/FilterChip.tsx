@@ -1,11 +1,11 @@
 import React from 'react';
 import format from 'string-template';
 import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
-import { timeOperator } from 'src/utils/timeOperator';
 import { wordings } from '../../wordings';
 import { filterType } from '../FilterButton';
 import { areSameDay } from './lib';
 import { Chip } from './Chip';
+import { convertTimestampToReadableDate } from 'src/utils/timeOperator';
 
 export { FilterChip };
 
@@ -62,7 +62,7 @@ function FilterChip(props: { filter: filterType }) {
       return (
         chipLabelPrefix +
         format(wordings.shared.intervalDate.endDate, {
-          endDate: timeOperator.convertTimestampToReadableDate(endDate.getTime(), false),
+          endDate: convertTimestampToReadableDate(endDate.getTime(), false),
         })
       );
     }
@@ -70,7 +70,7 @@ function FilterChip(props: { filter: filterType }) {
       return (
         chipLabelPrefix +
         format(wordings.shared.intervalDate.startDate, {
-          startDate: timeOperator.convertTimestampToReadableDate(startDate.getTime(), false),
+          startDate: convertTimestampToReadableDate(startDate.getTime(), false),
         })
       );
     }
@@ -79,15 +79,15 @@ function FilterChip(props: { filter: filterType }) {
         return (
           chipLabelPrefix +
           format(wordings.shared.intervalDate.sameDay, {
-            date: timeOperator.convertTimestampToReadableDate(startDate.getTime(), false),
+            date: convertTimestampToReadableDate(startDate.getTime(), false),
           })
         );
       }
       return (
         chipLabelPrefix +
         format(wordings.shared.intervalDate.both, {
-          startDate: timeOperator.convertTimestampToReadableDate(startDate.getTime(), false),
-          endDate: timeOperator.convertTimestampToReadableDate(endDate.getTime(), false),
+          startDate: convertTimestampToReadableDate(startDate.getTime(), false),
+          endDate: convertTimestampToReadableDate(endDate.getTime(), false),
         })
       );
     }

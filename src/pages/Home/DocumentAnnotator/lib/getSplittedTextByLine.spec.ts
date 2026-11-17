@@ -1,13 +1,13 @@
-import { annotationModule } from 'src/core';
-import { textSplitter } from 'src/utils/textSplitter';
 import { getSplittedTextByLine } from './getSplittedTextByLine';
+import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { buildTextChunk, buildAnnotationChunk } from 'src/utils/textSplitter';
 
 describe('getSplittedTextByLine', () => {
   const annotations = [
     { category: 'firstName', text: 'Benoit', start: 0 },
     { category: 'firstName', text: 'Nicolas', start: 29 },
     { category: 'firstName', text: 'Romain', start: 66 },
-  ].map(annotationModule.generator.generate);
+  ].map(annotationGenerator.generate);
 
   it('should split a text according to the given annotations', () => {
     const text = 'Benoit is software engineer. Nicolas is a software engineer.\r\rAnd Romain is a designer.';
@@ -18,10 +18,10 @@ describe('getSplittedTextByLine', () => {
       {
         line: 1,
         content: [
-          textSplitter.buildAnnotationChunk(annotations[0]),
-          textSplitter.buildTextChunk(' is software engineer. ', 6),
-          textSplitter.buildAnnotationChunk(annotations[1]),
-          textSplitter.buildTextChunk(
+          buildAnnotationChunk(annotations[0]),
+          buildTextChunk(' is software engineer. ', 6),
+          buildAnnotationChunk(annotations[1]),
+          buildTextChunk(
             ' is a software engineer.',
             36,
             [],
@@ -39,12 +39,12 @@ describe('getSplittedTextByLine', () => {
       {
         line: 3,
         content: [
-          textSplitter.buildTextChunk('And ', 62, [
+          buildTextChunk('And ', 62, [
             { text: ' is a software engineer.', index: 36 },
             { text: '', index: 61 },
           ]),
-          textSplitter.buildAnnotationChunk(annotations[2]),
-          textSplitter.buildTextChunk(' is a designer.', 72),
+          buildAnnotationChunk(annotations[2]),
+          buildTextChunk(' is a designer.', 72),
         ],
       },
     ]);

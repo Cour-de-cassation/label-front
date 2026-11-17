@@ -1,15 +1,16 @@
-import { annotationModule, settingsModule } from 'src/core';
 import { getAnnotationTextDisplayStyle } from './getAnnotationTextDisplayStyle';
+import { buildSettings } from 'src/utils/settings/buildSettings';
+import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
 
 describe('getAnnotationTextDisplayStyle', () => {
-  const settings = settingsModule.lib.buildSettings({
+  const settings = buildSettings({
     prenom: { order: 1, text: 'Prénom', status: 'hidden' },
     nom: { order: 2, text: 'Nom', status: 'alwaysVisible' },
     adresse: { order: 3, text: 'Adresse', status: 'annotable' },
   });
 
   it('should return none', () => {
-    const annotation = annotationModule.generator.generate({
+    const annotation = annotationGenerator.generate({
       category: 'prenom',
     });
     const documentViewerMode = {
@@ -26,7 +27,7 @@ describe('getAnnotationTextDisplayStyle', () => {
   });
 
   it('should return underlined', () => {
-    const annotation = annotationModule.generator.generate({ category: 'nom' });
+    const annotation = annotationGenerator.generate({ category: 'nom' });
     const documentViewerMode = {
       kind: 'annotation' as const,
       isAnonymizedView: true,
@@ -41,7 +42,7 @@ describe('getAnnotationTextDisplayStyle', () => {
   });
 
   it('should return outlined', () => {
-    const annotation = annotationModule.generator.generate({
+    const annotation = annotationGenerator.generate({
       category: 'adresse',
     });
     const documentViewerMode = {
@@ -61,7 +62,7 @@ describe('getAnnotationTextDisplayStyle', () => {
   });
 
   it('should return filled', () => {
-    const annotation = annotationModule.generator.generate({
+    const annotation = annotationGenerator.generate({
       category: 'adresse',
     });
     const documentViewerMode = {

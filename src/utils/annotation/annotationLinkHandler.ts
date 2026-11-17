@@ -1,10 +1,10 @@
 import { groupBy, uniqBy } from 'lodash';
-import { annotationModule } from 'src/core/modules/annotation';
 import { annotationType } from 'src/types/annotation';
+import { annotationLinker } from 'src/utils/annotation/annotationLinker';
+import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
+import { comparator } from 'src/utils/annotation/comparator';
 
-export { annotationLinkHandler };
-
-const annotationLinkHandler = {
+export const annotationLinkHandler = {
   countLinkedEntities,
   getLinkableAnnotations,
   getLinkedAnnotations,
@@ -30,7 +30,7 @@ function countLinkedEntities(annotations: annotationType[]) {
     linkedEntities = linkedEntities + linkedRepresentatives.length;
     representatives = representatives.filter((someRepresentative) =>
       linkedRepresentatives.every(
-        (linkedRepresentative) => !annotationModule.lib.comparator.equal(someRepresentative, linkedRepresentative),
+        (linkedRepresentative) => !comparator.equal(someRepresentative, linkedRepresentative),
       ),
     );
   }
@@ -69,8 +69,8 @@ function getLinkedAnnotationRepresentatives(
 
 function getRepresentatives(annotations: annotationType[]) {
   return uniqBy(annotations, (otherAnnotation) =>
-    annotationModule.lib.entityIdHandler.compute(otherAnnotation.category, otherAnnotation.text),
-  ).sort(annotationModule.lib.comparator.compareByText);
+    entityIdHandler.compute(otherAnnotation.category, otherAnnotation.text),
+  ).sort(comparator.compareByText);
 }
 
 function isLinked(annotation: annotationType, annotations: annotationType[]): boolean {
@@ -90,16 +90,14 @@ function link(
 ): annotationType[] {
   return annotations.map((annotation) =>
     annotation.entityId === annotationSource.entityId
-      ? annotationModule.lib.annotationLinker.link(annotation, annotationTarget)
+      ? annotationLinker.link(annotation, annotationTarget)
       : annotation,
   );
 }
 
 function unlink(annotationToUnlink: annotationType, annotations: annotationType[]): annotationType[] {
   return annotations.map((annotation) =>
-    annotation.entityId === annotationToUnlink.entityId
-      ? annotationModule.lib.annotationLinker.unlink(annotation)
-      : annotation,
+    annotation.entityId === annotationToUnlink.entityId ? annotationLinker.unlink(annotation) : annotation,
   );
 }
 
@@ -116,7 +114,7 @@ function unlinkByCategoryAndText(annotation: annotationType, annotations: annota
 
   return annotationsWithUpdatedLink.map((otherAnnotation) =>
     otherAnnotation.category === annotation.category && otherAnnotation.text === annotation.text
-      ? annotationModule.lib.annotationLinker.unlink(otherAnnotation)
+      ? annotationLinker.unlink(otherAnnotation)
       : otherAnnotation,
   );
 }
@@ -126,7 +124,7 @@ function updateMainLinkEntity(annotation: annotationType, annotations: annotatio
     otherAnnotation.entityId === annotation.entityId
       ? {
           ...otherAnnotation,
-          entityId: annotationModule.lib.entityIdHandler.compute(annotation.category, annotation.text),
+          entityId: entityIdHandler.compute(annotation.category, annotation.text),
         }
       : otherAnnotation,
   );

@@ -5,11 +5,9 @@ import { FORBIDDEN_CHARACTERS } from 'src/services/anonymizer/buildAnonymizer/bu
 import { convertTextIntoCharCode } from 'src/services/anonymizer/buildAnonymizer/convertTextIntoCharCode';
 import { shuffleCharacterLists } from 'src/services/anonymizer/buildAnonymizer/shuffleCharacterLists';
 
-export { buildAvailableCharactersMapper };
-
 const DEFAULT_MAX_DISTINCT_REPLACEMENT_CHARACTERS = 26 - FORBIDDEN_CHARACTERS.length;
 
-function buildAvailableCharactersMapper(annotations: annotationType[], seed: number) {
+export function buildAvailableCharactersMapper(annotations: annotationType[], seed: number) {
   const entityIdsByCategoryCount = countBy(annotations, 'category');
   return Object.keys(entityIdsByCategoryCount).reduce(
     (accumulator, category) => {

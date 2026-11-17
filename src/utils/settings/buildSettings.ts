@@ -10,15 +10,11 @@ import {
   shadeColorType,
 } from 'src/types/settings';
 
-export { buildSettings };
-
-export type { partialSettingsType };
-
-type partialSettingsType = {
+export type partialSettingsType = {
   [category: string]: Partial<categorySettingType>;
 };
 
-function buildSettings(partialSettings: partialSettingsType = {}) {
+export function buildSettings(partialSettings: partialSettingsType = {}) {
   const settings: settingsType = {};
 
   Object.keys(partialSettings).forEach(

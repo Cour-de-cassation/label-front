@@ -1,4 +1,4 @@
-import { annotationGenerator } from 'src/core/modules/annotation/generator';
+import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
 import { areOverlapping } from 'src/utils/annotation/areOverlapping';
 
 describe('areOverlapping', () => {

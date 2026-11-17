@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import format from 'string-template';
 import { optionItemType, Table, tableRowFieldType } from 'src/pelta-design-system';
-import { documentModule } from 'src/core';
-import { timeOperator } from 'src/utils/timeOperator';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { apiCaller } from 'src/api';
 import { DocumentStatusIcon, ProblemReportIcon } from 'src/components';
@@ -15,6 +13,8 @@ import { wordings } from 'src/wordings';
 import { routes } from '../../../../router/routes';
 import { useCtxUser } from 'src/contexts/user.context';
 import { annotationDiffDocumentInfoType, AnnotationsDiffDrawer } from '../../TreatedDocuments/AnnotationsDiffDrawer';
+import { getNextStatus } from 'src/utils/document/getNextStatus';
+import { convertTimestampToReadableDate } from 'src/utils/timeOperator';
 
 export { ProblemReportsTable };
 
@@ -128,7 +128,7 @@ function ProblemReportsTable(props: {
         title: wordings.business.filters.columnTitles.problemReportDate,
         canBeSorted: true,
         extractor: (problemReportWithDetails) =>
-          timeOperator.convertTimestampToReadableDate(problemReportWithDetails.problemReport.date, true),
+          convertTimestampToReadableDate(problemReportWithDetails.problemReport.date, true),
         getSortingValue: (problemReportWithDetails) => problemReportWithDetails.problemReport.date,
         width: 4,
       },
@@ -153,7 +153,7 @@ function ProblemReportsTable(props: {
         try {
           await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
             documentId: problemReportWithDetails.problemReport.documentId,
-            status: documentModule.lib.getNextStatus({
+            status: getNextStatus({
               status: problemReportWithDetails.document?.status ?? 'locked',
               route: problemReportWithDetails.document?.route ?? 'default',
             }),
@@ -249,7 +249,7 @@ function ProblemReportsTable(props: {
         try {
           await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
             documentId: problemReportWithDetails.problemReport.documentId,
-            status: documentModule.lib.getNextStatus({
+            status: getNextStatus({
               status: 'pending',
               route: problemReportWithDetails.document?.route ?? 'default',
             }),

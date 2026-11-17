@@ -1,4 +1,4 @@
-import { annotationGenerator } from 'src/core/modules/annotation/generator';
+import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
 import { comparator } from 'src/utils/annotation/comparator';
 
 describe('comparator', () => {

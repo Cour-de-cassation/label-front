@@ -1,5 +1,4 @@
 import React from 'react';
-import { documentModule } from 'src/core';
 import { annotationsDiffType } from 'src/types/annotationsDiff';
 import { annotationType } from 'src/types/annotation';
 import { assignationType } from 'src/types/assignation';
@@ -17,6 +16,7 @@ import {
 import { useAlert } from '../../services/alert';
 import { wordings } from '../../wordings';
 import { DocumentAnnotator } from './DocumentAnnotator';
+import { publicationHandler } from 'src/utils/document/publicationHandler';
 
 export { HomeDocumentAnnotator };
 
@@ -32,7 +32,7 @@ function HomeDocumentAnnotator(props: {
   const theme = useCustomTheme();
 
   const styles = buildStyles(theme);
-  const mustBePublished = documentModule.lib.publicationHandler.mustBePublished(props.document.publicationCategory);
+  const mustBePublished = publicationHandler.mustBePublished(props.document.publicationCategory);
   const hasParticularInterest = props.document.decisionMetadata.raisonInteretParticulier != null;
   const subtitle =
     mustBePublished || hasParticularInterest ? (

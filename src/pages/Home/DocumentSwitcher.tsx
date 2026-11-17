@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { documentModule, settingsModule } from 'src/core';
 import { annotationType } from 'src/types/annotation';
 import { assignationType } from 'src/types/assignation';
 import { documentType } from 'src/types/document';
@@ -9,6 +8,8 @@ import { buildAnnotationsCommitter } from '../../services/annotatorState';
 import { heights } from '../../theme/layout';
 import { DocumentSelector } from './DocumentSelector';
 import { HomeDocumentAnnotator } from './HomeDocumentAnnotator';
+import { computeFilteredSettings } from 'src/utils/settings/computeFilteredSettings';
+import { getNextStatus } from 'src/utils/document/getNextStatus';
 
 export { DocumentSwitcher };
 
@@ -40,7 +41,7 @@ function DocumentSwitcher(props: {
   function renderPage() {
     switch (documentState.kind) {
       case 'annotating':
-        const settingsForDocument = settingsModule.lib.computeFilteredSettings(
+        const settingsForDocument = computeFilteredSettings(
           props.settings,
           documentState.choice.document.decisionMetadata.categoriesToOmit,
           documentState.choice.document.decisionMetadata.additionalTermsToAnnotate,
@@ -104,7 +105,7 @@ function DocumentSwitcher(props: {
           assignationId: choice.assignationId,
         });
 
-        const nextStatus = documentModule.lib.getNextStatus({
+        const nextStatus = getNextStatus({
           status: documentStatus,
           route: choice.document.route,
         });

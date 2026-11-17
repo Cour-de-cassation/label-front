@@ -1,8 +1,6 @@
 import { annotationType } from 'src/types/annotation';
 
-export { sortAnnotations };
-
-function sortAnnotations(annotations: annotationType[]) {
+export function sortAnnotations(annotations: annotationType[]) {
   return [...annotations].sort(
     (annotation1, annotation2) =>
       annotation1.start - annotation2.start ||

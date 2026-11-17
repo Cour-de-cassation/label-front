@@ -3,13 +3,7 @@ import { annotationType } from 'src/types/annotation';
 import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { stringComparator } from 'src/utils/annotation/stringComparator';
 
-export { autoLinker };
-
-const autoLinker = {
-  autoLink,
-};
-
-function autoLink(
+export function autoLink(
   annotationsToLink: annotationType[],
   annotations: annotationType[],
   settings: settingsType,

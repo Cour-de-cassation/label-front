@@ -1,7 +1,6 @@
 import { colorType, displayModeType } from 'src/types/settings';
 
-export { motivationCategoryHandler };
-const motivationCategoryHandler = buildMotivationCategoryHandler();
+export const motivationCategoryHandler = buildMotivationCategoryHandler();
 
 function buildMotivationCategoryHandler() {
   const MOTIVATION_CATEGORY_NAME = 'motivations';

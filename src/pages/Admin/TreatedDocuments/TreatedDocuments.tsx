@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { flatten, uniq } from 'lodash';
 import { customThemeType, useCustomTheme, tableRowFieldType } from 'src/pelta-design-system';
 import { keysOf } from 'src/utils/keysOf';
-import { timeOperator } from 'src/utils/timeOperator';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { documentType } from 'src/types/document';
 import { userType } from 'src/types/user';
@@ -20,6 +19,7 @@ import {
 import { heights, widths } from '../../../theme/layout';
 import { wordings } from '../../../wordings';
 import { TreatedDocumentsTable } from './TreatedDocumentsTable';
+import { convertDurationToReadableDuration, convertTimestampToReadableDate } from 'src/utils/timeOperator';
 
 export { TreatedDocuments };
 
@@ -340,7 +340,7 @@ function TreatedDocuments(props: {
         canBeSorted: true,
         extractor: (treatedDocument) =>
           treatedDocument.lastTreatmentDate !== undefined
-            ? timeOperator.convertTimestampToReadableDate(treatedDocument.lastTreatmentDate, true)
+            ? convertTimestampToReadableDate(treatedDocument.lastTreatmentDate, true)
             : '-',
         getSortingValue: (treatedDocument) => treatedDocument.lastTreatmentDate || 0,
         width: 3,
@@ -352,7 +352,7 @@ function TreatedDocuments(props: {
         canBeSorted: true,
         extractor: (treatedDocument) =>
           !!treatedDocument.document.creationDate
-            ? timeOperator.convertTimestampToReadableDate(treatedDocument.document.creationDate)
+            ? convertTimestampToReadableDate(treatedDocument.document.creationDate)
             : '-',
         getSortingValue: (treatedDocument) => treatedDocument.document.creationDate || 0,
         width: 2,
@@ -397,7 +397,7 @@ function TreatedDocuments(props: {
         tooltipText: wordings.business.filters.columnTitles.duration.tooltipText,
         extractor: (treatedDocument) =>
           treatedDocument.totalTreatmentDuration !== undefined
-            ? timeOperator.convertDurationToReadableDuration(treatedDocument.totalTreatmentDuration)
+            ? convertDurationToReadableDuration(treatedDocument.totalTreatmentDuration)
             : '-',
         getSortingValue: (treatedDocument) => treatedDocument.totalTreatmentDuration || 0,
         width: 1,

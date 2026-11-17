@@ -10,7 +10,6 @@ import {
   Text,
 } from 'src/pelta-design-system';
 import { CategoryTableEntryBracketLink } from './CategoryTableEntryBracketLink';
-import { settingsModule } from 'src/core';
 import { displayModeType } from 'src/types/settings';
 import { annotationType } from 'src/types/annotation';
 import { annotatorStateHandlerType, useAnnotatorStateHandler } from '../../../../../services/annotatorState';
@@ -18,6 +17,7 @@ import { useViewerScrollerHandler } from '../../../../../services/viewerScroller
 import { splittedTextByLineType } from '../../lib';
 import { entityEntryHandlerType, useEntityEntryHandler } from '../useEntityEntryHandler';
 import { CategoryTableEntryActionButtons } from './CategoryTableEntryActionButtons';
+import { getAnnotationCategoryColor } from 'src/utils/settings/getAnnotationCategoryColor';
 
 export { CategoryTableEntry };
 
@@ -102,9 +102,7 @@ function CategoryTableEntry(props: {
     if (entityEntryHandler.isSelected(props.entityId)) {
       return theme.colors.line.level1;
     } else {
-      return getColor(
-        settingsModule.lib.getAnnotationCategoryColor(category, annotatorStateHandler.get().settings, displayMode),
-      );
+      return getColor(getAnnotationCategoryColor(category, annotatorStateHandler.get().settings, displayMode));
     }
   }
 
@@ -251,7 +249,7 @@ function buildStyledComponents() {
     theme: customThemeType;
   }) {
     if (props.entityEntryHandler.isSelected(props.entityId)) {
-      const shadeColor = settingsModule.lib.getAnnotationCategoryColor(
+      const shadeColor = getAnnotationCategoryColor(
         props.category,
         props.annotatorStateHandler.get().settings,
         props.displayMode,

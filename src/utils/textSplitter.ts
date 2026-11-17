@@ -1,32 +1,21 @@
 import { annotationType } from 'src/types/annotation';
 
-export { textSplitter };
-
-export type { annotationChunkType, textChunkType, textChunkContentType };
-
-const textSplitter = {
-  splitTextAccordingToAnnotations,
-  buildTextChunk,
-  buildAnnotationChunk,
-  removeEmptyTextChunks,
-};
-
-type annotationChunkType = {
+export type annotationChunkType = {
   type: 'annotation';
   index: number;
   annotation: annotationType;
 };
 
-type textChunkType = {
+export type textChunkType = {
   type: 'text';
   content: textChunkContentType;
   before: textChunkContentType[];
   after: textChunkContentType[];
 };
 
-type textChunkContentType = { index: number; text: string };
+export type textChunkContentType = { index: number; text: string };
 
-function splitTextAccordingToAnnotations(
+export function splitTextAccordingToAnnotations(
   text: string,
   annotations: annotationType[],
 ): Array<annotationChunkType | textChunkType> {
@@ -45,7 +34,7 @@ function splitTextAccordingToAnnotations(
   return removeEmptyTextChunks(splittedText);
 }
 
-function buildTextChunk(
+export function buildTextChunk(
   text: string,
   index: number,
   before?: textChunkContentType[],
@@ -62,7 +51,7 @@ function buildTextChunk(
   } as const;
 }
 
-function buildAnnotationChunk(annotation: annotationType): annotationChunkType {
+export function buildAnnotationChunk(annotation: annotationType): annotationChunkType {
   return {
     type: 'annotation',
     index: annotation.start,
@@ -70,7 +59,7 @@ function buildAnnotationChunk(annotation: annotationType): annotationChunkType {
   } as const;
 }
 
-function removeEmptyTextChunks(
+export function removeEmptyTextChunks(
   chunks: Array<textChunkType | annotationChunkType>,
 ): Array<textChunkType | annotationChunkType> {
   return chunks.filter((chunk) => chunk.type !== 'text' || chunk.content.text !== '');

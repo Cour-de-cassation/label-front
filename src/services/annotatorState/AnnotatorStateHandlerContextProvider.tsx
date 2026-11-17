@@ -1,19 +1,17 @@
 import React, { createContext, ReactElement, ReactNode, useState } from 'react';
-import { documentModule } from 'src/core';
 import { annotationsCommitterType } from './buildAnnotationsCommitter';
 import { annotatorStateType } from './annotatorStateType';
 import { annotatorStateHandlerType, buildAnnotatorStateHandler } from './buildAnnotatorStateHandler';
 import { autoSaverType } from './buildAutoSaver';
+import { documentGenerator } from 'src/core/modules/document/generator/documentGenerator';
 
-export { AnnotatorStateHandlerContext, AnnotatorStateHandlerContextProvider };
-
-const AnnotatorStateHandlerContext = createContext<annotatorStateHandlerType>({
+export const AnnotatorStateHandlerContext = createContext<annotatorStateHandlerType>({
   canRestore: () => false,
   canRevert: () => false,
   get: () => ({
     annotations: [],
     settings: {},
-    document: documentModule.generator.generate(),
+    document: documentGenerator.generate(),
   }),
   getChecksum: () => '',
   reinitialize: () => null,
@@ -22,7 +20,7 @@ const AnnotatorStateHandlerContext = createContext<annotatorStateHandlerType>({
   set: () => null,
 });
 
-function AnnotatorStateHandlerContextProvider(props: {
+export function AnnotatorStateHandlerContextProvider(props: {
   autoSaver: autoSaverType;
   children: ReactNode;
   committer: annotationsCommitterType;

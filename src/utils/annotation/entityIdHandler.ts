@@ -2,9 +2,7 @@ import { annotationType } from 'src/types/annotation';
 import { normalizeString } from 'src/utils/annotation/normalizeString';
 import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
 
-export { entityIdHandler };
-
-const entityIdHandler = {
+export const entityIdHandler = {
   compute,
   syncEntityIdWithCategory,
 };

@@ -1,14 +1,8 @@
 import { annotationType } from 'src/types/annotation';
-import { annotationOverlapDetector } from 'src/utils/annotation/annotationOverlapDetector';
 import { stringComparator } from 'src/utils/annotation/stringComparator';
+import { isAnnotationTextOverlappedWithAnyAnnotations } from 'src/utils/annotation/annotationOverlapDetector';
 
-export { annotationTextDetector };
-
-const annotationTextDetector = {
-  detectAnnotationTextsAndIndices,
-};
-
-function detectAnnotationTextsAndIndices({
+export function detectAnnotationTextsAndIndices({
   documentText,
   annotationText,
   annotations,
@@ -24,11 +18,7 @@ function detectAnnotationTextsAndIndices({
     currentIndex = annotationDetection.index;
     if (
       currentIndex !== -1 &&
-      !annotationOverlapDetector.isAnnotationTextOverlappedWithAnyAnnotations(
-        annotations,
-        currentIndex,
-        annotationDetection.text,
-      ) &&
+      !isAnnotationTextOverlappedWithAnyAnnotations(annotations, currentIndex, annotationDetection.text) &&
       !isAnnotationTextInsideLargerWord(documentText, annotationText, currentIndex)
     ) {
       textsAndIndices.push({

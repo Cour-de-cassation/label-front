@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { settingsModule } from 'src/core';
 import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { annotationType } from 'src/types/annotation';
 import { customThemeType, useCustomTheme, Header, Text } from 'src/pelta-design-system';
@@ -8,6 +7,7 @@ import { clientAnonymizerType } from 'src/types/anonymizer';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
 import { DocumentAnonymizedAnnotationText } from '../DocumentAnonymizedAnnotationText';
+import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
 
 export { PureAnnotationTooltipMenuHeader as AnnotationTooltipMenuHeader };
 
@@ -53,10 +53,7 @@ function AnnotationTooltipMenuHeader(props: propsType): ReactElement {
             settings={annotatorState.settings}
           />,
           <Text key="categoryText" inline>
-            {settingsModule.lib.getAnnotationCategoryText(
-              props.annotation.category,
-              annotatorStateHandler.get().settings,
-            )}
+            {getAnnotationCategoryText(props.annotation.category, annotatorStateHandler.get().settings)}
           </Text>,
         ]}
         rightHeaderComponents={[

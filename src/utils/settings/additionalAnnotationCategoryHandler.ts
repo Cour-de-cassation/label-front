@@ -1,7 +1,6 @@
 import { colorType, displayModeType } from 'src/types/settings';
 
-export { additionalAnnotationCategoryHandler };
-const additionalAnnotationCategoryHandler = buildAdditionalAnnotationCategoryHandler();
+export const additionalAnnotationCategoryHandler = buildAdditionalAnnotationCategoryHandler();
 
 function buildAdditionalAnnotationCategoryHandler() {
   const ADDITIONAL_ANNOTATION_CATEGORY_NAME = 'annotationSupplementaire';

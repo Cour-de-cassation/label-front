@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import format from 'string-template';
-import { settingsModule } from 'src/core';
 import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { annotationType } from 'src/types/annotation';
@@ -8,6 +7,7 @@ import { IconButton, IconDropdown } from 'src/pelta-design-system';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
 import { useAlert } from '../../../../../services/alert';
+import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
 
 export { DeleteAnnotationDropdown };
 
@@ -87,7 +87,7 @@ function DeleteAnnotationDropdown(props: {
 
     props.onClose();
 
-    if (props.annotation.category === settingsModule.lib.motivationCategoryHandler.getCategoryName()) {
+    if (props.annotation.category === motivationCategoryHandler.getCategoryName()) {
       displayAlert({
         text: wordings.business.errors.deleteMotivationOccultationAlert,
         variant: 'info',

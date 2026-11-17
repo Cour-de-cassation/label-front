@@ -1,8 +1,6 @@
 import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
 
-export { buildAnnotation };
-
-function buildAnnotation({
+export function buildAnnotation({
   category,
   start,
   text,

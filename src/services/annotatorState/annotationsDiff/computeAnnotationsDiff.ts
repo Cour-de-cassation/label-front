@@ -1,20 +1,17 @@
-import { annotationModule } from 'src/core/modules/annotation';
 import { annotationType } from 'src/types/annotation';
+import { sortAnnotations } from 'src/utils/annotation/sortAnnotations';
+import { comparator } from 'src/utils/annotation/comparator';
 
-export { computeAnnotationsDiff };
-
-function computeAnnotationsDiff(previousAnnotations: annotationType[], nextAnnotations: annotationType[]) {
+export function computeAnnotationsDiff(previousAnnotations: annotationType[], nextAnnotations: annotationType[]) {
   return {
-    before: annotationModule.lib.sortAnnotations(
+    before: sortAnnotations(
       previousAnnotations.filter(
-        (previousAnnotation) =>
-          !nextAnnotations.some((annotation) => annotationModule.lib.comparator.equal(annotation, previousAnnotation)),
+        (previousAnnotation) => !nextAnnotations.some((annotation) => comparator.equal(annotation, previousAnnotation)),
       ),
     ),
-    after: annotationModule.lib.sortAnnotations(
+    after: sortAnnotations(
       nextAnnotations.filter(
-        (nextAnnotation) =>
-          !previousAnnotations.some((annotation) => annotationModule.lib.comparator.equal(annotation, nextAnnotation)),
+        (nextAnnotation) => !previousAnnotations.some((annotation) => comparator.equal(annotation, nextAnnotation)),
       ),
     ),
   };

@@ -1,8 +1,6 @@
 import { documentType } from 'src/types/document';
 
-export { getNextStatus };
-
-function getNextStatus({
+export function getNextStatus({
   status,
   route,
 }: {

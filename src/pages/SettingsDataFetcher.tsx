@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import { settingsModule } from 'src/core';
 import { settingsType } from 'src/types/settings';
 import { apiCaller, useApi } from '../api';
 import { DataFetcher } from './DataFetcher';
+import { parseFromJson } from 'src/utils/settings/parseFromJson';
 
 export { SettingsDataFetcher };
 
@@ -20,6 +20,6 @@ function SettingsDataFetcher(props: { children: (fetched: { settings: settingsTy
 function buildFetchSettings() {
   return async () => {
     const { data, statusCode } = await apiCaller.get<'settings'>('settings');
-    return { data: settingsModule.lib.parseFromJson(data.json) as settingsType, statusCode };
+    return { data: parseFromJson(data.json) as settingsType, statusCode };
   };
 }

@@ -1,10 +1,12 @@
-import { annotationModule } from 'src/core/modules/annotation';
-import { documentModule } from 'src/core/modules/document';
-import { settingsModule } from 'src/core/modules/settings';
 import { buildAnonymizer } from 'src/services/anonymizer/buildAnonymizer/buildAnonymizer';
+import { annotationLinker } from 'src/utils/annotation/annotationLinker';
+import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
+import { buildSettings } from 'src/utils/settings/buildSettings';
+import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { documentGenerator } from 'src/core/modules/document/generator/documentGenerator';
 
 describe('buildAnonymizer', () => {
-  const settings = settingsModule.lib.buildSettings({
+  const settings = buildSettings({
     firstName: { anonymization: '[FIRST_NAME %d]', status: 'annotable' },
     lastName: { anonymization: '[LAST_NAME %d]', status: 'annotable' },
     adresse: { anonymization: '[ADRESSE %d]', status: 'alwaysVisible' },
@@ -47,13 +49,13 @@ describe('buildAnonymizer', () => {
       source: 'agent',
     },
     { category: 'lastName', text: 'Glé', start: 84, score: 1, source: 'agent' },
-  ].map(annotationModule.lib.buildAnnotation);
+  ].map(buildAnnotation);
   const seed = 123;
   const text = 'Benoit Serrano is software engineer. Nicolas Assouad is a software engineer. Romain Glé is a designer.';
 
   describe('anonymizeDocument', () => {
     it('should anonymize a document', () => {
-      const document = documentModule.generator.generate({
+      const document = documentGenerator.generate({
         text,
       });
 
@@ -70,13 +72,13 @@ describe('buildAnonymizer', () => {
         'Benoit Serrano is software engineer. Nicolas Assouad is a software engineer. Romain Glé is a designer.';
       const text2 =
         'There are many people who work on this project, namely Nicolas Assouad, Benoit Serrano, not to mention Romain Glé, who works with Benoit and Nicolas.';
-      const document1 = documentModule.generator.generate({
+      const document1 = documentGenerator.generate({
         text: text1,
       });
-      const document2 = documentModule.generator.generate({
+      const document2 = documentGenerator.generate({
         text: text2,
       });
-      const settings = settingsModule.lib.buildSettings({
+      const settings = buildSettings({
         firstName: { anonymization: '[FIRST_NAME %c]' },
         lastName: { anonymization: '[LAST_NAME %c]' },
       });
@@ -123,7 +125,7 @@ describe('buildAnonymizer', () => {
           score: 1,
           source: 'agent',
         },
-      ].map(annotationModule.lib.buildAnnotation);
+      ].map(buildAnnotation);
       const annotations2 = [
         {
           category: 'firstName',
@@ -181,9 +183,9 @@ describe('buildAnonymizer', () => {
           score: 1,
           source: 'agent',
         },
-      ].map(annotationModule.lib.buildAnnotation);
-      annotations2[6] = annotationModule.lib.annotationLinker.link(annotations2[6], annotations2[2]);
-      annotations2[7] = annotationModule.lib.annotationLinker.link(annotations2[7], annotations2[0]);
+      ].map(buildAnnotation);
+      annotations2[6] = annotationLinker.link(annotations2[6], annotations2[2]);
+      annotations2[7] = annotationLinker.link(annotations2[7], annotations2[0]);
       const anonymizer1 = buildAnonymizer(settings, annotations1, seed);
       const anonymizer2 = buildAnonymizer(settings, annotations2, seed);
 
@@ -213,7 +215,7 @@ describe('buildAnonymizer', () => {
       expect(anonymizedTexts[1]).toEqual('[LAST_NAME 6]');
     });
     it('should conserve the same anonymisation every time it is called', () => {
-      const settings = settingsModule.lib.buildSettings({
+      const settings = buildSettings({
         firstName: { anonymization: '[FIRST_NAME %c]' },
       });
       const annotations = [
@@ -238,7 +240,7 @@ describe('buildAnonymizer', () => {
           score: 1,
           source: 'agent',
         },
-      ].map(annotationModule.lib.buildAnnotation);
+      ].map(buildAnnotation);
 
       let anonymizer = buildAnonymizer(settings, annotations, seed);
       const anonymizedTextsFirstTime = annotations.map(anonymizer.anonymize);
@@ -256,7 +258,7 @@ describe('buildAnonymizer', () => {
       expect(anonymizedTexts[2]).toEqual('[FIRST_NAME 4]');
     });
     it('should anonymize a text with a default string if the category is not in the settings', () => {
-      const annotation = annotationModule.generator.generate({
+      const annotation = annotationGenerator.generate({
         category: 'age',
         text: '25',
       });
@@ -266,12 +268,12 @@ describe('buildAnonymizer', () => {
       expect(anonymizedText).toEqual('XXX');
     });
     it('should not anonymize a text if the category is set to not anonymized in the setting', () => {
-      const annotation = annotationModule.generator.generate({
+      const annotation = annotationGenerator.generate({
         category: 'professional',
         text: 'Leon',
       });
       const anonymizerWithNoAnomization = buildAnonymizer(
-        settingsModule.lib.buildSettings({
+        buildSettings({
           professional: { isAnonymized: false },
         }),
         [annotation],

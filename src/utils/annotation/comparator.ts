@@ -1,8 +1,6 @@
 import { annotationType } from 'src/types/annotation';
 
-export { comparator };
-
-const comparator = {
+export const comparator = {
   equal(annotation1: annotationType, annotation2: annotationType) {
     return (
       annotation1.text === annotation2.text &&

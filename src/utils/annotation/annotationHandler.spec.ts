@@ -1,10 +1,13 @@
-import { settingsModule } from 'src/core/modules/settings';
-import { annotationModule } from 'src/core/modules/annotation';
 import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { annotationHandler } from 'src/utils/annotation/annotationHandler';
+import { annotationLinker } from 'src/utils/annotation/annotationLinker';
+import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
+import { sortAnnotations } from 'src/utils/annotation/sortAnnotations';
+import { buildSettings } from 'src/utils/settings/buildSettings';
+import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
 
 describe('annotationHandler', () => {
-  const settings = settingsModule.lib.buildSettings({
+  const settings = buildSettings({
     CATEGORY: {},
     ANOTHER_CATEGORY: {},
     CATEGORY2: {},
@@ -28,7 +31,7 @@ describe('annotationHandler', () => {
           category,
           start: 34,
           score: 1,
-          entityId: annotationModule.lib.entityIdHandler.compute(category, annotationText),
+          entityId: entityIdHandler.compute(category, annotationText),
           text: annotationText,
           source: 'agent',
         },
@@ -36,7 +39,7 @@ describe('annotationHandler', () => {
           category,
           score: 1,
           start: 66,
-          entityId: annotationModule.lib.entityIdHandler.compute(category, annotationText),
+          entityId: entityIdHandler.compute(category, annotationText),
           text: annotationText,
           source: 'agent',
         },
@@ -63,15 +66,15 @@ describe('annotationHandler', () => {
 
   describe('deleteByTextAndCategory', () => {
     it('should delete an annotation according to its text and category', () => {
-      const annotation1 = annotationModule.generator.generate({
+      const annotation1 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'FIRST_TEXT',
       });
-      const annotation2 = annotationModule.generator.generate({
+      const annotation2 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'SECOND_TEXT',
       });
-      const annotation3 = annotationModule.generator.generate({
+      const annotation3 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'THIRD_TEXT',
       });
@@ -84,15 +87,15 @@ describe('annotationHandler', () => {
     });
 
     it('should not conserve a link of a deleted annotation', () => {
-      const annotation1 = annotationModule.generator.generate({
+      const annotation1 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'FIRST_TEXT',
       });
-      const annotation2 = annotationModule.generator.generate({
+      const annotation2 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'SECOND_TEXT',
       });
-      const annotation1Linked = annotationModule.lib.annotationLinker.link(annotation1, annotation2);
+      const annotation1Linked = annotationLinker.link(annotation1, annotation2);
       const annotations = [annotation1Linked, annotation2];
 
       const newAnnotations = annotationHandler.create(
@@ -101,26 +104,24 @@ describe('annotationHandler', () => {
         settings,
       );
 
-      expect(annotationModule.lib.sortAnnotations(newAnnotations)).toEqual(
-        annotationModule.lib.sortAnnotations([annotation1, annotation2]),
-      );
+      expect(sortAnnotations(newAnnotations)).toEqual(sortAnnotations([annotation1, annotation2]));
     });
 
     it('should conserve a link even when the naming entity is deleted', () => {
-      const annotation1 = annotationModule.generator.generate({
+      const annotation1 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'FIRST_TEXT',
       });
-      const annotation2 = annotationModule.generator.generate({
+      const annotation2 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'SECOND_TEXT',
       });
-      const annotation3 = annotationModule.generator.generate({
+      const annotation3 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'THIRD_TEXT',
       });
-      const annotation1Linked = annotationModule.lib.annotationLinker.link(annotation1, annotation3);
-      const annotation2Linked = annotationModule.lib.annotationLinker.link(annotation2, annotation3);
+      const annotation1Linked = annotationLinker.link(annotation1, annotation3);
+      const annotation2Linked = annotationLinker.link(annotation2, annotation3);
       const annotations = [annotation1Linked, annotation2Linked, annotation3];
 
       const newAnnotations = annotationHandler.deleteByTextAndCategory(annotations, annotation3);
@@ -132,11 +133,11 @@ describe('annotationHandler', () => {
 
   describe('deleteByTextAndStart', () => {
     it('should delete an annotation according to its text and start position', () => {
-      const annotation1 = annotationModule.generator.generate({
+      const annotation1 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'FIRST_TEXT',
       });
-      const annotation2 = annotationModule.generator.generate({
+      const annotation2 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'SECOND_TEXT',
       });
@@ -148,15 +149,15 @@ describe('annotationHandler', () => {
     });
 
     it('should not conserve a link of a deleted annotation', () => {
-      const annotation1 = annotationModule.generator.generate({
+      const annotation1 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'FIRST_TEXT',
       });
-      const annotation2 = annotationModule.generator.generate({
+      const annotation2 = annotationGenerator.generate({
         category: 'CATEGORY',
         text: 'SECOND_TEXT',
       });
-      const annotation1Linked = annotationModule.lib.annotationLinker.link(annotation1, annotation2);
+      const annotation1Linked = annotationLinker.link(annotation1, annotation2);
       const annotations = [annotation1Linked, annotation2];
 
       const newAnnotations = annotationHandler.create(
@@ -165,9 +166,7 @@ describe('annotationHandler', () => {
         settings,
       );
 
-      expect(annotationModule.lib.sortAnnotations(newAnnotations)).toEqual(
-        annotationModule.lib.sortAnnotations([annotation1, annotation2]),
-      );
+      expect(sortAnnotations(newAnnotations)).toEqual(sortAnnotations([annotation1, annotation2]));
     });
   });
 
@@ -214,5 +213,5 @@ describe('annotationHandler', () => {
 });
 
 function generateFetchedAnnotation(fields: { start?: number; category?: string; text?: string; source?: string }) {
-  return annotationModule.generator.generate(fields);
+  return annotationGenerator.generate(fields);
 }

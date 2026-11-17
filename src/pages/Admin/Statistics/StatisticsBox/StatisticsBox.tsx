@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { timeOperator } from 'src/utils/timeOperator';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
 import { ComputationToggle, computationType } from './ComputationToggle';
+import { convertDurationToReadableDuration } from 'src/utils/timeOperator';
 
 export { StatisticsBox };
 
@@ -72,9 +72,7 @@ function StatisticsBox(props: {
   }
 
   function getReadableDuration() {
-    return timeOperator.convertDurationToReadableDuration(
-      getComputationDuration(props.aggregatedStatistic.treatmentDuration),
-    );
+    return convertDurationToReadableDuration(getComputationDuration(props.aggregatedStatistic.treatmentDuration));
   }
 
   function getComputationDuration(total: number) {

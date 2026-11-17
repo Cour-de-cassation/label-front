@@ -1,12 +1,10 @@
 import { documentType } from 'src/types/document';
 
-export { publicationHandler };
-
 const PUBLISHED_PUBLICATION_CATEGORY_LETTERS = ['P', 'B'];
 
 const PRIORITIZED_NAC_CODES = ['97H'];
 
-const publicationHandler = {
+export const publicationHandler = {
   mustBePublished,
 };
 

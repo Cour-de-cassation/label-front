@@ -3,9 +3,7 @@ import { settingsType } from 'src/types/settings';
 import { additionalAnnotationCategoryHandler } from 'src/utils/settings/additionalAnnotationCategoryHandler';
 import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
 
-export { computeFilteredSettings };
-
-function computeFilteredSettings(
+export function computeFilteredSettings(
   settings: settingsType,
   categoriesToOmit: documentType['decisionMetadata']['categoriesToOmit'],
   additionalTermsToAnnotate: documentType['decisionMetadata']['additionalTermsToAnnotate'],

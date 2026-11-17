@@ -1,4 +1,4 @@
-import { annotationGenerator } from 'src/core/modules/annotation/generator';
+import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
 import { annotationLinker } from 'src/utils/annotation/annotationLinker';
 
 describe('annotationLinker', () => {

@@ -1,10 +1,8 @@
 import { range } from 'lodash';
 
-export { buildCharacterList, FORBIDDEN_CHARACTERS };
+export const FORBIDDEN_CHARACTERS = ['Q'];
 
-const FORBIDDEN_CHARACTERS = ['Q'];
-
-function buildCharacterList(length: number) {
+export function buildCharacterList(length: number) {
   const A_ASCII_CODE = 65;
   const characterListLength = Math.pow(26, length);
 

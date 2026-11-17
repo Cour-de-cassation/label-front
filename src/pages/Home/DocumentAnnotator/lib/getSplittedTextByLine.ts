@@ -1,5 +1,13 @@
 import { range } from 'lodash';
-import { textSplitter, textChunkType, annotationChunkType, textChunkContentType } from 'src/utils/textSplitter';
+import {
+  textChunkType,
+  annotationChunkType,
+  textChunkContentType,
+  splitTextAccordingToAnnotations,
+  buildTextChunk,
+  buildAnnotationChunk,
+  removeEmptyTextChunks,
+} from 'src/utils/textSplitter';
 import { annotationType } from 'src/types/annotation';
 import { lineSplitter } from '../../../../services/lineSplitter';
 
@@ -20,12 +28,12 @@ type splittedTextByLineType = Array<{
 
 function getSplittedTextByLine(text: string, annotations: annotationType[]): splittedTextByLineType {
   const numberOfLines = lineSplitter.splitTextAccordingToNewLine(text).length;
-  const splittedText = textSplitter.splitTextAccordingToAnnotations(text, annotations);
+  const splittedText = splitTextAccordingToAnnotations(text, annotations);
   const splittedTextByLine = computeSplittedTextByLine(splittedText, numberOfLines);
 
   return splittedTextByLine.map(({ line, content }) => ({
     line,
-    content: textSplitter.removeEmptyTextChunks(content),
+    content: removeEmptyTextChunks(content),
   }));
 }
 
@@ -42,14 +50,14 @@ function computeSplittedTextByLine(splittedText: Array<textChunkType | annotatio
           const after = computeAfterNeighbours(splittedTextAccordingToNewline, chunk.content.index, lineIndex);
           const before = computeBeforeNeighbours(splittedTextAccordingToNewline, chunk.content.index, lineIndex);
           splittedTextByLine[currentLine + lineIndex].content.push(
-            textSplitter.buildTextChunk(textLine, currentIndex, before, after),
+            buildTextChunk(textLine, currentIndex, before, after),
           );
           currentIndex = currentIndex + textLine.length + 1;
         });
         currentLine = currentLine + splittedTextAccordingToNewline.length - 1;
         break;
       case 'annotation':
-        splittedTextByLine[currentLine].content.push(textSplitter.buildAnnotationChunk(chunk.annotation));
+        splittedTextByLine[currentLine].content.push(buildAnnotationChunk(chunk.annotation));
         break;
     }
   });

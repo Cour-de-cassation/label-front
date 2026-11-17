@@ -1,9 +1,7 @@
 import { annotationType } from 'src/types/annotation';
 import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
 
-export { annotationLinker };
-
-const annotationLinker = {
+export const annotationLinker = {
   link,
   unlink,
 };

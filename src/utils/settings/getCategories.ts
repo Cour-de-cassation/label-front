@@ -1,8 +1,6 @@
 import { categorySettingType, settingsType } from 'src/types/settings';
 
-export { getCategories };
-
-function getCategories(
+export function getCategories(
   settings: settingsType,
   filter: {
     status: categorySettingType['status'][];

@@ -1,21 +1,10 @@
-export { timeOperator };
-
-export type { dateType };
-
-type dateType = {
+export type dateType = {
   year: number;
   month: number;
   dayOfMonth: number;
 };
 
-const timeOperator = {
-  compareDates,
-  convertDurationToReadableDuration,
-  convertTimestampToReadableDate,
-  convertTimestampToDate,
-};
-
-function convertTimestampToReadableDate(timestamp: number, displayTime?: boolean) {
+export function convertTimestampToReadableDate(timestamp: number, displayTime?: boolean) {
   const date = new Date(timestamp);
   const readableDay = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`;
   const readableMonth = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`;
@@ -30,7 +19,7 @@ function convertTimestampToReadableDate(timestamp: number, displayTime?: boolean
   return `${readableDay}/${readableMonth}/${readableYear} ${readableHours}:${readableMinutes}`;
 }
 
-function convertDurationToReadableDuration(duration: number) {
+export function convertDurationToReadableDuration(duration: number) {
   const totalSeconds = Math.floor(duration / 1000);
   const totalHours = Math.floor(totalSeconds / 3600);
   const remainingMinutes = Math.floor((totalSeconds % 3600) / 60);
@@ -44,7 +33,7 @@ function convertDurationToReadableDuration(duration: number) {
   return `${remainingSeconds}s`;
 }
 
-function compareDates(date1: dateType, date2: dateType) {
+export function compareDates(date1: dateType, date2: dateType) {
   if (date1.year < date2.year) {
     return -1;
   } else if (date1.year > date2.year) {
@@ -66,7 +55,7 @@ function compareDates(date1: dateType, date2: dateType) {
   return 0;
 }
 
-function convertTimestampToDate(timestamp: number) {
+export function convertTimestampToDate(timestamp: number) {
   const date = new Date();
   date.setTime(timestamp);
 

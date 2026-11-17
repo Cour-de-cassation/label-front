@@ -1,6 +1,5 @@
 import React, { MouseEvent, ReactElement, useState } from 'react';
 import { customThemeType, getColor, useCustomTheme, useDisplayMode, positionType } from 'src/pelta-design-system';
-import { settingsModule } from 'src/core';
 import { annotationType } from 'src/types/annotation';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 import { useDocumentViewerModeHandler } from '../../../../services/documentViewerMode';
@@ -9,6 +8,7 @@ import { MouseMoveListener, useMousePosition } from '../../../../utils';
 import { getAnnotationTextDisplayStyle } from './lib';
 import { AnnotationTooltipMenu } from './AnnotationTooltipMenu';
 import { DocumentAnonymizedAnnotationText } from './DocumentAnonymizedAnnotationText';
+import { getAnnotationCategoryColor } from 'src/utils/settings/getAnnotationCategoryColor';
 
 export { PureDocumentAnnotationText as DocumentAnnotationText };
 
@@ -88,9 +88,7 @@ function DocumentAnnotationText(props: propsType): ReactElement {
 
     function buildViewerModeSpecificStyle() {
       const settings = annotatorStateHandler.get().settings;
-      const categoryColor = getColor(
-        settingsModule.lib.getAnnotationCategoryColor(props.annotation.category, settings, displayMode),
-      );
+      const categoryColor = getColor(getAnnotationCategoryColor(props.annotation.category, settings, displayMode));
       const OUTLINE_WIDTH = 2;
       const { documentViewerMode } = documentViewerModeHandler;
 

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { settingsModule } from 'src/core';
 import { annotationsDiffType } from 'src/types/annotationsDiff';
 import { documentType } from 'src/types/document';
 import { settingsType } from 'src/types/settings';
@@ -19,6 +18,7 @@ import { wordings } from '../../../wordings';
 import { AnnotationsDataFetcher } from './AnnotationsDataFetcher';
 import { DocumentDataFetcher } from './DocumentDataFetcher';
 import { useCtxUser } from '../../../contexts/user.context';
+import { computeFilteredSettings } from 'src/utils/settings/computeFilteredSettings';
 
 export { DocumentInspector };
 
@@ -40,7 +40,7 @@ function DocumentInspector(props: { settings: settingsType }) {
       {({ document }) => (
         <AnnotationsDataFetcher documentId={documentId}>
           {({ annotations }) => {
-            const settingsForDocument = settingsModule.lib.computeFilteredSettings(
+            const settingsForDocument = computeFilteredSettings(
               props.settings,
               document.decisionMetadata.categoriesToOmit,
               document.decisionMetadata.additionalTermsToAnnotate,

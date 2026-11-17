@@ -1,13 +1,7 @@
 import { annotationType } from 'src/types/annotation';
 import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
 
-export { annotationUpdater };
-
-const annotationUpdater = {
-  updateAnnotationsCategory,
-};
-
-function updateAnnotationsCategory(
+export function updateAnnotationsCategory(
   annotations: annotationType[],
   newCategory: string,
   shouldUpdate: (annotation: annotationType) => boolean,

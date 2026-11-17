@@ -1,5 +1,4 @@
 import React from 'react';
-import { settingsModule } from 'src/core';
 import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { annotationType } from 'src/types/annotation';
@@ -7,6 +6,7 @@ import { IconDropdown, IconButton } from 'src/pelta-design-system';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
 import { useAlert } from '../../../../../services/alert';
+import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
 
 const DELETE_ALL = '__all__';
 
@@ -67,7 +67,7 @@ function CategoryTableEntryDeleteAnnotationDropdown(props: { buttonSize: number;
         : annotationHandler.deleteByTextAndCategory(annotatorState.annotations, props.entityAnnotation);
     const newAnnotatorState = { ...annotatorState, annotations: newAnnotations };
     annotatorStateHandler.set(newAnnotatorState);
-    if (props.entityAnnotation.category === settingsModule.lib.motivationCategoryHandler.getCategoryName()) {
+    if (props.entityAnnotation.category === motivationCategoryHandler.getCategoryName()) {
       displayAlert({
         text: wordings.business.errors.deleteMotivationOccultationAlert,
         variant: 'info',

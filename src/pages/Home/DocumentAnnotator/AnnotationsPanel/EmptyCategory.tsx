@@ -1,8 +1,8 @@
 import React from 'react';
-import { settingsModule } from 'src/core';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../components';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
+import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
 
 export { EmptyCategory };
 
@@ -13,7 +13,7 @@ function EmptyCategory(props: { category: string }) {
   const styles = buildStyles(theme);
   const annotatorState = annotatorStateHandler.get();
 
-  const categoryName = settingsModule.lib.getAnnotationCategoryText(props.category, annotatorState.settings);
+  const categoryName = getAnnotationCategoryText(props.category, annotatorState.settings);
 
   return (
     <div style={styles.container}>

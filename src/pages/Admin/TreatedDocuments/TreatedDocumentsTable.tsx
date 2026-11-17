@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { documentModule } from 'src/core';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { documentType } from 'src/types/document';
 import { apiCaller } from '../../../api';
@@ -11,6 +10,7 @@ import { AnnotationsDiffDrawer, annotationDiffDocumentInfoType } from './Annotat
 import { useAlert } from '../../../services/alert';
 import { routes } from '../../../router/routes';
 import { useCtxUser } from '../../../contexts/user.context';
+import { getNextStatus } from 'src/utils/document/getNextStatus';
 
 export { TreatedDocumentsTable };
 
@@ -134,7 +134,7 @@ function TreatedDocumentsTable(props: {
         try {
           await apiCaller.post<'updateDocumentStatus'>('updateDocumentStatus', {
             documentId: treatmentWithDetails.document._id,
-            status: documentModule.lib.getNextStatus({
+            status: getNextStatus({
               status: 'pending',
               route: treatmentWithDetails.document?.route ?? 'default',
             }),

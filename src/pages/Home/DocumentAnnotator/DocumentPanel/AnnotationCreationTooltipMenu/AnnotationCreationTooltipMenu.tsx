@@ -9,13 +9,14 @@ import {
   Text,
   useCustomTheme,
 } from 'src/pelta-design-system';
-import { settingsModule } from 'src/core';
 import { annotationHandler } from 'src/utils/annotation/annotationHandler';
-import { annotationTextDetector } from 'src/utils/annotation/annotationTextDetector';
 import { CategoryIcon } from '../../../../../components';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
 import { textSelectionType } from '../DocumentText';
+import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
+import { getCategories } from 'src/utils/settings/getCategories';
+import { detectAnnotationTextsAndIndices } from 'src/utils/annotation/annotationTextDetector';
 
 export { AnnotationCreationTooltipMenu };
 
@@ -36,7 +37,7 @@ function AnnotationCreationTooltipMenu(props: {
   const [shouldApplyEverywhere, setShouldApplyEverywhere] = useState(annotationTextsAndIndices.length > 1);
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
-  const categories = settingsModule.lib.getCategories(settings, {
+  const categories = getCategories(settings, {
     status: ['annotable', 'visible'],
     canBeAnnotatedBy: 'human',
   });
@@ -90,7 +91,7 @@ function AnnotationCreationTooltipMenu(props: {
               icon: (
                 <CategoryIcon settings={annotatorState.settings} category={category} iconSize={CATEGORY_ICON_SIZE} />
               ),
-              text: settingsModule.lib.getAnnotationCategoryText(category, annotatorState.settings),
+              text: getAnnotationCategoryText(category, annotatorState.settings),
               value: category,
             }))}
             label={wordings.homePage.category}
@@ -155,14 +156,14 @@ function AnnotationCreationTooltipMenu(props: {
 
   function getAnnotationTextsAndIndices() {
     if (props.textSelection.length === 1) {
-      return annotationTextDetector.detectAnnotationTextsAndIndices({
+      return detectAnnotationTextsAndIndices({
         documentText: annotatorState.document.text,
         annotationText: props.textSelection[0].text,
         annotations: annotatorState.annotations,
       });
     } else {
       return props.textSelection.flatMap((term) =>
-        annotationTextDetector.detectAnnotationTextsAndIndices({
+        detectAnnotationTextsAndIndices({
           documentText: annotatorState.document.text,
           annotationText: term.text,
           annotations: annotatorState.annotations,

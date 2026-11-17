@@ -1,6 +1,6 @@
 import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { computeGenericDocumentInfoEntries } from './computeGenericDocumentInfoEntries';
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 
 describe('computeGenericDocumentInfoEntries', () => {
   it('should return the computed document infoentries', () => {
@@ -15,7 +15,7 @@ describe('computeGenericDocumentInfoEntries', () => {
       { category: 'firstName', text: 'Benoit' },
       { category: 'firstName', text: 'Nicolaz' },
       { category: 'firstName', text: 'Romaun' },
-    ].map(annotationGenerator.generate);
+    ].map(generateAnnotation);
     const text = 'That is a fake test which contains many words';
     const linkedAnnotations = annotationLinkHandler.link(
       annotations[0],

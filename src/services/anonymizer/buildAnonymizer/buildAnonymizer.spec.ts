@@ -2,8 +2,8 @@ import { buildAnonymizer } from 'src/services/anonymizer/buildAnonymizer/buildAn
 import { annotationLinker } from 'src/utils/annotation/annotationLinker';
 import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
 import { buildSettings } from 'src/utils/settings/buildSettings';
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
-import { documentGenerator } from 'src/core/modules/document/generator/documentGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
+import { generateDocument } from 'src/test/documentGenerator';
 
 describe('buildAnonymizer', () => {
   const settings = buildSettings({
@@ -55,7 +55,7 @@ describe('buildAnonymizer', () => {
 
   describe('anonymizeDocument', () => {
     it('should anonymize a document', () => {
-      const document = documentGenerator.generate({
+      const document = generateDocument({
         text,
       });
 
@@ -72,10 +72,10 @@ describe('buildAnonymizer', () => {
         'Benoit Serrano is software engineer. Nicolas Assouad is a software engineer. Romain Glé is a designer.';
       const text2 =
         'There are many people who work on this project, namely Nicolas Assouad, Benoit Serrano, not to mention Romain Glé, who works with Benoit and Nicolas.';
-      const document1 = documentGenerator.generate({
+      const document1 = generateDocument({
         text: text1,
       });
-      const document2 = documentGenerator.generate({
+      const document2 = generateDocument({
         text: text2,
       });
       const settings = buildSettings({
@@ -258,7 +258,7 @@ describe('buildAnonymizer', () => {
       expect(anonymizedTexts[2]).toEqual('[FIRST_NAME 4]');
     });
     it('should anonymize a text with a default string if the category is not in the settings', () => {
-      const annotation = annotationGenerator.generate({
+      const annotation = generateAnnotation({
         category: 'age',
         text: '25',
       });
@@ -268,7 +268,7 @@ describe('buildAnonymizer', () => {
       expect(anonymizedText).toEqual('XXX');
     });
     it('should not anonymize a text if the category is set to not anonymized in the setting', () => {
-      const annotation = annotationGenerator.generate({
+      const annotation = generateAnnotation({
         category: 'professional',
         text: 'Leon',
       });

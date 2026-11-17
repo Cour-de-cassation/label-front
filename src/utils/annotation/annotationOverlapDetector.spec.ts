@@ -1,10 +1,10 @@
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 import { isAnnotationTextOverlappedWithAnyAnnotations } from 'src/utils/annotation/annotationOverlapDetector';
 
 describe('annotationOverlapDetector', () => {
   describe('isAnnotationTextOverlappedWithAnyAnnotations', () => {
     it('should return true if the annotation is overlapped', () => {
-      const annotations = [{ text: 'MACHIN', start: 10 }].map(annotationGenerator.generate);
+      const annotations = [{ text: 'MACHIN', start: 10 }].map(generateAnnotation);
       const annotationStart = 13;
       const annotationText = 'TRUC';
 
@@ -15,7 +15,7 @@ describe('annotationOverlapDetector', () => {
       const annotations = [
         { text: 'MACHIN', start: 10 },
         { text: 'CHOSE', start: 30 },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const annotationStart = 20;
       const annotationText = 'TRUC';
 

@@ -1,10 +1,10 @@
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 import { comparator } from 'src/utils/annotation/comparator';
 
 describe('comparator', () => {
   describe('equal', () => {
     it('should return true for equal annotations', () => {
-      const annotation = annotationGenerator.generate();
+      const annotation = generateAnnotation();
 
       const result = comparator.equal(annotation, annotation);
 
@@ -12,8 +12,8 @@ describe('comparator', () => {
     });
 
     it('should return false otherwise', () => {
-      const annotation1 = annotationGenerator.generate({ text: 'TEXT1' });
-      const annotation2 = annotationGenerator.generate({ text: 'TEXT1' });
+      const annotation1 = generateAnnotation({ text: 'TEXT1' });
+      const annotation2 = generateAnnotation({ text: 'TEXT1' });
 
       const result = comparator.equal(annotation1, annotation2);
 

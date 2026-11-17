@@ -1,13 +1,13 @@
-import { annotationsDiffGenerator } from 'src/core/modules/annotationsDiff/generator/annotationsDiffGenerator';
+import { generateAnnotationsDiff } from 'src/test/annotationsDiffGenerator';
 import { applyToAnnotations } from 'src/services/annotatorState/annotationsDiff/applyToAnnotations';
 import { sortAnnotations } from 'src/utils/annotation/sortAnnotations';
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 
 describe('applyToAnnotations', () => {
   it('should compute the annotations after the application of the diff', () => {
-    const annotations = [{}, {}, {}, {}].map(annotationGenerator.generate);
-    const newAnnotation = annotationGenerator.generate();
-    const annotationsDiff = annotationsDiffGenerator.generate({
+    const annotations = [{}, {}, {}, {}].map(generateAnnotation);
+    const newAnnotation = generateAnnotation();
+    const annotationsDiff = generateAnnotationsDiff({
       before: [annotations[0], annotations[3]],
       after: [newAnnotation],
     });

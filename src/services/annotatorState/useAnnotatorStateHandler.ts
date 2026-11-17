@@ -1,8 +1,10 @@
 import { use } from 'react';
 import { AnnotatorStateHandlerContext } from './AnnotatorStateHandlerContextProvider';
 
-export { useAnnotatorStateHandler };
-
-function useAnnotatorStateHandler() {
-  return use(AnnotatorStateHandlerContext);
+export function useAnnotatorStateHandler() {
+  const annotatorStateHandler = use(AnnotatorStateHandlerContext);
+  if (!annotatorStateHandler) {
+    throw new Error('useAnnotatorStateHandler must be used inside AnnotatorStateHandlerContextProvider');
+  }
+  return annotatorStateHandler;
 }

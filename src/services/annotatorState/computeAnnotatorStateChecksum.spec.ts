@@ -1,12 +1,12 @@
 import { range } from 'lodash';
 import { computeAnnotatorStateChecksum } from './computeAnnotatorStateChecksum';
 import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
-import { checklistGenerator, documentGenerator } from 'src/core/modules/document/generator/documentGenerator';
+import { generateChecklist, generateDocument } from 'src/test/documentGenerator';
 import { buildSettings } from 'src/utils/settings/buildSettings';
 
 describe('computeAnnotatorStateChecksum', () => {
-  const checklist = checklistGenerator.generate(2);
-  const document = documentGenerator.generate();
+  const checklist = generateChecklist(2);
+  const document = generateDocument();
   const settings = buildSettings({ prenom: {}, nom: {} });
 
   it('should return the same checksum every time for the same array', () => {
@@ -33,7 +33,7 @@ describe('computeAnnotatorStateChecksum', () => {
   });
 
   it('should return the same checksum for reversed annotations', () => {
-    const checklist = checklistGenerator.generate(2);
+    const checklist = generateChecklist(2);
     const annotations1 = range(10).map((index) =>
       buildAnnotation({
         category: 'prenom',
@@ -64,7 +64,7 @@ describe('computeAnnotatorStateChecksum', () => {
   });
 
   it('should return a different checksum for different categories of annotations', () => {
-    const checklist = checklistGenerator.generate(2);
+    const checklist = generateChecklist(2);
     const annotations1 = range(10).map((index) =>
       buildAnnotation({
         category: 'prenom',
@@ -98,7 +98,7 @@ describe('computeAnnotatorStateChecksum', () => {
   });
 
   it('should return a different checksum for missing annotations', () => {
-    const checklist = checklistGenerator.generate(2);
+    const checklist = generateChecklist(2);
     const annotations1 = range(10).map((index) =>
       buildAnnotation({
         category: 'prenom',
@@ -129,7 +129,7 @@ describe('computeAnnotatorStateChecksum', () => {
   });
 
   it('should return the same checksum every time for the same array', () => {
-    const checklist = checklistGenerator.generate(2);
+    const checklist = generateChecklist(2);
     const annotations = range(10).map((index) =>
       buildAnnotation({
         category: 'prenom',

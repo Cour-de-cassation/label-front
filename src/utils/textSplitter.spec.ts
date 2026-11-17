@@ -1,4 +1,4 @@
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 import { splitTextAccordingToAnnotations } from 'src/utils/textSplitter';
 
 describe('textSplitter', () => {
@@ -7,7 +7,7 @@ describe('textSplitter', () => {
       { category: 'firstName', text: 'Benoit', start: 0 },
       { category: 'firstName', text: 'Nicolas', start: 29 },
       { category: 'firstName', text: 'Romain', start: 61 },
-    ].map(annotationGenerator.generate);
+    ].map(generateAnnotation);
 
     it('should split a text according to the given annotations', () => {
       const text = 'Benoit is software engineer. Nicolas is a software engineer. Romain is a designer.';

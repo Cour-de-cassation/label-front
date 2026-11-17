@@ -1,12 +1,12 @@
 import { computeSpecificDocumentInfoEntries } from './computeSpecificDocumentInfoEntries';
-import { decisionMetadataGenerator, documentGenerator } from 'src/core/modules/document/generator/documentGenerator';
+import { generateDecisionMetadata, generateDocument } from 'src/test/documentGenerator';
 
 describe('computeSpecificDocumentInfoEntries', () => {
   it('should return all the specific infos of a document', () => {
     const decisionDate = new Date().getTime();
-    const document = documentGenerator.generate({
+    const document = generateDocument({
       documentNumber: 1234567,
-      decisionMetadata: decisionMetadataGenerator.generate({
+      decisionMetadata: generateDecisionMetadata({
         appealNumber: '',
         chamberName: 'Civile',
         date: decisionDate,
@@ -27,7 +27,7 @@ describe('computeSpecificDocumentInfoEntries', () => {
   });
 
   it('should return blank infos', () => {
-    const document = documentGenerator.generate({
+    const document = generateDocument({
       documentNumber: 1234567,
     });
 

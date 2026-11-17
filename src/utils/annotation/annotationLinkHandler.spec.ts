@@ -1,5 +1,5 @@
 import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 
 describe('annotationLinker', () => {
   describe('countLinkedEntities', () => {
@@ -15,7 +15,7 @@ describe('annotationLinker', () => {
         { category: 'firstName', text: 'Benoit' },
         { category: 'firstName', text: 'Nicolaz' },
         { category: 'firstName', text: 'Romaun' },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const linkedAnnotations = annotationLinkHandler.link(
         annotations[0],
         annotations[8],
@@ -37,7 +37,7 @@ describe('annotationLinker', () => {
         { category: category, text: 'A' },
         { category: category, text: 'A' },
         { category: 'ANOTHER_CATEGORY' },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
 
       const linkableAnnotations = annotationLinkHandler.getLinkableAnnotations(annotations[0], annotations);
 
@@ -54,7 +54,7 @@ describe('annotationLinker', () => {
         { category: category, text: 'TEXT3' },
         { category: category, text: 'TEXT3' },
         { category: 'ANOTHER_CATEGORY' },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const annotationsWithLinks1 = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
       const annotationsWithLinks2 = annotationLinkHandler.link(
         annotationsWithLinks1[0],
@@ -90,7 +90,7 @@ describe('annotationLinker', () => {
         { category: category, text: 'TEXT3' },
         { category: category, text: 'TEXT3' },
         { category: 'ANOTHER_CATEGORY' },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const annotationsWithLinks1 = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
       const annotationsWithLinks2 = annotationLinkHandler.link(
         annotationsWithLinks1[0],
@@ -121,7 +121,7 @@ describe('annotationLinker', () => {
         { category: category, text: 'A' },
         { category: category, text: 'A' },
         { category: 'ANOTHER_CATEGORY', text: 'A' },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
 
       const representatives = annotationLinkHandler.getRepresentatives(annotations);
 
@@ -132,7 +132,7 @@ describe('annotationLinker', () => {
   describe('isLinked', () => {
     it('should return true if the annotation is linked to another one', () => {
       const category = 'CATEGORY';
-      const annotations = [{ category: category }, { category: category }].map(annotationGenerator.generate);
+      const annotations = [{ category: category }, { category: category }].map(generateAnnotation);
       const annotationsWithLinks = annotationLinkHandler.link(annotations[0], annotations[1], annotations);
 
       const annotationIsLinked = annotationLinkHandler.isLinked(annotationsWithLinks[0], annotationsWithLinks);
@@ -151,7 +151,7 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget },
         {},
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const entityIdOfTextTarget = annotations[2].entityId;
 
       const newAnnotations = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
@@ -172,7 +172,7 @@ describe('annotationLinker', () => {
         { category: category, text: text1 },
         { category: category, text: text2 },
         { category: category, text: text3 },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const entityIdOfText3 = annotations[2].entityId;
       const annotationsWithLinks = annotationLinkHandler.link(annotations[0], annotations[1], annotations);
 
@@ -197,7 +197,7 @@ describe('annotationLinker', () => {
         { category: category, text: text1 },
         { category: category, text: text2 },
         { category: category, text: text3 },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const entityIdOfText3 = annotations[2].entityId;
       const annotationsWithLinks = annotationLinkHandler.link(annotations[1], annotations[2], annotations);
 
@@ -225,7 +225,7 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget },
         {},
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const annotationsWithLinks = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
 
       const newAnnotations = annotationLinkHandler.unlink(annotationsWithLinks[0], annotationsWithLinks);
@@ -241,7 +241,7 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget },
         {},
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const annotationsWithLinks = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
 
       const newAnnotations = annotationLinkHandler.unlink(annotationsWithLinks[2], annotationsWithLinks);
@@ -261,7 +261,7 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget1 },
         { category: category, text: textTarget2 },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const annotationsWithLinks1 = annotationLinkHandler.link(annotations[0], annotations[3], annotations);
       const annotationsWithLinks2 = annotationLinkHandler.link(
         annotationsWithLinks1[0],
@@ -288,7 +288,7 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget1 },
         { category: category, text: textTarget2 },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
       const annotationsWithLinks1 = annotationLinkHandler.link(annotations[0], annotations[3], annotations);
       const annotationsWithLinks2 = annotationLinkHandler.link(
         annotationsWithLinks1[0],

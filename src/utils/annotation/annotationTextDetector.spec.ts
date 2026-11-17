@@ -1,5 +1,5 @@
 import { annotationType } from 'src/types/annotation';
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 import { detectAnnotationTextsAndIndices } from 'src/utils/annotation/annotationTextDetector';
 
 describe('annotationTextDetector', () => {
@@ -159,5 +159,5 @@ describe('annotationTextDetector', () => {
 });
 
 function generateFetchedAnnotation(fields: { start?: number; category?: string; text?: string }) {
-  return annotationGenerator.generate(fields);
+  return generateAnnotation(fields);
 }

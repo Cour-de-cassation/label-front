@@ -1,7 +1,7 @@
 import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
 import { buildSettings } from 'src/utils/settings/buildSettings';
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 import { autoLink } from 'src/utils/annotation/autoLinker';
 
 describe('autoLinker', () => {
@@ -23,7 +23,7 @@ describe('autoLinker', () => {
       const annotations = [
         { category: 'CATEGORY', text: 'Dupont' },
         { category: 'CATEGORY', text: 'Dupond' },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
 
       const linkedAnnotations = autoLink([annotations[0]], annotations, settings);
 
@@ -37,7 +37,7 @@ describe('autoLinker', () => {
       const annotations = [
         { category: 'CATEGORY', text: '12 rue de la grande Rue' },
         { category: 'CATEGORY', text: '11 rue de la grande Rue' },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
 
       const linkedAnnotations = autoLink([annotations[0]], annotations, settings);
 
@@ -50,7 +50,7 @@ describe('autoLinker', () => {
       const annotations = [
         { category: 'CATEGORY', text: 'annotation' },
         { category: 'ANOTHER_CATEGORY', text: 'ANNOTATION' },
-      ].map(annotationGenerator.generate);
+      ].map(generateAnnotation);
 
       const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -63,7 +63,7 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'annotation' },
           { category: 'CATEGORY', text: 'ANNOTATION' },
           { category: 'ANOTHER_CATEGORY', text: 'another_annotation' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -101,7 +101,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'longer annotation' },
           { category: 'CATEGORY', text: 'annotation' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -111,7 +111,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'longer aNnOTaTiOn' },
           { category: 'CATEGORY', text: 'annotation' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -121,7 +121,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'longer_annotation' },
           { category: 'CATEGORY', text: 'annotation' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -134,7 +134,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Pont' },
           { category: 'CATEGORY', text: 'Pond' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -144,7 +144,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Pont' },
           { category: 'CATEGORY', text: 'POND' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -154,7 +154,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Pont' },
           { category: 'CATEGORY', text: 'Pomd' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -164,7 +164,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Dupont' },
           { category: 'CATEGORY', text: 'Dupond' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -174,7 +174,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Dupont' },
           { category: 'CATEGORY', text: 'DUPOND' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
@@ -184,7 +184,7 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Dupont' },
           { category: 'CATEGORY', text: 'Dubomb' },
-        ].map(annotationGenerator.generate);
+        ].map(generateAnnotation);
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 

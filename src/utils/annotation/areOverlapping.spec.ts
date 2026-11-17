@@ -1,4 +1,4 @@
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 import { areOverlapping } from 'src/utils/annotation/areOverlapping';
 
 describe('areOverlapping', () => {
@@ -6,7 +6,7 @@ describe('areOverlapping', () => {
     const annotations = [
       { text: 'TRUC', start: 10 },
       { text: 'TRUC', start: 10 },
-    ].map(annotationGenerator.generate);
+    ].map(generateAnnotation);
 
     const result = areOverlapping(annotations[0], annotations[1]);
 
@@ -17,7 +17,7 @@ describe('areOverlapping', () => {
     const annotations = [
       { category: 'A', text: 'TRUC', start: 10 },
       { category: 'B', text: 'TRUC', start: 10 },
-    ].map(annotationGenerator.generate);
+    ].map(generateAnnotation);
 
     const result = areOverlapping(annotations[0], annotations[1]);
 
@@ -28,7 +28,7 @@ describe('areOverlapping', () => {
     const annotations = [
       { text: 'MACHIN TRUC', start: 10 },
       { text: 'TRUC', start: 17 },
-    ].map(annotationGenerator.generate);
+    ].map(generateAnnotation);
 
     const result = areOverlapping(annotations[0], annotations[1]);
 
@@ -39,7 +39,7 @@ describe('areOverlapping', () => {
     const annotations = [
       { text: 'MACHIN TRUC', start: 10 },
       { text: 'TRUC', start: 27 },
-    ].map(annotationGenerator.generate);
+    ].map(generateAnnotation);
 
     const result = areOverlapping(annotations[0], annotations[1]);
 

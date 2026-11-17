@@ -1,6 +1,6 @@
 import { getAnnotationTextDisplayStyle } from './getAnnotationTextDisplayStyle';
 import { buildSettings } from 'src/utils/settings/buildSettings';
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 
 describe('getAnnotationTextDisplayStyle', () => {
   const settings = buildSettings({
@@ -10,7 +10,7 @@ describe('getAnnotationTextDisplayStyle', () => {
   });
 
   it('should return none', () => {
-    const annotation = annotationGenerator.generate({
+    const annotation = generateAnnotation({
       category: 'prenom',
     });
     const documentViewerMode = {
@@ -27,7 +27,7 @@ describe('getAnnotationTextDisplayStyle', () => {
   });
 
   it('should return underlined', () => {
-    const annotation = annotationGenerator.generate({ category: 'nom' });
+    const annotation = generateAnnotation({ category: 'nom' });
     const documentViewerMode = {
       kind: 'annotation' as const,
       isAnonymizedView: true,
@@ -42,7 +42,7 @@ describe('getAnnotationTextDisplayStyle', () => {
   });
 
   it('should return outlined', () => {
-    const annotation = annotationGenerator.generate({
+    const annotation = generateAnnotation({
       category: 'adresse',
     });
     const documentViewerMode = {
@@ -62,7 +62,7 @@ describe('getAnnotationTextDisplayStyle', () => {
   });
 
   it('should return filled', () => {
-    const annotation = annotationGenerator.generate({
+    const annotation = generateAnnotation({
       category: 'adresse',
     });
     const documentViewerMode = {

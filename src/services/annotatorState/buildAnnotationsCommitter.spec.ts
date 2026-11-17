@@ -1,10 +1,10 @@
 import { range } from 'lodash';
 import { buildAnnotationsCommitter } from './buildAnnotationsCommitter';
 import { sortAnnotations } from 'src/utils/annotation/sortAnnotations';
-import { annotationGenerator } from 'src/core/modules/annotation/generator/annotationGenerator';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 
 describe('buildAnnotationsCommitter', () => {
-  const annotations = range(7).map(() => annotationGenerator.generate());
+  const annotations = range(7).map(() => generateAnnotation());
 
   describe('commit', () => {
     it('should be nothing to redo after a commit', () => {

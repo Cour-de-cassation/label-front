@@ -1,4 +1,4 @@
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationsDiffType } from 'src/types/annotation';
 import { squash } from 'src/services/annotatorState/annotationsDiff/squash';
 
 export type autoSaverType = {

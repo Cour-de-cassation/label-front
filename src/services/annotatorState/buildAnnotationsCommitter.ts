@@ -1,5 +1,4 @@
-import { annotationType } from 'src/types/annotation';
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationType, annotationsDiffType } from 'src/types/annotation';
 import { computeAnnotationsDiff } from 'src/services/annotatorState/annotationsDiff/computeAnnotationsDiff';
 import { applyToAnnotations } from 'src/services/annotatorState/annotationsDiff/applyToAnnotations';
 import { inverse } from 'src/services/annotatorState/annotationsDiff/inverse';

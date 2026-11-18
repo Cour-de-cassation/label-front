@@ -3,7 +3,7 @@ import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { annotationType } from 'src/types/annotation';
 import { customThemeType, useCustomTheme, Header, Text } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../../components';
-import { clientAnonymizerType } from 'src/types/anonymizer';
+import { clientAnonymizerType } from 'src/services/anonymizer/buildAnonymizerBuilder';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
 import { DocumentAnonymizedAnnotationText } from '../DocumentAnonymizedAnnotationText';

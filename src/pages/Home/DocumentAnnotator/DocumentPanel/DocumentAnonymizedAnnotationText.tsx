@@ -1,4 +1,4 @@
-import { clientAnonymizerType } from 'src/types/anonymizer';
+import { clientAnonymizerType } from 'src/services/anonymizer/buildAnonymizerBuilder';
 import React from 'react';
 import { annotationType } from 'src/types/annotation';
 

@@ -1,14 +1,12 @@
 import {
-  categoryIconNames,
   categoryIconNameType,
   categorySettingType,
   colorType,
-  constantColors,
   constantColorType,
   settingsType,
-  shadeColors,
   shadeColorType,
 } from 'src/types/settings';
+import { categoryIconNames, constantColors, shadeColors } from 'src/utils/settings/categoryAppearance';
 
 export type partialSettingsType = {
   [category: string]: Partial<categorySettingType>;

@@ -1,5 +1,4 @@
-import { annotationType } from 'src/types/annotation';
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationType, annotationsDiffType } from 'src/types/annotation';
 import { comparator } from 'src/utils/annotation/comparator';
 
 export function squash(annotationsDiffs: annotationsDiffType[]): annotationsDiffType {

@@ -12,7 +12,7 @@ import {
   LinkAnnotationDropdown,
   UnlinkAnnotationDropdown,
 } from '../../../../../components';
-import { clientAnonymizerType } from 'src/types/anonymizer';
+import { clientAnonymizerType } from 'src/services/anonymizer/buildAnonymizerBuilder';
 import { AnnotationTooltipMenuHeader } from './AnnotationTooltipMenuHeader';
 import { DeleteAnnotationDropdown } from './DeleteAnnotationDropdown';
 

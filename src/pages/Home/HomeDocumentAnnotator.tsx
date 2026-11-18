@@ -1,6 +1,5 @@
 import React from 'react';
-import { annotationsDiffType } from 'src/types/annotationsDiff';
-import { annotationType } from 'src/types/annotation';
+import { annotationsDiffType, annotationType } from 'src/types/annotation';
 import { assignationType } from 'src/types/assignation';
 import { documentType } from 'src/types/document';
 import { settingsType } from 'src/types/settings';

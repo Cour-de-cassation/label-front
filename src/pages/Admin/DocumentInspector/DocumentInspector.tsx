@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationsDiffType } from 'src/types/annotation';
 import { documentType } from 'src/types/document';
 import { settingsType } from 'src/types/settings';
 import { apiCaller } from '../../../api';

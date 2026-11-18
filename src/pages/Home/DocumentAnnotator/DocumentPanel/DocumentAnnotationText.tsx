@@ -3,7 +3,7 @@ import { customThemeType, getColor, useCustomTheme, useDisplayMode, positionType
 import { annotationType } from 'src/types/annotation';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 import { useDocumentViewerModeHandler } from '../../../../services/documentViewerMode';
-import { clientAnonymizerType } from 'src/types/anonymizer';
+import { clientAnonymizerType } from 'src/services/anonymizer/buildAnonymizerBuilder';
 import { MouseMoveListener, useMousePosition } from '../../../../utils';
 import { getAnnotationTextDisplayStyle } from './lib';
 import { AnnotationTooltipMenu } from './AnnotationTooltipMenu';

@@ -1,4 +1,4 @@
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationsDiffType } from 'src/types/annotation';
 
 export function generateAnnotationsDiff({ before, after }: Partial<annotationsDiffType> = {}): annotationsDiffType {
   return {

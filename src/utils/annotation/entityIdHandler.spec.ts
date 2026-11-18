@@ -1,4 +1,4 @@
-import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
+import { computeEntityId } from 'src/utils/annotation/entityIdHandler';
 
 describe('entityIdHandler', () => {
   describe('compute', () => {
@@ -6,7 +6,7 @@ describe('entityIdHandler', () => {
       const category = 'CATEGORY';
       const text = 'TEXT';
 
-      const entityId = entityIdHandler.compute(category, text);
+      const entityId = computeEntityId(category, text);
 
       expect(entityId).toEqual('CATEGORY_text');
     });
@@ -14,7 +14,7 @@ describe('entityIdHandler', () => {
       const category = 'CATEGORY';
       const text = 'ÁñImåux';
 
-      const entityId = entityIdHandler.compute(category, text);
+      const entityId = computeEntityId(category, text);
 
       expect(entityId).toEqual('CATEGORY_animaux');
     });

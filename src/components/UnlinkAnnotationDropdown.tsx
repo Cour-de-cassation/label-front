@@ -1,9 +1,14 @@
 import React, { ReactElement } from 'react';
 import { IconButton, IconDropdown } from 'src/pelta-design-system';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { annotationType } from 'src/types/annotation';
 import { useAnnotatorStateHandler } from '../services/annotatorState';
 import { wordings } from '../wordings';
+import {
+  getLinkedAnnotationRepresentatives,
+  isAnnotationLinked,
+  unlinkEntity,
+  unlinkAnnotationsByCategoryAndText,
+} from 'src/utils/annotation/annotationLinkHandler';
 
 export { UnlinkAnnotationDropdown };
 
@@ -18,7 +23,7 @@ function UnlinkAnnotationDropdown(props: {
 }): ReactElement {
   const annotatorStateHandler = useAnnotatorStateHandler();
   const annotatorState = annotatorStateHandler.get();
-  const linkedAnnotationRepresentatives = annotationLinkHandler.getLinkedAnnotationRepresentatives(
+  const linkedAnnotationRepresentatives = getLinkedAnnotationRepresentatives(
     props.annotation.entityId,
     annotatorState.annotations,
   );
@@ -65,14 +70,12 @@ function UnlinkAnnotationDropdown(props: {
   }
 
   function isNotLinked() {
-    return !annotationLinkHandler.isLinked(props.annotation, annotatorState.annotations);
+    return !isAnnotationLinked(props.annotation, annotatorState.annotations);
   }
 
   function unlinkAnnotation(text: string) {
     const newAnnotations =
-      text === UNLINK_ALL
-        ? annotationLinkHandler.unlink(props.annotation, annotatorState.annotations)
-        : unlinkOnAnnotation(text);
+      text === UNLINK_ALL ? unlinkEntity(props.annotation, annotatorState.annotations) : unlinkOnAnnotation(text);
 
     if (newAnnotations) {
       const newAnnotatorState = {
@@ -92,7 +95,7 @@ function UnlinkAnnotationDropdown(props: {
     );
 
     if (annotationToUnlink) {
-      return annotationLinkHandler.unlinkByCategoryAndText(annotationToUnlink, annotatorState.annotations);
+      return unlinkAnnotationsByCategoryAndText(annotationToUnlink, annotatorState.annotations);
     }
   }
 }

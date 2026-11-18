@@ -9,7 +9,6 @@ import {
   Text,
   useCustomTheme,
 } from 'src/pelta-design-system';
-import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { CategoryIcon } from '../../../../../components';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
@@ -17,6 +16,7 @@ import { textSelectionType } from '../DocumentText';
 import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
 import { getCategories } from 'src/utils/settings/getCategories';
 import { detectAnnotationTextsAndIndices } from 'src/utils/annotation/annotationTextDetector';
+import { createAnnotation, createLinkedAnnotations, createAnnotations } from 'src/utils/annotation/annotationHandler';
 
 export { AnnotationCreationTooltipMenu };
 
@@ -122,11 +122,11 @@ function AnnotationCreationTooltipMenu(props: {
 
   function computeNewAnnotations(category: string) {
     if (shouldApplyEverywhere) {
-      return annotationHandler.createAll(annotatorState.annotations, category, annotationTextsAndIndices, settings);
+      return createAnnotations(annotatorState.annotations, category, annotationTextsAndIndices, settings);
     }
 
     if (props.textSelection.length === 1) {
-      return annotationHandler.create(
+      return createAnnotation(
         annotatorState.annotations,
         {
           category,
@@ -137,7 +137,7 @@ function AnnotationCreationTooltipMenu(props: {
       );
     }
 
-    return annotationHandler.createManyLinked(
+    return createLinkedAnnotations(
       annotatorState.annotations,
       props.textSelection.map(({ text, index }) => ({ category, text, start: index })),
     );

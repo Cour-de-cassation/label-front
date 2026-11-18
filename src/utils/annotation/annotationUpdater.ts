@@ -1,5 +1,5 @@
 import { annotationType } from 'src/types/annotation';
-import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
+import { syncEntityIdWithCategory } from 'src/utils/annotation/entityIdHandler';
 
 export function updateAnnotationsCategory(
   annotations: annotationType[],
@@ -12,7 +12,7 @@ export function updateAnnotationsCategory(
     newAnnotations: annotations.map((annotation) => {
       if (shouldUpdate(annotation)) {
         updatedAnnotations.push(annotation);
-        return entityIdHandler.syncEntityIdWithCategory({
+        return syncEntityIdWithCategory({
           ...annotation,
           category: newCategory,
         });

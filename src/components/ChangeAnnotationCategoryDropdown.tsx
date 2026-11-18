@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
 import { IconDropdown } from 'src/pelta-design-system';
-import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { annotationType } from 'src/types/annotation';
 import { useAnnotatorStateHandler } from '../services/annotatorState';
 import { wordings } from '../wordings';
 import { CategoryIcon } from './CategoryIcon';
 import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
-import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
 import { getCategories } from 'src/utils/settings/getCategories';
+import { updateEntityCategory } from 'src/utils/annotation/annotationHandler';
+import { MOTIVATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 export { ChangeAnnotationCategoryDropdown };
 
@@ -39,12 +39,12 @@ function ChangeAnnotationCategoryDropdown(props: {
       }))}
       onChange={changeAnnotationCategory}
       width={CHANGE_ANNOTATION_CATEGORY_MENU_WIDTH}
-      disabled={props.annotation.category === motivationCategoryHandler.getCategoryName()}
+      disabled={props.annotation.category === MOTIVATION_CATEGORY.name}
     />
   );
 
   function changeAnnotationCategory(newCategory: string) {
-    const newAnnotations = annotationHandler.updateManyCategory(
+    const newAnnotations = updateEntityCategory(
       annotatorState.annotations,
       props.annotation.entityId,
       newCategory,

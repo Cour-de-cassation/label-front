@@ -1,10 +1,18 @@
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
-import { annotationHandler } from 'src/utils/annotation/annotationHandler';
-import { annotationLinker } from 'src/utils/annotation/annotationLinker';
-import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
 import { sortAnnotations } from 'src/utils/annotation/sortAnnotations';
 import { buildSettings } from 'src/utils/settings/buildSettings';
 import { generateAnnotation } from 'src/test/annotationGenerator';
+import {
+  createAnnotation,
+  createLinkedAnnotations,
+  createAnnotations,
+  deleteAnnotationsByTextAndCategory,
+  deleteAnnotationByTextAndStart,
+  getAnnotationIndex,
+  updateEntityCategory,
+} from 'src/utils/annotation/annotationHandler';
+import { isAnnotationLinkedTo } from 'src/utils/annotation/annotationLinkHandler';
+import { linkAnnotation } from 'src/utils/annotation/annotationLinker';
+import { computeEntityId } from 'src/utils/annotation/entityIdHandler';
 
 describe('annotationHandler', () => {
   const settings = buildSettings({
@@ -24,14 +32,14 @@ describe('annotationHandler', () => {
       ];
       const annotations = [{}].map(generateFetchedAnnotation);
 
-      const newAnnotations = annotationHandler.createAll(annotations, category, annotationTextsAndIndices, settings);
+      const newAnnotations = createAnnotations(annotations, category, annotationTextsAndIndices, settings);
 
       expect(newAnnotations).toEqual([
         {
           category,
           start: 34,
           score: 1,
-          entityId: entityIdHandler.compute(category, annotationText),
+          entityId: computeEntityId(category, annotationText),
           text: annotationText,
           source: 'agent',
         },
@@ -39,7 +47,7 @@ describe('annotationHandler', () => {
           category,
           score: 1,
           start: 66,
-          entityId: entityIdHandler.compute(category, annotationText),
+          entityId: computeEntityId(category, annotationText),
           text: annotationText,
           source: 'agent',
         },
@@ -56,11 +64,11 @@ describe('annotationHandler', () => {
         { category, start: 10, text: 'TextB' },
         { category, start: 20, text: 'TextC' },
       ];
-      const newAnnotations = annotationHandler.createManyLinked([], annotationFieldsToCreate);
+      const newAnnotations = createLinkedAnnotations([], annotationFieldsToCreate);
 
       expect(newAnnotations.length).toEqual(3);
-      expect(annotationLinkHandler.isLinkedTo(newAnnotations[0], newAnnotations[1])).toBeTruthy();
-      expect(annotationLinkHandler.isLinkedTo(newAnnotations[0], newAnnotations[2])).toBeTruthy();
+      expect(isAnnotationLinkedTo(newAnnotations[0], newAnnotations[1])).toBeTruthy();
+      expect(isAnnotationLinkedTo(newAnnotations[0], newAnnotations[2])).toBeTruthy();
     });
   });
 
@@ -81,7 +89,7 @@ describe('annotationHandler', () => {
 
       const annotations = [annotation1, annotation2, annotation3];
 
-      const newAnnotations = annotationHandler.deleteByTextAndCategory(annotations, annotation1);
+      const newAnnotations = deleteAnnotationsByTextAndCategory(annotations, annotation1);
 
       expect(newAnnotations).toEqual([annotation2, annotation3]);
     });
@@ -95,11 +103,11 @@ describe('annotationHandler', () => {
         category: 'CATEGORY',
         text: 'SECOND_TEXT',
       });
-      const annotation1Linked = annotationLinker.link(annotation1, annotation2);
+      const annotation1Linked = linkAnnotation(annotation1, annotation2);
       const annotations = [annotation1Linked, annotation2];
 
-      const newAnnotations = annotationHandler.create(
-        annotationHandler.deleteByTextAndCategory(annotations, annotation2),
+      const newAnnotations = createAnnotation(
+        deleteAnnotationsByTextAndCategory(annotations, annotation2),
         annotation2,
         settings,
       );
@@ -120,14 +128,14 @@ describe('annotationHandler', () => {
         category: 'CATEGORY',
         text: 'THIRD_TEXT',
       });
-      const annotation1Linked = annotationLinker.link(annotation1, annotation3);
-      const annotation2Linked = annotationLinker.link(annotation2, annotation3);
+      const annotation1Linked = linkAnnotation(annotation1, annotation3);
+      const annotation2Linked = linkAnnotation(annotation2, annotation3);
       const annotations = [annotation1Linked, annotation2Linked, annotation3];
 
-      const newAnnotations = annotationHandler.deleteByTextAndCategory(annotations, annotation3);
+      const newAnnotations = deleteAnnotationsByTextAndCategory(annotations, annotation3);
 
       expect(newAnnotations.length).toBe(2);
-      expect(annotationLinkHandler.isLinkedTo(newAnnotations[0], newAnnotations[1])).toBeTruthy();
+      expect(isAnnotationLinkedTo(newAnnotations[0], newAnnotations[1])).toBeTruthy();
     });
   });
 
@@ -143,7 +151,7 @@ describe('annotationHandler', () => {
       });
       const annotations = [annotation1, annotation2];
 
-      const newAnnotations = annotationHandler.deleteByTextAndStart(annotations, annotation2);
+      const newAnnotations = deleteAnnotationByTextAndStart(annotations, annotation2);
 
       expect(newAnnotations).toEqual([annotation1]);
     });
@@ -157,11 +165,11 @@ describe('annotationHandler', () => {
         category: 'CATEGORY',
         text: 'SECOND_TEXT',
       });
-      const annotation1Linked = annotationLinker.link(annotation1, annotation2);
+      const annotation1Linked = linkAnnotation(annotation1, annotation2);
       const annotations = [annotation1Linked, annotation2];
 
-      const newAnnotations = annotationHandler.create(
-        annotationHandler.deleteByTextAndStart(annotations, annotation2),
+      const newAnnotations = createAnnotation(
+        deleteAnnotationByTextAndStart(annotations, annotation2),
         annotation2,
         settings,
       );
@@ -180,12 +188,7 @@ describe('annotationHandler', () => {
         { category: 'CATEGORY1', text },
       ].map(generateFetchedAnnotation);
 
-      const updatedAnnotations = annotationHandler.updateManyCategory(
-        annotations,
-        annotations[0].entityId,
-        newCategory,
-        settings,
-      );
+      const updatedAnnotations = updateEntityCategory(annotations, annotations[0].entityId, newCategory, settings);
 
       expect(updatedAnnotations.map((annotation) => annotation.category)).toEqual([
         newCategory,
@@ -205,7 +208,7 @@ describe('annotationHandler', () => {
         { category: 'ANOTHER_CATEGORY', start: 23, text: 'ANOTHER_TEXT' },
       ].map(generateFetchedAnnotation);
 
-      const annotationIndex = annotationHandler.getAnnotationIndex(annotations, annotations[0]);
+      const annotationIndex = getAnnotationIndex(annotations, annotations[0]);
 
       expect(annotationIndex).toEqual({ index: 2, total: 3 });
     });

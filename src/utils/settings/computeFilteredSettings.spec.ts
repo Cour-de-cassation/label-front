@@ -1,11 +1,10 @@
-import { additionalAnnotationCategoryHandler } from 'src/utils/settings/additionalAnnotationCategoryHandler';
 import { buildSettings } from 'src/utils/settings/buildSettings';
 import { computeFilteredSettings } from 'src/utils/settings/computeFilteredSettings';
-import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
+import { MOTIVATION_CATEGORY, ADDITIONAL_ANNOTATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 describe('computeFilteredSettings', () => {
-  const additionalAnnotationCategory = additionalAnnotationCategoryHandler.getCategoryName();
-  const motivationCategory = motivationCategoryHandler.getCategoryName();
+  const additionalAnnotationCategory = ADDITIONAL_ANNOTATION_CATEGORY.name;
+  const motivationCategory = MOTIVATION_CATEGORY.name;
   const settings = buildSettings({
     prenom: { order: 1, text: 'Prénom', status: 'hidden' },
     professionnelMagistratGreffier: {

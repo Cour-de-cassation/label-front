@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { IconDropdown } from 'src/pelta-design-system';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { annotationType } from 'src/types/annotation';
 import { useAnnotatorStateHandler } from '../services/annotatorState';
 import { wordings } from '../wordings';
-import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
-import { comparator } from 'src/utils/annotation/comparator';
+import { getLinkableAnnotations, linkEntity } from 'src/utils/annotation/annotationLinkHandler';
+import { compareAnnotationsByText } from 'src/utils/annotation/comparator';
+import { MOTIVATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 export { LinkAnnotationDropdown };
 
@@ -20,20 +20,15 @@ function LinkAnnotationDropdown(props: {
 }): ReactElement {
   const annotatorStateHandler = useAnnotatorStateHandler();
   const annotatorState = annotatorStateHandler.get();
-  const linkableAnnotations = annotationLinkHandler.getLinkableAnnotations(
-    props.annotation,
-    annotatorState.annotations,
-  );
+  const linkableAnnotations = getLinkableAnnotations(props.annotation, annotatorState.annotations);
 
   return (
     <IconDropdown
       buttonSize={props.buttonSize}
-      disabled={
-        linkableAnnotations.length === 0 || props.annotation.category === motivationCategoryHandler.getCategoryName()
-      }
+      disabled={linkableAnnotations.length === 0 || props.annotation.category === MOTIVATION_CATEGORY.name}
       hint={wordings.homePage.link}
       iconName="link"
-      items={linkableAnnotations.sort(comparator.compareByText).map((annotation) => ({
+      items={linkableAnnotations.sort(compareAnnotationsByText).map((annotation) => ({
         text: annotation.text,
         value: annotation.text,
       }))}
@@ -50,7 +45,7 @@ function LinkAnnotationDropdown(props: {
     if (annotationToLinkTo) {
       const newAnnotatorState = {
         ...annotatorState,
-        annotations: annotationLinkHandler.link(props.annotation, annotationToLinkTo, annotatorState.annotations),
+        annotations: linkEntity(props.annotation, annotationToLinkTo, annotatorState.annotations),
       };
 
       annotatorStateHandler.set(newAnnotatorState);

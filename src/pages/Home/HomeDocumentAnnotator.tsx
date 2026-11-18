@@ -15,7 +15,7 @@ import {
 import { useAlert } from '../../services/alert';
 import { wordings } from '../../wordings';
 import { DocumentAnnotator } from './DocumentAnnotator';
-import { publicationHandler } from 'src/utils/document/publicationHandler';
+import { mustBePublished } from 'src/utils/document/publicationHandler';
 
 export { HomeDocumentAnnotator };
 
@@ -31,18 +31,18 @@ function HomeDocumentAnnotator(props: {
   const theme = useCustomTheme();
 
   const styles = buildStyles(theme);
-  const mustBePublished = publicationHandler.mustBePublished(props.document.publicationCategory);
+  const isPublishable = mustBePublished(props.document.publicationCategory);
   const hasParticularInterest = props.document.decisionMetadata.raisonInteretParticulier != null;
   const subtitle =
-    mustBePublished || hasParticularInterest ? (
+    isPublishable || hasParticularInterest ? (
       <div style={styles.documentHeaderSubtitle}>
         <div>
           <CircleIcon
-            iconName={mustBePublished ? 'openedBook' : 'flag'}
+            iconName={isPublishable ? 'openedBook' : 'flag'}
             backgroundColor="primary"
             iconSize={40}
             hint={
-              mustBePublished
+              isPublishable
                 ? wordings.homePage.mustBePublishedHint
                 : hasParticularInterest
                   ? wordings.homePage.hasParticularInterestHint

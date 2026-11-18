@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { annotationType } from 'src/types/annotation';
 import { customThemeType, useCustomTheme, Header, Text } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../../components';
@@ -8,6 +7,7 @@ import { useAnnotatorStateHandler } from '../../../../../services/annotatorState
 import { wordings } from '../../../../../wordings';
 import { DocumentAnonymizedAnnotationText } from '../DocumentAnonymizedAnnotationText';
 import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
+import { getAnnotationIndex } from 'src/utils/annotation/annotationHandler';
 
 export { PureAnnotationTooltipMenuHeader as AnnotationTooltipMenuHeader };
 
@@ -40,7 +40,7 @@ function AnnotationTooltipMenuHeader(props: propsType): ReactElement {
   const theme = useCustomTheme();
   const style = buildStyle(theme);
   const annotatorState = annotatorStateHandler.get();
-  const annotationIndex = annotationHandler.getAnnotationIndex(annotatorState.annotations, props.annotation);
+  const annotationIndex = getAnnotationIndex(annotatorState.annotations, props.annotation);
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { groupBy } from 'lodash';
 import { annotationType } from 'src/types/annotation';
-import { comparator } from 'src/utils/annotation/comparator';
+import { compareAnnotationsByText } from 'src/utils/annotation/comparator';
 
 export { groupByCategoryAndEntity };
 
@@ -58,9 +58,9 @@ function groupByEntity(annotations: annotationType[]): annotationPerEntityType {
   return Object.entries(groupBy(annotations, (annotation) => annotation.entityId))
     .map(([entityId, entityAnnotations]) => ({
       entityId,
-      entityAnnotations: entityAnnotations.sort(comparator.compareByText),
+      entityAnnotations: entityAnnotations.sort(compareAnnotationsByText),
     }))
     .sort(({ entityAnnotations: entityAnnotations1 }, { entityAnnotations: entityAnnotations2 }) =>
-      comparator.compareByText(entityAnnotations1[0], entityAnnotations2[0]),
+      compareAnnotationsByText(entityAnnotations1[0], entityAnnotations2[0]),
     );
 }

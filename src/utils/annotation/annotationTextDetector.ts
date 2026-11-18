@@ -1,6 +1,6 @@
 import { annotationType } from 'src/types/annotation';
-import { stringComparator } from 'src/utils/annotation/stringComparator';
 import { isAnnotationTextOverlappedWithAnyAnnotations } from 'src/utils/annotation/annotationOverlapDetector';
+import { normalizeString } from 'src/utils/annotation/normalizeString';
 
 export function detectAnnotationTextsAndIndices({
   documentText,
@@ -44,8 +44,8 @@ function isAnnotationTextInsideLargerWord(documentText: string, annotationText: 
 }
 
 function computeAnnotationDetection(documentText: string, annotationText: string, currentIndex: number) {
-  const text = stringComparator.normalizeString(annotationText);
-  const index = stringComparator.normalizeString(documentText).indexOf(text, currentIndex + 1);
+  const text = normalizeString(annotationText);
+  const index = normalizeString(documentText).indexOf(text, currentIndex + 1);
   if (index !== -1) {
     return {
       index,

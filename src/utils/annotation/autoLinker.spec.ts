@@ -1,8 +1,8 @@
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
 import { buildSettings } from 'src/utils/settings/buildSettings';
 import { generateAnnotation } from 'src/test/annotationGenerator';
 import { autoLink } from 'src/utils/annotation/autoLinker';
+import { linkEntity } from 'src/utils/annotation/annotationLinkHandler';
 
 describe('autoLinker', () => {
   const settings = buildSettings({
@@ -27,7 +27,7 @@ describe('autoLinker', () => {
 
       const linkedAnnotations = autoLink([annotations[0]], annotations, settings);
 
-      expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+      expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
     });
 
     it('should not link the given annotations', () => {
@@ -67,7 +67,7 @@ describe('autoLinker', () => {
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
     });
 
@@ -105,7 +105,7 @@ describe('autoLinker', () => {
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should link the annotations of a same category which are subword of another (case insensitive)', () => {
         const annotations = [
@@ -115,7 +115,7 @@ describe('autoLinker', () => {
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should not link the annotations of a same category which are only substring of another', () => {
         const annotations = [
@@ -138,7 +138,7 @@ describe('autoLinker', () => {
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should link the annotations of a same category with a Levenshtein distance inferior to 1 for words less long than 4 (case insensitive)', () => {
         const annotations = [
@@ -148,7 +148,7 @@ describe('autoLinker', () => {
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should not link the annotations of a same category with a Levenshtein distance strictly superior to 1 for words less long than 4', () => {
         const annotations = [
@@ -168,7 +168,7 @@ describe('autoLinker', () => {
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should link the annotations of a same category with a Levenshtein distance inferior to 2 for words longer than 4 (case insensitive)', () => {
         const annotations = [
@@ -178,7 +178,7 @@ describe('autoLinker', () => {
 
         const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should not link the annotations of a same category with a Levenshtein distance strictly superior to 2 for words longer than 4', () => {
         const annotations = [

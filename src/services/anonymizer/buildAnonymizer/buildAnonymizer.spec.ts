@@ -1,9 +1,9 @@
 import { buildAnonymizer } from 'src/services/anonymizer/buildAnonymizer/buildAnonymizer';
-import { annotationLinker } from 'src/utils/annotation/annotationLinker';
 import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
 import { buildSettings } from 'src/utils/settings/buildSettings';
 import { generateAnnotation } from 'src/test/annotationGenerator';
 import { generateDocument } from 'src/test/documentGenerator';
+import { linkAnnotation } from 'src/utils/annotation/annotationLinker';
 
 describe('buildAnonymizer', () => {
   const settings = buildSettings({
@@ -184,8 +184,8 @@ describe('buildAnonymizer', () => {
           source: 'agent',
         },
       ].map(buildAnnotation);
-      annotations2[6] = annotationLinker.link(annotations2[6], annotations2[2]);
-      annotations2[7] = annotationLinker.link(annotations2[7], annotations2[0]);
+      annotations2[6] = linkAnnotation(annotations2[6], annotations2[2]);
+      annotations2[7] = linkAnnotation(annotations2[7], annotations2[0]);
       const anonymizer1 = buildAnonymizer(settings, annotations1, seed);
       const anonymizer2 = buildAnonymizer(settings, annotations2, seed);
 

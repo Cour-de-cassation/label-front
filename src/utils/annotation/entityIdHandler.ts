@@ -1,22 +1,17 @@
 import { annotationType } from 'src/types/annotation';
 import { normalizeString } from 'src/utils/annotation/normalizeString';
-import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
+import { MOTIVATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
-export const entityIdHandler = {
-  compute,
-  syncEntityIdWithCategory,
-};
-
-function compute(category: string, text: string) {
-  if (category === motivationCategoryHandler.getCategoryName()) {
+export function computeEntityId(category: string, text: string) {
+  if (category === MOTIVATION_CATEGORY.name) {
     return `${category}_${text.length}`;
   }
   return `${category}_${normalizeString(text.toLocaleLowerCase())}`;
 }
 
-function syncEntityIdWithCategory(annotation: annotationType): annotationType {
+export function syncEntityIdWithCategory(annotation: annotationType): annotationType {
   return {
     ...annotation,
-    entityId: compute(annotation.category, annotation.text),
+    entityId: computeEntityId(annotation.category, annotation.text),
   };
 }

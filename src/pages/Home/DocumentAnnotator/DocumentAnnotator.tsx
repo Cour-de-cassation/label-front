@@ -9,8 +9,8 @@ import { DocumentPanel } from './DocumentPanel';
 import { useKeyboardShortcutsHandler } from './hooks';
 import { annotationPerCategoryAndEntityType, getSplittedTextByLine, groupByCategoryAndEntity } from './lib';
 import { DocumentAnnotatorFooter } from './DocumentAnnotatorFooter';
-import { additionalAnnotationCategoryHandler } from 'src/utils/settings/additionalAnnotationCategoryHandler';
 import { getCategories } from 'src/utils/settings/getCategories';
+import { ADDITIONAL_ANNOTATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 export { DocumentAnnotator };
 
@@ -78,7 +78,7 @@ function DocumentAnnotator(props: { onStopAnnotatingDocument?: () => Promise<voi
     { category: categoryA }: annotationPerCategoryAndEntityType[number],
     { category: categoryB }: annotationPerCategoryAndEntityType[number],
   ) {
-    const additionalAnnotationCategoryName = additionalAnnotationCategoryHandler.getCategoryName();
+    const additionalAnnotationCategoryName = ADDITIONAL_ANNOTATION_CATEGORY.name;
     if (categoryA === additionalAnnotationCategoryName) {
       return -1;
     }

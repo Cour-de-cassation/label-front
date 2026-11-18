@@ -1,7 +1,6 @@
 import { documentType } from 'src/types/document';
 import { settingsType } from 'src/types/settings';
-import { additionalAnnotationCategoryHandler } from 'src/utils/settings/additionalAnnotationCategoryHandler';
-import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
+import { MOTIVATION_CATEGORY, ADDITIONAL_ANNOTATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 export function computeFilteredSettings(
   settings: settingsType,
@@ -13,14 +12,14 @@ export function computeFilteredSettings(
     if (categorySetting.status === 'alwaysVisible') {
       return { ...accumulator, [category]: categorySetting };
     }
-    if (category === additionalAnnotationCategoryHandler.getCategoryName()) {
+    if (category === ADDITIONAL_ANNOTATION_CATEGORY.name) {
       if (!!additionalTermsToAnnotate) {
         return {
           ...accumulator,
           [category]: { ...categorySetting, status: 'annotable' as const },
         };
       }
-    } else if (category === motivationCategoryHandler.getCategoryName()) {
+    } else if (category === MOTIVATION_CATEGORY.name) {
       if (motivationOccultation === true) {
         return {
           ...accumulator,

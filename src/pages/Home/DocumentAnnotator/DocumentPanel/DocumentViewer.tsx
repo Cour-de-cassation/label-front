@@ -9,8 +9,8 @@ import { splittedTextByLineType } from '../lib';
 import { DocumentLine } from './DocumentLine';
 import { useAlert } from '../../../../services/alert';
 import { wordings } from '../../../../wordings';
-import { annotationHandler } from 'src/utils/annotation/annotationHandler';
-import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
+import { createAnnotation } from 'src/utils/annotation/annotationHandler';
+import { MOTIVATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 export { DocumentViewer };
 
@@ -54,9 +54,9 @@ function DocumentViewer(props: { splittedTextByLine: splittedTextByLineType }): 
     if (newSelectedLines.length === 2) {
       const textBetweenLines = getTextBetweenLines(newSelectedLines[0], newSelectedLines[1]);
       if (textBetweenLines.index > -1 && textBetweenLines.text) {
-        const category = motivationCategoryHandler.getCategoryName();
+        const category = MOTIVATION_CATEGORY.name;
 
-        const newAnnotations = annotationHandler.create(
+        const newAnnotations = createAnnotation(
           annotatorStateHandler.get().annotations,
           {
             category,

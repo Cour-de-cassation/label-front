@@ -1,5 +1,5 @@
 import { annotationType, annotationsDiffType } from 'src/types/annotation';
-import { comparator } from 'src/utils/annotation/comparator';
+import { areAnnotationsEqual } from 'src/utils/annotation/comparator';
 
 export function squash(annotationsDiffs: annotationsDiffType[]): annotationsDiffType {
   return annotationsDiffs.reduce(
@@ -8,10 +8,11 @@ export function squash(annotationsDiffs: annotationsDiffType[]): annotationsDiff
       const updatedAfter = [...accumulator.after, ...annotationsDiff.after];
       return {
         before: updatedBefore.filter(
-          (annotation) => !updatedAfter.some((anotherAnnotation) => comparator.equal(anotherAnnotation, annotation)),
+          (annotation) => !updatedAfter.some((anotherAnnotation) => areAnnotationsEqual(anotherAnnotation, annotation)),
         ),
         after: updatedAfter.filter(
-          (annotation) => !updatedBefore.some((anotherAnnotation) => comparator.equal(anotherAnnotation, annotation)),
+          (annotation) =>
+            !updatedBefore.some((anotherAnnotation) => areAnnotationsEqual(anotherAnnotation, annotation)),
         ),
       };
     },

@@ -8,8 +8,7 @@ import { CategoryTable } from './CategoryTable';
 import { EmptyCategory } from './EmptyCategory';
 import { StrickenCategory } from './StrickenCategory';
 import { Checklist } from './Checklist';
-import { additionalAnnotationCategoryHandler } from 'src/utils/settings/additionalAnnotationCategoryHandler';
-import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
+import { MOTIVATION_CATEGORY, ADDITIONAL_ANNOTATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 export { AnnotationsPanel };
 
@@ -44,8 +43,7 @@ function AnnotationsPanel(props: {
           </div>
         )}
         {props.annotationPerCategoryAndEntity.map(({ category, categorySize, categoryAnnotations }) => {
-          const isCategoryAdditionalAnnotationCategory =
-            category === additionalAnnotationCategoryHandler.getCategoryName();
+          const isCategoryAdditionalAnnotationCategory = category === ADDITIONAL_ANNOTATION_CATEGORY.name;
 
           return (
             <div key={category} style={styles.categoryContainer}>
@@ -97,7 +95,7 @@ function AnnotationsPanel(props: {
       return (
         <div style={styles.additionalAnnotationTermsContainer}>
           <div style={styles.additionalAnnotationTermsLeftContainer}>
-            <Icon iconName={additionalAnnotationCategoryHandler.getCategoryIconName()} />
+            <Icon iconName={ADDITIONAL_ANNOTATION_CATEGORY.iconName} />
           </div>
           <div style={styles.additionalAnnotationTermsRightContainer}>
             {(additionalTermsParsingFailed ||
@@ -158,7 +156,7 @@ function AnnotationsPanel(props: {
     return (
       <div style={styles.partiallyPublicContainer}>
         <div style={styles.partiallyPublicLeftContainer}>
-          <Icon iconName={motivationCategoryHandler.getCategoryIconName()} />
+          <Icon iconName={MOTIVATION_CATEGORY.iconName} />
         </div>
         <div style={styles.partiallyPublicRightContainer}>
           <Text>{wordings.homePage.motivationOccultation}</Text>
@@ -204,7 +202,7 @@ function AnnotationsPanel(props: {
         flex: 1,
         justifyContent: 'space-between',
         borderRadius: theme.shape.borderRadius.l,
-        backgroundColor: getColor(motivationCategoryHandler.getCategoryColor(displayMode)),
+        backgroundColor: getColor(MOTIVATION_CATEGORY.color[displayMode]),
       },
       partiallyPublicLeftContainer: {
         marginRight: theme.spacing * 3,
@@ -221,7 +219,7 @@ function AnnotationsPanel(props: {
         flex: 1,
         justifyContent: 'space-between',
         borderRadius: theme.shape.borderRadius.l,
-        backgroundColor: getColor(additionalAnnotationCategoryHandler.getCategoryColor(displayMode)),
+        backgroundColor: getColor(ADDITIONAL_ANNOTATION_CATEGORY.color[displayMode]),
       },
       additionalAnnotationTermsLeftContainer: {
         marginRight: theme.spacing * 3,

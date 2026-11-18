@@ -1,4 +1,4 @@
-import { stringComparator } from 'src/utils/annotation/stringComparator';
+import { areInsensitiveEqual, areStringsSimilar } from 'src/utils/annotation/stringComparator';
 
 describe('stringComparator', () => {
   describe('insensitiveEqual', () => {
@@ -6,7 +6,7 @@ describe('stringComparator', () => {
       const str1 = 'lala';
       const str2 = 'lala';
 
-      const result = stringComparator.insensitiveEqual(str1, str2);
+      const result = areInsensitiveEqual(str1, str2);
 
       expect(result).toEqual(true);
     });
@@ -15,7 +15,7 @@ describe('stringComparator', () => {
       const str1 = 'lala';
       const str2 = 'LALA';
 
-      const result = stringComparator.insensitiveEqual(str1, str2);
+      const result = areInsensitiveEqual(str1, str2);
 
       expect(result).toEqual(true);
     });
@@ -24,7 +24,7 @@ describe('stringComparator', () => {
       const str1 = 'lala';
       const str2 = 'lâlà';
 
-      const result = stringComparator.insensitiveEqual(str1, str2);
+      const result = areInsensitiveEqual(str1, str2);
 
       expect(result).toEqual(true);
     });
@@ -34,7 +34,7 @@ describe('stringComparator', () => {
       const str1 = 'LALAL';
       const str2 = 'LOLOL';
 
-      const result = stringComparator.similar(str1, str2, 2);
+      const result = areStringsSimilar(str1, str2, 2);
 
       expect(result).toEqual(true);
     });
@@ -43,7 +43,7 @@ describe('stringComparator', () => {
       const str1 = 'LALAL';
       const str2 = 'LOCOL';
 
-      const result = stringComparator.similar(str1, str2, 2);
+      const result = areStringsSimilar(str1, str2, 2);
 
       expect(result).toEqual(false);
     });
@@ -52,7 +52,7 @@ describe('stringComparator', () => {
       const str1 = 'LALAL';
       const str2 = 'GOGOL';
 
-      const result = stringComparator.similar(str1, str2, 4);
+      const result = areStringsSimilar(str1, str2, 4);
 
       expect(result).toEqual(true);
     });
@@ -61,7 +61,7 @@ describe('stringComparator', () => {
       const str1 = 'LALAL';
       const str2 = 'GOGORL';
 
-      const result = stringComparator.similar(str1, str2, 4);
+      const result = areStringsSimilar(str1, str2, 4);
 
       expect(result).toEqual(false);
     });
@@ -70,7 +70,7 @@ describe('stringComparator', () => {
       const str1 = 'lalaL';
       const str2 = 'LOLOL';
 
-      const result = stringComparator.similar(str1, str2, 2);
+      const result = areStringsSimilar(str1, str2, 2);
 
       expect(result).toEqual(true);
     });
@@ -79,7 +79,7 @@ describe('stringComparator', () => {
       const str1 = 'Duponte';
       const str2 = 'Dûpond';
 
-      const result = stringComparator.similar(str1, str2, 2);
+      const result = areStringsSimilar(str1, str2, 2);
 
       expect(result).toEqual(true);
     });

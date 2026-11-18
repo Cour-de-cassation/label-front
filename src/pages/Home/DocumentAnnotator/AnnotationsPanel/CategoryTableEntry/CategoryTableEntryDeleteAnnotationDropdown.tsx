@@ -1,12 +1,15 @@
 import React from 'react';
-import { annotationHandler } from 'src/utils/annotation/annotationHandler';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { annotationType } from 'src/types/annotation';
 import { IconDropdown, IconButton } from 'src/pelta-design-system';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
 import { useAlert } from '../../../../../services/alert';
-import { motivationCategoryHandler } from 'src/utils/settings/motivationCategoryHandler';
+import {
+  deleteAnnotationsByTextAndCategory,
+  deleteAnnotationsByEntityId,
+} from 'src/utils/annotation/annotationHandler';
+import { getLinkedAnnotationRepresentatives } from 'src/utils/annotation/annotationLinkHandler';
+import { MOTIVATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 const DELETE_ALL = '__all__';
 
@@ -16,7 +19,7 @@ function CategoryTableEntryDeleteAnnotationDropdown(props: { buttonSize: number;
   const { displayAlert } = useAlert();
   const annotatorStateHandler = useAnnotatorStateHandler();
   const annotatorState = annotatorStateHandler.get();
-  const linkedAnnotationRepresentatives = annotationLinkHandler.getLinkedAnnotationRepresentatives(
+  const linkedAnnotationRepresentatives = getLinkedAnnotationRepresentatives(
     props.entityAnnotation.entityId,
     annotatorState.annotations,
   );
@@ -63,11 +66,11 @@ function CategoryTableEntryDeleteAnnotationDropdown(props: { buttonSize: number;
   function deleteAnnotations(text: string) {
     const newAnnotations =
       text === DELETE_ALL
-        ? annotationHandler.deleteByEntityId(annotatorState.annotations, props.entityAnnotation.entityId)
-        : annotationHandler.deleteByTextAndCategory(annotatorState.annotations, props.entityAnnotation);
+        ? deleteAnnotationsByEntityId(annotatorState.annotations, props.entityAnnotation.entityId)
+        : deleteAnnotationsByTextAndCategory(annotatorState.annotations, props.entityAnnotation);
     const newAnnotatorState = { ...annotatorState, annotations: newAnnotations };
     annotatorStateHandler.set(newAnnotatorState);
-    if (props.entityAnnotation.category === motivationCategoryHandler.getCategoryName()) {
+    if (props.entityAnnotation.category === MOTIVATION_CATEGORY.name) {
       displayAlert({
         text: wordings.business.errors.deleteMotivationOccultationAlert,
         variant: 'info',

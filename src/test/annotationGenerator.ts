@@ -1,5 +1,5 @@
-import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
 import { annotationType } from 'src/types/annotation';
+import { computeEntityId } from 'src/utils/annotation/entityIdHandler';
 
 export function generateAnnotation({
   category,
@@ -18,6 +18,6 @@ export function generateAnnotation({
 
   return {
     ...annotationFields,
-    entityId: entityIdHandler.compute(annotationFields.category, annotationFields.text),
+    entityId: computeEntityId(annotationFields.category, annotationFields.text),
   };
 }

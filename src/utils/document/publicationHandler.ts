@@ -4,11 +4,7 @@ const PUBLISHED_PUBLICATION_CATEGORY_LETTERS = ['P', 'B'];
 
 const PRIORITIZED_NAC_CODES = ['97H'];
 
-export const publicationHandler = {
-  mustBePublished,
-};
-
-function mustBePublished(
+export function mustBePublished(
   publicationCategory: documentType['publicationCategory'],
   NACCode?: documentType['decisionMetadata']['NACCode'],
 ) {

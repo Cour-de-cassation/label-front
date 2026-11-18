@@ -1,4 +1,3 @@
-import { generateAnnotationsDiff } from 'src/test/annotationsDiffGenerator';
 import { squash } from 'src/services/annotatorState/annotationsDiff/squash';
 import { sortAnnotations } from 'src/utils/annotation/sortAnnotations';
 import { generateAnnotation } from 'src/test/annotationGenerator';
@@ -10,7 +9,7 @@ describe('squash', () => {
       { before: [], after: [annotations[0], annotations[1]] },
       { before: [annotations[0]], after: [annotations[2]] },
       { before: [annotations[1]], after: [annotations[3], annotations[4]] },
-    ].map(generateAnnotationsDiff);
+    ];
 
     const annotationsDiff = squash(annotationsDiffs);
 
@@ -26,7 +25,7 @@ describe('squash', () => {
       { before: [annotations[5]], after: [annotations[0], annotations[1]] },
       { before: [annotations[0]], after: [annotations[2]] },
       { before: [annotations[1]], after: [annotations[3], annotations[4]] },
-    ].map(generateAnnotationsDiff);
+    ];
 
     const annotationsDiff = squash(annotationsDiffs);
 
@@ -39,7 +38,7 @@ describe('squash', () => {
     const annotationsDiffs = [
       { before: [annotations[0]], after: [annotations[2]] },
       { before: [annotations[1]], after: [annotations[3]] },
-    ].map(generateAnnotationsDiff);
+    ];
 
     const annotationsDiff = squash(annotationsDiffs);
 
@@ -52,7 +51,7 @@ describe('squash', () => {
     const annotationsDiffs = [
       { before: [], after: [annotations[0]] },
       { before: [annotations[0]], after: [] },
-    ].map(generateAnnotationsDiff);
+    ];
 
     const annotationsDiff = squash(annotationsDiffs);
 
@@ -61,9 +60,7 @@ describe('squash', () => {
   });
 
   it('should work with no annotationDiff', () => {
-    const annotationsDiffs = [].map(generateAnnotationsDiff);
-
-    const annotationsDiff = squash(annotationsDiffs);
+    const annotationsDiff = squash([]);
 
     expect(annotationsDiff).toEqual({ before: [], after: [] });
   });

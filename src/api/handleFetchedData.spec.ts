@@ -34,7 +34,7 @@ describe('handleFetchedData', () => {
 
     const fetchedData = handleFetchedData(fetchedInfo, showLoadingOnRefetch);
 
-    expect(fetchedData).toEqual({ kind: 'error', error: 'unknown' });
+    expect(fetchedData).toEqual({ kind: 'error' });
   });
 
   it('should return an unknown error', () => {
@@ -47,7 +47,7 @@ describe('handleFetchedData', () => {
 
     const fetchedData = handleFetchedData(fetchedInfo, showLoadingOnRefetch);
 
-    expect(fetchedData).toEqual({ kind: 'error', error: 'unknown' });
+    expect(fetchedData).toEqual({ kind: 'error' });
   });
 
   it('should return the fetched data', () => {

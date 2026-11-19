@@ -1,27 +1,18 @@
-export { handleFetchedData };
+type DataFetchStatus<dataT> = { kind: 'loading' } | { kind: 'error' } | { kind: 'data'; data: dataT };
 
-type dataFetchStatus<dataT> =
-  { kind: 'loading' } | { kind: 'error'; error: 'authentication' | 'unknown' } | { kind: 'data'; data: dataT };
-
-function handleFetchedData<dataT>(
+export function handleFetchedData<dataT>(
   fetchInfo: { isLoaded: boolean; statusCode?: number; data?: dataT },
   showLoadingOnRefetch?: boolean,
-): dataFetchStatus<dataT> {
+): DataFetchStatus<dataT> {
   if (!fetchInfo.isLoaded && (showLoadingOnRefetch || !fetchInfo.data)) {
     return { kind: 'loading' };
   }
 
-  if (fetchInfo.statusCode) {
-    if ([200, 201].includes(fetchInfo.statusCode) && fetchInfo.data) {
-      return { kind: 'data', data: fetchInfo.data };
-    } else {
-      return { kind: 'error', error: 'unknown' };
-    }
-  }
+  const isSuccess = fetchInfo.statusCode === undefined || [200, 201].includes(fetchInfo.statusCode);
 
-  if (fetchInfo.data) {
+  if (isSuccess && fetchInfo.data) {
     return { kind: 'data', data: fetchInfo.data };
   }
 
-  return { kind: 'error', error: 'unknown' };
+  return { kind: 'error' };
 }

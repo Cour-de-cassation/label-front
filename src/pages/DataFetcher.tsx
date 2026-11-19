@@ -1,12 +1,9 @@
 import React, { ReactElement } from 'react';
-import { Navigate } from 'react-router';
 import { handleFetchedData } from '../api';
 import { ErrorPage } from './ErrorPage';
 import { LoadingPage } from './LoadingPage';
 
-export { DataFetcher };
-
-function DataFetcher<dataT>(props: {
+export function DataFetcher<dataT>(props: {
   buildComponentWithData: (returnedData: dataT) => ReactElement;
   fetchInfo: { isLoaded: boolean; statusCode?: number; data?: dataT };
   showLoadingOnRefetch?: boolean;
@@ -16,27 +13,10 @@ function DataFetcher<dataT>(props: {
 
   switch (fetchedData.kind) {
     case 'loading':
-      return buildLoadingPage();
+      return <LoadingPage />;
     case 'data':
       return props.buildComponentWithData(fetchedData.data);
     case 'error':
-      switch (fetchedData.error) {
-        case 'authentication':
-          return buildLoginRedirectionPage();
-        case 'unknown':
-          return buildErrorPage();
-      }
-  }
-
-  function buildErrorPage() {
-    return <ErrorPage route={props.route} errorCode={props.fetchInfo.statusCode} />;
-  }
-
-  function buildLoadingPage() {
-    return <LoadingPage />;
-  }
-
-  function buildLoginRedirectionPage() {
-    return <Navigate to="/login" replace />;
+      return <ErrorPage route={props.route} errorCode={props.fetchInfo.statusCode} />;
   }
 }

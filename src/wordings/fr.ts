@@ -322,7 +322,7 @@ const fr = {
     specificStatisticsNotFound: "Il n'y a pas de statistiques pour ce numéro de document.",
     box: {
       computation: {
-        total: 'Total',
+        total: 'Total:',
         average: 'Moyenne',
       },
       fields: {

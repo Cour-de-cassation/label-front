@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { timeOperator } from 'src/utils/timeOperator';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { documentType } from 'src/types/document';
 import { userType } from 'src/types/user';
@@ -19,6 +18,7 @@ import { localStorage, untreatedDocumentOrderByProperties } from '../../../servi
 import { wordings } from '../../../wordings';
 import { routes } from '../../../router/routes';
 import { useCtxUser } from '../../../contexts/user.context';
+import { convertTimestampToReadableDate } from 'src/utils/timeOperator';
 
 export { UntreatedDocumentsTable };
 
@@ -273,7 +273,7 @@ function UntreatedDocumentsTable(props: {
         canBeSorted: true,
         extractor: (untreatedDocument) =>
           untreatedDocument.document.decisionDate
-            ? timeOperator.convertTimestampToReadableDate(untreatedDocument.document.decisionDate)
+            ? convertTimestampToReadableDate(untreatedDocument.document.decisionDate)
             : '-',
         getSortingValue: (untreatedDocument) => untreatedDocument.document.decisionDate || 0,
         width: 2,
@@ -285,7 +285,7 @@ function UntreatedDocumentsTable(props: {
         canBeSorted: true,
         extractor: (untreatedDocument) =>
           untreatedDocument.document.creationDate
-            ? timeOperator.convertTimestampToReadableDate(untreatedDocument.document.creationDate)
+            ? convertTimestampToReadableDate(untreatedDocument.document.creationDate)
             : '-',
         getSortingValue: (untreatedDocument) => untreatedDocument.document.creationDate || 0,
         width: 2,

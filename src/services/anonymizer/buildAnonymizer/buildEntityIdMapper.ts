@@ -5,9 +5,7 @@ import { buildAnonymizationTextGenerator } from 'src/services/anonymizer/buildAn
 import { ANONYMIZATION_DEFAULT_TEXT } from 'src/services/anonymizer/buildAnonymizer/constants';
 import { uniqBy } from 'lodash';
 
-export { buildEntityIdMapper };
-
-function buildEntityIdMapper(
+export function buildEntityIdMapper(
   settings: settingsType,
   annotations: annotationType[],
   seed: number,

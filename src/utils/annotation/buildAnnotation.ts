@@ -1,8 +1,6 @@
-import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
+import { computeEntityId } from 'src/utils/annotation/entityIdHandler';
 
-export { buildAnnotation };
-
-function buildAnnotation({
+export function buildAnnotation({
   category,
   start,
   text,
@@ -19,7 +17,7 @@ function buildAnnotation({
 }) {
   return {
     category,
-    entityId: entityId ?? entityIdHandler.compute(category, text),
+    entityId: entityId ?? computeEntityId(category, text),
     start,
     text,
     score,

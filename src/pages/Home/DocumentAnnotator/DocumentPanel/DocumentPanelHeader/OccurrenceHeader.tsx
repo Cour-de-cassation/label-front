@@ -1,13 +1,13 @@
 import React from 'react';
 import { uniq } from 'lodash';
 import { customThemeType, useCustomTheme, Header, IconButton, Text } from 'src/pelta-design-system';
-import { settingsModule } from 'src/core';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { CategoryIcon } from '../../../../../components';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { useDocumentViewerModeHandler } from '../../../../../services/documentViewerMode';
 import { heights } from '../../../../../theme/layout';
 import { wordings } from '../../../../../wordings';
+import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
+import { getLinkedAnnotationRepresentatives } from 'src/utils/annotation/annotationLinkHandler';
 
 export { OccurrenceHeader };
 
@@ -20,11 +20,9 @@ function OccurrenceHeader(props: { entityId: string; category: string }) {
 
   const styles = buildStyles(theme);
   const { annotations, settings } = annotatorStateHandler.get();
-  const categoryName = settingsModule.lib.getAnnotationCategoryText(props.category, settings);
+  const categoryName = getAnnotationCategoryText(props.category, settings);
   const annotationTexts = uniq(
-    annotationLinkHandler
-      .getLinkedAnnotationRepresentatives(props.entityId, annotations)
-      .map((annotation) => annotation.text),
+    getLinkedAnnotationRepresentatives(props.entityId, annotations).map((annotation) => annotation.text),
   );
   return (
     <Header

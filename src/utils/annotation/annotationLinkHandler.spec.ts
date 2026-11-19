@@ -1,5 +1,16 @@
-import { annotationModule } from 'src/core/modules/annotation';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
+import { generateAnnotation } from 'src/test/annotationGenerator';
+import {
+  countLinkedEntities,
+  getLinkableAnnotations,
+  getLinkedAnnotations,
+  getLinkedAnnotationRepresentatives,
+  getAnnotationRepresentatives,
+  isAnnotationLinked,
+  isAnnotationLinkedTo,
+  linkEntity,
+  unlinkEntity,
+  unlinkAnnotationsByCategoryAndText,
+} from 'src/utils/annotation/annotationLinkHandler';
 
 describe('annotationLinker', () => {
   describe('countLinkedEntities', () => {
@@ -15,14 +26,14 @@ describe('annotationLinker', () => {
         { category: 'firstName', text: 'Benoit' },
         { category: 'firstName', text: 'Nicolaz' },
         { category: 'firstName', text: 'Romaun' },
-      ].map(annotationModule.generator.generate);
-      const linkedAnnotations = annotationLinkHandler.link(
+      ].map(generateAnnotation);
+      const linkedAnnotations = linkEntity(
         annotations[0],
         annotations[8],
-        annotationLinkHandler.link(annotations[3], annotations[9], annotations),
+        linkEntity(annotations[3], annotations[9], annotations),
       );
 
-      const linkedEntitiesCount = annotationLinkHandler.countLinkedEntities(linkedAnnotations);
+      const linkedEntitiesCount = countLinkedEntities(linkedAnnotations);
 
       expect(linkedEntitiesCount).toEqual(2);
     });
@@ -37,9 +48,9 @@ describe('annotationLinker', () => {
         { category: category, text: 'A' },
         { category: category, text: 'A' },
         { category: 'ANOTHER_CATEGORY' },
-      ].map(annotationModule.generator.generate);
+      ].map(generateAnnotation);
 
-      const linkableAnnotations = annotationLinkHandler.getLinkableAnnotations(annotations[0], annotations);
+      const linkableAnnotations = getLinkableAnnotations(annotations[0], annotations);
 
       expect(linkableAnnotations).toEqual([annotations[2], annotations[1]]);
     });
@@ -54,23 +65,20 @@ describe('annotationLinker', () => {
         { category: category, text: 'TEXT3' },
         { category: category, text: 'TEXT3' },
         { category: 'ANOTHER_CATEGORY' },
-      ].map(annotationModule.generator.generate);
-      const annotationsWithLinks1 = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
-      const annotationsWithLinks2 = annotationLinkHandler.link(
+      ].map(generateAnnotation);
+      const annotationsWithLinks1 = linkEntity(annotations[0], annotations[2], annotations);
+      const annotationsWithLinks2 = linkEntity(
         annotationsWithLinks1[0],
         annotationsWithLinks1[1],
         annotationsWithLinks1,
       );
-      const annotationsWithLinks3 = annotationLinkHandler.link(
+      const annotationsWithLinks3 = linkEntity(
         annotationsWithLinks2[0],
         annotationsWithLinks2[2],
         annotationsWithLinks2,
       );
 
-      const linkedAnnotations = annotationLinkHandler.getLinkedAnnotations(
-        annotationsWithLinks3[0].entityId,
-        annotationsWithLinks3,
-      );
+      const linkedAnnotations = getLinkedAnnotations(annotationsWithLinks3[0].entityId, annotationsWithLinks3);
 
       expect(linkedAnnotations).toEqual([
         annotationsWithLinks3[0],
@@ -90,20 +98,20 @@ describe('annotationLinker', () => {
         { category: category, text: 'TEXT3' },
         { category: category, text: 'TEXT3' },
         { category: 'ANOTHER_CATEGORY' },
-      ].map(annotationModule.generator.generate);
-      const annotationsWithLinks1 = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
-      const annotationsWithLinks2 = annotationLinkHandler.link(
+      ].map(generateAnnotation);
+      const annotationsWithLinks1 = linkEntity(annotations[0], annotations[2], annotations);
+      const annotationsWithLinks2 = linkEntity(
         annotationsWithLinks1[0],
         annotationsWithLinks1[1],
         annotationsWithLinks1,
       );
-      const annotationsWithLinks3 = annotationLinkHandler.link(
+      const annotationsWithLinks3 = linkEntity(
         annotationsWithLinks2[0],
         annotationsWithLinks2[2],
         annotationsWithLinks2,
       );
 
-      const linkedAnnotations = annotationLinkHandler.getLinkedAnnotationRepresentatives(
+      const linkedAnnotations = getLinkedAnnotationRepresentatives(
         annotationsWithLinks3[0].entityId,
         annotationsWithLinks3,
       );
@@ -121,9 +129,9 @@ describe('annotationLinker', () => {
         { category: category, text: 'A' },
         { category: category, text: 'A' },
         { category: 'ANOTHER_CATEGORY', text: 'A' },
-      ].map(annotationModule.generator.generate);
+      ].map(generateAnnotation);
 
-      const representatives = annotationLinkHandler.getRepresentatives(annotations);
+      const representatives = getAnnotationRepresentatives(annotations);
 
       expect(representatives).toEqual([annotations[2], annotations[4], annotations[0], annotations[1]]);
     });
@@ -132,10 +140,10 @@ describe('annotationLinker', () => {
   describe('isLinked', () => {
     it('should return true if the annotation is linked to another one', () => {
       const category = 'CATEGORY';
-      const annotations = [{ category: category }, { category: category }].map(annotationModule.generator.generate);
-      const annotationsWithLinks = annotationLinkHandler.link(annotations[0], annotations[1], annotations);
+      const annotations = [{ category: category }, { category: category }].map(generateAnnotation);
+      const annotationsWithLinks = linkEntity(annotations[0], annotations[1], annotations);
 
-      const annotationIsLinked = annotationLinkHandler.isLinked(annotationsWithLinks[0], annotationsWithLinks);
+      const annotationIsLinked = isAnnotationLinked(annotationsWithLinks[0], annotationsWithLinks);
 
       expect(annotationIsLinked).toEqual(true);
     });
@@ -151,10 +159,10 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget },
         {},
-      ].map(annotationModule.generator.generate);
+      ].map(generateAnnotation);
       const entityIdOfTextTarget = annotations[2].entityId;
 
-      const newAnnotations = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
+      const newAnnotations = linkEntity(annotations[0], annotations[2], annotations);
 
       expect(newAnnotations).toEqual([
         { ...annotations[0], entityId: entityIdOfTextTarget },
@@ -172,15 +180,11 @@ describe('annotationLinker', () => {
         { category: category, text: text1 },
         { category: category, text: text2 },
         { category: category, text: text3 },
-      ].map(annotationModule.generator.generate);
+      ].map(generateAnnotation);
       const entityIdOfText3 = annotations[2].entityId;
-      const annotationsWithLinks = annotationLinkHandler.link(annotations[0], annotations[1], annotations);
+      const annotationsWithLinks = linkEntity(annotations[0], annotations[1], annotations);
 
-      const newAnnotations = annotationLinkHandler.link(
-        annotationsWithLinks[1],
-        annotationsWithLinks[2],
-        annotationsWithLinks,
-      );
+      const newAnnotations = linkEntity(annotationsWithLinks[1], annotationsWithLinks[2], annotationsWithLinks);
 
       expect(newAnnotations).toEqual([
         { ...annotations[0], entityId: entityIdOfText3 },
@@ -197,15 +201,11 @@ describe('annotationLinker', () => {
         { category: category, text: text1 },
         { category: category, text: text2 },
         { category: category, text: text3 },
-      ].map(annotationModule.generator.generate);
+      ].map(generateAnnotation);
       const entityIdOfText3 = annotations[2].entityId;
-      const annotationsWithLinks = annotationLinkHandler.link(annotations[1], annotations[2], annotations);
+      const annotationsWithLinks = linkEntity(annotations[1], annotations[2], annotations);
 
-      const newAnnotations = annotationLinkHandler.link(
-        annotationsWithLinks[0],
-        annotationsWithLinks[1],
-        annotationsWithLinks,
-      );
+      const newAnnotations = linkEntity(annotationsWithLinks[0], annotationsWithLinks[1], annotationsWithLinks);
 
       expect(newAnnotations).toEqual([
         { ...annotations[0], entityId: entityIdOfText3 },
@@ -225,10 +225,10 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget },
         {},
-      ].map(annotationModule.generator.generate);
-      const annotationsWithLinks = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
+      ].map(generateAnnotation);
+      const annotationsWithLinks = linkEntity(annotations[0], annotations[2], annotations);
 
-      const newAnnotations = annotationLinkHandler.unlink(annotationsWithLinks[0], annotationsWithLinks);
+      const newAnnotations = unlinkEntity(annotationsWithLinks[0], annotationsWithLinks);
 
       expect(newAnnotations).toEqual(annotations);
     });
@@ -241,10 +241,10 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget },
         {},
-      ].map(annotationModule.generator.generate);
-      const annotationsWithLinks = annotationLinkHandler.link(annotations[0], annotations[2], annotations);
+      ].map(generateAnnotation);
+      const annotationsWithLinks = linkEntity(annotations[0], annotations[2], annotations);
 
-      const newAnnotations = annotationLinkHandler.unlink(annotationsWithLinks[2], annotationsWithLinks);
+      const newAnnotations = unlinkEntity(annotationsWithLinks[2], annotationsWithLinks);
 
       expect(newAnnotations).toEqual(annotations);
     });
@@ -261,22 +261,19 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget1 },
         { category: category, text: textTarget2 },
-      ].map(annotationModule.generator.generate);
-      const annotationsWithLinks1 = annotationLinkHandler.link(annotations[0], annotations[3], annotations);
-      const annotationsWithLinks2 = annotationLinkHandler.link(
+      ].map(generateAnnotation);
+      const annotationsWithLinks1 = linkEntity(annotations[0], annotations[3], annotations);
+      const annotationsWithLinks2 = linkEntity(
         annotationsWithLinks1[0],
         annotationsWithLinks1[2],
         annotationsWithLinks1,
       );
 
-      const newAnnotations = annotationLinkHandler.unlinkByCategoryAndText(
-        annotationsWithLinks2[0],
-        annotationsWithLinks2,
-      );
+      const newAnnotations = unlinkAnnotationsByCategoryAndText(annotationsWithLinks2[0], annotationsWithLinks2);
 
       expect(newAnnotations[0]).toEqual(annotations[0]);
       expect(newAnnotations[1]).toEqual(annotations[1]);
-      expect(annotationLinkHandler.isLinkedTo(newAnnotations[2], newAnnotations[3])).toEqual(true);
+      expect(isAnnotationLinkedTo(newAnnotations[2], newAnnotations[3])).toEqual(true);
     });
     it('should unlink the given annotation (target of a link)', () => {
       const category = 'CATEGORY';
@@ -288,21 +285,18 @@ describe('annotationLinker', () => {
         { category: category, text: textSource },
         { category: category, text: textTarget1 },
         { category: category, text: textTarget2 },
-      ].map(annotationModule.generator.generate);
-      const annotationsWithLinks1 = annotationLinkHandler.link(annotations[0], annotations[3], annotations);
-      const annotationsWithLinks2 = annotationLinkHandler.link(
+      ].map(generateAnnotation);
+      const annotationsWithLinks1 = linkEntity(annotations[0], annotations[3], annotations);
+      const annotationsWithLinks2 = linkEntity(
         annotationsWithLinks1[0],
         annotationsWithLinks1[2],
         annotationsWithLinks1,
       );
 
-      const newAnnotations = annotationLinkHandler.unlinkByCategoryAndText(
-        annotationsWithLinks2[3],
-        annotationsWithLinks2,
-      );
+      const newAnnotations = unlinkAnnotationsByCategoryAndText(annotationsWithLinks2[3], annotationsWithLinks2);
 
       expect(newAnnotations[3]).toEqual(annotations[3]);
-      expect(annotationLinkHandler.isLinkedTo(newAnnotations[0], newAnnotations[2])).toEqual(true);
+      expect(isAnnotationLinkedTo(newAnnotations[0], newAnnotations[2])).toEqual(true);
     });
   });
 });

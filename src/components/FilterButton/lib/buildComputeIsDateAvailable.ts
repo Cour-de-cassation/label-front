@@ -1,4 +1,4 @@
-import { dateType, timeOperator } from 'src/utils/timeOperator';
+import { dateType, compareDates, convertTimestampToDate } from 'src/utils/timeOperator';
 
 export { buildComputeIsDateAvailable };
 
@@ -9,14 +9,14 @@ function buildComputeIsDateAvailable(extremumAvailableDates: { max: number | und
     }
     let filter = true;
     if (!!extremumAvailableDates.min) {
-      const minDate = timeOperator.convertTimestampToDate(extremumAvailableDates.min);
-      if (timeOperator.compareDates(minDate, date) > 0) {
+      const minDate = convertTimestampToDate(extremumAvailableDates.min);
+      if (compareDates(minDate, date) > 0) {
         filter = false;
       }
     }
     if (!!extremumAvailableDates.max) {
-      const maxDate = timeOperator.convertTimestampToDate(extremumAvailableDates.max);
-      if (timeOperator.compareDates(date, maxDate) > 0) {
+      const maxDate = convertTimestampToDate(extremumAvailableDates.max);
+      if (compareDates(date, maxDate) > 0) {
         filter = false;
       }
     }

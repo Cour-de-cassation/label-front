@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
-import { settingsModule } from 'src/core';
-import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 import { annotationType } from 'src/types/annotation';
 import { customThemeType, useCustomTheme, Header, Text } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../../components';
-import { clientAnonymizerType } from 'src/types/anonymizer';
+import { clientAnonymizerType } from 'src/services/anonymizer/buildAnonymizerBuilder';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
 import { DocumentAnonymizedAnnotationText } from '../DocumentAnonymizedAnnotationText';
+import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
+import { getAnnotationIndex } from 'src/utils/annotation/annotationHandler';
 
 export { PureAnnotationTooltipMenuHeader as AnnotationTooltipMenuHeader };
 
@@ -40,7 +40,7 @@ function AnnotationTooltipMenuHeader(props: propsType): ReactElement {
   const theme = useCustomTheme();
   const style = buildStyle(theme);
   const annotatorState = annotatorStateHandler.get();
-  const annotationIndex = annotationHandler.getAnnotationIndex(annotatorState.annotations, props.annotation);
+  const annotationIndex = getAnnotationIndex(annotatorState.annotations, props.annotation);
 
   return (
     <>
@@ -53,10 +53,7 @@ function AnnotationTooltipMenuHeader(props: propsType): ReactElement {
             settings={annotatorState.settings}
           />,
           <Text key="categoryText" inline>
-            {settingsModule.lib.getAnnotationCategoryText(
-              props.annotation.category,
-              annotatorStateHandler.get().settings,
-            )}
+            {getAnnotationCategoryText(props.annotation.category, annotatorStateHandler.get().settings)}
           </Text>,
         ]}
         rightHeaderComponents={[

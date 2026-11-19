@@ -3,9 +3,7 @@ import { buildAvailableCharactersMapper } from 'src/services/anonymizer/buildAno
 import { buildEntityIdOrderMapper } from 'src/services/anonymizer/buildAnonymizer/buildEntityIdOrderMapper';
 import { specifierGeneratorType } from 'src/services/anonymizer/buildAnonymizer/types';
 
-export { buildSpecifierGenerator };
-
-function buildSpecifierGenerator(annotations: annotationType[], seed: number) {
+export function buildSpecifierGenerator(annotations: annotationType[], seed: number) {
   let currentNumber = 1;
   const availableCharactersMapper = buildAvailableCharactersMapper(annotations, seed);
   const entityIdOrderMapper = buildEntityIdOrderMapper(annotations);

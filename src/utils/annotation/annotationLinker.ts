@@ -1,20 +1,13 @@
 import { annotationType } from 'src/types/annotation';
-import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
+import { computeEntityId } from 'src/utils/annotation/entityIdHandler';
 
-export { annotationLinker };
-
-const annotationLinker = {
-  link,
-  unlink,
-};
-
-function link(annotationSource: annotationType, annotationTarget: annotationType): annotationType {
+export function linkAnnotation(annotationSource: annotationType, annotationTarget: annotationType): annotationType {
   return { ...annotationSource, entityId: annotationTarget.entityId };
 }
 
-function unlink(annotation: annotationType): annotationType {
+export function unlinkAnnotation(annotation: annotationType): annotationType {
   return {
     ...annotation,
-    entityId: entityIdHandler.compute(annotation.category, annotation.text),
+    entityId: computeEntityId(annotation.category, annotation.text),
   };
 }

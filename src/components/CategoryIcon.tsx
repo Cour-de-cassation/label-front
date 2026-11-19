@@ -1,22 +1,21 @@
 import React from 'react';
-import { settingsModule } from 'src/core';
 import { settingsType } from 'src/types/settings';
 import { getColor, useDisplayMode, CircleIcon } from 'src/pelta-design-system';
+import { getAnnotationCategoryIconName } from 'src/utils/settings/getAnnotationCategoryIconName';
+import { getAnnotationCategoryColor } from 'src/utils/settings/getAnnotationCategoryColor';
 
 export { CategoryIcon };
 
 function CategoryIcon(props: { settings: settingsType; category: string; iconSize: number; isDisabled?: boolean }) {
   const { displayMode } = useDisplayMode();
-  const backgroundColor = getColor(
-    settingsModule.lib.getAnnotationCategoryColor(props.category, props.settings, displayMode),
-  );
+  const backgroundColor = getColor(getAnnotationCategoryColor(props.category, props.settings, displayMode));
 
   return (
     <CircleIcon
       isDisabled={props.isDisabled}
       backgroundColor={backgroundColor}
       iconSize={props.iconSize}
-      iconName={settingsModule.lib.getAnnotationCategoryIconName(props.category, props.settings)}
+      iconName={getAnnotationCategoryIconName(props.category, props.settings)}
     />
   );
 }

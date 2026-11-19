@@ -1,9 +1,7 @@
-import { annotationModule } from 'src/core';
 import { annotatorStateType } from './annotatorStateType';
+import { sortAnnotations } from 'src/utils/annotation/sortAnnotations';
 
-export { computeAnnotatorStateChecksum };
-
-function computeAnnotatorStateChecksum(annotatorState: annotatorStateType) {
+export function computeAnnotatorStateChecksum(annotatorState: annotatorStateType) {
   const annotations = annotatorState.annotations;
-  return JSON.stringify(annotationModule.lib.sortAnnotations(annotations));
+  return JSON.stringify(sortAnnotations(annotations));
 }

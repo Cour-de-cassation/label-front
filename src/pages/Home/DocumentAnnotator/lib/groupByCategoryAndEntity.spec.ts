@@ -1,6 +1,6 @@
-import { annotationModule } from 'src/core';
 import { annotationType } from 'src/types/annotation';
 import { groupByCategoryAndEntity } from './groupByCategoryAndEntity';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 
 describe('groupByCategoryAndEntity', () => {
   it('should group annotations by categories', () => {
@@ -11,7 +11,7 @@ describe('groupByCategoryAndEntity', () => {
       { category: 'firstName', text: 'Benoit', start: 30 },
       { category: 'lastName', text: 'Dupond', start: 40 },
       { category: 'lastName', text: 'Blanc-Sec', start: 50 },
-    ].map(annotationModule.generator.generate);
+    ].map(generateAnnotation);
     const categories = ['lastName', 'firstName', 'birthDate'];
 
     const annotationsPerCategoryAndEntity = groupByCategoryAndEntity(annotations, categories);
@@ -39,7 +39,7 @@ describe('groupByCategoryAndEntity', () => {
     const annotations = [
       { category: 'birthDate', text: '17/04/2001', start: 40 },
       { category: 'firstName', text: 'Nicolas', start: 0 },
-    ].map(annotationModule.generator.generate);
+    ].map(generateAnnotation);
     const categories = ['lastName', 'firstName', 'birthDate'];
 
     const annotationsPerCategoryAndEntity = groupByCategoryAndEntity(annotations, categories);

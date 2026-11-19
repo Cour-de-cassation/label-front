@@ -1,16 +1,12 @@
-import { annotationsDiffModule } from 'src/core';
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationsDiffType } from 'src/types/annotation';
+import { squash } from 'src/services/annotatorState/annotationsDiff/squash';
 
-export { buildAutoSaver };
-
-export type { autoSaverType };
-
-type autoSaverType = {
+export type autoSaverType = {
   autoSave: () => void;
   saveCommit: (commit: annotationsDiffType) => void;
 };
 
-function buildAutoSaver({
+export function buildAutoSaver({
   applySave = async () => {},
 }: {
   applySave?: (annotationsDiff: annotationsDiffType) => Promise<void>;
@@ -24,7 +20,7 @@ function buildAutoSaver({
 
   async function autoSave() {
     const cachedCommitsToSave = [...commitsToSave];
-    const annotationsDiffToSave = annotationsDiffModule.lib.squash(commitsToSave);
+    const annotationsDiffToSave = squash(commitsToSave);
     commitsToSave = [];
     try {
       await applySave(annotationsDiffToSave);

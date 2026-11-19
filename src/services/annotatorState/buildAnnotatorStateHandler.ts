@@ -1,4 +1,4 @@
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationsDiffType } from 'src/types/annotation';
 import { annotatorStateType } from './annotatorStateType';
 import { annotationsCommitterType } from './buildAnnotationsCommitter';
 import { autoSaverType } from './buildAutoSaver';

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { documentModule } from 'src/core';
 import { documentType } from 'src/types/document';
 import {
   customThemeType,
@@ -18,6 +17,7 @@ import { widths, heights } from '../../../theme/layout';
 import { wordings } from '../../../wordings';
 import { ReportProblemButton } from './ReportProblemButton';
 import { CopyAnonymizedTextButton } from './CopyAnonymizedTextButton';
+import { getNextStatus } from 'src/utils/document/getNextStatus';
 
 export { DocumentAnnotatorFooter };
 
@@ -124,7 +124,7 @@ function DocumentAnnotatorFooter(props: { onStopAnnotatingDocument?: () => Promi
   async function validate() {
     setIsValidating(true);
     try {
-      const nextDocumentStatus = documentModule.lib.getNextStatus({
+      const nextDocumentStatus = getNextStatus({
         status: document.status,
         route: document.route,
       });

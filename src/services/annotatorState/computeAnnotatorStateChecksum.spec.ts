@@ -1,15 +1,17 @@
-import { annotationModule, settingsModule, documentModule } from 'src/core';
 import { range } from 'lodash';
 import { computeAnnotatorStateChecksum } from './computeAnnotatorStateChecksum';
+import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
+import { generateChecklist, generateDocument } from 'src/test/documentGenerator';
+import { buildSettings } from 'src/utils/settings/buildSettings';
 
 describe('computeAnnotatorStateChecksum', () => {
-  const checklist = documentModule.checklistGenerator.generate(2);
-  const document = documentModule.generator.generate();
-  const settings = settingsModule.lib.buildSettings({ prenom: {}, nom: {} });
+  const checklist = generateChecklist(2);
+  const document = generateDocument();
+  const settings = buildSettings({ prenom: {}, nom: {} });
 
   it('should return the same checksum every time for the same array', () => {
     const annotations = range(10).map((index) =>
-      annotationModule.lib.buildAnnotation({
+      buildAnnotation({
         category: 'prenom',
         start: index * 10,
         text: 'TRUC',
@@ -31,9 +33,9 @@ describe('computeAnnotatorStateChecksum', () => {
   });
 
   it('should return the same checksum for reversed annotations', () => {
-    const checklist = documentModule.checklistGenerator.generate(2);
+    const checklist = generateChecklist(2);
     const annotations1 = range(10).map((index) =>
-      annotationModule.lib.buildAnnotation({
+      buildAnnotation({
         category: 'prenom',
         start: index * 10,
         text: 'TRUC',
@@ -62,9 +64,9 @@ describe('computeAnnotatorStateChecksum', () => {
   });
 
   it('should return a different checksum for different categories of annotations', () => {
-    const checklist = documentModule.checklistGenerator.generate(2);
+    const checklist = generateChecklist(2);
     const annotations1 = range(10).map((index) =>
-      annotationModule.lib.buildAnnotation({
+      buildAnnotation({
         category: 'prenom',
         start: index * 10,
         text: 'TRUC',
@@ -96,9 +98,9 @@ describe('computeAnnotatorStateChecksum', () => {
   });
 
   it('should return a different checksum for missing annotations', () => {
-    const checklist = documentModule.checklistGenerator.generate(2);
+    const checklist = generateChecklist(2);
     const annotations1 = range(10).map((index) =>
-      annotationModule.lib.buildAnnotation({
+      buildAnnotation({
         category: 'prenom',
         start: index * 10,
         text: 'TRUC',
@@ -127,9 +129,9 @@ describe('computeAnnotatorStateChecksum', () => {
   });
 
   it('should return the same checksum every time for the same array', () => {
-    const checklist = documentModule.checklistGenerator.generate(2);
+    const checklist = generateChecklist(2);
     const annotations = range(10).map((index) =>
-      annotationModule.lib.buildAnnotation({
+      buildAnnotation({
         category: 'prenom',
         start: index * 10,
         text: 'TRUC',

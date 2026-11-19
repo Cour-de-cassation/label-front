@@ -1,8 +1,6 @@
 import { buildCharacterList, FORBIDDEN_CHARACTERS } from 'src/services/anonymizer/buildAnonymizer/buildCharacterList';
 
-export { buildAvailableCharacters };
-
-function buildAvailableCharacters(count: number) {
+export function buildAvailableCharacters(count: number) {
   let power = 0;
   let availableCharacters: string[][] = [];
   do {

@@ -1,6 +1,4 @@
-export { normalizeString };
-
-function normalizeString(text: string) {
+export function normalizeString(text: string) {
   return text
     .toLowerCase()
     .replace(/[àáâãäå]/g, 'a')

@@ -1,8 +1,6 @@
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationsDiffType } from 'src/types/annotation';
 
-export { inverse };
-
-function inverse(annotationsDiff: annotationsDiffType): annotationsDiffType {
+export function inverse(annotationsDiff: annotationsDiffType): annotationsDiffType {
   return {
     before: annotationsDiff.after,
     after: annotationsDiff.before,

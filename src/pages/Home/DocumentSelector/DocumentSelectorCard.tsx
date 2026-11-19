@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { groupBy, orderBy, sumBy } from 'lodash';
-import { documentModule, settingsModule } from 'src/core';
 import { annotationType } from 'src/types/annotation';
 import { assignationType } from 'src/types/assignation';
 import { documentType } from 'src/types/document';
@@ -18,6 +17,8 @@ import { CategoryIcon } from '../../../components';
 import { wordings } from '../../../wordings';
 import { computeGenericDocumentInfoEntries } from './computeGenericDocumentInfoEntries';
 import { computeSpecificDocumentInfoEntries } from './computeSpecificDocumentInfoEntries';
+import { getCategories } from 'src/utils/settings/getCategories';
+import { mustBePublished } from 'src/utils/document/publicationHandler';
 
 export { DocumentSelectorCard };
 
@@ -50,7 +51,7 @@ function DocumentSelectorCard(props: {
     props.choice.annotations,
   );
 
-  const annotableCategories = settingsModule.lib.getCategories(props.settings, {
+  const annotableCategories = getCategories(props.settings, {
     status: ['annotable'],
     canBeAnnotatedBy: 'human',
   });
@@ -59,23 +60,23 @@ function DocumentSelectorCard(props: {
     props.choice.annotations,
     annotableCategories,
   );
-  const mustBePublished = documentModule.lib.publicationHandler.mustBePublished(
+  const isPublishable = mustBePublished(
     props.choice.document.publicationCategory,
     props.choice.document.decisionMetadata.NACCode,
   );
   const hasParticularInterest = props.choice.document.decisionMetadata.raisonInteretParticulier != null;
 
-  if (mustBePublished || hasParticularInterest) {
+  if (isPublishable || hasParticularInterest) {
     return (
       <div style={styles.flaggedDocumentCardContainer}>
         <div style={styles.flaggedDocumentTitleContainer}>
           <div>
             <CircleIcon
-              iconName={mustBePublished ? 'openedBook' : 'flag'}
+              iconName={isPublishable ? 'openedBook' : 'flag'}
               backgroundColor="primary"
               iconSize={40}
               hint={
-                mustBePublished
+                isPublishable
                   ? wordings.homePage.mustBePublishedHint
                   : hasParticularInterest
                     ? wordings.homePage.hasParticularInterestHint

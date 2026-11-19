@@ -1,26 +1,18 @@
-import { annotationModule } from 'src/core/modules/annotation';
-import { annotationType } from 'src/types/annotation';
-import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationType, annotationsDiffType } from 'src/types/annotation';
+import { areAnnotationsEqual } from 'src/utils/annotation/comparator';
 
-export { squash };
-
-function squash(annotationsDiffs: annotationsDiffType[]): annotationsDiffType {
+export function squash(annotationsDiffs: annotationsDiffType[]): annotationsDiffType {
   return annotationsDiffs.reduce(
     (accumulator, annotationsDiff) => {
       const updatedBefore = [...accumulator.before, ...annotationsDiff.before];
       const updatedAfter = [...accumulator.after, ...annotationsDiff.after];
       return {
         before: updatedBefore.filter(
-          (annotation) =>
-            !updatedAfter.some((anotherAnnotation) =>
-              annotationModule.lib.comparator.equal(anotherAnnotation, annotation),
-            ),
+          (annotation) => !updatedAfter.some((anotherAnnotation) => areAnnotationsEqual(anotherAnnotation, annotation)),
         ),
         after: updatedAfter.filter(
           (annotation) =>
-            !updatedBefore.some((anotherAnnotation) =>
-              annotationModule.lib.comparator.equal(anotherAnnotation, annotation),
-            ),
+            !updatedBefore.some((anotherAnnotation) => areAnnotationsEqual(anotherAnnotation, annotation)),
         ),
       };
     },

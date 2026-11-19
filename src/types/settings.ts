@@ -1,22 +1,11 @@
 import { stringComparisonSensitivityType } from 'src/utils/annotation/stringComparator';
+import { categoryIconNames, constantColors, shadeColors } from 'src/utils/settings/categoryAppearance';
 
-export { categoryIconNames, constantColors, shadeColors };
-
-export type {
-  categoryIconNameType,
-  categorySettingType,
-  colorType,
-  constantColorType,
-  displayModeType,
-  settingsType,
-  shadeColorType,
-};
-
-type settingsType = {
+export type settingsType = {
   [category: string]: categorySettingType;
 };
 
-type categorySettingType = {
+export type categorySettingType = {
   anonymization: string;
   color: { [displayMode in displayModeType]: colorType };
   iconName: categoryIconNameType;
@@ -29,58 +18,12 @@ type categorySettingType = {
   canBeAnnotatedBy: 'both' | 'NLP' | 'human';
 };
 
-type displayModeType = 'lightMode' | 'darkMode';
+export type displayModeType = 'lightMode' | 'darkMode';
 
-const categoryIconNames = [
-  'bank',
-  'assignment',
-  'cake',
-  'car',
-  'child',
-  'city',
-  'cloud',
-  'email',
-  'forbidden',
-  'judge',
-  'heart',
-  'location',
-  'map',
-  'pencil',
-  'person',
-  'phone',
-  'store',
-  'web',
-  'work',
-  'eyeoff',
-] as const;
+export type categoryIconNameType = (typeof categoryIconNames)[number];
 
-type categoryIconNameType = (typeof categoryIconNames)[number];
+export type constantColorType = (typeof constantColors)[number];
 
-const constantColors = ['black', 'white'] as const;
+export type shadeColorType = [(typeof shadeColors)[number], string];
 
-const shadeColors = [
-  'blue',
-  'blueGrey',
-  'brown',
-  'cyan',
-  'deepOrange',
-  'deepPurple',
-  'green',
-  'grey',
-  'indigo',
-  'lightBlue',
-  'lightGreen',
-  'lime',
-  'orange',
-  'pink',
-  'purple',
-  'red',
-  'teal',
-  'yellow',
-] as const;
-
-type constantColorType = (typeof constantColors)[number];
-
-type shadeColorType = [(typeof shadeColors)[number], string];
-
-type colorType = constantColorType | shadeColorType;
+export type colorType = constantColorType | shadeColorType;

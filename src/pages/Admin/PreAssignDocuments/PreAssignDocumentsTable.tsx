@@ -1,10 +1,10 @@
 import React from 'react';
 import { Table, tableRowFieldType } from 'src/pelta-design-system';
-import { timeOperator } from 'src/utils/timeOperator';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { apiCaller } from '../../../api';
 import { useAlert } from '../../../services/alert';
 import { wordings } from '../../../wordings';
+import { convertTimestampToReadableDate } from 'src/utils/timeOperator';
 
 export { PreAssignDocumentsTable };
 
@@ -54,8 +54,7 @@ function PreAssignDocumentsTable(props: {
         id: 'creationDate',
         title: wordings.preAssignDocumentsPage.table.columnTitles.creationDate,
         canBeSorted: true,
-        extractor: (preAssignation) =>
-          timeOperator.convertTimestampToReadableDate(preAssignation.preAssignation.creationDate),
+        extractor: (preAssignation) => convertTimestampToReadableDate(preAssignation.preAssignation.creationDate),
         width: 10,
       },
     ];

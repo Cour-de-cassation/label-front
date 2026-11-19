@@ -1,20 +1,16 @@
 import { annotationType } from 'src/types/annotation';
 import { documentType } from 'src/types/document';
 import { settingsType } from 'src/types/settings';
-import { textSplitter } from 'src/utils/textSplitter';
 import { buildEntityIdMapper } from 'src/services/anonymizer/buildAnonymizer/buildEntityIdMapper';
 import { ANONYMIZATION_DEFAULT_TEXT } from 'src/services/anonymizer/buildAnonymizer/constants';
+import { splitTextAccordingToAnnotations } from 'src/utils/textSplitter';
 
-export { buildAnonymizer };
-
-export type { anonymizerType };
-
-type anonymizerType<documentT extends documentType> = {
+export type anonymizerType<documentT extends documentType> = {
   anonymizeDocument: (document: documentT) => documentT;
   anonymize: (annotation: annotationType) => string;
 };
 
-function buildAnonymizer<documentT extends documentType>(
+export function buildAnonymizer<documentT extends documentType>(
   settings: settingsType,
   annotations: annotationType[],
   seed: number,
@@ -26,7 +22,7 @@ function buildAnonymizer<documentT extends documentType>(
   };
 
   function anonymizeDocument(document: documentT): documentT {
-    const splittedText = textSplitter.splitTextAccordingToAnnotations(document.text, annotations);
+    const splittedText = splitTextAccordingToAnnotations(document.text, annotations);
     const splittedAnonymizedText = splittedText.map((chunk) => {
       switch (chunk.type) {
         case 'text':

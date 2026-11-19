@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { timeOperator } from 'src/utils/timeOperator';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { userType } from 'src/types/user';
 import { customThemeType, useCustomTheme, PaginatedTable, tableRowFieldType } from 'src/pelta-design-system';
@@ -9,6 +8,7 @@ import { wordings } from '../../../wordings';
 import { routes } from '../../../router/routes';
 import { toBeConfirmedDocumentOrderByProperties } from '../../../services/localStorage';
 import { convertDocumentReviewStatusToFilter } from '../../../services/filters';
+import { convertDurationToReadableDuration, convertTimestampToReadableDate } from 'src/utils/timeOperator';
 
 export { ToBeConfirmedDocumentsTable };
 
@@ -127,7 +127,7 @@ function ToBeConfirmedDocumentsTable(props: {
         canBeSorted: true,
         extractor: (toBeConfirmedDocument) =>
           toBeConfirmedDocument.lastTreatmentDate !== undefined
-            ? timeOperator.convertTimestampToReadableDate(toBeConfirmedDocument.lastTreatmentDate, true)
+            ? convertTimestampToReadableDate(toBeConfirmedDocument.lastTreatmentDate, true)
             : '-',
         getSortingValue: (toBeConfirmedDocument) => toBeConfirmedDocument.lastTreatmentDate || 0,
         width: 3,
@@ -139,7 +139,7 @@ function ToBeConfirmedDocumentsTable(props: {
         tooltipText: wordings.business.filters.columnTitles.duration.tooltipText,
         extractor: (toBeConfirmedDocument) =>
           toBeConfirmedDocument.totalTreatmentDuration !== undefined
-            ? timeOperator.convertDurationToReadableDuration(toBeConfirmedDocument.totalTreatmentDuration)
+            ? convertDurationToReadableDuration(toBeConfirmedDocument.totalTreatmentDuration)
             : '-',
         getSortingValue: (toBeConfirmedDocument) => toBeConfirmedDocument.totalTreatmentDuration || 0,
         width: 1,

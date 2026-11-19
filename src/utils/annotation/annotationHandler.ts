@@ -1,43 +1,32 @@
 import { settingsType } from 'src/types/settings';
-import { annotationModule } from 'src/core/modules/annotation';
 import { annotationType } from 'src/types/annotation';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
-import { autoLinker } from 'src/utils/annotation/autoLinker';
+import { updateAnnotationsCategory } from 'src/utils/annotation/annotationUpdater';
+import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
+import { autoLink } from 'src/utils/annotation/autoLinker';
+import { getLinkedAnnotationRepresentatives, updateMainLinkEntity } from 'src/utils/annotation/annotationLinkHandler';
+import { linkAnnotation } from 'src/utils/annotation/annotationLinker';
 
-export { annotationHandler };
-
-const annotationHandler = {
-  create,
-  createManyLinked,
-  createAll,
-  deleteByTextAndCategory,
-  deleteByTextAndStart,
-  deleteByEntityId,
-  getAnnotationIndex,
-  updateManyCategory,
-};
-
-function create(
+export function createAnnotation(
   annotations: annotationType[],
   fields: { category: string; start: number; text: string },
   settings: settingsType,
 ): annotationType[] {
-  const createdAnnotation = annotationModule.lib.buildAnnotation({
+  const createdAnnotation = buildAnnotation({
     score: 1,
     source: 'agent',
     ...fields,
   });
   const newAnnotations = [createdAnnotation, ...annotations];
 
-  return autoLinker.autoLink([createdAnnotation], newAnnotations, settings);
+  return autoLink([createdAnnotation], newAnnotations, settings);
 }
 
-function createManyLinked(
+export function createLinkedAnnotations(
   annotations: annotationType[],
   fieldsArray: Array<{ category: string; start: number; text: string }>,
 ): annotationType[] {
   const createdAnnotations = fieldsArray.map((fields) =>
-    annotationModule.lib.buildAnnotation({
+    buildAnnotation({
       score: 1,
       source: 'agent',
       ...fields,
@@ -47,21 +36,21 @@ function createManyLinked(
     if (index === 0) {
       return annotation;
     }
-    return annotationModule.lib.annotationLinker.link(annotation, createdAnnotations[0]);
+    return linkAnnotation(annotation, createdAnnotations[0]);
   });
   const newAnnotations = [...annotations, ...linkedAnnotations];
 
   return newAnnotations;
 }
 
-function createAll(
+export function createAnnotations(
   annotations: annotationType[],
   category: string,
   annotationTextsAndIndices: { index: number; text: string }[],
   settings: settingsType,
 ): annotationType[] {
   const createdAnnotations = annotationTextsAndIndices.map(({ index, text }) =>
-    annotationModule.lib.buildAnnotation({
+    buildAnnotation({
       category,
       start: index,
       text,
@@ -71,64 +60,58 @@ function createAll(
   );
   const newAnnotations = createdAnnotations.concat(annotations);
 
-  return autoLinker.autoLink(createdAnnotations, newAnnotations, settings);
+  return autoLink(createdAnnotations, newAnnotations, settings);
 }
 
-function deleteByTextAndCategory(annotations: annotationType[], annotation: annotationType) {
+export function deleteAnnotationsByTextAndCategory(annotations: annotationType[], annotation: annotationType) {
   const newAnnotations = annotations.filter(
     (anotherAnnotation) =>
       anotherAnnotation.category !== annotation.category || anotherAnnotation.text !== annotation.text,
   );
 
-  const annotationsLinkedToDeletedAnnotation = annotationLinkHandler.getLinkedAnnotationRepresentatives(
-    annotation.entityId,
-    newAnnotations,
-  );
+  const annotationsLinkedToDeletedAnnotation = getLinkedAnnotationRepresentatives(annotation.entityId, newAnnotations);
 
   if (annotationsLinkedToDeletedAnnotation.length === 0) {
     return newAnnotations;
   } else {
-    return annotationLinkHandler.updateMainLinkEntity(annotationsLinkedToDeletedAnnotation[0], newAnnotations);
+    return updateMainLinkEntity(annotationsLinkedToDeletedAnnotation[0], newAnnotations);
   }
 }
 
-function deleteByTextAndStart(annotations: annotationType[], annotation: annotationType) {
+export function deleteAnnotationByTextAndStart(annotations: annotationType[], annotation: annotationType) {
   const newAnnotations = annotations.filter(
     (anotherAnnotation) => anotherAnnotation.text !== annotation.text || anotherAnnotation.start !== annotation.start,
   );
 
-  const annotationsLinkedToDeletedAnnotation = annotationLinkHandler.getLinkedAnnotationRepresentatives(
-    annotation.entityId,
-    newAnnotations,
-  );
+  const annotationsLinkedToDeletedAnnotation = getLinkedAnnotationRepresentatives(annotation.entityId, newAnnotations);
 
   if (annotationsLinkedToDeletedAnnotation.length === 0) {
     return newAnnotations;
   } else {
-    return annotationLinkHandler.updateMainLinkEntity(annotationsLinkedToDeletedAnnotation[0], newAnnotations);
+    return updateMainLinkEntity(annotationsLinkedToDeletedAnnotation[0], newAnnotations);
   }
 }
 
-function deleteByEntityId(annotations: annotationType[], entityId: annotationType['entityId']) {
+export function deleteAnnotationsByEntityId(annotations: annotationType[], entityId: annotationType['entityId']) {
   return annotations.filter((annotation) => annotation.entityId !== entityId);
 }
 
-function updateManyCategory(
+export function updateEntityCategory(
   annotations: annotationType[],
   entityId: string,
   category: string,
   settings: settingsType,
 ): annotationType[] {
-  const { newAnnotations, updatedAnnotations } = annotationModule.lib.annotationUpdater.updateAnnotationsCategory(
+  const { newAnnotations, updatedAnnotations } = updateAnnotationsCategory(
     annotations,
     category,
     (annotation) => annotation.entityId === entityId,
   );
 
-  return autoLinker.autoLink(updatedAnnotations, newAnnotations, settings);
+  return autoLink(updatedAnnotations, newAnnotations, settings);
 }
 
-function getAnnotationIndex(annotations: annotationType[], annotation: annotationType) {
+export function getAnnotationIndex(annotations: annotationType[], annotation: annotationType) {
   const sameEntityAnnotations = annotations.filter(
     (anotherAnnotation) => anotherAnnotation.entityId === annotation.entityId,
   );

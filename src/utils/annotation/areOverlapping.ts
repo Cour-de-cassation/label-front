@@ -1,8 +1,6 @@
 import { annotationType } from 'src/types/annotation';
 
-export { areOverlapping };
-
-function areOverlapping(annotation1: annotationType, annotation2: annotationType) {
+export function areOverlapping(annotation1: annotationType, annotation2: annotationType) {
   const startA = annotation1.start;
   const endA = annotation1.start + annotation1.text.length;
   const startB = annotation2.start;

@@ -1,13 +1,17 @@
 import React, { ReactElement } from 'react';
 import format from 'string-template';
-import { settingsModule } from 'src/core';
-import { annotationHandler } from 'src/utils/annotation/annotationHandler';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
 import { annotationType } from 'src/types/annotation';
 import { IconButton, IconDropdown } from 'src/pelta-design-system';
 import { useAnnotatorStateHandler } from '../../../../../services/annotatorState';
 import { wordings } from '../../../../../wordings';
 import { useAlert } from '../../../../../services/alert';
+import {
+  deleteAnnotationsByTextAndCategory,
+  deleteAnnotationByTextAndStart,
+  deleteAnnotationsByEntityId,
+} from 'src/utils/annotation/annotationHandler';
+import { getLinkedAnnotations } from 'src/utils/annotation/annotationLinkHandler';
+import { MOTIVATION_CATEGORY } from 'src/utils/settings/specialCategories';
 
 export { DeleteAnnotationDropdown };
 
@@ -22,10 +26,7 @@ function DeleteAnnotationDropdown(props: {
   const { displayAlert } = useAlert();
 
   const annotatorState = annotatorStateHandler.get();
-  const linkedAnnotations = annotationLinkHandler.getLinkedAnnotations(
-    props.annotation.entityId,
-    annotatorState.annotations,
-  );
+  const linkedAnnotations = getLinkedAnnotations(props.annotation.entityId, annotatorState.annotations);
   const representatives = linkedAnnotations.filter((annotation) => annotation.text === props.annotation.text);
 
   if (linkedAnnotations.length <= 1) {
@@ -87,7 +88,7 @@ function DeleteAnnotationDropdown(props: {
 
     props.onClose();
 
-    if (props.annotation.category === settingsModule.lib.motivationCategoryHandler.getCategoryName()) {
+    if (props.annotation.category === MOTIVATION_CATEGORY.name) {
       displayAlert({
         text: wordings.business.errors.deleteMotivationOccultationAlert,
         variant: 'info',
@@ -98,11 +99,11 @@ function DeleteAnnotationDropdown(props: {
     function computeNewAnnotations() {
       switch (deletionOption) {
         case 'annotation':
-          return annotationHandler.deleteByTextAndStart(annotatorState.annotations, props.annotation);
+          return deleteAnnotationByTextAndStart(annotatorState.annotations, props.annotation);
         case 'representative':
-          return annotationHandler.deleteByTextAndCategory(annotatorState.annotations, props.annotation);
+          return deleteAnnotationsByTextAndCategory(annotatorState.annotations, props.annotation);
         case 'entity':
-          return annotationHandler.deleteByEntityId(annotatorState.annotations, props.annotation.entityId);
+          return deleteAnnotationsByEntityId(annotatorState.annotations, props.annotation.entityId);
       }
     }
   }

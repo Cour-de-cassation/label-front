@@ -1,9 +1,9 @@
-import { annotationModule } from 'src/core/modules/annotation';
-import { settingsModule } from 'src/core/modules/settings';
 import { buildEntityIdMapper } from 'src/services/anonymizer/buildAnonymizer/buildEntityIdMapper';
+import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
+import { buildSettings } from 'src/utils/settings/buildSettings';
 
 describe('buildEntityIdMapper', () => {
-  const settings = settingsModule.lib.buildSettings({
+  const settings = buildSettings({
     prenom: { anonymization: '[%c]' },
     nom: { anonymization: '[%c]' },
     adresse: { anonymization: '[adresse %d]' },
@@ -39,7 +39,7 @@ describe('buildEntityIdMapper', () => {
       score: 1,
       source: 'agent',
     },
-  ].map(annotationModule.lib.buildAnnotation);
+  ].map(buildAnnotation);
   const seed = 123;
 
   it('should build an entityId mapper', () => {

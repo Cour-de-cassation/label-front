@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { Text } from 'src/pelta-design-system';
-import { timeOperator } from 'src/utils/timeOperator';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { orderDirectionType, PaginatedTable, tableRowFieldType } from 'src/pelta-design-system';
 import { localStorage, publishableDocumentOrderByProperties } from '../../services/localStorage';
 import { wordings } from '../../wordings';
 import { routes } from '../../router/routes';
+import { convertTimestampToReadableDate } from 'src/utils/timeOperator';
 import format from 'string-template';
 
 export { PublishableDocumentsTable };
@@ -118,9 +118,7 @@ function buildPublishableDocumentsFields() {
       tooltipText: wordings.business.filters.columnTitles.creationDate.tooltipText,
       canBeSorted: true,
       extractor: (publishableDocument) =>
-        publishableDocument.creationDate
-          ? timeOperator.convertTimestampToReadableDate(publishableDocument.creationDate, true)
-          : '-',
+        publishableDocument.creationDate ? convertTimestampToReadableDate(publishableDocument.creationDate, true) : '-',
       getSortingValue: (publishableDocument) => publishableDocument.creationDate || 0,
       width: 3,
     },

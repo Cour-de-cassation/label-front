@@ -1,8 +1,6 @@
 import { formatSpecifierType, specifierType } from 'src/services/anonymizer/buildAnonymizer/types';
 
-export { parseFormatSpecifiers };
-
-function parseFormatSpecifiers(printfString: string): formatSpecifierType[] {
+export function parseFormatSpecifiers(printfString: string): formatSpecifierType[] {
   const regex = RegExp('%(c|d)', 'g');
   let parsedFormatSpecifier: RegExpExecArray | null;
 

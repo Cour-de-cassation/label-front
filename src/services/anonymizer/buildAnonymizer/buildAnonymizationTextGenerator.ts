@@ -2,9 +2,7 @@ import { annotationType } from 'src/types/annotation';
 import { parseFormatSpecifiers } from 'src/services/anonymizer/buildAnonymizer/parseFormatSpecifiers';
 import { specifierGeneratorType, specifierType } from 'src/services/anonymizer/buildAnonymizer/types';
 
-export { buildAnonymizationTextGenerator };
-
-function buildAnonymizationTextGenerator(printfString: string, specifierGenerator: specifierGeneratorType) {
+export function buildAnonymizationTextGenerator(printfString: string, specifierGenerator: specifierGeneratorType) {
   const parsedFormatSpecifiers = parseFormatSpecifiers(printfString);
 
   return {

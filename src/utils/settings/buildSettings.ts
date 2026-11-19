@@ -1,24 +1,18 @@
 import {
-  categoryIconNames,
   categoryIconNameType,
   categorySettingType,
   colorType,
-  constantColors,
   constantColorType,
   settingsType,
-  shadeColors,
   shadeColorType,
 } from 'src/types/settings';
+import { categoryIconNames, constantColors, shadeColors } from 'src/utils/settings/categoryAppearance';
 
-export { buildSettings };
-
-export type { partialSettingsType };
-
-type partialSettingsType = {
+export type partialSettingsType = {
   [category: string]: Partial<categorySettingType>;
 };
 
-function buildSettings(partialSettings: partialSettingsType = {}) {
+export function buildSettings(partialSettings: partialSettingsType = {}) {
   const settings: settingsType = {};
 
   Object.keys(partialSettings).forEach(

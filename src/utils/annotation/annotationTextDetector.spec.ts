@@ -1,6 +1,6 @@
-import { annotationModule } from 'src/core/modules/annotation';
 import { annotationType } from 'src/types/annotation';
-import { annotationTextDetector } from 'src/utils/annotation/annotationTextDetector';
+import { generateAnnotation } from 'src/test/annotationGenerator';
+import { detectAnnotationTextsAndIndices } from 'src/utils/annotation/annotationTextDetector';
 
 describe('annotationTextDetector', () => {
   describe('detectAnnotationTextsAndIndices', () => {
@@ -21,7 +21,7 @@ describe('annotationTextDetector', () => {
         }),
       ];
 
-      const annotationTextsAndIndices = annotationTextDetector.detectAnnotationTextsAndIndices({
+      const annotationTextsAndIndices = detectAnnotationTextsAndIndices({
         documentText,
         annotationText,
         annotations,
@@ -43,7 +43,7 @@ describe('annotationTextDetector', () => {
       const documentText = 'M. ELEVES, Mrs Élevès and Sir elevès';
       const annotationText = 'ELEVES';
 
-      const annotationTextsAndIndices = annotationTextDetector.detectAnnotationTextsAndIndices({
+      const annotationTextsAndIndices = detectAnnotationTextsAndIndices({
         documentText,
         annotationText,
         annotations: [],
@@ -76,7 +76,7 @@ describe('annotationTextDetector', () => {
         }),
       ];
 
-      const annotationTextsAndIndices = annotationTextDetector.detectAnnotationTextsAndIndices({
+      const annotationTextsAndIndices = detectAnnotationTextsAndIndices({
         documentText,
         annotationText,
         annotations,
@@ -96,7 +96,7 @@ describe('annotationTextDetector', () => {
         }),
       ];
 
-      const annotationTextsAndIndices = annotationTextDetector.detectAnnotationTextsAndIndices({
+      const annotationTextsAndIndices = detectAnnotationTextsAndIndices({
         documentText,
         annotationText,
         annotations,
@@ -116,7 +116,7 @@ describe('annotationTextDetector', () => {
         }),
       ];
 
-      const annotationTextsAndIndices = annotationTextDetector.detectAnnotationTextsAndIndices({
+      const annotationTextsAndIndices = detectAnnotationTextsAndIndices({
         documentText,
         annotationText,
         annotations,
@@ -130,7 +130,7 @@ describe('annotationTextDetector', () => {
       const annotationText = 'engineer';
       const annotations = [] as annotationType[];
 
-      const annotationTextsAndIndices = annotationTextDetector.detectAnnotationTextsAndIndices({
+      const annotationTextsAndIndices = detectAnnotationTextsAndIndices({
         documentText,
         annotationText,
         annotations,
@@ -144,7 +144,7 @@ describe('annotationTextDetector', () => {
       const annotationText = 'B.';
       const annotations = [] as annotationType[];
 
-      const annotationTextsAndIndices = annotationTextDetector.detectAnnotationTextsAndIndices({
+      const annotationTextsAndIndices = detectAnnotationTextsAndIndices({
         documentText,
         annotationText,
         annotations,
@@ -159,5 +159,5 @@ describe('annotationTextDetector', () => {
 });
 
 function generateFetchedAnnotation(fields: { start?: number; category?: string; text?: string }) {
-  return annotationModule.generator.generate(fields);
+  return generateAnnotation(fields);
 }

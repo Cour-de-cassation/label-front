@@ -1,8 +1,6 @@
 import { range } from 'lodash';
 
-export { computeLevenshteinDistance };
-
-function computeLevenshteinDistance(str1: string, str2: string): number {
+export function computeLevenshteinDistance(str1: string, str2: string): number {
   const length1 = str1.length + 1;
   const length2 = str2.length + 1;
 

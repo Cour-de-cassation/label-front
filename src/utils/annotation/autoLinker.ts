@@ -1,15 +1,10 @@
 import { settingsType } from 'src/types/settings';
 import { annotationType } from 'src/types/annotation';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
-import { stringComparator } from 'src/utils/annotation/stringComparator';
+import { normalizeString } from 'src/utils/annotation/normalizeString';
+import { isAnnotationLinkedTo, linkEntity } from 'src/utils/annotation/annotationLinkHandler';
+import { areInsensitiveEqual, areStringsSimilar } from 'src/utils/annotation/stringComparator';
 
-export { autoLinker };
-
-const autoLinker = {
-  autoLink,
-};
-
-function autoLink(
+export function autoLink(
   annotationsToLink: annotationType[],
   annotations: annotationType[],
   settings: settingsType,
@@ -26,7 +21,7 @@ function linkToAnnotations(
   annotations: annotationType[],
 ) {
   return annotationsToLinkTo.reduce((linkedAnnotations, annotationToLinkTo) => {
-    return annotationLinkHandler.link(annotation, annotationToLinkTo, linkedAnnotations);
+    return linkEntity(annotation, annotationToLinkTo, linkedAnnotations);
   }, annotations);
 }
 
@@ -35,15 +30,15 @@ function computeAnnotationsToLinkTo(annotation: annotationType, annotations: ann
     const { autoLinkSensitivity } = settings[annotation.category];
     return (
       annotation.category === someAnnotation.category &&
-      !annotationLinkHandler.isLinkedTo(annotation, someAnnotation) &&
+      !isAnnotationLinkedTo(annotation, someAnnotation) &&
       autoLinkSensitivity?.reduce((accumulator, stringComparisonSensitivity) => {
         switch (stringComparisonSensitivity.kind) {
           case 'caseInsensitive':
-            return accumulator || stringComparator.insensitiveEqual(annotation.text, someAnnotation.text);
+            return accumulator || areInsensitiveEqual(annotation.text, someAnnotation.text);
           case 'levenshteinDistance':
             return (
               accumulator ||
-              stringComparator.similar(someAnnotation.text, annotation.text, stringComparisonSensitivity.threshold)
+              areStringsSimilar(someAnnotation.text, annotation.text, stringComparisonSensitivity.threshold)
             );
           case 'inclusion':
             return accumulator || isSubWord(annotation, someAnnotation) || isSubWord(someAnnotation, annotation);
@@ -55,11 +50,7 @@ function computeAnnotationsToLinkTo(annotation: annotationType, annotations: ann
 
 function isSubWord(annotation1: annotationType, annotation2: annotationType): boolean {
   return (
-    stringComparator
-      .normalizeString(annotation2.text)
-      .includes(`${stringComparator.normalizeString(annotation1.text)} `) ||
-    stringComparator
-      .normalizeString(annotation2.text)
-      .includes(` ${stringComparator.normalizeString(annotation1.text)}`)
+    normalizeString(annotation2.text).includes(`${normalizeString(annotation1.text)} `) ||
+    normalizeString(annotation2.text).includes(` ${normalizeString(annotation1.text)}`)
   );
 }

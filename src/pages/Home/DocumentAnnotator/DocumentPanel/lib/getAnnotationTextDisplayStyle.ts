@@ -1,7 +1,7 @@
-import { settingsModule } from 'src/core';
 import { annotationType } from 'src/types/annotation';
 import { settingsType } from 'src/types/settings';
 import { viewerModeType } from '../../../../../services/documentViewerMode';
+import { getAnnotationCategoryStatus } from 'src/utils/settings/getAnnotationCategoryStatus';
 
 export { getAnnotationTextDisplayStyle };
 
@@ -14,7 +14,7 @@ function getAnnotationTextDisplayStyle({
   annotation: annotationType;
   documentViewerMode: viewerModeType;
 }) {
-  const categoryStatus = settingsModule.lib.getAnnotationCategoryStatus(annotation.category, settings);
+  const categoryStatus = getAnnotationCategoryStatus(annotation.category, settings);
 
   switch (categoryStatus) {
     case 'hidden':

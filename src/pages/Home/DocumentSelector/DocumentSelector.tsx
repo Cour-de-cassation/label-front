@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { documentModule, settingsModule } from 'src/core';
 import { annotationType } from 'src/types/annotation';
 import { documentType } from 'src/types/document';
 import { settingsType } from 'src/types/settings';
@@ -8,6 +7,8 @@ import { Text } from 'src/pelta-design-system';
 import { wordings } from '../../../wordings';
 import { DocumentSelectorCard } from './DocumentSelectorCard';
 import { useAlert } from '../../../services/alert';
+import { getMinutesBeforeFreeingPendingDocuments } from 'src/pages/Home/DocumentSelector/getMinutesBeforeFreeingPendingDocuments';
+import { computeFilteredSettings } from 'src/utils/settings/computeFilteredSettings';
 
 export { DocumentSelector };
 
@@ -29,7 +30,7 @@ function DocumentSelector(props: {
   const { displayAlert } = useAlert();
 
   useEffect(() => {
-    const timeBeforeFreeingDocuments = documentModule.lib.getMinutesBeforeFreeingPendingDocuments() * 60 * 1000;
+    const timeBeforeFreeingDocuments = getMinutesBeforeFreeingPendingDocuments() * 60 * 1000;
     const autoFreeDocumentsTimeout = setTimeout(() => {
       displayAlert({ text: wordings.business.errors.pendingDocumentsFreed, variant: 'alert', autoHide: false });
     }, timeBeforeFreeingDocuments);
@@ -50,7 +51,7 @@ function DocumentSelector(props: {
     return (
       <div style={styles.cardsContainer}>
         {props.choices.map((choice) => {
-          const settingsForDocument = settingsModule.lib.computeFilteredSettings(
+          const settingsForDocument = computeFilteredSettings(
             props.settings,
             choice.document.decisionMetadata.categoriesToOmit,
             choice.document.decisionMetadata.additionalTermsToAnnotate,

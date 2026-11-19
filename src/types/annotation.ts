@@ -6,3 +6,8 @@ export type annotationType = {
   score: number;
   source: string;
 };
+
+export type annotationsDiffType = {
+  before: annotationType[];
+  after: annotationType[];
+};

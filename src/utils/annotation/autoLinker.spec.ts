@@ -1,10 +1,11 @@
-import { settingsModule } from 'src/core/modules/settings';
-import { annotationModule } from 'src/core/modules/annotation';
-import { annotationLinkHandler } from 'src/utils/annotation/annotationLinkHandler';
-import { autoLinker } from 'src/utils/annotation/autoLinker';
+import { buildAnnotation } from 'src/utils/annotation/buildAnnotation';
+import { buildSettings } from 'src/utils/settings/buildSettings';
+import { generateAnnotation } from 'src/test/annotationGenerator';
+import { autoLink } from 'src/utils/annotation/autoLinker';
+import { linkEntity } from 'src/utils/annotation/annotationLinkHandler';
 
 describe('autoLinker', () => {
-  const settings = settingsModule.lib.buildSettings({
+  const settings = buildSettings({
     CATEGORY: {
       autoLinkSensitivity: [
         {
@@ -22,23 +23,23 @@ describe('autoLinker', () => {
       const annotations = [
         { category: 'CATEGORY', text: 'Dupont' },
         { category: 'CATEGORY', text: 'Dupond' },
-      ].map(annotationModule.generator.generate);
+      ].map(generateAnnotation);
 
-      const linkedAnnotations = autoLinker.autoLink([annotations[0]], annotations, settings);
+      const linkedAnnotations = autoLink([annotations[0]], annotations, settings);
 
-      expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+      expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
     });
 
     it('should not link the given annotations', () => {
-      const settings = settingsModule.lib.buildSettings({
+      const settings = buildSettings({
         CATEGORY: { autoLinkSensitivity: [{ kind: 'caseInsensitive' }] },
       });
       const annotations = [
         { category: 'CATEGORY', text: '12 rue de la grande Rue' },
         { category: 'CATEGORY', text: '11 rue de la grande Rue' },
-      ].map(annotationModule.generator.generate);
+      ].map(generateAnnotation);
 
-      const linkedAnnotations = autoLinker.autoLink([annotations[0]], annotations, settings);
+      const linkedAnnotations = autoLink([annotations[0]], annotations, settings);
 
       expect(linkedAnnotations.sort()).toEqual([...annotations].sort());
     });
@@ -49,9 +50,9 @@ describe('autoLinker', () => {
       const annotations = [
         { category: 'CATEGORY', text: 'annotation' },
         { category: 'ANOTHER_CATEGORY', text: 'ANNOTATION' },
-      ].map(annotationModule.generator.generate);
+      ].map(generateAnnotation);
 
-      const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+      const linkedAnnotations = autoLink(annotations, annotations, settings);
 
       expect(linkedAnnotations).toEqual(annotations);
     });
@@ -62,23 +63,23 @@ describe('autoLinker', () => {
           { category: 'CATEGORY', text: 'annotation' },
           { category: 'CATEGORY', text: 'ANNOTATION' },
           { category: 'ANOTHER_CATEGORY', text: 'another_annotation' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
     });
 
     describe('do not link category if subword not included', () => {
-      const settings = settingsModule.lib.buildSettings({
+      const settings = buildSettings({
         CATEGORY: {
           autoLinkSensitivity: [{ kind: 'caseInsensitive' }, { kind: 'levenshteinDistance', threshold: 2 }],
         },
       });
       it('should not link the unrelated annotations', () => {
         const annotations = ['Jean', 'Jean Henri', 'Jean Marie'].map((text, index) =>
-          annotationModule.lib.buildAnnotation({
+          buildAnnotation({
             text,
             start: index * 10,
             category: 'CATEGORY',
@@ -87,7 +88,7 @@ describe('autoLinker', () => {
           }),
         );
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations[0].entityId).not.toBe(linkedAnnotations[1].entityId);
         expect(linkedAnnotations[0].entityId).not.toBe(linkedAnnotations[2].entityId);
@@ -100,29 +101,29 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'longer annotation' },
           { category: 'CATEGORY', text: 'annotation' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should link the annotations of a same category which are subword of another (case insensitive)', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'longer aNnOTaTiOn' },
           { category: 'CATEGORY', text: 'annotation' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should not link the annotations of a same category which are only substring of another', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'longer_annotation' },
           { category: 'CATEGORY', text: 'annotation' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotations);
       });
@@ -133,29 +134,29 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Pont' },
           { category: 'CATEGORY', text: 'Pond' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should link the annotations of a same category with a Levenshtein distance inferior to 1 for words less long than 4 (case insensitive)', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Pont' },
           { category: 'CATEGORY', text: 'POND' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should not link the annotations of a same category with a Levenshtein distance strictly superior to 1 for words less long than 4', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Pont' },
           { category: 'CATEGORY', text: 'Pomd' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotations);
       });
@@ -163,29 +164,29 @@ describe('autoLinker', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Dupont' },
           { category: 'CATEGORY', text: 'Dupond' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should link the annotations of a same category with a Levenshtein distance inferior to 2 for words longer than 4 (case insensitive)', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Dupont' },
           { category: 'CATEGORY', text: 'DUPOND' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
-        expect(linkedAnnotations).toEqual(annotationLinkHandler.link(annotations[0], annotations[1], annotations));
+        expect(linkedAnnotations).toEqual(linkEntity(annotations[0], annotations[1], annotations));
       });
       it('should not link the annotations of a same category with a Levenshtein distance strictly superior to 2 for words longer than 4', () => {
         const annotations = [
           { category: 'CATEGORY', text: 'Dupont' },
           { category: 'CATEGORY', text: 'Dubomb' },
-        ].map(annotationModule.generator.generate);
+        ].map(generateAnnotation);
 
-        const linkedAnnotations = autoLinker.autoLink(annotations, annotations, settings);
+        const linkedAnnotations = autoLink(annotations, annotations, settings);
 
         expect(linkedAnnotations).toEqual(annotations);
       });

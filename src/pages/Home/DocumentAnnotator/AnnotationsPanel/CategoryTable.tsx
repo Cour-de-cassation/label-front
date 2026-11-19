@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { settingsModule } from 'src/core';
 import { customThemeType, useCustomTheme, Accordion, Text, Icon } from 'src/pelta-design-system';
 import { CategoryIcon } from '../../../../components';
 import { useAnnotatorStateHandler } from '../../../../services/annotatorState';
 import { annotationPerEntityType, splittedTextByLineType } from '../lib';
 import { CategoryTableEntry } from './CategoryTableEntry';
+import { getAnnotationCategoryText } from 'src/utils/settings/getAnnotationCategoryText';
 
 export { CategoryTable };
 
@@ -26,7 +26,7 @@ function CategoryTable(props: {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const annotatorState = annotatorStateHandler.get();
 
-  const categoryName = settingsModule.lib.getAnnotationCategoryText(props.category, annotatorState.settings);
+  const categoryName = getAnnotationCategoryText(props.category, annotatorState.settings);
   return (
     <Accordion
       headerStyle={styles.accordionHeaderContainer}

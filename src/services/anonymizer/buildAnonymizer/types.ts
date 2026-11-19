@@ -1,15 +1,13 @@
 import { annotationType } from 'src/types/annotation';
 
-export type { formatSpecifierType, specifierGeneratorType, specifierType };
+export type specifierType = '%c' | '%d';
 
-type specifierType = '%c' | '%d';
-
-type formatSpecifierType = {
+export type formatSpecifierType = {
   index: number;
   specifier: specifierType;
 };
 
-type specifierGeneratorType = {
+export type specifierGeneratorType = {
   '%c': { generate: (annotation: annotationType) => string };
   '%d': { generate: () => string };
 };

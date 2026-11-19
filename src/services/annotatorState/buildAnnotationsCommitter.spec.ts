@@ -1,9 +1,10 @@
 import { range } from 'lodash';
-import { annotationModule } from 'src/core';
 import { buildAnnotationsCommitter } from './buildAnnotationsCommitter';
+import { sortAnnotations } from 'src/utils/annotation/sortAnnotations';
+import { generateAnnotation } from 'src/test/annotationGenerator';
 
 describe('buildAnnotationsCommitter', () => {
-  const annotations = range(7).map(() => annotationModule.generator.generate());
+  const annotations = range(7).map(() => generateAnnotation());
 
   describe('commit', () => {
     it('should be nothing to redo after a commit', () => {
@@ -29,9 +30,7 @@ describe('buildAnnotationsCommitter', () => {
 
       const { annotations: annotations3 } = annotationsCommitter.revert(annotations2);
 
-      expect(annotationModule.lib.sortAnnotations(annotations3)).toEqual(
-        annotationModule.lib.sortAnnotations(annotations3),
-      );
+      expect(sortAnnotations(annotations3)).toEqual(sortAnnotations(annotations3));
     });
     it('should work when used several times', () => {
       const annotationsCommitter = buildAnnotationsCommitter();
@@ -45,9 +44,7 @@ describe('buildAnnotationsCommitter', () => {
         annotationsCommitter.revert(annotations3).annotations,
       );
 
-      expect(annotationModule.lib.sortAnnotations(annotations4)).toEqual(
-        annotationModule.lib.sortAnnotations(annotations1),
-      );
+      expect(sortAnnotations(annotations4)).toEqual(sortAnnotations(annotations1));
     });
   });
 
@@ -61,9 +58,7 @@ describe('buildAnnotationsCommitter', () => {
 
       const { annotations: annotations4 } = annotationsCommitter.restore(annotations3);
 
-      expect(annotationModule.lib.sortAnnotations(annotations4)).toEqual(
-        annotationModule.lib.sortAnnotations(annotations2),
-      );
+      expect(sortAnnotations(annotations4)).toEqual(sortAnnotations(annotations2));
     });
     it('should work when used several times', () => {
       const annotationsCommitter = buildAnnotationsCommitter();
@@ -80,9 +75,7 @@ describe('buildAnnotationsCommitter', () => {
         annotationsCommitter.restore(annotations4).annotations,
       );
 
-      expect(annotationModule.lib.sortAnnotations(annotations5)).toEqual(
-        annotationModule.lib.sortAnnotations(annotations3),
-      );
+      expect(sortAnnotations(annotations5)).toEqual(sortAnnotations(annotations3));
     });
   });
 });

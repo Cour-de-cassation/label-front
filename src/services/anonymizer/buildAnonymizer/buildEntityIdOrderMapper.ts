@@ -1,9 +1,7 @@
 import { groupBy, uniq } from 'lodash';
 import { annotationType } from 'src/types/annotation';
 
-export { buildEntityIdOrderMapper };
-
-function buildEntityIdOrderMapper(annotations: annotationType[]): Record<string, number> {
+export function buildEntityIdOrderMapper(annotations: annotationType[]): Record<string, number> {
   const grouppedAnnotationsByCategory = groupBy(annotations, 'category');
   return Object.keys(grouppedAnnotationsByCategory).reduce((entityIdOrderMapper, category) => {
     const grouppedEntityIds = uniq(grouppedAnnotationsByCategory[category].map((annotation) => annotation.entityId));

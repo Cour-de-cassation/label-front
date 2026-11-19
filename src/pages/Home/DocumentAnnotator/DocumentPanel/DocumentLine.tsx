@@ -3,7 +3,7 @@ import { annotationChunkType, textChunkType } from 'src/utils/textSplitter';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { splittedTextByLineType } from '../lib';
 import { useDocumentViewerModeHandler } from '../../../../services/documentViewerMode';
-import { clientAnonymizerType } from 'src/types/anonymizer';
+import { clientAnonymizerType } from 'src/services/anonymizer/buildAnonymizerBuilder';
 import { DocumentText } from './DocumentText';
 import { DocumentAnnotationText } from './DocumentAnnotationText';
 

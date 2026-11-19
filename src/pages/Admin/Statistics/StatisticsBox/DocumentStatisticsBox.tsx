@@ -1,8 +1,8 @@
 import React from 'react';
-import { timeOperator } from 'src/utils/timeOperator';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { statisticType } from 'src/types/statistic';
 import { wordings } from '../../../../wordings';
+import { convertDurationToReadableDuration, convertTimestampToReadableDate } from 'src/utils/timeOperator';
 
 export { DocumentStatisticsBox };
 
@@ -112,11 +112,11 @@ function DocumentStatisticsBox(props: { documentStatistic: documentStatsType; wi
       },
       {
         label: wordings.statisticsPage.box.fields.decisionDate,
-        value: timeOperator.convertTimestampToReadableDate(documentStatistic.decisionDate ?? 0),
+        value: convertTimestampToReadableDate(documentStatistic.decisionDate ?? 0),
       },
       {
         label: wordings.statisticsPage.box.fields.treatmentDate,
-        value: timeOperator.convertTimestampToReadableDate(documentStatistic.treatmentDate),
+        value: convertTimestampToReadableDate(documentStatistic.treatmentDate),
       },
     ];
     return result.filter((row) => row.value !== undefined && row.value !== null && row.value !== '');
@@ -139,7 +139,7 @@ function DocumentStatisticsBox(props: { documentStatistic: documentStatsType; wi
     }
     const uniqueTreatments = removeNullAndDuplicatesTreatments(treatmentsSummary);
     const duration = uniqueTreatments
-      .map((treatment) => timeOperator.convertDurationToReadableDuration(treatment.treatmentDuration))
+      .map((treatment) => convertDurationToReadableDuration(treatment.treatmentDuration))
       .join(', ');
 
     const agent = uniqueTreatments.map((treatment) => treatment.name || 'N/A').join(', ');

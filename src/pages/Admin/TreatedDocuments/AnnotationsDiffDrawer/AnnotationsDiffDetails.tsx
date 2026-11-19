@@ -1,9 +1,9 @@
 import React from 'react';
-import { settingsModule } from 'src/core';
 import { annotationType } from 'src/types/annotation';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { settingsType } from 'src/types/settings';
 import { customThemeType, useCustomTheme, getColor, useDisplayMode, Text } from 'src/pelta-design-system';
+import { getAnnotationCategoryColor } from 'src/utils/settings/getAnnotationCategoryColor';
 
 export { AnnotationsDiffDetails };
 
@@ -40,9 +40,7 @@ function AnnotationsDiffDetails(props: {
       textStart + text.length - (annotation.start + annotation.text.length) > 0
         ? text.substring(annotation.start - textStart + annotation.text.length)
         : '';
-    const categoryColor = getColor(
-      settingsModule.lib.getAnnotationCategoryColor(annotation.category, props.settings, displayMode),
-    );
+    const categoryColor = getColor(getAnnotationCategoryColor(annotation.category, props.settings, displayMode));
     const annotationContainerStyle = buildAnnotationContainerStyle(theme, categoryColor);
     return (
       <div>

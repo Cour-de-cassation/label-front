@@ -11,7 +11,7 @@ export function MainLayout() {
     <HeaderSlotContext value={headerSlotElement}>
       <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         <Header setSlotElement={setHeaderSlotElement} />
-        <Box sx={{ display: 'flex', flex: 1, minHeight: 0 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
           <Outlet />
         </Box>
       </Box>

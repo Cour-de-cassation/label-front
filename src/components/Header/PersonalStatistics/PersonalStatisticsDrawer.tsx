@@ -16,7 +16,7 @@ export function PersonalStatisticsDrawer({ close, isOpen }: PersonalStatisticsDr
       anchor="right"
       open={isOpen}
       onClose={close}
-      sx={{ '& .MuiDrawer-paper': { mt: heights.header, height: heights.adminPanel, px: 8 } }}
+      sx={{ '& .MuiDrawer-paper': { top: heights.header, bottom: 0, height: 'auto', px: 8 } }}
     >
       <Box
         sx={{

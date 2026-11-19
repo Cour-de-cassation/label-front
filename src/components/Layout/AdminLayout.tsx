@@ -3,11 +3,10 @@ import { Outlet, useLocation } from 'react-router';
 import { Box, Typography } from '@mui/material';
 import { apiRouteOutType } from 'src/core';
 import { apiCaller, useApi } from '../../api';
-import { AdminMenu, adminMenuItems } from '../AdminMenu/AdminMenu';
+import { AdminMenu, adminMenuPages } from '../AdminMenu/AdminMenu';
 import { HeaderSlot } from '../Header/HeaderSlot';
 import { CurrentUser, useCtxUser } from '../../contexts/user.context';
 import { localStorage } from '../../services/localStorage';
-import { heights } from '../../theme/layout';
 import { DataFetcher } from '../../pages/DataFetcher';
 
 type badgeCountsType = apiRouteOutType<'get', 'adminBadgeCounts'>;
@@ -34,7 +33,7 @@ export function AdminLayout() {
     return <></>;
   }
 
-  const currentHeader = adminMenuItems.find((item) => item.pathname === pathname)?.header;
+  const currentHeader = adminMenuPages.find((page) => page.pathname === pathname)?.header;
 
   return (
     <>
@@ -49,7 +48,7 @@ export function AdminLayout() {
       <DataFetcher
         buildComponentWithData={(badgeCounts: badgeCountsType) => (
           <AdminBadgeCountsRefetchContext value={badgeCountsFetchInfo.refetch}>
-            <Box sx={{ display: 'flex', width: '100vw', height: heights.adminPanel }}>
+            <Box sx={{ display: 'flex', flex: 1, minWidth: 0 }}>
               <AdminMenu
                 unreadProblemReportsCount={badgeCounts.unreadProblemReportsCount}
                 toBeConfirmedDocumentsCount={badgeCounts.toBeConfirmedDocumentsCount}

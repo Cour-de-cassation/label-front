@@ -11,7 +11,6 @@ import { UntreatedDocuments } from '../pages/Admin/UntreatedDocuments';
 import { ProblemReportsDataFetcher } from '../pages/Admin/ProblemReports/ProblemReportsDataFetcher';
 import { PreAssignDocumentsDataFetcher } from '../pages/Admin/PreAssignDocuments/PreAssignDocumentsDataFetcher';
 import { StatisticsDataFetcher } from '../pages/Admin/Statistics/StatisticsDataFetcher';
-import { SummaryDataFetcher } from '../pages/Admin/Summary/SummaryDataFetcher';
 import { ToBeConfirmedDocumentsDataFetcher } from '../pages/Admin/ToBeConfirmedDocuments/ToBeConfirmedDocumentsDataFetcher';
 import { TreatedDocumentsDataFetcher } from '../pages/Admin/TreatedDocuments/TreatedDocumentsDataFetcher';
 import { UntreatedDocumentsDataFetcher } from '../pages/Admin/UntreatedDocuments/UntreatedDocumentsDataFetcher';
@@ -24,7 +23,7 @@ import { SettingsDataFetcher } from '../pages/SettingsDataFetcher';
 import { Statistics } from '../pages/Admin/Statistics';
 import { defaultRoutes, routes } from './routes';
 import { ToBeConfirmedDocuments } from '../pages/Admin/ToBeConfirmedDocuments';
-import { Summary } from '../pages/Admin/Summary';
+import { Summary } from '../pages/Admin/Summary/Summary';
 import { CurrentUser, useCtxUser } from '../contexts/user.context';
 
 export { Router };
@@ -49,16 +48,7 @@ function Router() {
           }
         >
           <Route element={<AdminLayout />}>
-            <Route
-              path={routes.SUMMARY.getPath()}
-              element={
-                <SummaryDataFetcher>
-                  {({ summary, refetch, isLoading }) => (
-                    <Summary summary={summary} refetch={refetch} isLoading={isLoading} />
-                  )}
-                </SummaryDataFetcher>
-              }
-            />
+            <Route path={routes.SUMMARY.getPath()} element={<Summary />} />
             <Route
               path={routes.STATISTICS.getPath()}
               element={

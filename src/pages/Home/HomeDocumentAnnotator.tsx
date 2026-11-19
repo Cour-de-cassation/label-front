@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-  annotationsDiffType,
-  annotationType,
-  assignationType,
-  documentModule,
-  documentType,
-  settingsType,
-} from 'src/core';
+import { documentModule } from 'src/core';
+import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { annotationType } from 'src/types/annotation';
+import { assignationType } from 'src/types/assignation';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import { customThemeType, useCustomTheme, Text, CircleIcon } from 'src/pelta-design-system';
 import { apiCaller } from '../../api';
 import { Box, Typography } from '@mui/material';

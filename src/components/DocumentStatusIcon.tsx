@@ -1,5 +1,5 @@
 import React from 'react';
-import { documentType } from 'src/core';
+import { documentType } from 'src/types/document';
 import { useCustomTheme, CircleIcon, iconNameType } from 'src/pelta-design-system';
 import { wordings } from '../wordings';
 

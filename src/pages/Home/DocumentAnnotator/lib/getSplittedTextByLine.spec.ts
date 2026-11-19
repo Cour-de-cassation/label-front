@@ -1,4 +1,5 @@
-import { annotationModule, textSplitter } from 'src/core';
+import { annotationModule } from 'src/core';
+import { textSplitter } from 'src/utils/textSplitter';
 import { getSplittedTextByLine } from './getSplittedTextByLine';
 
 describe('getSplittedTextByLine', () => {

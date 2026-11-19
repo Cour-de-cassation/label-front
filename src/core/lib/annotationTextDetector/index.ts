@@ -1,1 +1,0 @@
-export { annotationTextDetector } from './annotationTextDetector';

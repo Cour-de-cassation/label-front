@@ -1,4 +1,6 @@
-import { annotationType, settingsModule, settingsType } from 'src/core';
+import { settingsModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
+import { settingsType } from 'src/types/settings';
 import { viewerModeType } from '../../../../../services/documentViewerMode';
 
 export { getAnnotationTextDisplayStyle };

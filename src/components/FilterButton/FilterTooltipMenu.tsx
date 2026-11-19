@@ -1,5 +1,5 @@
 import React from 'react';
-import { dateType } from 'src/core';
+import { dateType } from 'src/utils/timeOperator';
 import {
   customThemeType,
   useCustomTheme,

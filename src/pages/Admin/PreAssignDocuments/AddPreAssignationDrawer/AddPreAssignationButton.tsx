@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ButtonWithIcon } from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
 import { AddWorkingUserDrawer } from './AddPreAssignationDrawer';
-import { userType } from 'src/core';
+import { userType } from 'src/types/user';
 
 export { AddPreAssignationButton };
 

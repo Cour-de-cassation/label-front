@@ -11,7 +11,7 @@ import {
   ReportProblemRounded,
   SvgIconComponent,
 } from '@mui/icons-material';
-import { apiRouteOutType } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
 import { routes } from 'src/router/routes';
 import { widths } from 'src/theme/layout';
 import { wordings } from 'src/wordings';

@@ -9,7 +9,8 @@ import { splittedTextByLineType } from '../lib';
 import { DocumentLine } from './DocumentLine';
 import { useAlert } from '../../../../services/alert';
 import { wordings } from '../../../../wordings';
-import { annotationHandler, settingsModule } from 'src/core';
+import { settingsModule } from 'src/core';
+import { annotationHandler } from 'src/utils/annotation/annotationHandler';
 
 export { DocumentViewer };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { timeOperator } from 'src/core';
+import { timeOperator } from 'src/utils/timeOperator';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
 import { ComputationToggle, computationType } from './ComputationToggle';

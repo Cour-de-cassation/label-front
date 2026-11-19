@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { annotationType, assignationType, documentModule, documentType, settingsModule, settingsType } from 'src/core';
+import { documentModule, settingsModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
+import { assignationType } from 'src/types/assignation';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import { apiCaller } from '../../api';
 import { buildAnnotationsCommitter } from '../../services/annotatorState';
 import { heights } from '../../theme/layout';

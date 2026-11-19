@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../DataFetcher';
-import { ressourceFilterType } from 'src/core';
-import { apiSchemaType } from 'src/core/api/apiSchema';
+import { ressourceFilterType } from 'src/types/ressourceFilter';
+import { apiSchemaType } from 'src/api/apiSchema';
 
 export { StatisticsDataFetcher };
 

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { annotationsDiffType, documentType, settingsModule, settingsType } from 'src/core';
+import { settingsModule } from 'src/core';
+import { annotationsDiffType } from 'src/types/annotationsDiff';
+import { documentType } from 'src/types/document';
+import { settingsType } from 'src/types/settings';
 import { apiCaller } from '../../../api';
 import { IconButton, Tooltip, Typography } from '@mui/material';
 import { ChevronLeftRounded } from '@mui/icons-material';

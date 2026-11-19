@@ -1,7 +1,7 @@
 import React, { createContext, use, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 import { Box, Typography } from '@mui/material';
-import { apiRouteOutType } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
 import { apiCaller, useApi } from '../../api';
 import { AdminMenu, adminMenuPages } from '../AdminMenu/AdminMenu';
 import { HeaderSlot } from '../Header/HeaderSlot';

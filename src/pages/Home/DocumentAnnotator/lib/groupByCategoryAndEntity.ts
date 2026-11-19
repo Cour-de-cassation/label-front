@@ -1,5 +1,6 @@
 import { groupBy } from 'lodash';
-import { annotationModule, annotationType } from 'src/core';
+import { annotationModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
 
 export { groupByCategoryAndEntity };
 

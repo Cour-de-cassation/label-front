@@ -1,5 +1,5 @@
 import { generatorType } from '../../../types';
-import { annotationsDiffType } from '../annotationsDiffType';
+import { annotationsDiffType } from 'src/types/annotationsDiff';
 
 export { annotationsDiffGenerator };
 

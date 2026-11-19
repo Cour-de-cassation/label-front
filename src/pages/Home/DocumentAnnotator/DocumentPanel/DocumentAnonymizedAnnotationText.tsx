@@ -1,6 +1,6 @@
-import { clientAnonymizerType } from '../../../../types';
+import { clientAnonymizerType } from 'src/types/anonymizer';
 import React from 'react';
-import { annotationType } from 'src/core';
+import { annotationType } from 'src/types/annotation';
 
 export { DocumentAnonymizedAnnotationText };
 

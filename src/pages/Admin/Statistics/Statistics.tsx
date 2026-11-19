@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { apiRouteOutType, ressourceFilterType, userType } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
+import { ressourceFilterType } from 'src/types/ressourceFilter';
+import { userType } from 'src/types/user';
 import { customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { heights, widths } from '../../../theme/layout';
 import { wordings } from '../../../wordings';

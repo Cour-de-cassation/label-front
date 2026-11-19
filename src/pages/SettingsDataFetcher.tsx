@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
-import { settingsModule, settingsType } from 'src/core';
+import { settingsModule } from 'src/core';
+import { settingsType } from 'src/types/settings';
 import { apiCaller, useApi } from '../api';
 import { DataFetcher } from './DataFetcher';
 

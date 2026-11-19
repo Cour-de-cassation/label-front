@@ -1,4 +1,5 @@
-import { annotationModule, annotationType } from 'src/core';
+import { annotationModule } from 'src/core';
+import { annotationType } from 'src/types/annotation';
 import { groupByCategoryAndEntity } from './groupByCategoryAndEntity';
 
 describe('groupByCategoryAndEntity', () => {

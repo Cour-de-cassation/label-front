@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import dateFormat from 'dateformat';
 import { Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import { apiRouteOutType } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
 import { apiCaller, useApi } from '../../../api';
 import { DataFetcher } from '../../../pages/DataFetcher';
 import { wordings } from '../../../wordings';

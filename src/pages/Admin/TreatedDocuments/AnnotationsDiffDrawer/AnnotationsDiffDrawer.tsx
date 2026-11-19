@@ -1,7 +1,7 @@
 import { useCustomTheme, Drawer } from 'src/pelta-design-system';
 import React from 'react';
 import format from 'string-template';
-import { documentType } from 'src/core';
+import { documentType } from 'src/types/document';
 import { wordings } from '../../../../wordings';
 import { SettingsDataFetcher } from '../../../SettingsDataFetcher';
 import { AnnotationsDiffDetails } from './AnnotationsDiffDetails';

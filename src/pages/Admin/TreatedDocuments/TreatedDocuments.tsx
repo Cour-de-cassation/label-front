@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { flatten, uniq } from 'lodash';
 import { customThemeType, useCustomTheme, tableRowFieldType } from 'src/pelta-design-system';
-import { apiRouteOutType, keysOf, timeOperator, documentType, userType } from 'src/core';
+import { keysOf } from 'src/utils/keysOf';
+import { timeOperator } from 'src/utils/timeOperator';
+import { apiRouteOutType } from 'src/api/apiRouteType';
+import { documentType } from 'src/types/document';
+import { userType } from 'src/types/user';
 import { DocumentReviewStatusIcon, DocumentsTableHeader, PublicationCategoryBadge } from '../../../components';
 import {
   localStorage,

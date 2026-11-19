@@ -1,4 +1,5 @@
-import { apiRouteInType, apiRouteOutType, apiSchemaType, networkType } from 'src/core/api';
+import { apiRouteInType, apiRouteOutType, networkType } from 'src/api/apiRouteType';
+import { apiSchemaType } from 'src/api/apiSchema';
 import { urlHandler } from '../utils';
 import { jwtTokenHandler } from '../services/jwtToken';
 

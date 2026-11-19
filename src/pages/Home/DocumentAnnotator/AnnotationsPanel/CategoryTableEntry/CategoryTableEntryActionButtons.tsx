@@ -1,5 +1,5 @@
 import React from 'react';
-import { annotationType } from 'src/core';
+import { annotationType } from 'src/types/annotation';
 import {
   ChangeAnnotationCategoryDropdown,
   LinkAnnotationDropdown,

@@ -1,6 +1,6 @@
 import { generatorType } from '../../../types';
-import { entityIdHandler } from '../lib';
-import { annotationType } from '../annotationType';
+import { entityIdHandler } from 'src/utils/annotation/entityIdHandler';
+import { annotationType } from 'src/types/annotation';
 
 export { annotationGenerator };
 

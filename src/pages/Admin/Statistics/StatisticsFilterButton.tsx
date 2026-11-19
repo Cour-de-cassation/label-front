@@ -1,9 +1,11 @@
 import React from 'react';
 import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
-import { apiRouteOutType, ressourceFilterType, userType } from 'src/core';
+import { apiRouteOutType } from 'src/api/apiRouteType';
+import { ressourceFilterType } from 'src/types/ressourceFilter';
+import { userType } from 'src/types/user';
 import { FilterButton, FilterChip } from '../../../components';
 import { wordings } from '../../../wordings';
-import { documentType } from 'src/core';
+import { documentType } from 'src/types/document';
 export { StatisticsFilterButton };
 
 function StatisticsFilterButton(props: {

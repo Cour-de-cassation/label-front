@@ -10,7 +10,7 @@ import {
   Text,
 } from 'src/pelta-design-system';
 import { wordings } from '../../../../wordings';
-import { userType } from 'src/core';
+import { userType } from 'src/types/user';
 
 export { AddWorkingUserDrawer };
 

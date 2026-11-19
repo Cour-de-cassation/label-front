@@ -1,6 +1,6 @@
 import React from 'react';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
-import { wordings } from '../../../../wordings';
+import { wordings } from 'src/wordings';
 
 export { ComputationToggle };
 

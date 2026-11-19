@@ -10,7 +10,7 @@ import { PreAssignDocuments } from '../pages/Admin/PreAssignDocuments';
 import { UntreatedDocuments } from '../pages/Admin/UntreatedDocuments';
 import { ProblemReportsDataFetcher } from '../pages/Admin/ProblemReports/ProblemReportsDataFetcher';
 import { PreAssignDocumentsDataFetcher } from '../pages/Admin/PreAssignDocuments/PreAssignDocumentsDataFetcher';
-import { StatisticsDataFetcher } from '../pages/Admin/Statistics/StatisticsDataFetcher';
+import { StatisticsDataFetcher } from '../pages/Admin/StatisticsDataFetcher';
 import { ToBeConfirmedDocumentsDataFetcher } from '../pages/Admin/ToBeConfirmedDocuments/ToBeConfirmedDocumentsDataFetcher';
 import { TreatedDocumentsDataFetcher } from '../pages/Admin/TreatedDocuments/TreatedDocumentsDataFetcher';
 import { UntreatedDocumentsDataFetcher } from '../pages/Admin/UntreatedDocuments/UntreatedDocumentsDataFetcher';

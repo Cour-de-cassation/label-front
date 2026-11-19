@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
-import { wordings } from '../../../../wordings';
+import { wordings } from 'src/wordings';
 import { ComputationToggle, computationType } from './ComputationToggle';
 import { convertDurationToReadableDuration } from 'src/utils/timeOperator';
 

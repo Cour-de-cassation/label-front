@@ -3,11 +3,11 @@ import { apiRouteOutType } from 'src/api/apiRouteType';
 import { ressourceFilterType } from 'src/types/ressourceFilter';
 import { userType } from 'src/types/user';
 import { customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
-import { heights, widths } from '../../../theme/layout';
-import { wordings } from '../../../wordings';
-import { StatisticsBox } from './StatisticsBox';
-import { DocumentStatisticsBox, documentStatsType } from './StatisticsBox/DocumentStatisticsBox';
-import { DocumentsTableHeaderStatistics } from '../../../components/DocumentsTableHeaderStatistics';
+import { heights, widths } from 'src/theme/layout';
+import { wordings } from 'src/wordings';
+import { StatisticsBox } from 'src/components/Statistics/StatisticsBox';
+import { DocumentStatisticsBox, documentStatsType } from 'src/components/Statistics/DocumentStatisticsBox';
+import { DocumentsTableHeaderStatistics } from 'src/components/Statistics/DocumentsTableHeaderStatistics';
 
 export { Statistics };
 

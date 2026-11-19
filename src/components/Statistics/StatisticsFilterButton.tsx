@@ -3,8 +3,8 @@ import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { ressourceFilterType } from 'src/types/ressourceFilter';
 import { userType } from 'src/types/user';
-import { FilterButton, FilterChip } from '../../../components';
-import { wordings } from '../../../wordings';
+import { FilterButton, FilterChip } from 'src/components';
+import { wordings } from 'src/wordings';
 import { documentType } from 'src/types/document';
 export { StatisticsFilterButton };
 

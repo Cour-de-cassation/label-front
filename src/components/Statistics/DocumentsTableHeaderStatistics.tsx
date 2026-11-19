@@ -2,13 +2,13 @@ import React from 'react';
 import { customThemeType, useCustomTheme } from 'src/pelta-design-system';
 import { heights } from '../../theme/layout';
 import { DocumentNumberTextInput } from '../DocumentNumberTextInput';
-import { StatisticsFilterButton } from '../../pages/Admin/Statistics/StatisticsFilterButton';
+import { StatisticsFilterButton } from 'src/components/Statistics/StatisticsFilterButton';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { documentType } from 'src/types/document';
 import { ressourceFilterType } from 'src/types/ressourceFilter';
 import { userType } from 'src/types/user';
 import { apiCaller } from '../../api';
-import { documentStatsType } from '../../pages/Admin/Statistics/StatisticsBox/DocumentStatisticsBox';
+import { documentStatsType } from 'src/components/Statistics/DocumentStatisticsBox';
 
 export { DocumentsTableHeaderStatistics };
 

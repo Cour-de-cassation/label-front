@@ -1,22 +1,25 @@
 import React, { ReactElement } from 'react';
-import { handleFetchedData } from '../api';
+import { ApiState } from 'src/api/useApi';
 import { ErrorPage } from './ErrorPage';
 import { LoadingPage } from './LoadingPage';
 
 export function DataFetcher<dataT>(props: {
   buildComponentWithData: (returnedData: dataT) => ReactElement;
-  fetchInfo: { isLoaded: boolean; statusCode?: number; data?: dataT };
+  fetchInfo: ApiState<dataT>;
   showLoadingOnRefetch?: boolean;
   route?: string;
 }) {
-  const fetchedData = handleFetchedData(props.fetchInfo, props.showLoadingOnRefetch);
+  const { fetchInfo } = props;
 
-  switch (fetchedData.kind) {
+  switch (fetchInfo.status) {
     case 'loading':
       return <LoadingPage />;
-    case 'data':
-      return props.buildComponentWithData(fetchedData.data);
     case 'error':
-      return <ErrorPage route={props.route} errorCode={props.fetchInfo.statusCode} />;
+      return <ErrorPage route={props.route} errorCode={fetchInfo.statusCode} />;
+    case 'success':
+      if (fetchInfo.isRefetching && props.showLoadingOnRefetch) {
+        return <LoadingPage />;
+      }
+      return props.buildComponentWithData(fetchInfo.data);
   }
 }

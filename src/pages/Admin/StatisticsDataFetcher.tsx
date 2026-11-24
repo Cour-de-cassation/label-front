@@ -28,7 +28,7 @@ function StatisticsDataFetcher(props: {
           availableStatisticFilters,
           aggregatedStatistics,
           refetch: statisticsFetchInfo.refetch,
-          isLoading: !statisticsFetchInfo.isLoaded,
+          isLoading: statisticsFetchInfo.status !== 'success' || statisticsFetchInfo.isRefetching,
           ressourceFilter: statisticsFetchInfo.params,
         })
       }

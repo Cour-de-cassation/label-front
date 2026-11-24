@@ -20,7 +20,7 @@ function TreatedDocumentsDataFetcher(props: {
         props.children({
           treatedDocuments,
           refetch: treatedDocumentsFetchInfo.refetch,
-          isLoading: !treatedDocumentsFetchInfo.isLoaded,
+          isLoading: treatedDocumentsFetchInfo.status !== 'success' || treatedDocumentsFetchInfo.isRefetching,
         })
       }
       fetchInfo={treatedDocumentsFetchInfo}

@@ -1,81 +1,35 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { customThemeType, useCustomTheme, ButtonWithIcon, Icon, Text } from 'src/pelta-design-system';
-import { wordings } from 'src/wordings';
+import { Button, Stack, Typography } from '@mui/material';
+import { LoopRounded, PowerSettingsNewRounded, ReportProblemRounded } from '@mui/icons-material';
 import format from 'string-template';
-
+import { wordings } from 'src/wordings';
 import { useCtxUser } from 'src/contexts/user.context';
 
-export { ErrorState };
+type ErrorStateProps = {
+  route?: string;
+  errorCode?: number;
+};
 
-function ErrorState(props: { route?: string; errorCode?: number }) {
-  const theme = useCustomTheme();
-  const styles = buildStyles(theme);
+export function ErrorState({ route, errorCode }: ErrorStateProps) {
   const navigate = useNavigate();
   const { onLogout } = useCtxUser();
 
   return (
-    <div style={styles.container}>
-      <div style={styles.errorPage}>
-        <Icon iconName="warning" style={styles.errorIcon} />
-        <Text style={styles.errorText}>{wordings.errorPage.title}</Text>
-        {!!props.errorCode && (
-          <Text style={styles.errorText} variant="body2">
-            {format(wordings.errorPage.errorCode, { code: props.errorCode })}
-          </Text>
-        )}
-        {props.route && (
-          <Text style={styles.errorText} variant="body2">
-            {format(wordings.errorPage.onRequest, { route: props.route })}
-          </Text>
-        )}
-        <div style={styles.buttonContainer}>
-          <ButtonWithIcon iconName="reset" color="default" onClick={reload} text={wordings.shared.refresh} />
-        </div>
-        <Text style={styles.errorText}>{wordings.shared.or}</Text>
-        <div style={styles.buttonContainer}>
-          <ButtonWithIcon iconName="logout" color="default" onClick={logout} text={wordings.shared.logout} />
-        </div>
-      </div>
-    </div>
+    <Stack sx={{ justifyContent: 'center', alignItems: 'center', gap: 1, height: 1, textAlign: 'center' }}>
+      <ReportProblemRounded sx={{ fontSize: 100, m: 3 }} />
+      <Typography>{wordings.errorState.title}</Typography>
+      {!!errorCode && (
+        <Typography variant="body2">{format(wordings.errorState.errorCode, { code: errorCode })}</Typography>
+      )}
+      {route && <Typography variant="body2">{format(wordings.errorState.onRequest, { route })}</Typography>}
+      <Button variant="contained" color="neutral" startIcon={<LoopRounded />} onClick={() => navigate(0)}>
+        {wordings.shared.refresh}
+      </Button>
+      <Typography>{wordings.shared.or}</Typography>
+      <Button variant="contained" color="neutral" startIcon={<PowerSettingsNewRounded />} onClick={onLogout}>
+        {wordings.shared.logout}
+      </Button>
+    </Stack>
   );
-
-  function logout() {
-    onLogout();
-  }
-
-  function reload() {
-    navigate(0);
-  }
-
-  function buildStyles(theme: customThemeType) {
-    return {
-      container: {
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      errorPage: {
-        display: 'flex',
-        flexDirection: 'column',
-        textAlign: 'center',
-      },
-      errorIcon: {
-        alignSelf: 'center',
-        fontSize: '100px',
-        padding: theme.spacing * 3,
-      },
-      errorText: {
-        marginBottom: theme.spacing,
-      },
-      buttonContainer: {
-        marginBottom: theme.spacing,
-        display: 'flex',
-        justifyContent: 'center',
-      },
-    } as const;
-  }
 }

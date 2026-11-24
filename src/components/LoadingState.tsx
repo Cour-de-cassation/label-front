@@ -1,44 +1,12 @@
 import React from 'react';
-import { customThemeType, useCustomTheme, Text, Loader } from 'src/pelta-design-system';
+import { CircularProgress, Stack, Typography } from '@mui/material';
 import { wordings } from 'src/wordings';
 
-export { LoadingState };
-
-const LOADER_SIZE = 36;
-
-function LoadingState() {
-  const theme = useCustomTheme();
-  const styles = buildStyles(theme);
-
+export function LoadingState() {
   return (
-    <div style={styles.container}>
-      <div style={styles.loadingPage}>
-        <div style={styles.loaderContainer}>
-          <Loader size={LOADER_SIZE} />
-        </div>
-        <Text>{wordings.loadingPage}</Text>
-      </div>
-    </div>
+    <Stack sx={{ justifyContent: 'center', alignItems: 'center', gap: 4, height: 1 }}>
+      <CircularProgress size={36} />
+      <Typography>{wordings.loadingState}</Typography>
+    </Stack>
   );
-
-  function buildStyles(theme: customThemeType) {
-    return {
-      container: {
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      loadingPage: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      },
-      loaderContainer: {
-        marginBottom: theme.spacing * 4,
-      },
-    } as const;
-  }
 }

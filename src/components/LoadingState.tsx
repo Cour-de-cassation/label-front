@@ -1,12 +1,12 @@
 import React from 'react';
 import { customThemeType, useCustomTheme, Text, Loader } from 'src/pelta-design-system';
-import { wordings } from '../../wordings';
+import { wordings } from 'src/wordings';
 
-export { LoadingPage };
+export { LoadingState };
 
 const LOADER_SIZE = 36;
 
-function LoadingPage() {
+function LoadingState() {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
 

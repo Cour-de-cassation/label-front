@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { customThemeType, useCustomTheme, ButtonWithIcon, Icon, Text } from 'src/pelta-design-system';
-import { wordings } from '../../wordings';
+import { wordings } from 'src/wordings';
 import format from 'string-template';
 
-import { useCtxUser } from '../../contexts/user.context';
+import { useCtxUser } from 'src/contexts/user.context';
 
-export { ErrorPage };
+export { ErrorState };
 
-function ErrorPage(props: { route?: string; errorCode?: number }) {
+function ErrorState(props: { route?: string; errorCode?: number }) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { ApiState } from 'src/api/useApi';
-import { ErrorPage } from './ErrorPage';
-import { LoadingPage } from './LoadingPage';
+import { ErrorState } from 'src/components/ErrorState';
+import { LoadingState } from 'src/components/LoadingState';
 
 export function DataFetcher<dataT>(props: {
   buildComponentWithData: (returnedData: dataT) => ReactElement;
@@ -13,12 +13,12 @@ export function DataFetcher<dataT>(props: {
 
   switch (fetchInfo.status) {
     case 'loading':
-      return <LoadingPage />;
+      return <LoadingState />;
     case 'error':
-      return <ErrorPage route={props.route} errorCode={fetchInfo.statusCode} />;
+      return <ErrorState route={props.route} errorCode={fetchInfo.statusCode} />;
     case 'success':
       if (fetchInfo.isRefetching && props.showLoadingOnRefetch) {
-        return <LoadingPage />;
+        return <LoadingState />;
       }
       return props.buildComponentWithData(fetchInfo.data);
   }

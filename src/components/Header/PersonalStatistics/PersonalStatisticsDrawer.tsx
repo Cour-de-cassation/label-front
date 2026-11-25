@@ -1,6 +1,9 @@
 import React from 'react';
 import { Box, Drawer, IconButton, Tooltip, Typography } from '@mui/material';
 import { CloseRounded } from '@mui/icons-material';
+import { apiCaller, useApi } from 'src/api';
+import { ErrorState } from 'src/components/ErrorState';
+import { LoadingState } from 'src/components/LoadingState';
 import { heights } from 'src/theme/layout';
 import { wordings } from '../../../wordings';
 import { PersonalStatisticsTable } from './PersonalStatisticsTable';
@@ -42,10 +45,24 @@ export function PersonalStatisticsDrawer({ close, isOpen }: PersonalStatisticsDr
             {wordings.statisticsPage.treatedDecisions}
           </Typography>
           <Box>
-            <PersonalStatisticsTable />
+            <PersonalStatisticsContent />
           </Box>
         </Box>
       </Box>
     </Drawer>
   );
+}
+
+// Rendered only while the drawer is open, so the statistics are fetched again on each opening
+function PersonalStatisticsContent() {
+  const personalStatisticsInfo = useApi(() => apiCaller.get('personalStatistics'), {});
+
+  switch (personalStatisticsInfo.status) {
+    case 'loading':
+      return <LoadingState />;
+    case 'error':
+      return <ErrorState route="personalStatistics" errorCode={personalStatisticsInfo.statusCode} />;
+    case 'success':
+      return <PersonalStatisticsTable personalStatistics={personalStatisticsInfo.data} />;
+  }
 }

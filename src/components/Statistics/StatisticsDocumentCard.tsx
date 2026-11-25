@@ -36,7 +36,8 @@ const DOCUMENT_ROWS: Array<{ label: string; getValue: (statistics: DocumentStati
   { label: fields.juridiction, getValue: (statistics) => statistics.jurisdiction },
   {
     label: fields.decisionDate,
-    getValue: (statistics) => convertTimestampToReadableDate(statistics.decisionDate ?? 0),
+    getValue: (statistics) =>
+      statistics.decisionDate ? convertTimestampToReadableDate(statistics.decisionDate) : undefined,
   },
   { label: fields.treatmentDate, getValue: (statistics) => convertTimestampToReadableDate(statistics.treatmentDate) },
 ];

@@ -1,27 +1,19 @@
 import React from 'react';
 import { customThemeType, useCustomTheme, Text } from 'src/pelta-design-system';
-import { statisticType } from 'src/types/statistic';
+import { apiRouteOutType } from 'src/api/apiRouteType';
 import { wordings } from 'src/wordings';
 import { convertDurationToReadableDuration, convertTimestampToReadableDate } from 'src/utils/timeOperator';
 
 export { DocumentStatisticsBox };
 
-type treatmentsSummaryType = {
-  id: string;
-  name: string;
-  statId: string;
-  treatmentDuration: number;
-};
+export type documentStatsType = apiRouteOutType<'get', 'documentStatistics'>[number];
+
+type treatmentsSummaryType = documentStatsType['treatmentsSummary'][number];
 
 type labelStat = {
   label: string;
   value: string[] | string | number | undefined;
 };
-
-export interface documentStatsType extends Omit<statisticType, '_id' | 'treatmentsSummary'> {
-  treatmentsSummary: Array<treatmentsSummaryType>;
-  _id: string;
-}
 
 const ROW_HEIGHT = 25;
 

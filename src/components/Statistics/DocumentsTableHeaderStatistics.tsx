@@ -4,11 +4,8 @@ import { heights } from '../../theme/layout';
 import { DocumentNumberTextInput } from '../DocumentNumberTextInput';
 import { StatisticsFilterButton } from 'src/components/Statistics/StatisticsFilterButton';
 import { apiRouteOutType } from 'src/api/apiRouteType';
-import { documentType } from 'src/types/document';
 import { ressourceFilterType } from 'src/types/ressourceFilter';
 import { userType } from 'src/types/user';
-import { apiCaller } from '../../api';
-import { documentStatsType } from 'src/components/Statistics/DocumentStatisticsBox';
 
 export { DocumentsTableHeaderStatistics };
 
@@ -20,7 +17,6 @@ function DocumentsTableHeaderStatistics(props: {
   ressourceFilter: ressourceFilterType;
   setSearchedDocumentNumber: (documentNumber: number | undefined) => void;
   documentNumber: number | undefined;
-  documentStatistics: (data: Array<documentStatsType>) => void;
 }) {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
@@ -37,25 +33,13 @@ function DocumentsTableHeaderStatistics(props: {
         />
         <div style={styles.tableRightHeader}>
           <div style={styles.searchTextInputContainer}>
-            <DocumentNumberTextInput
-              value={props.documentNumber}
-              onChange={(documentNumber) => {
-                props.setSearchedDocumentNumber(documentNumber);
-                buildFetchDocumentStatistics(documentNumber ?? 0).then((documentStatistics) => {
-                  props.documentStatistics(documentStatistics.data as any);
-                });
-              }}
-            />
+            <DocumentNumberTextInput value={props.documentNumber} onChange={props.setSearchedDocumentNumber} />
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-const buildFetchDocumentStatistics = async (documentNumber: documentType['documentNumber']) => {
-  return await apiCaller.get<'documentStatistics'>('documentStatistics', { documentNumber });
-};
 
 function buildStyles(theme: customThemeType) {
   return {

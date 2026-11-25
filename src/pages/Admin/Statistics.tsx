@@ -1,39 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { apiCaller, useApi } from 'src/api';
 import { apiRouteOutType } from 'src/api/apiRouteType';
 import { ressourceFilterType } from 'src/types/ressourceFilter';
-import { userType } from 'src/types/user';
 import { customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { heights, widths } from 'src/theme/layout';
 import { wordings } from 'src/wordings';
+import { ErrorState } from 'src/components/ErrorState';
+import { LoadingState } from 'src/components/LoadingState';
 import { StatisticsBox } from 'src/components/Statistics/StatisticsBox';
-import { DocumentStatisticsBox, documentStatsType } from 'src/components/Statistics/DocumentStatisticsBox';
+import { DocumentStatisticsBox } from 'src/components/Statistics/DocumentStatisticsBox';
 import { DocumentsTableHeaderStatistics } from 'src/components/Statistics/DocumentsTableHeaderStatistics';
-
-export { Statistics };
 
 const STATISTICS_BOX_WIDTH = 350;
 const DOCUMENT_STATISTIC_BOX_WIDTH = 450;
 
-function Statistics(props: {
-  aggregatedStatistics: apiRouteOutType<'get', 'aggregatedStatistics'>;
-  availableStatisticFilters: apiRouteOutType<'get', 'availableStatisticFilters'>;
-  users: Pick<userType, '_id' | 'name'>[];
-  refetch: (ressourceFilter: ressourceFilterType) => void;
-  isLoading: boolean;
-  ressourceFilter: ressourceFilterType;
-}) {
+const INITIAL_RESSOURCE_FILTER = { route: undefined, source: undefined, userId: undefined } as ressourceFilterType;
+
+const INITIAL_DOCUMENT_SEARCH: { documentNumber: number | undefined } = { documentNumber: undefined };
+
+export function Statistics() {
   const theme = useCustomTheme();
   const styles = buildStyles(theme);
-  const aggregatedStatistics = buildAggregatedStatistics();
-  const [searchedDocumentNumber, setSearchedDocumentNumber] = useState<number | undefined>();
-  const searchDocumentNumber = (searchedDocumentNumber: number | undefined) => {
-    setSearchedDocumentNumber(searchedDocumentNumber);
-    return searchedDocumentNumber;
-  };
-  const [documentStatistics, setDocumentStatistics] = useState<Array<documentStatsType>>();
-  const receivedocumentStatistics = (data: Array<documentStatsType>) => {
-    setDocumentStatistics(data);
-  };
+  const availableStatisticFiltersInfo = useApi(() => apiCaller.get('availableStatisticFilters'), {});
+  const workingUsersInfo = useApi(() => apiCaller.get('workingUsers'), {});
+  const aggregatedStatisticsInfo = useApi(fetchAggregatedStatistics, INITIAL_RESSOURCE_FILTER);
+  const documentStatisticsInfo = useApi(fetchDocumentStatistics, INITIAL_DOCUMENT_SEARCH);
+
+  if (availableStatisticFiltersInfo.status === 'error') {
+    return <ErrorState route="availableStatisticFilters" errorCode={availableStatisticFiltersInfo.statusCode} />;
+  }
+  if (workingUsersInfo.status === 'error') {
+    return <ErrorState route="workingUsers" errorCode={workingUsersInfo.statusCode} />;
+  }
+  if (aggregatedStatisticsInfo.status === 'error') {
+    return <ErrorState route="aggregatedStatistics" errorCode={aggregatedStatisticsInfo.statusCode} />;
+  }
+  if (
+    availableStatisticFiltersInfo.status === 'loading' ||
+    workingUsersInfo.status === 'loading' ||
+    aggregatedStatisticsInfo.status === 'loading'
+  ) {
+    return <LoadingState />;
+  }
+
+  const users = workingUsersInfo.data.map(({ _id, name }) => ({ _id, name }));
+  const aggregatedStatistics = aggregatedStatisticsInfo.data;
+  const searchedDocumentNumber = documentStatisticsInfo.params.documentNumber;
+  const documentStatistics = documentStatisticsInfo.status === 'success' ? documentStatisticsInfo.data : undefined;
 
   const titleAlert =
     searchedDocumentNumber == undefined ? <p> {wordings.statisticsPage.specificStatisticsHintMessage} </p> : <p> </p>;
@@ -41,19 +54,18 @@ function Statistics(props: {
     <div>
       <div style={styles.table}>
         <DocumentsTableHeaderStatistics
-          availableStatisticFilters={props.availableStatisticFilters}
-          users={props.users}
-          refetch={props.refetch}
-          isLoading={props.isLoading}
-          ressourceFilter={props.ressourceFilter}
+          availableStatisticFilters={availableStatisticFiltersInfo.data}
+          users={users}
+          refetch={aggregatedStatisticsInfo.refetch}
+          isLoading={aggregatedStatisticsInfo.isRefetching}
+          ressourceFilter={aggregatedStatisticsInfo.params}
           documentNumber={searchedDocumentNumber}
-          setSearchedDocumentNumber={searchDocumentNumber}
-          documentStatistics={receivedocumentStatistics}
+          setSearchedDocumentNumber={(documentNumber) => documentStatisticsInfo.refetch({ documentNumber })}
         />
       </div>
       <div style={styles.body}>
         <div style={styles.row}>
-          {props.aggregatedStatistics.total == -1 ? (
+          {aggregatedStatistics === null ? (
             <div style={styles.numberOfDecisionContainer}>
               <Text variant="h1">{wordings.statisticsPage.agregatedStatisticsHintMessage}</Text>
             </div>
@@ -61,11 +73,11 @@ function Statistics(props: {
             <>
               <div style={styles.numberOfDecisionContainer}>
                 <Text variant="h1">{wordings.statisticsPage.treatedDecisions}</Text>
-                <Text variant="h1">{props.aggregatedStatistics.total}</Text>
+                <Text variant="h1">{aggregatedStatistics.total}</Text>
               </div>
               <StatisticsBox
-                aggregatedStatistic={aggregatedStatistics}
-                statisticsCount={props.aggregatedStatistics.total}
+                aggregatedStatistic={aggregatedStatistics.cumulatedValue}
+                statisticsCount={aggregatedStatistics.total}
                 width={STATISTICS_BOX_WIDTH}
               />
             </>
@@ -73,7 +85,9 @@ function Statistics(props: {
         </div>
         <hr style={styles.hrLine} />
         <div style={styles.row}>
-          {documentStatistics?.length == 0 ? (
+          {documentStatisticsInfo.status === 'error' ? (
+            <ErrorState route="documentStatistics" errorCode={documentStatisticsInfo.statusCode} />
+          ) : documentStatistics?.length == 0 ? (
             <div style={styles.numberOfDecisionContainer}>
               <Text variant="h1">{wordings.statisticsPage.specificStatisticsNotFound}</Text>
             </div>
@@ -102,17 +116,27 @@ function Statistics(props: {
       </div>
     </div>
   );
+}
 
-  function buildAggregatedStatistics() {
-    return {
-      annotationsCount: props.aggregatedStatistics.cumulatedValue.annotationsCount,
-      surAnnotationsCount: props.aggregatedStatistics.cumulatedValue.surAnnotationsCount,
-      subAnnotationsSensitiveCount: props.aggregatedStatistics.cumulatedValue.subAnnotationsSensitiveCount,
-      subAnnotationsNonSensitiveCount: props.aggregatedStatistics.cumulatedValue.subAnnotationsNonSensitiveCount,
-      treatmentDuration: props.aggregatedStatistics.cumulatedValue.treatmentDuration,
-      wordsCount: props.aggregatedStatistics.cumulatedValue.wordsCount,
-    };
+async function fetchAggregatedStatistics(
+  ressourceFilter: ressourceFilterType,
+): Promise<{ data: apiRouteOutType<'get', 'aggregatedStatistics'> | null; statusCode: number }> {
+  const hasActiveFilter = Object.values(ressourceFilter).some((value) => !!value);
+  if (!hasActiveFilter) {
+    return { data: null, statusCode: 200 };
   }
+  return apiCaller.get('aggregatedStatistics', { ressourceFilter });
+}
+
+async function fetchDocumentStatistics({
+  documentNumber,
+}: {
+  documentNumber: number | undefined;
+}): Promise<{ data: apiRouteOutType<'get', 'documentStatistics'> | null; statusCode: number }> {
+  if (documentNumber === undefined) {
+    return { data: null, statusCode: 200 };
+  }
+  return apiCaller.get('documentStatistics', { documentNumber });
 }
 
 function buildStyles(theme: customThemeType) {

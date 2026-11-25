@@ -13,6 +13,20 @@ type badgeCountsType = apiRouteOutType<'get', 'adminBadgeCounts'>;
 
 const AdminBadgeCountsRefetchContext = createContext<() => void>(() => undefined);
 
+async function fetchAdminBadgeCounts() {
+  const { data, statusCode } = await apiCaller.get('adminBadgeCounts');
+  return { data, statusCode };
+}
+
+function getUserRole(user: CurrentUser | null): 'admin' | 'scrutator' | undefined {
+  const stored = localStorage.adminViewHandler.get();
+  const role = stored || user?.role;
+  if (role === 'admin' || role === 'scrutator') {
+    return role;
+  }
+  return undefined;
+}
+
 export function useAdminBadgeCountsRefetch() {
   return use(AdminBadgeCountsRefetchContext);
 }
@@ -62,18 +76,4 @@ export function AdminLayout() {
       />
     </>
   );
-}
-
-async function fetchAdminBadgeCounts() {
-  const { data, statusCode } = await apiCaller.get('adminBadgeCounts');
-  return { data, statusCode };
-}
-
-function getUserRole(user: CurrentUser | null): 'admin' | 'scrutator' | undefined {
-  const stored = localStorage.adminViewHandler.get();
-  const role = stored || user?.role;
-  if (role === 'admin' || role === 'scrutator') {
-    return role;
-  }
-  return undefined;
 }

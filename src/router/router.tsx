@@ -10,7 +10,6 @@ import { PreAssignDocuments } from '../pages/Admin/PreAssignDocuments';
 import { UntreatedDocuments } from '../pages/Admin/UntreatedDocuments';
 import { ProblemReportsDataFetcher } from '../pages/Admin/ProblemReports/ProblemReportsDataFetcher';
 import { PreAssignDocumentsDataFetcher } from '../pages/Admin/PreAssignDocuments/PreAssignDocumentsDataFetcher';
-import { StatisticsDataFetcher } from '../pages/Admin/Statistics/StatisticsDataFetcher';
 import { ToBeConfirmedDocumentsDataFetcher } from '../pages/Admin/ToBeConfirmedDocuments/ToBeConfirmedDocumentsDataFetcher';
 import { TreatedDocumentsDataFetcher } from '../pages/Admin/TreatedDocuments/TreatedDocumentsDataFetcher';
 import { UntreatedDocumentsDataFetcher } from '../pages/Admin/UntreatedDocuments/UntreatedDocumentsDataFetcher';
@@ -49,27 +48,7 @@ function Router() {
         >
           <Route element={<AdminLayout />}>
             <Route path={routes.SUMMARY.getPath()} element={<Summary />} />
-            <Route
-              path={routes.STATISTICS.getPath()}
-              element={
-                <WorkingUsersDataFetcher>
-                  {({ workingUsers }) => (
-                    <StatisticsDataFetcher>
-                      {({ availableStatisticFilters, aggregatedStatistics, refetch, isLoading, ressourceFilter }) => (
-                        <Statistics
-                          ressourceFilter={ressourceFilter}
-                          refetch={refetch}
-                          isLoading={isLoading}
-                          aggregatedStatistics={aggregatedStatistics}
-                          availableStatisticFilters={availableStatisticFilters}
-                          users={workingUsers.map(({ _id, name }) => ({ _id, name }))}
-                        />
-                      )}
-                    </StatisticsDataFetcher>
-                  )}
-                </WorkingUsersDataFetcher>
-              }
-            />
+            <Route path={routes.STATISTICS.getPath()} element={<Statistics />} />
             <Route
               path={routes.PROBLEM_REPORTS.getPath()}
               element={

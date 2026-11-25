@@ -3,9 +3,17 @@ import { apiSchemaType } from 'src/api/apiSchema';
 import { urlHandler } from '../utils';
 import { jwtTokenHandler } from '../services/jwtToken';
 
-export { apiCaller };
-
 const DEFAULT_HEADER = { 'Content-Type': 'application/json' };
+
+export class ApiError extends Error {
+  statusCode: number;
+
+  constructor(statusCode: number) {
+    super(`Unknown error : ${statusCode}`);
+    this.name = 'ApiError';
+    this.statusCode = statusCode;
+  }
+}
 
 function getAuthHeaders(): Record<string, string> {
   const headers: Record<string, string> = { ...DEFAULT_HEADER };
@@ -16,58 +24,41 @@ function getAuthHeaders(): Record<string, string> {
   return headers;
 }
 
-const apiCaller = {
-  async get<RouteName extends keyof apiSchemaType['get']>(
-    routeName: RouteName,
-    args?: apiRouteInType<'get', RouteName>,
-  ): Promise<{
-    data: networkType<apiRouteOutType<'get', RouteName>>;
-    statusCode: number;
-  }> {
-    const response = await fetch(
-      buildUrlWithParams(
-        `${urlHandler.getApiUrl()}/label/api/${routeName}`,
-        args as Record<string, unknown> | undefined,
-      ),
-      {
-        cache: 'default',
-        headers: getAuthHeaders(),
-        method: 'get',
-        mode: 'cors',
-      },
+export const apiCaller = {
+  get<RouteName extends keyof apiSchemaType['get']>(routeName: RouteName, args?: apiRouteInType<'get', RouteName>) {
+    return request<networkType<apiRouteOutType<'get', RouteName>>>(
+      buildUrlWithParams(buildRouteUrl(routeName), args as Record<string, unknown> | undefined),
+      { method: 'get' },
     );
-
-    const data = (await computeDataFromResponse(response)) as networkType<apiRouteOutType<'get', RouteName>>;
-
-    return {
-      data,
-      statusCode: response.status,
-    };
   },
 
-  async post<RouteName extends keyof apiSchemaType['post']>(
-    routeName: RouteName,
-    args?: apiRouteInType<'post', RouteName>,
-  ): Promise<{
-    data: networkType<apiRouteOutType<'post', RouteName>>;
-    statusCode: number;
-  }> {
-    const response = await fetch(`${urlHandler.getApiUrl()}/label/api/${routeName}`, {
+  post<RouteName extends keyof apiSchemaType['post']>(routeName: RouteName, args?: apiRouteInType<'post', RouteName>) {
+    return request<networkType<apiRouteOutType<'post', RouteName>>>(buildRouteUrl(routeName), {
       body: args ? JSON.stringify(args) : undefined,
-      cache: 'default',
-      headers: getAuthHeaders(),
       method: 'post',
-      mode: 'cors',
     });
-
-    const data = (await computeDataFromResponse(response)) as networkType<apiRouteOutType<'post', RouteName>>;
-
-    return {
-      data,
-      statusCode: response.status,
-    };
   },
 };
+
+async function request<dataT>(url: string, init: RequestInit): Promise<{ data: dataT; statusCode: number }> {
+  const response = await fetch(url, {
+    ...init,
+    cache: 'default',
+    headers: getAuthHeaders(),
+    mode: 'cors',
+  });
+
+  const data = (await computeDataFromResponse(response)) as dataT;
+
+  return {
+    data,
+    statusCode: response.status,
+  };
+}
+
+function buildRouteUrl(routeName: string) {
+  return `${urlHandler.getApiUrl()}/label/api/${routeName}`;
+}
 
 function buildUrlWithParams(url: string, params?: { [key: string]: unknown }) {
   const urlParameters = new URLSearchParams();
@@ -82,7 +73,7 @@ function buildUrlWithParams(url: string, params?: { [key: string]: unknown }) {
 
 async function computeDataFromResponse(response: Response): Promise<unknown> {
   if (![200, 201].includes(response.status)) {
-    throw new Error(`Unknown error : ${response.status}`);
+    throw new ApiError(response.status);
   }
   try {
     const textData = await response.text();

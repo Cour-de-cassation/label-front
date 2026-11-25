@@ -1,42 +1,25 @@
 import React, { ReactElement } from 'react';
-import { Navigate } from 'react-router';
-import { handleFetchedData } from '../api';
-import { ErrorPage } from './ErrorPage';
-import { LoadingPage } from './LoadingPage';
+import { ApiState } from 'src/api/useApi';
+import { ErrorState } from 'src/components/ErrorState';
+import { LoadingState } from 'src/components/LoadingState';
 
-export { DataFetcher };
-
-function DataFetcher<dataT>(props: {
+export function DataFetcher<dataT>(props: {
   buildComponentWithData: (returnedData: dataT) => ReactElement;
-  fetchInfo: { isLoaded: boolean; statusCode?: number; data?: dataT };
+  fetchInfo: ApiState<dataT>;
   showLoadingOnRefetch?: boolean;
   route?: string;
 }) {
-  const fetchedData = handleFetchedData(props.fetchInfo, props.showLoadingOnRefetch);
+  const { fetchInfo } = props;
 
-  switch (fetchedData.kind) {
+  switch (fetchInfo.status) {
     case 'loading':
-      return buildLoadingPage();
-    case 'data':
-      return props.buildComponentWithData(fetchedData.data);
+      return <LoadingState />;
     case 'error':
-      switch (fetchedData.error) {
-        case 'authentication':
-          return buildLoginRedirectionPage();
-        case 'unknown':
-          return buildErrorPage();
+      return <ErrorState route={props.route} errorCode={fetchInfo.statusCode} />;
+    case 'success':
+      if (fetchInfo.isRefetching && props.showLoadingOnRefetch) {
+        return <LoadingState />;
       }
-  }
-
-  function buildErrorPage() {
-    return <ErrorPage route={props.route} errorCode={props.fetchInfo.statusCode} />;
-  }
-
-  function buildLoadingPage() {
-    return <LoadingPage />;
-  }
-
-  function buildLoginRedirectionPage() {
-    return <Navigate to="/login" replace />;
+      return props.buildComponentWithData(fetchInfo.data);
   }
 }

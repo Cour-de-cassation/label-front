@@ -20,7 +20,7 @@ function PreAssignDocumentsDataFetcher(props: {
         props.children({
           preAssignations,
           refetch: () => preAssignationsFetchInfo.refetch({}),
-          isLoading: !preAssignationsFetchInfo.isLoaded,
+          isLoading: preAssignationsFetchInfo.status !== 'success' || preAssignationsFetchInfo.isRefetching,
         })
       }
       fetchInfo={preAssignationsFetchInfo}

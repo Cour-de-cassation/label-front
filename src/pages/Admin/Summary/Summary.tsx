@@ -33,7 +33,10 @@ export function Summary() {
               pr: 4,
             }}
           >
-            <RefreshButton onClick={summaryInfo.refetch} isLoading={!summaryInfo.isLoaded} />
+            <RefreshButton
+              onClick={summaryInfo.refetch}
+              isLoading={summaryInfo.status !== 'success' || summaryInfo.isRefetching}
+            />
           </Box>
           <Box
             sx={{

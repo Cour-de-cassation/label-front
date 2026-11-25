@@ -20,7 +20,7 @@ function UntreatedDocumentsDataFetcher(props: {
         props.children({
           untreatedDocuments,
           refetch: untreatedDocumentsFetchInfo.refetch,
-          isLoading: !untreatedDocumentsFetchInfo.isLoaded,
+          isLoading: untreatedDocumentsFetchInfo.status !== 'success' || untreatedDocumentsFetchInfo.isRefetching,
         })
       }
       fetchInfo={untreatedDocumentsFetchInfo}

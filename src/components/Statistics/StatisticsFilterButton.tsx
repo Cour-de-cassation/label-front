@@ -145,7 +145,7 @@ function StatisticsFilterButton(props: {
         name: 'importer',
         label: wordings.business.filters.fields.importer,
         possibleValues: props.availableStatisticFilters.importers,
-        value: props.ressourceFilter.route,
+        value: props.ressourceFilter.importer,
         onChange: (newImporter: string | undefined) => {
           props.refetch({
             ...props.ressourceFilter,

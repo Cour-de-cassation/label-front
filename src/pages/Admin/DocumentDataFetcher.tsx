@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { apiRouteOutType } from 'src/api/apiRouteType';
-import { apiCaller, useApi } from '../../../api';
-import { DataFetcher } from '../../DataFetcher';
+import { apiCaller, useApi } from 'src/api';
+import { DataFetcher } from 'src/pages/DataFetcher';
 
 export { DocumentDataFetcher };
 

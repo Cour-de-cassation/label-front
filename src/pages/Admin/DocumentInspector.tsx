@@ -3,21 +3,21 @@ import { useNavigate, useParams } from 'react-router';
 import { annotationsDiffType } from 'src/types/annotation';
 import { documentType } from 'src/types/document';
 import { settingsType } from 'src/types/settings';
-import { apiCaller } from '../../../api';
+import { apiCaller } from 'src/api';
 import { IconButton, Tooltip, Typography } from '@mui/material';
 import { ChevronLeftRounded } from '@mui/icons-material';
-import { HeaderSlot } from '../../../components/Header/HeaderSlot';
+import { HeaderSlot } from 'src/components/Header/HeaderSlot';
 import {
   AnnotatorStateHandlerContextProvider,
   buildAnnotationsCommitter,
   buildAutoSaver,
-} from '../../../services/annotatorState';
-import { DocumentAnnotator } from '../../Home/DocumentAnnotator';
-import { useAlert } from '../../../services/alert';
-import { wordings } from '../../../wordings';
-import { AnnotationsDataFetcher } from './AnnotationsDataFetcher';
-import { DocumentDataFetcher } from './DocumentDataFetcher';
-import { useCtxUser } from '../../../contexts/user.context';
+} from 'src/services/annotatorState';
+import { DocumentAnnotator } from 'src/pages/Home/DocumentAnnotator';
+import { useAlert } from 'src/services/alert';
+import { wordings } from 'src/wordings';
+import { AnnotationsDataFetcher } from 'src/pages/Admin/AnnotationsDataFetcher';
+import { DocumentDataFetcher } from 'src/pages/Admin/DocumentDataFetcher';
+import { useCtxUser } from 'src/contexts/user.context';
 import { computeFilteredSettings } from 'src/utils/settings/computeFilteredSettings';
 
 export { DocumentInspector };

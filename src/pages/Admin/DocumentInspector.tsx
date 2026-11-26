@@ -74,6 +74,16 @@ function DocumentInspectorContent({ documentId }: { documentId: string }) {
     }
   }
 
+  function buildOnStopAnnotatingDocument(document: documentType) {
+    if (document.route !== 'confirmation' && document.route !== 'request') {
+      return undefined;
+    }
+
+    return async () => {
+      navigate(-1);
+    };
+  }
+
   return (
     <AnnotatorStateHandlerContextProvider
       autoSaver={buildAutoSaver({ applySave: applyAutoSave })}
@@ -95,14 +105,4 @@ function DocumentInspectorContent({ documentId }: { documentId: string }) {
       <DocumentAnnotator onStopAnnotatingDocument={buildOnStopAnnotatingDocument(document)} />
     </AnnotatorStateHandlerContextProvider>
   );
-
-  function buildOnStopAnnotatingDocument(document: documentType) {
-    if (document.route !== 'confirmation' && document.route !== 'request') {
-      return undefined;
-    }
-
-    return async () => {
-      navigate(-1);
-    };
-  }
 }

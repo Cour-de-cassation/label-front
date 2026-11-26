@@ -3,11 +3,11 @@ import { useNavigate, useParams } from 'react-router';
 import { ButtonWithIcon, customThemeType, Text, useCustomTheme } from 'src/pelta-design-system';
 import { IconButton, Tooltip } from '@mui/material';
 import { ChevronLeftRounded } from '@mui/icons-material';
-import { HeaderSlot } from '../../components/Header/HeaderSlot';
-import { lineSplitter } from '../../services/lineSplitter';
-import { heights } from '../../theme/layout';
-import { wordings } from '../../wordings';
-import { AnonymizedDocumentTextDataFetcher } from './AnonymizedDocumentTextDataFetcher';
+import { HeaderSlot } from 'src/components/Header/HeaderSlot';
+import { splitTextAccordingToNewLine } from 'src/utils/splitTextAccordingToNewLine';
+import { heights } from 'src/theme/layout';
+import { wordings } from 'src/wordings';
+import { AnonymizedDocumentTextDataFetcher } from 'src/pages/AnonymizedDocumentTextDataFetcher';
 
 export { AnonymizedDocument };
 
@@ -32,7 +32,7 @@ function AnonymizedDocument() {
       </HeaderSlot>
       <AnonymizedDocumentTextDataFetcher documentId={documentId}>
         {({ anonymizedDocumentText }) => {
-          const splittedTextByLine = lineSplitter.splitTextAccordingToNewLine(anonymizedDocumentText);
+          const splittedTextByLine = splitTextAccordingToNewLine(anonymizedDocumentText);
 
           return (
             <div style={styles.container}>

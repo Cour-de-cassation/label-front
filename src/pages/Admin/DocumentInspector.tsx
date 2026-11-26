@@ -14,7 +14,7 @@ import {
   buildAutoSaver,
 } from 'src/services/annotatorState';
 import { DocumentAnnotator } from 'src/pages/Home/DocumentAnnotator';
-import { fetchSettings } from 'src/pages/SettingsDataFetcher';
+import { fetchSettings } from 'src/utils/settings/fetchSettings';
 import { useAlert } from 'src/services/alert';
 import { wordings } from 'src/wordings';
 import { useCtxUser } from 'src/contexts/user.context';

@@ -20,7 +20,7 @@ function ProblemReportsDataFetcher(props: {
         props.children({
           problemReportsWithDetails,
           refetch: () => problemReportsFetchInfo.refetch({}),
-          isLoading: !problemReportsFetchInfo.isLoaded,
+          isLoading: problemReportsFetchInfo.status !== 'success' || problemReportsFetchInfo.isRefetching,
         })
       }
       fetchInfo={problemReportsFetchInfo}

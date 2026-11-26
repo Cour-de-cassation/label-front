@@ -215,7 +215,7 @@ const fr = {
     },
     validate: 'Valider',
   },
-  errorPage: {
+  errorState: {
     title: 'Une erreur est survenue...',
     errorCode: 'Erreur {code}',
     onRequest: "L'erreur est apparue sur la requête {route}",
@@ -254,7 +254,7 @@ const fr = {
       title: 'Statistiques personnelles',
     },
   },
-  loadingPage: 'Veuillez patienter...',
+  loadingState: 'Veuillez patienter...',
   problemReportsPage: {
     header: {
       title: 'Administration',

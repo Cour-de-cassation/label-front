@@ -20,7 +20,8 @@ function ToBeConfirmedDocumentsDataFetcher(props: {
         props.children({
           toBeConfirmedDocuments,
           refetch: toBeConfirmedDocumentsFetchInfo.refetch,
-          isLoading: !toBeConfirmedDocumentsFetchInfo.isLoaded,
+          isLoading:
+            toBeConfirmedDocumentsFetchInfo.status !== 'success' || toBeConfirmedDocumentsFetchInfo.isRefetching,
         })
       }
       fetchInfo={toBeConfirmedDocumentsFetchInfo}

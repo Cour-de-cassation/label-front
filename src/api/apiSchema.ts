@@ -30,15 +30,14 @@ export type ApiSchema = {
       in: {
         documentNumber: number;
       };
-      out: {
-        statistics: statisticType;
+      out: (Omit<statisticType, 'treatmentsSummary'> & {
         treatmentsSummary: {
           id?: string;
           statId: string;
           treatmentDuration: number;
           name?: string;
         }[];
-      }[];
+      })[];
     };
 
     annotations: {

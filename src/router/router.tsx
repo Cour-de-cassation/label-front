@@ -139,12 +139,7 @@ function Router() {
               }
             />
           </Route>
-          <Route
-            path={routes.DOCUMENT.getPath()}
-            element={
-              <SettingsDataFetcher>{({ settings }) => <DocumentInspector settings={settings} />}</SettingsDataFetcher>
-            }
-          />
+          <Route path={routes.DOCUMENT.getPath()} element={<DocumentInspector />} />
           <Route path={routes.ANONYMIZED_DOCUMENT.getPath()} element={<AnonymizedDocument />} />
           <Route path={routes.PUBLISHABLE_DOCUMENTS.getPath()} element={<PublishableDocuments />} />
           <Route

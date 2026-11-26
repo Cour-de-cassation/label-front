@@ -7,7 +7,7 @@ import { parseFromJson } from 'src/utils/settings/parseFromJson';
 export { SettingsDataFetcher };
 
 function SettingsDataFetcher(props: { children: (fetched: { settings: settingsType }) => ReactElement }) {
-  const settingsFetchInfo = useApi(buildFetchSettings(), {});
+  const settingsFetchInfo = useApi(fetchSettings, {});
   return (
     <DataFetcher
       buildComponentWithData={(settings: settingsType) => props.children({ settings })}
@@ -17,9 +17,7 @@ function SettingsDataFetcher(props: { children: (fetched: { settings: settingsTy
   );
 }
 
-function buildFetchSettings() {
-  return async () => {
-    const { data, statusCode } = await apiCaller.get<'settings'>('settings');
-    return { data: parseFromJson(data.json) as settingsType, statusCode };
-  };
+export async function fetchSettings() {
+  const { data, statusCode } = await apiCaller.get<'settings'>('settings');
+  return { data: parseFromJson(data.json) as settingsType, statusCode };
 }
